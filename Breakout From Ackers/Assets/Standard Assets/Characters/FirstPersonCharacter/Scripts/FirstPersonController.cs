@@ -43,6 +43,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+        private bool crouching;
+
+        [SerializeField] private float crouchSpeed = 0.3f;
+        [SerializeField] private float standingHeight = 3.0f;
+        [SerializeField] private float crouchingHeight = 1.5f;
+
         // Use this for initialization
         private void Start()
         {
@@ -82,7 +88,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
+
+            crouching = Input.GetKey(KeyCode.LeftControl);
+
+            
         }
+
+        
 
 
         private void PlayLandingSound()
@@ -121,6 +133,25 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     m_Jump = false;
                     m_Jumping = true;
                 }
+
+                var desiredHeight = crouching ? crouchingHeight : standingHeight;
+
+                if (m_CharacterController.height != desiredHeight)
+                {
+                    if (crouching && Physics.Raycast(m_Camera.transform.position, Vector3.up, 2f))
+                    {
+                        
+                    }
+                    else
+                    {
+                        ChangeHeight(desiredHeight);
+
+                        var cameraPos = m_Camera.transform.position;
+                        cameraPos.y = m_CharacterController.height;
+
+                        m_Camera.transform.position = cameraPos;
+                    }
+                }
             }
             else
             {
@@ -132,6 +163,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
             UpdateCameraPosition(speed);
 
             m_MouseLook.UpdateCursorLock();
+        }
+
+        private void ChangeHeight(float height)
+        {
+            float center = crouchingHeight / 2;
+
+            m_CharacterController.height = Mathf.Lerp(m_CharacterController.height, height, crouchSpeed);
+            m_CharacterController.center = Vector3.Lerp(m_CharacterController.center, new Vector3(0, center, 0), crouchSpeed);
         }
 
 
@@ -181,10 +220,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void UpdateCameraPosition(float speed)
         {
             Vector3 newCameraPosition;
-            if (!m_UseHeadBob)
+            if (!m_UseHeadBob || crouching)
             {
                 return;
             }
+            
             if (m_CharacterController.velocity.magnitude > 0 && m_CharacterController.isGrounded)
             {
                 m_Camera.transform.localPosition =
