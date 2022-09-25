@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstPersonController : MonoBehaviour
+public class FirstPersonController : CharacterStats
 {
     public bool CanMove { get; private set; } = true;
     private bool IsSprinting => canSprint && Input.GetKey(sprintKey);
@@ -22,9 +22,7 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
     [SerializeField] private KeyCode crouchKey = KeyCode.LeftControl;
 
-    [Header("Movement Parameters")]
-    [SerializeField] private float walkSpeed = 3.0f;
-    [SerializeField] private float sprintSpeed = 6.0f;
+    [Header("Additional Movement Parameters")]
     [SerializeField] private float crouchSpeed = 1.5f;
 
     [Header("Look Parameters")]
@@ -46,11 +44,7 @@ public class FirstPersonController : MonoBehaviour
     private bool isCrouching;
     private bool duringCrouchAnimation;
 
-    [Header("Health Parameters")]
-    [SerializeField] private float maxHealth = 100;
-    private float currentHealth;
-    public static Action<float> OnTakeDamage;
-    public static Action<float> OnDamage;
+    [Header("Additional Health Parameters")]
     public static Action<float> OnHeal;
 
     [Header("Headbob Parameters")]
@@ -81,15 +75,6 @@ public class FirstPersonController : MonoBehaviour
 
     private float rotationX = 0;
 
-    private void OnEnable()
-    {
-        OnTakeDamage += ApplyDamage;
-    }
-
-    private void OnDisable()
-    {
-        OnTakeDamage -= ApplyDamage;
-    }
 
     void Awake()
     {
@@ -97,7 +82,6 @@ public class FirstPersonController : MonoBehaviour
         playerCamera = GetComponentInChildren<Camera>();
         characterController = GetComponent<CharacterController>();
         defaultYPos = playerCamera.transform.localPosition.y;
-        currentHealth = maxHealth;
 
         // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
@@ -230,15 +214,7 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
-    private void ApplyDamage(float dmg)
-    {
-        currentHealth -= dmg;
-        OnDamage?.Invoke(currentHealth);
-
-        if (currentHealth <= 0) KillPlayer();
-    }
-
-    private void KillPlayer()
+    protected override void KillCharacter()
     {
         currentHealth = 0;
 
