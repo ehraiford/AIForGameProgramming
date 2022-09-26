@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Footsteps/Dirt
   - Footsteps/Wood
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Target
+  - Obstruction
   - 
   - 
   - Ground
