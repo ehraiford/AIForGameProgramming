@@ -12,15 +12,16 @@ public class EnemyMovement : MonoBehaviour
     public GameObject enemyObject;
     private int currentWaypoint;
     private float timeOfLastAttack;
+    private NormalZombieStats stats;
 
-
-    private void Awake()
+    private void Start()
     {
         enemyMesh = GetComponent<NavMeshAgent>();
         enemyObject = GameObject.FindGameObjectWithTag("Enemy");
         currentWaypoint = 0;
         anim = GetComponentInChildren<Animator>();
         timeOfLastAttack = 0f;
+        stats = GetComponent<NormalZombieStats>();
     }
     void Update()
     {
@@ -57,12 +58,24 @@ public class EnemyMovement : MonoBehaviour
     }
     private void Chase()
     {
+        Debug.Log(Time.time);
         float distance = Vector3.Distance(player.position, transform.position);
-        if(distance <= enemyMesh.stoppingDistance + .3f)
+        bool inRange = distance <= enemyMesh.stoppingDistance + .3f;
+        if (inRange)
         {
-            enemyMesh.isStopped = true;
+            
             anim.SetFloat("Speed", 0f, .1f, Time.deltaTime);
-            attackPlayer();
+            if(!enemyMesh.isStopped)
+            {
+                enemyMesh.isStopped = true;
+                timeOfLastAttack = Time.time;
+            }
+            if (Time.time >= timeOfLastAttack + stats.AttackSpeed())
+            {
+                timeOfLastAttack = Time.time;
+                CharacterStats playerStats = player.GetComponent<CharacterStats>();
+                attackPlayer(playerStats);
+            } 
         }
         else
         {
@@ -74,10 +87,11 @@ public class EnemyMovement : MonoBehaviour
 
     }
 
-    private void attackPlayer()
+    private void attackPlayer(CharacterStats doDmg)
     {
+
         anim.SetTrigger("Attack");
         //DO DAMAGE TO PLAYER
-        player.GetComponent<FirstPersonController>().
+        stats.DealDamage(doDmg);
     }
 }

@@ -7,7 +7,7 @@ public abstract class CharacterStats : MonoBehaviour
 {
     [Header("Health Parameters")]
     [SerializeField] protected float maxHealth = 100;
-    protected float currentHealth;
+    [SerializeField] protected float currentHealth;
     public static Action<float> OnTakeDamage;
     public static Action<float> OnDamage;
 
@@ -27,16 +27,31 @@ public abstract class CharacterStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;
+        setCurrHealth(maxHealth);
     }
-
-    private void ApplyDamage(float dmg)
+    private void checkHealth()
     {
-        currentHealth -= dmg;
+        if(currentHealth <= 0)
+        {
+            KillCharacter();
+        }
+    }
+    public void setCurrHealth(float health)
+    {
+        currentHealth = health;
+        checkHealth();
+    }
+    public void ApplyDamage(float dmg)
+    {
+        /*currentHealth -= dmg;
         OnDamage?.Invoke(currentHealth);
 
-        if (currentHealth <= 0) KillCharacter();
+        if (currentHealth <= 0) KillCharacter();*/
+        float hpAfterDmg = currentHealth - dmg;
+        setCurrHealth(hpAfterDmg);
     }
+    
+    //TODO: MAKE HEALING FUNCTION or just have it be with the player stats
 
     protected abstract void KillCharacter();
 }
