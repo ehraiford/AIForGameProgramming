@@ -69,6 +69,7 @@ public class FirstPersonController : CharacterStats
 
     private Camera playerCamera;
     private CharacterController characterController;
+    private Animator playerAnimations;
 
     private Vector3 moveDirection;
     private Vector2 currentInput;
@@ -82,6 +83,7 @@ public class FirstPersonController : CharacterStats
         playerCamera = GetComponentInChildren<Camera>();
         characterController = GetComponent<CharacterController>();
         defaultYPos = playerCamera.transform.localPosition.y;
+        playerAnimations = GetComponentInChildren<Animator>();
 
         // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
@@ -104,6 +106,8 @@ public class FirstPersonController : CharacterStats
 
             if (useFootsteps) HandleFootsteps();
 
+            HandleAnimations();
+
             ApplyFinalMovements();
         }
     }
@@ -115,6 +119,31 @@ public class FirstPersonController : CharacterStats
         float moveDirectionY = moveDirection.y;
         moveDirection = (transform.TransformDirection(Vector3.forward) * currentInput.x) + (transform.TransformDirection(Vector3.right) * currentInput.y);
         moveDirection.y = moveDirectionY;
+    }
+
+    private void HandleAnimations()
+    {
+        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D)) // Standing Still
+        {
+            playerAnimations.SetFloat("Speed", 0);
+        }
+        else // Moving
+        {
+            if(isCrouching)
+            {
+                playerAnimations.SetFloat("Speed", 1);
+            }
+            else if(IsSprinting)
+            {
+                playerAnimations.SetFloat("Speed", 3);
+            }
+            else
+            {
+                playerAnimations.SetFloat("Speed", 2);
+            }
+
+            
+        }
     }
 
     private void HandleMouseLook()
