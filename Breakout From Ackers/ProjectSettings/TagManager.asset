@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Footsteps/Dirt
   - Footsteps/Wood
+  - Metal
+  - Paper
+  - Wood
+  - Floor
   layers:
   - Default
   - TransparentFX
@@ -13,8 +17,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Target
+  - Obstruction
   - 
   - 
   - Ground

@@ -36,6 +36,17 @@ public abstract class CharacterStats : MonoBehaviour
         OnDamage?.Invoke(currentHealth);
 
         if (currentHealth <= 0) KillCharacter();
+
+        float healthAfter = currentHealth - dmg;
+        setHp(healthAfter);
+    }
+
+    public void setHp(float hp)
+    {
+        currentHealth = hp;
+
+        if (hp <= 0)
+            KillCharacter();
     }
 
     protected abstract void KillCharacter();
