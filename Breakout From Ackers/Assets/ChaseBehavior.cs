@@ -21,6 +21,8 @@ public class ChaseBehavior : StateMachineBehaviour
         float distance = Vector3.Distance(animator.transform.position, player.position);
         if (distance <= agent.stoppingDistance)
             animator.SetBool("isAttacking", true);
+        if (!agent.GetComponent<FOV>().canSeePlayer)
+            animator.SetBool("isChasing", false);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
