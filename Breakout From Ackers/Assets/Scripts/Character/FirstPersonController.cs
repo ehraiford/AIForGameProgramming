@@ -16,11 +16,13 @@ public class FirstPersonController : CharacterStats
     [SerializeField] private bool canCrouch = true;
     [SerializeField] private bool canUseHeadbob = true;
     [SerializeField] private bool useFootsteps = true;
+    [SerializeField] private bool canInteract = true;
 
     [Header("Controls")]
     [SerializeField] private KeyCode sprintKey = KeyCode.LeftShift;
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
     [SerializeField] private KeyCode crouchKey = KeyCode.LeftControl;
+    [SerializeField] private KeyCode interactKey = KeyCode.E;
 
     [Header("Additional Movement Parameters")]
     [SerializeField] private float crouchSpeed = 1.5f;
@@ -67,6 +69,13 @@ public class FirstPersonController : CharacterStats
     private float footstepTimer = 0;
     private float GetCurrentOffset => isCrouching ? baseStepSpeed * crouchStepMultiplier : IsSprinting ? baseStepSpeed * sprintStepMultiplier : baseStepSpeed;
 
+    [Header("Interaction")]
+    [SerializeField] private Vector3 interactionRayPoint = default;
+    [SerializeField] private float interactionDistance = default;
+    [SerializeField] private LayerMask interactionLayer = default;
+    private Interactable currentInteractable;
+
+
     private Camera playerCamera;
     private CharacterController characterController;
     private Animator playerAnimations;
@@ -105,6 +114,12 @@ public class FirstPersonController : CharacterStats
             if (canUseHeadbob) HandleHeadbob();
 
             if (useFootsteps) HandleFootsteps();
+
+            if (canInteract)
+            {
+                HandleInteractionCheck();
+                HandleInteractionInput();
+            }
 
             HandleAnimations();
 
@@ -249,6 +264,43 @@ public class FirstPersonController : CharacterStats
 
         // Add respawn/death screen here
         print("Dead");
+    }
+
+    // Constantly raycasts out to check for interactable objects
+    private void HandleInteractionCheck()
+    {
+        // Checks for any object the player is looking at
+        if (Physics.Raycast(playerCamera.ViewportPointToRay(interactionRayPoint), out RaycastHit hit, interactionDistance))
+        {
+            // If the object we are looking at is a new interactable object
+            if (hit.collider.gameObject.layer == 11 && (currentInteractable == null || hit.collider.gameObject.GetInstanceID() != currentInteractable.GetInstanceID()))
+            {
+                // Gets the interactable object
+                hit.collider.TryGetComponent(out currentInteractable);
+
+                // Sets focus to the new interactable object
+                if(currentInteractable)
+                {
+                    currentInteractable.OnFocus();
+                }
+            }
+        }
+        else if(currentInteractable) // If the raycast doesn't find an interactable object and we already have one stored
+        {
+            // Get rid of the stored interactable object since we are no longer looking at it
+            currentInteractable.OnLoseFocus();
+            currentInteractable = null;
+        }
+    }
+
+    // Check for interact key being pressed
+    private void HandleInteractionInput()
+    {
+        // If the interaction key is pressed and the player is looking at an interactable object, a raycast is sent from the camera with the set parameters checking for an interaction layer
+        if (Input.GetKeyDown(interactKey) && currentInteractable != null && Physics.Raycast(playerCamera.ViewportPointToRay(interactionRayPoint), out RaycastHit hit, interactionDistance, interactionLayer))
+        {
+            currentInteractable.OnInteract();
+        }
     }
 
     private void ApplyFinalMovements()
