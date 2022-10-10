@@ -88,8 +88,15 @@ public class FirstPersonController : CharacterStats
     //------------------------------------------------DIFFICULTY ADJUSTMENT STUFF---------------------------------------------------//
     [Header("Difficulty Adjustment")]
     [SerializeField] private int Score;
+    //Global Variable
     private int GotHitValue = -5;
     private int GotHealValue = -5;
+    private int timeAdjuster = 5;
+
+    //Difficulty adjustment based on time
+    private float deltaTime = 150;
+    private float lastTimeAdjust;
+    
 
     void Awake()
     {
@@ -105,6 +112,7 @@ public class FirstPersonController : CharacterStats
 
         //Difficulty Adjustment Initialized
         Score = 100;
+        lastTimeAdjust = 0;
     }
 
 
@@ -133,6 +141,14 @@ public class FirstPersonController : CharacterStats
 
             ApplyFinalMovements();
         }
+
+        if(Time.time > lastTimeAdjust + deltaTime)
+        {
+            lastTimeAdjust = Time.time;
+            Debug.Log("HELLO");
+            scoreAdjustment(timeAdjuster);
+        }
+
     }
 
     private void HandleMovementInput()
