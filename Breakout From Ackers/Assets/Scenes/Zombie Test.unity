@@ -509,11 +509,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 224a2f4a7d940eb40b7a4672c5be50c9, type: 3}
---- !u!4 &958791347 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8174375322963589194, guid: 224a2f4a7d940eb40b7a4672c5be50c9, type: 3}
-  m_PrefabInstance: {fileID: 662549997}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1064577692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -719,7 +714,6 @@ GameObject:
   - component: {fileID: 1227435684}
   - component: {fileID: 1227435683}
   - component: {fileID: 1227435682}
-  - component: {fileID: 1227435681}
   - component: {fileID: 1227435680}
   m_Layer: 0
   m_Name: Zombie
@@ -750,25 +744,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   canSeePlayer: 0
---- !u!114 &1227435681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1227435679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 400e7ec4d32b7804187de39da4c0bc73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  player: {fileID: 958791347}
-  enemyObject: {fileID: 1227435679}
 --- !u!195 &1227435682
 NavMeshAgent:
   m_ObjectHideFlags: 0

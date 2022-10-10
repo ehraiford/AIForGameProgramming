@@ -85,6 +85,11 @@ public class FirstPersonController : CharacterStats
 
     private float rotationX = 0;
 
+    //------------------------------------------------DIFFICULTY ADJUSTMENT STUFF---------------------------------------------------//
+    [Header("Difficulty Adjustment")]
+    [SerializeField] private int Score;
+    private int GotHitValue = -5;
+    private int GotHealValue = -5;
 
     void Awake()
     {
@@ -97,6 +102,9 @@ public class FirstPersonController : CharacterStats
         // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        //Difficulty Adjustment Initialized
+        Score = 100;
     }
 
 
@@ -258,14 +266,6 @@ public class FirstPersonController : CharacterStats
         }
     }
 
-    protected override void KillCharacter()
-    {
-        currentHealth = 0;
-
-        // Add respawn/death screen here
-        print("Dead");
-    }
-
     // Constantly raycasts out to check for interactable objects
     private void HandleInteractionCheck()
     {
@@ -343,5 +343,55 @@ public class FirstPersonController : CharacterStats
         isCrouching = !isCrouching;
 
         duringCrouchAnimation = false;
+    }
+
+    protected override void KillCharacter()
+    {
+        currentHealth = 0;
+
+        // Add respawn/death screen here
+        print("Dead");
+    }
+
+    protected override void ApplyDamage(float dmg)
+    {
+        currentHealth -= dmg;
+        OnDamage?.Invoke(currentHealth);
+
+        if (currentHealth <= 0) KillCharacter();
+    }
+
+    public void doDamage(float dmg)
+    {
+        //Do damage
+        ApplyDamage(dmg * diffcultyValue());
+        //Adjust Score after getting hit;
+        scoreAdjustment(GotHitValue);
+    }
+
+    private float diffcultyValue()
+    {
+        // The Player is doing well Penalize them
+        if (Score > 110)
+            return 1.2f;
+        // The Player is doing normal Don't do anything
+        else if (110 > Score && Score > 90)
+            return 1f;
+        // The Player is doing bad Help them
+        else if (90 > Score)
+            return .8f;
+
+        //Should never get to here but 
+        return 1f;
+    }
+    //This function changes the score via how many times a player heals and got hit
+    private void scoreAdjustment( int value )
+    {
+        //Clamp the score
+        Score = Score + value;
+        if (Score > 131)
+            Score = 130;
+        if (Score < 79)
+            Score = 80;
     }
 }

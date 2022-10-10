@@ -7,7 +7,7 @@ public abstract class CharacterStats : MonoBehaviour
 {
     [Header("Health Parameters")]
     [SerializeField] protected float maxHealth = 100;
-    protected float currentHealth;
+    [SerializeField] protected float currentHealth;
     public static Action<float> OnTakeDamage;
     public static Action<float> OnDamage;
 
@@ -30,16 +30,7 @@ public abstract class CharacterStats : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    private void ApplyDamage(float dmg)
-    {
-        currentHealth -= dmg;
-        OnDamage?.Invoke(currentHealth);
-
-        if (currentHealth <= 0) KillCharacter();
-
-        float healthAfter = currentHealth - dmg;
-        setHp(healthAfter);
-    }
+    
 
     public void setHp(float hp)
     {
@@ -50,4 +41,6 @@ public abstract class CharacterStats : MonoBehaviour
     }
 
     protected abstract void KillCharacter();
+
+    protected abstract void ApplyDamage(float dmg);
 }
