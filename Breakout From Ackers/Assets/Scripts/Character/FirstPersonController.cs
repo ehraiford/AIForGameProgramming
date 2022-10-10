@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class FirstPersonController : CharacterStats
 {
+    #region Parameters and Variables
     public bool CanMove { get; private set; } = true;
     private bool IsSprinting => canSprint && Input.GetKey(sprintKey);
     private bool ShouldJump => Input.GetKey(jumpKey) && characterController.isGrounded;
@@ -36,6 +37,7 @@ public class FirstPersonController : CharacterStats
     [Header("Jumping Parameters")]
     [SerializeField] private float jumpForce = 8.0f;
     [SerializeField] private float gravity = 30.0f;
+    private bool justLanded = false;
 
     [Header("Crouch Parameters")]
     [SerializeField] private float crouchHeight = 0.5f;
@@ -75,6 +77,16 @@ public class FirstPersonController : CharacterStats
     [SerializeField] private LayerMask interactionLayer = default;
     private Interactable currentInteractable;
 
+    [Header("Difficulty Adjustment")]
+    [SerializeField] private int Score;
+    //Global Variable
+    private int GotHitValue = -5;
+    private int GotHealValue = -5;
+    private int timeAdjuster = 5;
+    
+    //Difficulty adjustment based on time
+    private float deltaTime = 150;
+    private float lastTimeAdjust;
 
     private Camera playerCamera;
     private CharacterController characterController;
@@ -85,18 +97,9 @@ public class FirstPersonController : CharacterStats
 
     private float rotationX = 0;
 
-    //------------------------------------------------DIFFICULTY ADJUSTMENT STUFF---------------------------------------------------//
-    [Header("Difficulty Adjustment")]
-    [SerializeField] private int Score;
-    //Global Variable
-    private int GotHitValue = -5;
-    private int GotHealValue = -5;
-    private int timeAdjuster = 5;
+    #endregion
 
-    //Difficulty adjustment based on time
-    private float deltaTime = 150;
-    private float lastTimeAdjust;
-    
+    #region Awake and Update
 
     void Awake()
     {
@@ -126,7 +129,7 @@ public class FirstPersonController : CharacterStats
             if (canJump) HandleJump();
 
             if (canCrouch) HandleCrouch();
-             
+
             if (canUseHeadbob) HandleHeadbob();
 
             if (useFootsteps) HandleFootsteps();
@@ -142,7 +145,7 @@ public class FirstPersonController : CharacterStats
             ApplyFinalMovements();
         }
 
-        if(Time.time > lastTimeAdjust + deltaTime)
+        if (Time.time > lastTimeAdjust + deltaTime)
         {
             lastTimeAdjust = Time.time;
             Debug.Log("HELLO");
@@ -151,6 +154,9 @@ public class FirstPersonController : CharacterStats
 
     }
 
+    #endregion
+
+    #region Primary Movement Functions
     private void HandleMovementInput()
     {
         currentInput = new Vector2((isCrouching ? crouchSpeed : IsSprinting ? sprintSpeed : walkSpeed) * Input.GetAxis("Vertical"), (isCrouching ? crouchSpeed : IsSprinting ? sprintSpeed : walkSpeed) * Input.GetAxis("Horizontal"));
@@ -158,31 +164,6 @@ public class FirstPersonController : CharacterStats
         float moveDirectionY = moveDirection.y;
         moveDirection = (transform.TransformDirection(Vector3.forward) * currentInput.x) + (transform.TransformDirection(Vector3.right) * currentInput.y);
         moveDirection.y = moveDirectionY;
-    }
-
-    private void HandleAnimations()
-    {
-        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D)) // Standing Still
-        {
-            playerAnimations.SetFloat("Speed", 0);
-        }
-        else // Moving
-        {
-            if(isCrouching)
-            {
-                playerAnimations.SetFloat("Speed", 1);
-            }
-            else if(IsSprinting)
-            {
-                playerAnimations.SetFloat("Speed", 3);
-            }
-            else
-            {
-                playerAnimations.SetFloat("Speed", 2);
-            }
-
-            
-        }
     }
 
     private void HandleMouseLook()
@@ -236,99 +217,6 @@ public class FirstPersonController : CharacterStats
         }
          */
     }
-
-    private void HandleHeadbob()
-    {
-        if (!characterController.isGrounded) return;
-        
-        if(Mathf.Abs(moveDirection.x) > 0.1f || Mathf.Abs(moveDirection.z) > 0.1f)
-        {
-            timer += Time.deltaTime * (isCrouching ? crouchBobSpeed : IsSprinting ? sprintBobSpeed : walkBobSpeed);
-            playerCamera.transform.localPosition = new Vector3(
-                playerCamera.transform.localPosition.x,
-                defaultYPos + Mathf.Sin(timer) * (isCrouching ? crouchBobAmount : IsSprinting ? sprintBobAmount : walkBobAmount),
-                playerCamera.transform.localPosition.z);
-        }
-
-    }
-
-    private void HandleFootsteps()
-    {
-        // No footsteps if in the air or standing still
-        if (!characterController.isGrounded) return;
-        if (currentInput == Vector2.zero) return;
-
-        footstepTimer -= Time.deltaTime;
-
-        if(footstepTimer <= 0)
-        {
-            if(Physics.Raycast(playerCamera.transform.position, Vector3.down, out RaycastHit hit, 3))
-            {
-                switch (hit.collider.tag)
-                {
-                    case "Footsteps/Wood":
-                        footstepAudioSource.PlayOneShot(woodClips[UnityEngine.Random.Range(0, woodClips.Length - 1)]);
-                        break;
-                    case "Footsteps/Dirt":
-                        //footstepAudioSource.PlayOneShot(dirtClips[UnityEngine.Random.Range(0, dirtClips.Length - 1)]);
-                        break;
-                    default:
-                        footstepAudioSource.PlayOneShot(woodClips[UnityEngine.Random.Range(0, woodClips.Length - 1)]);
-                        break;
-                }
-            }
-
-            footstepTimer = GetCurrentOffset;
-        }
-    }
-
-    // Constantly raycasts out to check for interactable objects
-    private void HandleInteractionCheck()
-    {
-        // Checks for any object the player is looking at
-        if (Physics.Raycast(playerCamera.ViewportPointToRay(interactionRayPoint), out RaycastHit hit, interactionDistance))
-        {
-            // If the object we are looking at is a new interactable object
-            if (hit.collider.gameObject.layer == 11 && (currentInteractable == null || hit.collider.gameObject.GetInstanceID() != currentInteractable.GetInstanceID()))
-            {
-                // Gets the interactable object
-                hit.collider.TryGetComponent(out currentInteractable);
-
-                // Sets focus to the new interactable object
-                if(currentInteractable)
-                {
-                    currentInteractable.OnFocus();
-                }
-            }
-        }
-        else if(currentInteractable) // If the raycast doesn't find an interactable object and we already have one stored
-        {
-            // Get rid of the stored interactable object since we are no longer looking at it
-            currentInteractable.OnLoseFocus();
-            currentInteractable = null;
-        }
-    }
-
-    // Check for interact key being pressed
-    private void HandleInteractionInput()
-    {
-        // If the interaction key is pressed and the player is looking at an interactable object, a raycast is sent from the camera with the set parameters checking for an interaction layer
-        if (Input.GetKeyDown(interactKey) && currentInteractable != null && Physics.Raycast(playerCamera.ViewportPointToRay(interactionRayPoint), out RaycastHit hit, interactionDistance, interactionLayer))
-        {
-            currentInteractable.OnInteract();
-        }
-    }
-
-    private void ApplyFinalMovements()
-    {
-        if (!characterController.isGrounded)
-        {
-            moveDirection.y -= gravity * Time.deltaTime;
-        }
-
-        characterController.Move(moveDirection * Time.deltaTime);
-    }
-
     private IEnumerator CrouchStand()
     {
         if (isCrouching && Physics.Raycast(playerCamera.transform.position, Vector3.up, 2f))
@@ -361,6 +249,155 @@ public class FirstPersonController : CharacterStats
         duringCrouchAnimation = false;
     }
 
+    #endregion
+
+    #region Secondary Movement Functions
+    private void HandleHeadbob()
+    {
+        if (!characterController.isGrounded) return;
+
+        if (Mathf.Abs(moveDirection.x) > 0.1f || Mathf.Abs(moveDirection.z) > 0.1f)
+        {
+            timer += Time.deltaTime * (isCrouching ? crouchBobSpeed : IsSprinting ? sprintBobSpeed : walkBobSpeed);
+            playerCamera.transform.localPosition = new Vector3(
+                playerCamera.transform.localPosition.x,
+                defaultYPos + Mathf.Sin(timer) * (isCrouching ? crouchBobAmount : IsSprinting ? sprintBobAmount : walkBobAmount),
+                playerCamera.transform.localPosition.z);
+        }
+
+    }
+    private void HandleFootsteps()
+    {
+        // If the player is on the ground
+        if (characterController.isGrounded)
+        {
+            if(currentInput != Vector2.zero) // If they are moving, play a footstep for each step
+            {
+                footstepTimer -= Time.deltaTime;
+
+                if (footstepTimer <= 0)
+                {
+                    PlayFootstep();
+
+                    footstepTimer = GetCurrentOffset;
+                }
+            }
+            if (justLanded) // If they just landed, play a footstep and mark justLanded as false
+            {
+                justLanded = false;
+                footstepTimer -= Time.deltaTime;
+                PlayFootstep();
+                footstepTimer = GetCurrentOffset;
+            }
+        }
+        else // If player isn't grounded, set justLanded to true to prepare for the landing on a surface
+        {
+            justLanded = true;
+        }
+    }
+
+    private void PlayFootstep()
+    {
+        if (Physics.Raycast(playerCamera.transform.position, Vector3.down, out RaycastHit hit, 5))
+        {
+            switch (hit.collider.tag)
+            {
+                case "Footsteps/Wood":
+                    footstepAudioSource.PlayOneShot(woodClips[UnityEngine.Random.Range(0, woodClips.Length - 1)]);
+                    break;
+                case "Footsteps/Dirt":
+                    //footstepAudioSource.PlayOneShot(dirtClips[UnityEngine.Random.Range(0, dirtClips.Length - 1)]);
+                    break;
+                default:
+                    footstepAudioSource.PlayOneShot(woodClips[UnityEngine.Random.Range(0, woodClips.Length - 1)]);
+                    break;
+            }
+        }
+    }
+
+    private void ApplyFinalMovements()
+    {
+        if (!characterController.isGrounded)
+        {
+            moveDirection.y -= gravity * Time.deltaTime;
+        }
+
+        characterController.Move(moveDirection * Time.deltaTime);
+    }
+
+    #endregion
+
+    #region Animation Functions
+
+    private void HandleAnimations()
+    {
+        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D)) // Standing Still
+        {
+            playerAnimations.SetFloat("Speed", 0);
+        }
+        else // Moving
+        {
+            if(isCrouching)
+            {
+                playerAnimations.SetFloat("Speed", 1);
+            }
+            else if(IsSprinting)
+            {
+                playerAnimations.SetFloat("Speed", 3);
+            }
+            else
+            {
+                playerAnimations.SetFloat("Speed", 2);
+            }
+
+            
+        }
+    }
+
+    #endregion
+
+    #region Interaction Functions
+
+    // Constantly raycasts out to check for interactable objects
+    private void HandleInteractionCheck()
+    {
+        // Checks for any object the player is looking at
+        if (Physics.Raycast(playerCamera.ViewportPointToRay(interactionRayPoint), out RaycastHit hit, interactionDistance))
+        {
+            // If the object we are looking at is a new interactable object
+            if (hit.collider.gameObject.layer == 11 && (currentInteractable == null || hit.collider.gameObject.GetInstanceID() != currentInteractable.GetInstanceID()))
+            {
+                // Gets the interactable object
+                hit.collider.TryGetComponent(out currentInteractable);
+
+                // Sets focus to the new interactable object
+                if (currentInteractable)
+                {
+                    currentInteractable.OnFocus();
+                }
+            }
+        }
+        else if (currentInteractable) // If the raycast doesn't find an interactable object and we already have one stored
+        {
+            // Get rid of the stored interactable object since we are no longer looking at it
+            currentInteractable.OnLoseFocus();
+            currentInteractable = null;
+        }
+    }
+
+    // Check for interact key being pressed
+    private void HandleInteractionInput()
+    {
+        // If the interaction key is pressed and the player is looking at an interactable object, a raycast is sent from the camera with the set parameters checking for an interaction layer
+        if (Input.GetKeyDown(interactKey) && currentInteractable != null && Physics.Raycast(playerCamera.ViewportPointToRay(interactionRayPoint), out RaycastHit hit, interactionDistance, interactionLayer))
+        {
+            currentInteractable.OnInteract();
+        }
+    }
+
+    #endregion
+
+    #region Health Functions
     protected override void KillCharacter()
     {
         currentHealth = 0;
@@ -368,7 +405,6 @@ public class FirstPersonController : CharacterStats
         // Add respawn/death screen here
         print("Dead");
     }
-
     protected override void ApplyDamage(float dmg)
     {
         currentHealth -= dmg;
@@ -376,7 +412,6 @@ public class FirstPersonController : CharacterStats
 
         if (currentHealth <= 0) KillCharacter();
     }
-
     public void doDamage(float dmg)
     {
         //Do damage
@@ -385,6 +420,9 @@ public class FirstPersonController : CharacterStats
         scoreAdjustment(GotHitValue);
     }
 
+    #endregion
+
+    #region Difficulty Adjustment Functions
     private float diffcultyValue()
     {
         // The Player is doing well Penalize them
@@ -401,7 +439,7 @@ public class FirstPersonController : CharacterStats
         return 1f;
     }
     //This function changes the score via how many times a player heals and got hit
-    private void scoreAdjustment( int value )
+    private void scoreAdjustment(int value)
     {
         //Clamp the score
         Score = Score + value;
@@ -410,4 +448,6 @@ public class FirstPersonController : CharacterStats
         if (Score < 79)
             Score = 80;
     }
+
+    #endregion
 }
