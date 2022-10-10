@@ -7,7 +7,8 @@ public class AttackBehavior : StateMachineBehaviour
 
     NavMeshAgent agent;
     GameObject player;
-    FirstPersonController stat;
+    FirstPersonController playerStat;
+    EnemyStat enemyStat;
     float lastTimeOfAttack;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -15,7 +16,8 @@ public class AttackBehavior : StateMachineBehaviour
         lastTimeOfAttack = 0;
         agent = animator.GetComponentInParent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
-        stat = player.GetComponent<FirstPersonController>();
+        playerStat = player.GetComponent<FirstPersonController>();
+        enemyStat = animator.GetComponentInParent<EnemyStat>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -29,10 +31,10 @@ public class AttackBehavior : StateMachineBehaviour
         if (distance > agent.stoppingDistance)
             animator.SetBool("isAttacking", false);
         //Put time between damage call;
-        if(Time.time > lastTimeOfAttack + 2)
+        if(Time.time > lastTimeOfAttack + enemyStat.attackSpeed)
         {
             lastTimeOfAttack = Time.time;
-            stat.doDamage(15f);
+            playerStat.doDamage(enemyStat.damage);
         }
     }
 
