@@ -101,6 +101,7 @@ public class FirstPersonController : CharacterStats
 
     #region Awake and Update
 
+
     void Awake()
     {
         // Cache components
@@ -109,7 +110,7 @@ public class FirstPersonController : CharacterStats
         defaultYPos = playerCamera.transform.localPosition.y;
         playerAnimations = GetComponentInChildren<Animator>();
 
-        // Lock cursor
+       Cursor.lockState = CursorLockMode.Locked; // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 

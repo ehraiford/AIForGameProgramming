@@ -8,15 +8,15 @@ public class PauseScript : MonoBehaviour
 
     public static bool isPaused = false;
     public GameObject pauseMenuUI;
-   
+    public GameObject onScreenUI;
+
     void Start()
     {
-      //  DontDestroyOnLoad(gameObject);
     }
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+       // DontDestroyOnLoad(gameObject);
     }
     void Update()
     {
@@ -33,11 +33,15 @@ public class PauseScript : MonoBehaviour
         }
     }
 
-    public void Resume()
+    void Resume()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+       
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        onScreenUI.SetActive(true);
     }
 
     void Pause()
@@ -45,6 +49,10 @@ public class PauseScript : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+        onScreenUI.SetActive(false);
     }
 
 
