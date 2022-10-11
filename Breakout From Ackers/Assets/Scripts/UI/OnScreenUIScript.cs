@@ -12,6 +12,10 @@ public  class OnScreenUIScript : MonoBehaviour
     public static bool inventoryUp = false;
     private readonly int amountChanged;
     public GameObject inventoryMenuUI;
+    
+    [SerializeField] private Color healthIndicatorColor;
+    [SerializeField] private Image healthIndicator;
+    private int health = 100;
 
     void Start()
     {
@@ -26,7 +30,7 @@ public  class OnScreenUIScript : MonoBehaviour
    
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !PauseScript.isPaused)
         {
             if (inventoryUp)
             {
@@ -47,7 +51,7 @@ public  class OnScreenUIScript : MonoBehaviour
         inventoryUp = true;
 
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     private void CloseInventory()
@@ -65,5 +69,39 @@ public  class OnScreenUIScript : MonoBehaviour
      //   ammoCount.text =  FirstPersonController.currentAmmo + " / " + FirstPersonController.maxAmmo;
     }
 
-
+    public void changeHealthIndicator()
+    {
+        health = health - 10;
+        if (health >= 90)
+        {
+            healthIndicatorColor.r = 0.1768868f;
+            healthIndicatorColor.g = 0.5f;
+            healthIndicatorColor.b = 0.2438213f;
+        }
+        else if (health > 60)
+        {
+            healthIndicatorColor.r = 0.3067373f;
+            healthIndicatorColor.g = 0.5754717f;
+            healthIndicatorColor.b = 0.414604f;
+        }else if (health > 40)
+        {
+            healthIndicatorColor.r = 0.5019608f;
+            healthIndicatorColor.g = 0.4325789f;
+            healthIndicatorColor.b = 0.1764706f;
+        }
+        else if(health > 20)
+        {
+            healthIndicatorColor.r = 0.5019608f;
+            healthIndicatorColor.g = 0.3170498f;
+            healthIndicatorColor.b = 0.1764706f;
+        }
+        else
+        {
+            healthIndicatorColor.r = 0.5019608f;
+            healthIndicatorColor.g = 0.1764706f;
+            healthIndicatorColor.b = 0.1793361f;
+        }
+        healthIndicatorColor.a = 1f;
+        healthIndicator.color = healthIndicatorColor;
+    }
 }

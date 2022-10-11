@@ -103,7 +103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8174375322963589194
 Transform:
   m_ObjectHideFlags: 0
@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
   walkSpeed: 3
   sprintSpeed: 6
   canSprint: 1
@@ -158,9 +159,11 @@ MonoBehaviour:
   canCrouch: 1
   canUseHeadbob: 1
   useFootsteps: 1
+  canInteract: 1
   sprintKey: 304
   jumpKey: 32
   crouchKey: 306
+  interactKey: 101
   crouchSpeed: 1.5
   lookSpeedX: 2
   lookSpeedY: 2
@@ -189,6 +192,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 76fbd10d4dc06304d9ec85d7e0dda58a, type: 3}
   - {fileID: 8300000, guid: 78c768bef2a037143b52a1f7a5dd6cb4, type: 3}
   dirtClips: []
+  interactionRayPoint: {x: 0, y: 0, z: 0}
+  interactionDistance: 0
+  interactionLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  Score: 0
 --- !u!82 &8174375322963589193
 AudioSource:
   m_ObjectHideFlags: 0

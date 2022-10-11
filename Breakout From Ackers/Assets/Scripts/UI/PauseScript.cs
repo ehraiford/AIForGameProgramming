@@ -9,18 +9,11 @@ public class PauseScript : MonoBehaviour
     public static bool isPaused = false;
     public GameObject pauseMenuUI;
     public GameObject onScreenUI;
+    public GameObject firstPersonController;
 
-    void Start()
-    {
-    }
-
-    private void Awake()
-    {
-       // DontDestroyOnLoad(gameObject);
-    }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !OnScreenUIScript.inventoryUp)
         {
             if (isPaused)
             {
@@ -42,6 +35,7 @@ public class PauseScript : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         onScreenUI.SetActive(true);
+        firstPersonController.SetActive(true);
     }
 
     void Pause()
@@ -51,8 +45,10 @@ public class PauseScript : MonoBehaviour
         isPaused = true;
 
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         onScreenUI.SetActive(false);
+        firstPersonController.SetActive(false);
     }
 
 
