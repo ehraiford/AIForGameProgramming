@@ -361,6 +361,9 @@ public class FirstPersonController : CharacterStats
     // Constantly raycasts out to check for interactable objects
     private void HandleInteractionCheck()
     {
+        //Draw a line to see ray length on scene
+        Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+        Debug.DrawRay(ray.origin, ray.direction * interactionDistance);
         // Checks for any object the player is looking at
         if (Physics.Raycast(playerCamera.ViewportPointToRay(interactionRayPoint), out RaycastHit hit, interactionDistance))
         {
