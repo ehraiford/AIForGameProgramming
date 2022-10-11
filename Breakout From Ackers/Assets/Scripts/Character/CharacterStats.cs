@@ -43,4 +43,6 @@ public abstract class CharacterStats : MonoBehaviour
     protected abstract void KillCharacter();
 
     protected abstract void ApplyDamage(float dmg);
+
+
 }

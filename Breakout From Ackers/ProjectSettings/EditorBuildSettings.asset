@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Zombie Test.unity
     guid: 802db0b131410ff4d8438869730f19d6
+  - enabled: 1
+    path: Assets/Scenes/Testing Pause Scene.unity
+    guid: 2deea67454a30ef4eaf20dd60ef7c157
   m_configObjects: {}

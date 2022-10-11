@@ -451,6 +451,5 @@ public class FirstPersonController : CharacterStats
         if (Score < 79)
             Score = 80;
     }
-
-    #endregion
+    #endregion        
 }
