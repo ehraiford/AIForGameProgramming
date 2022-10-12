@@ -110,7 +110,7 @@ public class FirstPersonController : CharacterStats
         defaultYPos = playerCamera.transform.localPosition.y;
         playerAnimations = GetComponentInChildren<Animator>();
 
-       Cursor.lockState = CursorLockMode.Locked; // Lock cursor
+        // Lock and hide cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
@@ -122,37 +122,39 @@ public class FirstPersonController : CharacterStats
 
     void Update()
     {
-        if (CanMove)
+        if(Time.timeScale > 0.9)
         {
-            HandleMovementInput();
-            HandleMouseLook();
-
-            if (canJump) HandleJump();
-
-            if (canCrouch) HandleCrouch();
-
-            if (canUseHeadbob) HandleHeadbob();
-
-            if (useFootsteps) HandleFootsteps();
-
-            if (canInteract)
+            if (CanMove)
             {
-                HandleInteractionCheck();
-                HandleInteractionInput();
+                HandleMovementInput();
+                HandleMouseLook();
+
+                if (canJump) HandleJump();
+
+                if (canCrouch) HandleCrouch();
+
+                if (canUseHeadbob) HandleHeadbob();
+
+                if (useFootsteps) HandleFootsteps();
+
+                if (canInteract)
+                {
+                    HandleInteractionCheck();
+                    HandleInteractionInput();
+                }
+
+                HandleAnimations();
+
+                ApplyFinalMovements();
             }
 
-            HandleAnimations();
-
-            ApplyFinalMovements();
+            if (Time.time > lastTimeAdjust + deltaTime)
+            {
+                lastTimeAdjust = Time.time;
+                Debug.Log("HELLO");
+                scoreAdjustment(timeAdjuster);
+            }
         }
-
-        if (Time.time > lastTimeAdjust + deltaTime)
-        {
-            lastTimeAdjust = Time.time;
-            Debug.Log("HELLO");
-            scoreAdjustment(timeAdjuster);
-        }
-
     }
 
     #endregion
