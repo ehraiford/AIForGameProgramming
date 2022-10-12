@@ -6,7 +6,7 @@ public class TestInteractable : Interactable
 {
     public override void OnFocus()
     {
-        print("Looking at " + gameObject.name);
+        //print("Looking at " + gameObject.name);
     }
 
     public override void OnInteract()
