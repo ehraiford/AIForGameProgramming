@@ -13,12 +13,6 @@ public class LightCandles : Interactable
         unlit = true;
 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public override void OnFocus()
     {
         print("Looking at " + gameObject.name);
