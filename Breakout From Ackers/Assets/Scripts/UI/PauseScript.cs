@@ -35,7 +35,6 @@ public class PauseScript : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         onScreenUI.SetActive(true);
-        firstPersonController.SetActive(true);
     }
 
     void Pause()
@@ -48,7 +47,6 @@ public class PauseScript : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         onScreenUI.SetActive(false);
-        firstPersonController.SetActive(false);
     }
 
 
