@@ -11,6 +11,9 @@ TagManager:
   - Wood
   - Floor
   - Waypoints
+  - Fire
+  - Zombie/Head
+  - Zombie/Body
   layers:
   - Default
   - TransparentFX
