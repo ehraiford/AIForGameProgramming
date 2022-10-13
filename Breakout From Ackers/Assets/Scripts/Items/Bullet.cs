@@ -9,6 +9,8 @@ public class Bullet : MonoBehaviour
         if (other.CompareTag("Zombie/Head"))
             EnemyStat.OnTakeDamage(100);
         else if (other.CompareTag("Zombie/Body"))
-            EnemyStat.OnTakeDamage(30);
+            EnemyStat.OnTakeDamage(35);
+        else if (other.CompareTag("Zombie/Legs"))
+            EnemyStat.OnTakeDamage(25);
     }
 }
