@@ -1,28 +1,30 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using TMPro;
 
-public  class OnScreenUIScript : MonoBehaviour
+public class OnScreenUIScript : MonoBehaviour
 {
 
-   
+
     public static bool inventoryUp = false;
     public static bool readingNote = false;
-   
+
     public GameObject inventoryMenuUI;
     public GameObject ammoDisplayUI;
     public GameObject crosshairs;
     public GameObject notePanel;
+    public TextMeshProUGUI notePanelText;
 
     [SerializeField] private int[] lowerHealthThreshold = new int[4];
     [SerializeField] private Color healthIndicatorColor;
     [SerializeField] private Image healthIndicator;
     [SerializeField] private int noteNumber;
     [SerializeField] private int health = 100;
+    private string path = "Assets/Items/Menu Items/In Game Notes.txt";
 
     void Start()
     {
-       
     }
     
     void Update()
@@ -53,7 +55,7 @@ public  class OnScreenUIScript : MonoBehaviour
             }
             else
             {
-                OpenNote(noteNumber);
+                OpenNote();
             }
         }
     }
@@ -126,7 +128,7 @@ public  class OnScreenUIScript : MonoBehaviour
     //function currently will pull up the note of the value for the serialized field, noteNumber. 
     //Once we have interactable notes in the world, we will use this function as an onclick function for the interactable note and it will 
     //supply the noteNumber as an argument to the function.
-    void OpenNote(int noteNumber)
+    void OpenNote()
     {
         notePanel.SetActive(true);
         ammoDisplayUI.SetActive(false);
@@ -134,7 +136,32 @@ public  class OnScreenUIScript : MonoBehaviour
         Time.timeScale = 0f;
         readingNote = true;
 
-   
+
+        StreamReader textReader = new StreamReader(path);
+
+        string currentText = textReader.ReadLine(); 
+        while(currentText.CompareTo("Text "+ noteNumber.ToString()) != 0 && !textReader.EndOfStream)
+        {
+            currentText = textReader.ReadLine();
+        }
+
+        currentText = "";
+        string addOn;
+        while (textReader.Peek() != 42)
+        {
+            addOn = textReader.ReadLine();
+            if (addOn.Length == 0)
+            {
+                currentText = currentText + "\n";
+            }
+            else
+            {
+                currentText = currentText + addOn;
+            }
+        }
+        notePanelText.text = currentText;
+
+        textReader.Close();
     }
 
     private void CloseNote()

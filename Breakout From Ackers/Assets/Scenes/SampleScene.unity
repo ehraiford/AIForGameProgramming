@@ -543,9 +543,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 415711886}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.98, y: 0.98, z: 1}
+  m_LocalScale: {x: 0.97999996, y: 0.9800001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1875419418}
@@ -2976,7 +2976,6 @@ GameObject:
   - component: {fileID: 1815712624}
   - component: {fileID: 1815712627}
   - component: {fileID: 1815712626}
-  - component: {fileID: 1815712625}
   m_Layer: 5
   m_Name: Note Parent Panel
   m_TagString: Untagged
@@ -3005,18 +3004,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1815712625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1815712623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dec617e8c66f3c044a0400860ccb85cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1815712626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3080,9 +3067,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875419417}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5698588, y: 1.0465722, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 415711887}
@@ -3091,7 +3078,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1500, y: 850}
+  m_SizeDelta: {x: 950, y: 650}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1875419419
 MonoBehaviour:
@@ -3159,8 +3146,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4164,10 +4151,11 @@ MonoBehaviour:
   ammoDisplayUI: {fileID: 116849374641899538}
   crosshairs: {fileID: 11916094}
   notePanel: {fileID: 1815712623}
+  notePanelText: {fileID: 1875419419}
   lowerHealthThreshold: 5a0000003c0000002800000014000000
   healthIndicatorColor: {r: 0, g: 0, b: 0, a: 0}
   healthIndicator: {fileID: 116849375309514601}
-  noteNumber: 0
+  noteNumber: 2
   health: 100
 --- !u!1 &116849375136189799
 GameObject:
@@ -4589,7 +4577,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 1
   m_colorMode: 3
