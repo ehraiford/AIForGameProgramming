@@ -9,11 +9,11 @@ public class PauseScript : MonoBehaviour
     public static bool isPaused = false;
     public GameObject pauseMenuUI;
     public GameObject onScreenUI;
-    public GameObject firstPersonController;
+    public GameObject crosshairs;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !OnScreenUIScript.inventoryUp)
+        if (Input.GetKeyDown(KeyCode.Escape) && !OnScreenUIScript.inventoryUp && !OnScreenUIScript.readingNote)
         {
             if (isPaused)
             {
@@ -29,6 +29,7 @@ public class PauseScript : MonoBehaviour
     void Resume()
     {
         pauseMenuUI.SetActive(false);
+        crosshairs.SetActive(true);
         Time.timeScale = 1f;
         isPaused = false;
        
@@ -40,6 +41,7 @@ public class PauseScript : MonoBehaviour
     void Pause()
     {
         pauseMenuUI.SetActive(true);
+        crosshairs.SetActive(false);
         Time.timeScale = 0f;
         isPaused = true;
 

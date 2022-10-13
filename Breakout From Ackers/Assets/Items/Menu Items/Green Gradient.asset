@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Green Gradient
   m_EditorClassIdentifier: 
   colorMode: 3
-  topLeft: {r: 0.29803923, g: 0.38823533, b: 0.36078432, a: 1}
-  topRight: {r: 0.29803923, g: 0.38823533, b: 0.36078432, a: 1}
+  topLeft: {r: 0.1051531, g: 0.16037738, b: 0.14356999, a: 1}
+  topRight: {r: 0.10588236, g: 0.16078432, b: 0.14509805, a: 1}
   bottomLeft: {r: 0.18654326, g: 0.3018868, b: 0.26584193, a: 1}
   bottomRight: {r: 0.16470589, g: 0.227451, b: 0.20784315, a: 1}
