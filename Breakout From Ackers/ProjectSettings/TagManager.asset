@@ -14,6 +14,7 @@ TagManager:
   - Fire
   - Zombie/Head
   - Zombie/Body
+  - Zombie/Legs
   layers:
   - Default
   - TransparentFX

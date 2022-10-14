@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class FirstPersonController : CharacterStats
 {
@@ -78,7 +79,7 @@ public class FirstPersonController : CharacterStats
     [SerializeField] private LayerMask interactionLayer = default;
     private Interactable currentInteractable;
 
-    [Header("Difficulty Adjustment")]
+    [Header("Health And Debuff")]
     [SerializeField] private int Score;
     //Global Variable
     private int GotHitValue = -5;
@@ -93,6 +94,10 @@ public class FirstPersonController : CharacterStats
     private CharacterController characterController;
     private Animator playerAnimations;
 
+    private bool isDebuffed = false;
+    private float debuffTimer = 0;
+
+    //--------end of health and debuff-------------------
     private Vector3 moveDirection;
     private Vector2 currentInput;
 
@@ -153,6 +158,10 @@ public class FirstPersonController : CharacterStats
             {
                 lastTimeAdjust = Time.time;
                 scoreAdjustment(timeAdjuster);
+            }
+            if (Time.time > debuffTimer + 5)
+            {
+                undoDebuff();
             }
         }
         else
@@ -414,7 +423,7 @@ public class FirstPersonController : CharacterStats
 
     #endregion
 
-    #region Health Functions
+    #region Health / Debuff Functions
     protected override void KillCharacter()
     {
         currentHealth = 0;
@@ -435,8 +444,27 @@ public class FirstPersonController : CharacterStats
         ApplyDamage(dmg * diffcultyValue());
         //Adjust Score after getting hit;
         scoreAdjustment(GotHitValue);
+
+        //Player will randomly get debuffed
+        int i = Random.Range(0, 100);
+        if(i < 30)
+        {
+            debuffPlayer();
+        }
     }
 
+    public void debuffPlayer()
+    {
+        isDebuffed = true;
+        canSprint = false;
+        debuffTimer = Time.time;
+    }
+    public void undoDebuff()
+    {
+        isDebuffed = false;
+        canSprint = true;
+
+    }
     #endregion
 
     #region Difficulty Adjustment Functions
