@@ -38,9 +38,12 @@ public abstract class CharacterStats : MonoBehaviour
             KillCharacter();
     }
 
+    public float getCurrentHealth()
+    {
+        return currentHealth;
+    }
+
     protected abstract void KillCharacter();
 
     protected abstract void ApplyDamage(float dmg);
-
-
 }
