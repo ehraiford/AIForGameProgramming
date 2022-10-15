@@ -30,8 +30,6 @@ public abstract class CharacterStats : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    
-
     public void setHp(float hp)
     {
         currentHealth = hp;
