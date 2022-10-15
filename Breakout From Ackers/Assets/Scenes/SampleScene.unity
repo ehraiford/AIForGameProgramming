@@ -4841,12 +4841,13 @@ MonoBehaviour:
   lowerHealthThreshold: 5a0000003c0000002800000014000000
   healthIndicatorColor: {r: 0, g: 0, b: 0, a: 0}
   healthIndicator: {fileID: 116849375309514601}
-  fontNumber: 1
+  fontNumber: 2
   noteNumber: 1
   health: 100
   fontsForNotes:
   - {fileID: 11400000, guid: 074c57b542905e949b13f7eb2524de08, type: 2}
   - {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: 11400000, guid: 2bb2d544260296145a99d2ba3055690d, type: 2}
 --- !u!1 &116849375136189799
 GameObject:
   m_ObjectHideFlags: 0
