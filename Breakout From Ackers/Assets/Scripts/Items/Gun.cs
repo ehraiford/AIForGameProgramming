@@ -48,31 +48,34 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
-        // Can't use the gun while reloading
-        if (isReloading) return;
-
-        if (isShooting) return;
-
-        // Check if mag runs out of ammo
-        if (currentMagAmmo <= 0)
+        if (Time.timeScale > 0.9)
         {
-            StartCoroutine(Reload());
+            // Can't use the gun while reloading
+            if (isReloading) return;
 
-            // Exit update so the player cannot shoot
-            return;
-        }
+            if (isShooting) return;
 
-        //If you want a different input, change it here
-        if (Input.GetButtonDown("Fire1"))
-        {
-            //Calls animation on the gun that has the relevant animation events that will fire
-            gunAnimator.SetTrigger("Fire");
-        }
+            // Check if mag runs out of ammo
+            if (currentMagAmmo <= 0)
+            {
+                StartCoroutine(Reload());
 
-        //If you want a different input, change it here
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            StartCoroutine(Reload());
+                // Exit update so the player cannot shoot
+                return;
+            }
+
+            //If you want a different input, change it here
+            if (Input.GetButtonDown("Fire1"))
+            {
+                //Calls animation on the gun that has the relevant animation events that will fire
+                gunAnimator.SetTrigger("Fire");
+            }
+
+            //If you want a different input, change it here
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                StartCoroutine(Reload());
+            }
         }
     }
 
@@ -101,6 +104,9 @@ public class Gun : MonoBehaviour
 
         // Subtract one from the current ammo
         currentMagAmmo--;
+
+        // Stops the user from queuing another shot
+        //yield return new WaitForSeconds(0.25f);
 
         isShooting = false;
     }

@@ -70,7 +70,6 @@ public class FirstPersonController : CharacterStats
     [SerializeField] private AudioClip[] woodClips = default;
     [SerializeField] private AudioClip[] dirtClips = default;
     private float footstepTimer = 0;
-    private bool wasPaused = false;
     private float GetCurrentOffset => isCrouching ? baseStepSpeed * crouchStepMultiplier : IsSprinting ? baseStepSpeed * sprintStepMultiplier : baseStepSpeed;
 
     [Header("Interaction")]
@@ -128,6 +127,7 @@ public class FirstPersonController : CharacterStats
 
     void Update()
     {
+        // Script works only when the game is unpaused
         if(Time.timeScale > 0.9)
         {
             if (CanMove)
@@ -163,10 +163,6 @@ public class FirstPersonController : CharacterStats
             {
                 undoDebuff();
             }
-        }
-        else
-        {
-            wasPaused = true;
         }
     }
 
@@ -284,38 +280,31 @@ public class FirstPersonController : CharacterStats
     }
     private void HandleFootsteps()
     {
-        if (!wasPaused)
+        // If the player is on the ground
+        if (characterController.isGrounded)
         {
-            // If the player is on the ground
-            if (characterController.isGrounded)
+            if (currentInput != Vector2.zero) // If they are moving, play a footstep for each step
             {
-                if (currentInput != Vector2.zero) // If they are moving, play a footstep for each step
-                {
-                    footstepTimer -= Time.deltaTime;
+                footstepTimer -= Time.deltaTime;
 
-                    if (footstepTimer <= 0)
-                    {
-                        PlayFootstep();
-
-                        footstepTimer = GetCurrentOffset;
-                    }
-                }
-                if (justLanded) // If they just landed, play a footstep and mark justLanded as false
+                if (footstepTimer <= 0)
                 {
-                    justLanded = false;
-                    footstepTimer -= Time.deltaTime;
                     PlayFootstep();
+
                     footstepTimer = GetCurrentOffset;
                 }
             }
-            else // If player isn't grounded, set justLanded to true to prepare for the landing on a surface
+            if (justLanded) // If they just landed, play a footstep and mark justLanded as false
             {
-                justLanded = true;
+                justLanded = false;
+                footstepTimer -= Time.deltaTime;
+                PlayFootstep();
+                footstepTimer = GetCurrentOffset;
             }
         }
-        else
+        else // If player isn't grounded, set justLanded to true to prepare for the landing on a surface
         {
-            wasPaused = false;
+            justLanded = true;
         }
     }
 
