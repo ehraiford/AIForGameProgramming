@@ -19,8 +19,10 @@ public class OnScreenUIScript : MonoBehaviour
     [SerializeField] private int[] lowerHealthThreshold = new int[4];
     [SerializeField] private Color healthIndicatorColor;
     [SerializeField] private Image healthIndicator;
+    [SerializeField] private int fontNumber;
     [SerializeField] private int noteNumber;
     [SerializeField] private int health = 100;
+    [SerializeField] private TMP_FontAsset[] fontsForNotes;
     private string path = "Assets/Items/Menu Items/In Game Notes.txt";
 
     void Start()
@@ -87,6 +89,7 @@ public class OnScreenUIScript : MonoBehaviour
 
     public void changeHealthIndicator()
     {
+        health = health - 10;
         if (health >= lowerHealthThreshold[0])
         {
             healthIndicatorColor.r = 0.1768868f;
@@ -147,20 +150,15 @@ public class OnScreenUIScript : MonoBehaviour
 
         currentText = "";
         string addOn;
-        while (textReader.Peek() != 42)
+        while (textReader.Peek() != 42 && !textReader.EndOfStream)
         {
             addOn = textReader.ReadLine();
-            if (addOn.Length == 0)
-            {
-                currentText = currentText + "\n";
-            }
-            else
-            {
-                currentText = currentText + addOn;
-            }
+           
+            currentText = currentText + addOn + "\n";
+            
         }
         notePanelText.text = currentText;
-
+        notePanelText.font = fontsForNotes[fontNumber];
         textReader.Close();
     }
 
