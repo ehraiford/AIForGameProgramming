@@ -147,17 +147,12 @@ public class OnScreenUIScript : MonoBehaviour
 
         currentText = "";
         string addOn;
-        while (textReader.Peek() != 42)
+        while (textReader.Peek() != 42 && !textReader.EndOfStream)
         {
             addOn = textReader.ReadLine();
-            if (addOn.Length == 0)
-            {
-                currentText = currentText + "\n";
-            }
-            else
-            {
-                currentText = currentText + addOn;
-            }
+           
+            currentText = currentText + addOn + "\n";
+            
         }
         notePanelText.text = currentText;
 

@@ -7,6 +7,8 @@ This is some alternate text.
 Text 2
 This is yet again a completely different string.
 We also support multiple paragraphs. 
-I know. 
+
+I know.
+
 So Cool.
 *
