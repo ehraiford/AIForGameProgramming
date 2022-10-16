@@ -78,6 +78,9 @@ public class FirstPersonController : CharacterStats
     [SerializeField] private LayerMask interactionLayer = default;
     private Interactable currentInteractable;
 
+    // Equipped Item
+    private string currentItem;
+
     [Header("Health And Debuff")]
     [SerializeField] private int Score;
     //Global Variable
@@ -127,8 +130,10 @@ public class FirstPersonController : CharacterStats
 
     void Update()
     {
+        currentItem = GetComponentInChildren<ItemSwitching>().getCurrentItemName();
+
         // Script works only when the game is unpaused
-        if(Time.timeScale > 0.9)
+        if (Time.timeScale > 0.9)
         {
             if (CanMove)
             {
@@ -164,6 +169,8 @@ public class FirstPersonController : CharacterStats
                 undoDebuff();
             }
         }
+
+        
     }
 
     #endregion
@@ -343,27 +350,35 @@ public class FirstPersonController : CharacterStats
 
     private void HandleAnimations()
     {
-        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D)) // Standing Still
+        if(currentItem == "") // Empty Hands
         {
-            playerAnimations.SetFloat("Speed", 0);
-        }
-        else // Moving
-        {
-            if(isCrouching)
+            if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D)) // Standing Still
             {
-                playerAnimations.SetFloat("Speed", 1);
+                playerAnimations.SetFloat("Speed", 0);
             }
-            else if(IsSprinting)
+            else // Moving
             {
-                playerAnimations.SetFloat("Speed", 3);
-            }
-            else
-            {
-                playerAnimations.SetFloat("Speed", 2);
-            }
+                if (isCrouching)
+                {
+                    playerAnimations.SetFloat("Speed", 1);
+                }
+                else if (IsSprinting)
+                {
+                    playerAnimations.SetFloat("Speed", 3);
+                }
+                else
+                {
+                    playerAnimations.SetFloat("Speed", 2);
+                }
 
-            
+
+            }
         }
+        else if(currentItem == "M1911")
+        {
+            playerAnimations.SetBool("isStartingPistol", true);
+        }
+
     }
 
     #endregion

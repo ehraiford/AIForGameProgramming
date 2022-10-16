@@ -2698,7 +2698,7 @@ GameObject:
   - component: {fileID: 1352068075}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2768,7 +2768,6 @@ Transform:
   m_Children:
   - {fileID: 543450652507885041}
   - {fileID: 11916095}
-  - {fileID: 2028937494}
   m_Father: {fileID: 708019393}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3854,15 +3853,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2028937493}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.52444625, y: 0.52444607, z: 0.4742956, w: 0.47429544}
+  m_LocalPosition: {x: -15.000016, y: -39.951748, z: 27.242413}
+  m_LocalScale: {x: 100.000015, y: 100, z: 100.000015}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2872250911093382103}
   - {fileID: 1318826343077476995}
-  m_Father: {fileID: 1352068077}
-  m_RootOrder: 2
+  m_Father: {fileID: 1121701368816118078}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2028937495
 MonoBehaviour:
@@ -5783,6 +5782,7 @@ Transform:
   - {fileID: 5416867199375351933}
   - {fileID: 8069099943295330877}
   - {fileID: 1920852971158231941}
+  - {fileID: 2028937494}
   m_Father: {fileID: 5044196564358066611}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5826,7 +5826,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322437311321513205}
   m_LocalRotation: {x: 0, y: -0.009703886, z: 0, w: 0.999953}
-  m_LocalPosition: {x: 0.137, y: -0.138, z: 0.5087}
+  m_LocalPosition: {x: 0.163, y: -0.165, z: 0.313}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6087,43 +6087,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4407022129942706129, guid: 47f0794d805a3e14ea35a5808c2e2fc7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.137
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 4407022129942706129, guid: 47f0794d805a3e14ea35a5808c2e2fc7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.138
+      value: -0.191
       objectReference: {fileID: 0}
     - target: {fileID: 4407022129942706129, guid: 47f0794d805a3e14ea35a5808c2e2fc7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.5087
+      value: 0.529
       objectReference: {fileID: 0}
     - target: {fileID: 4407022129942706129, guid: 47f0794d805a3e14ea35a5808c2e2fc7, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.999953
+      value: 0.68471146
       objectReference: {fileID: 0}
     - target: {fileID: 4407022129942706129, guid: 47f0794d805a3e14ea35a5808c2e2fc7, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.054739833
       objectReference: {fileID: 0}
     - target: {fileID: 4407022129942706129, guid: 47f0794d805a3e14ea35a5808c2e2fc7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.009706789
+      value: 0.08450799
       objectReference: {fileID: 0}
     - target: {fileID: 4407022129942706129, guid: 47f0794d805a3e14ea35a5808c2e2fc7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.7218256
       objectReference: {fileID: 0}
     - target: {fileID: 4407022129942706129, guid: 47f0794d805a3e14ea35a5808c2e2fc7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -2.696
       objectReference: {fileID: 0}
     - target: {fileID: 4407022129942706129, guid: 47f0794d805a3e14ea35a5808c2e2fc7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -1.112
+      value: 11.243
       objectReference: {fileID: 0}
     - target: {fileID: 4407022129942706129, guid: 47f0794d805a3e14ea35a5808c2e2fc7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 92.758
       objectReference: {fileID: 0}
     - target: {fileID: 4413447847953879463, guid: 47f0794d805a3e14ea35a5808c2e2fc7, type: 3}
       propertyPath: m_Name

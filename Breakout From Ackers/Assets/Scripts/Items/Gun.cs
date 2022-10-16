@@ -28,8 +28,12 @@ public class Gun : MonoBehaviour
     private bool isReloading = false;
     private bool isShooting = false;
 
+    private GameObject playerCamera;
+
     void Start()
     {
+        playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
+
         if (barrelLocation == null)
             barrelLocation = transform;
 
@@ -100,7 +104,17 @@ public class Gun : MonoBehaviour
         { yield break; }
 
         // Create a bullet and add force on it in direction of the barrel
-        Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation).GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
+        //Instantiate(bulletPrefab, playerCamera.transform.position, playerCamera.transform.rotation).GetComponent<Rigidbody>().AddForce(playerCamera.transform.forward * 1);
+        RaycastHit hit;
+        if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 100))
+        {
+            if(hit.collider.CompareTag("Zombie/Head"))
+                EnemyStat.OnTakeDamage(100);
+            else if(hit.collider.CompareTag("Zombie/Body"))
+                EnemyStat.OnTakeDamage(35);
+            else if (hit.collider.CompareTag("Zombie/Legs"))
+                EnemyStat.OnTakeDamage(25);
+        }
 
         // Subtract one from the current ammo
         currentMagAmmo--;

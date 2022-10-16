@@ -3,6 +3,7 @@ using UnityEngine;
 public class ItemSwitching : MonoBehaviour
 {
     public int selectedItem = 0;
+    private string currentItemName = "";
 
     // Start is called before the first frame update
     void Start()
@@ -26,12 +27,17 @@ public class ItemSwitching : MonoBehaviour
     {
         int currentItem = 0;
 
-        foreach (Transform weapon in transform)
+        foreach (Transform item in transform)
         {
             if (currentItem == selectedItem)
-                weapon.gameObject.SetActive(true);
+            {
+                item.gameObject.SetActive(true);
+                currentItemName = item.name;
+            }
             else
-                weapon.gameObject.SetActive(false);
+            {
+                item.gameObject.SetActive(false);
+            }
 
             currentItem++;
         }
@@ -66,5 +72,10 @@ public class ItemSwitching : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha3) && transform.childCount >= 3)
             selectedItem = 2;
+    }
+
+    public string getCurrentItemName()
+    {
+        return currentItemName;
     }
 }
