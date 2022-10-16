@@ -398,6 +398,10 @@ public class FirstPersonController : CharacterStats
                 }
             }
         }
+        else
+        {
+            playerAnimations.SetBool("isStartingPistol", false);
+        }
 
     }
 
