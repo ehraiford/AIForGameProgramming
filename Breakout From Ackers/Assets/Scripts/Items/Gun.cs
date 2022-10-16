@@ -38,7 +38,7 @@ public class Gun : MonoBehaviour
 
         currentMagAmmo = maxMagAmmo;
         currentReservesAmmo = maxReservesAmmo;
-        }
+    }
 
     void OnEnable()
     {
