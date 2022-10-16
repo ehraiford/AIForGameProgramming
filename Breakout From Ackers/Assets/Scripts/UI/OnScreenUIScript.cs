@@ -14,19 +14,23 @@ public class OnScreenUIScript : MonoBehaviour
     public GameObject ammoDisplayUI;
     public GameObject crosshairs;
     public GameObject notePanel;
+    public GameObject firstPersonController;
     public TextMeshProUGUI notePanelText;
 
-    [SerializeField] private int[] lowerHealthThreshold = new int[4];
+    [SerializeField] private float[] lowerHealthThreshold = new float[4];
     [SerializeField] private Color healthIndicatorColor;
     [SerializeField] private Image healthIndicator;
     [SerializeField] private int fontNumber;
     [SerializeField] private int noteNumber;
-    private int health = 100;
     [SerializeField] private TMP_FontAsset[] fontsForNotes;
+
     private string path = "Assets/Items/Menu Items/In Game Notes.txt";
+    private float health;
+
 
     void Start()
     {
+        health = firstPersonController.GetComponent<FirstPersonController>().getCurrentHealth();
     }
     
     void Update()
@@ -61,8 +65,9 @@ public class OnScreenUIScript : MonoBehaviour
             }
         }
 
-       // if (inventoryUp && health != Character.)
+        if (health != firstPersonController.GetComponent<FirstPersonController>().getCurrentHealth())
         {
+            health = firstPersonController.GetComponent<FirstPersonController>().getCurrentHealth();
             changeHealthIndicator();
         }
     }
