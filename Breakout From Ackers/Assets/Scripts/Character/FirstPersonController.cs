@@ -377,6 +377,26 @@ public class FirstPersonController : CharacterStats
         else if(currentItem == "M1911")
         {
             playerAnimations.SetBool("isStartingPistol", true);
+
+            if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D)) // Standing Still
+            {
+                playerAnimations.SetFloat("Speed", 0);
+            }
+            else // Moving
+            {
+                if (isCrouching)
+                {
+                    playerAnimations.SetFloat("Speed", 1);
+                }
+                else if (IsSprinting)
+                {
+                    playerAnimations.SetFloat("Speed", 3);
+                }
+                else
+                {
+                    playerAnimations.SetFloat("Speed", 2);
+                }
+            }
         }
 
     }
