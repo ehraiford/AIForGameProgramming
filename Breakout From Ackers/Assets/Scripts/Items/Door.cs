@@ -21,7 +21,10 @@ public class Door : Interactable
 
     public override void OnInteract()
     {
-        
+        if (objName.Contains("Door1"))
+            objName = "Door1";
+        else if (objName.Contains("Door2"))
+            objName = "Door2";
         if (!isOpen)
         {
             isOpen = true;
