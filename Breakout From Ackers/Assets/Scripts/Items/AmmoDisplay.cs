@@ -24,6 +24,6 @@ public class AmmoDisplay : MonoBehaviour
         currentReservesAmmo = gun.GetComponent<Gun>().getCurrentReservesAmmo();
 
         // Update ammo info
-        ammoDisplay.text = currentMagAmmo + " / " + currentReservesAmmo;
+        ammoDisplay.text = currentMagAmmo + "/" + currentReservesAmmo;
     }
 }
