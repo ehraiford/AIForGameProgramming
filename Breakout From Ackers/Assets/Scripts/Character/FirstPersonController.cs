@@ -466,6 +466,12 @@ public class FirstPersonController : CharacterStats
 
         if (currentHealth <= 0) KillCharacter();
     }
+    public void AddHealth(float healAmt)
+    {
+        currentHealth += healAmt;
+
+        if (currentHealth >= 100) currentHealth = 100;
+    }
     public void doDamage(float dmg)
     {
         //Do damage

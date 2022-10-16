@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &11916094 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7350335165966662835, guid: 224a2f4a7d940eb40b7a4672c5be50c9, type: 3}
-  m_PrefabInstance: {fileID: 1290931975330988553}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &127718754
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,6 +566,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 347567138}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &348431559 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2315402118648577890, guid: 224a2f4a7d940eb40b7a4672c5be50c9, type: 3}
+  m_PrefabInstance: {fileID: 2316814096029865428}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &348431564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348431559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eff00281605c1f44a16df64f2b9f1c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healTime: 1
 --- !u!1 &415711886
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,11 +924,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 674078169}
   m_CullTransparentMesh: 1
---- !u!1 &708019390 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7350335166596213555, guid: 224a2f4a7d940eb40b7a4672c5be50c9, type: 3}
-  m_PrefabInstance: {fileID: 1290931975330988553}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &718541451
 GameObject:
   m_ObjectHideFlags: 0
@@ -3923,9 +3931,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryMenuUI: {fileID: 116849375529031874}
   ammoDisplayUI: {fileID: 116849374641899538}
-  crosshairs: {fileID: 11916094}
+  crosshairs: {fileID: 8641261072424976058}
   notePanel: {fileID: 1815712623}
-  firstPersonController: {fileID: 708019390}
+  firstPersonController: {fileID: 8641261071795710266}
   notePanelText: {fileID: 1875419419}
   lowerHealthThreshold:
   - 90
@@ -4711,42 +4719,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 116849375348935109}
   onScreenUI: {fileID: 116849375136189799}
-  crosshairs: {fileID: 11916094}
---- !u!1001 &1290931975330988553
+  crosshairs: {fileID: 8641261072424976058}
+--- !u!1001 &2316814096029865428
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 263221266536953994, guid: 224a2f4a7d940eb40b7a4672c5be50c9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.21960938
-      objectReference: {fileID: 0}
-    - target: {fileID: 263221266536953994, guid: 224a2f4a7d940eb40b7a4672c5be50c9, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.18715253
-      objectReference: {fileID: 0}
-    - target: {fileID: 263221266536953994, guid: 224a2f4a7d940eb40b7a4672c5be50c9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.5288976
-      objectReference: {fileID: 0}
-    - target: {fileID: 263221266536953994, guid: 224a2f4a7d940eb40b7a4672c5be50c9, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.6498042
-      objectReference: {fileID: 0}
-    - target: {fileID: 263221266536953994, guid: 224a2f4a7d940eb40b7a4672c5be50c9, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.05867585
-      objectReference: {fileID: 0}
-    - target: {fileID: 263221266536953994, guid: 224a2f4a7d940eb40b7a4672c5be50c9, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.08182451
-      objectReference: {fileID: 0}
-    - target: {fileID: 263221266536953994, guid: 224a2f4a7d940eb40b7a4672c5be50c9, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.75340325
-      objectReference: {fileID: 0}
     - target: {fileID: 7350335166596213555, guid: 224a2f4a7d940eb40b7a4672c5be50c9, type: 3}
       propertyPath: m_Name
       value: FirstPersonController
@@ -4797,3 +4777,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 224a2f4a7d940eb40b7a4672c5be50c9, type: 3}
+--- !u!1 &8641261071795710266 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7350335166596213555, guid: 224a2f4a7d940eb40b7a4672c5be50c9, type: 3}
+  m_PrefabInstance: {fileID: 2316814096029865428}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8641261072424976058 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7350335165966662835, guid: 224a2f4a7d940eb40b7a4672c5be50c9, type: 3}
+  m_PrefabInstance: {fileID: 2316814096029865428}
+  m_PrefabAsset: {fileID: 0}
