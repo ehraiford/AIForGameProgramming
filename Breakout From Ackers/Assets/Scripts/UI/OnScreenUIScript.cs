@@ -7,9 +7,12 @@ public class OnScreenUIScript : MonoBehaviour
 {
 
 
-    public static bool inventoryUp = false;
-    public static bool readingNote = false;
+    public static bool inventoryUp;
+    public static bool readingNote;
+    public static bool isPaused = false;
 
+    public GameObject pauseMenuUI;
+    public GameObject onScreenUI;
     public GameObject inventoryMenuUI;
     public GameObject ammoDisplayUI;
     public GameObject crosshairs;
@@ -30,6 +33,8 @@ public class OnScreenUIScript : MonoBehaviour
 
     void Start()
     {
+        inventoryUp = false;
+        readingNote = false;
         health = firstPersonController.GetComponent<FirstPersonController>().getCurrentHealth();
     }
     
@@ -52,19 +57,19 @@ public class OnScreenUIScript : MonoBehaviour
         {
                 CloseNote();  
         }
-        /*
-        else if (Input.GetKeyDown(KeyCode.N))
+        else if (Input.GetKeyDown(KeyCode.Escape) && !inventoryUp && !readingNote)
         {
-            if (readingNote)
+            if (isPaused)
             {
-                CloseNote();
+                Resume();
             }
             else
             {
-                OpenNote();
+                Pause();
             }
         }
-        */
+
+       
         if (health != firstPersonController.GetComponent<FirstPersonController>().getCurrentHealth())
         {
             health = firstPersonController.GetComponent<FirstPersonController>().getCurrentHealth();
@@ -142,11 +147,12 @@ public class OnScreenUIScript : MonoBehaviour
     //supply the noteNumber as an argument to the function.
     public void OpenNote(int noteNumber, int fontNumber)
     {
+        readingNote = true;
         notePanel.SetActive(true);
         ammoDisplayUI.SetActive(false);
         crosshairs.SetActive(false);
         Time.timeScale = 0f;
-        readingNote = true;
+        
 
 
         StreamReader textReader = new StreamReader(path);
@@ -173,11 +179,48 @@ public class OnScreenUIScript : MonoBehaviour
 
     private void CloseNote()
     {
+        readingNote = false;
         notePanel.SetActive(false);
         ammoDisplayUI.SetActive(true);
         crosshairs.SetActive(true);
         Time.timeScale = 1f;
-        readingNote = false;
+        
     }
+    #endregion
+
+    #region Pause Menu
+    public void Resume()
+    {
+        pauseMenuUI.SetActive(false);
+        crosshairs.SetActive(true);
+        Time.timeScale = 1f;
+        isPaused = false;
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        onScreenUI.SetActive(true);
+    }
+
+    void Pause()
+    {
+        pauseMenuUI.SetActive(true);
+        crosshairs.SetActive(false);
+        Time.timeScale = 0f;
+        isPaused = true;
+
+        Cursor.visible = true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        onScreenUI.SetActive(false);
+    }
+
+
+    public void QuitGame()
+    {
+        Debug.Log("Quitting Game...");
+        Application.Quit();
+    }
+
+
     #endregion
 }

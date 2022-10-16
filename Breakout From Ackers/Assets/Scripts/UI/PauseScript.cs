@@ -7,14 +7,19 @@ public class PauseScript : MonoBehaviour
 {
 
     public static bool isPaused = false;
+
     public GameObject pauseMenuUI;
     public GameObject onScreenUI;
     public GameObject crosshairs;
+
+
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !OnScreenUIScript.inventoryUp && !OnScreenUIScript.readingNote)
         {
+            Debug.Log("isPaused: " + isPaused);
+            Debug.Log("");
             if (isPaused)
             {
                 Resume();
