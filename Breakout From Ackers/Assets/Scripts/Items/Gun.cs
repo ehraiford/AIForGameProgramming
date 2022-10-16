@@ -29,10 +29,12 @@ public class Gun : MonoBehaviour
     private bool isShooting = false;
 
     private GameObject playerCamera;
+    private Animator playerAnimator;
 
     void Start()
     {
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        playerAnimator = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
 
         if (barrelLocation == null)
             barrelLocation = transform;
@@ -54,7 +56,7 @@ public class Gun : MonoBehaviour
     {
         if (Time.timeScale > 0.9)
         {
-            // Can't use the gun while reloading
+            // Can't use the gun while reloading or mid shot
             if (isReloading) return;
 
             if (isShooting) return;
@@ -72,11 +74,12 @@ public class Gun : MonoBehaviour
             if (Input.GetButtonDown("Fire1"))
             {
                 //Calls animation on the gun that has the relevant animation events that will fire
-                gunAnimator.SetTrigger("Fire");
+                //gunAnimator.SetTrigger("Fire");
+                StartCoroutine(Shoot());
             }
 
             //If you want a different input, change it here
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R) && currentMagAmmo != maxMagAmmo)
             {
                 StartCoroutine(Reload());
             }
@@ -87,6 +90,7 @@ public class Gun : MonoBehaviour
     //This function creates the bullet behavior
     IEnumerator Shoot()
     {
+        gunAnimator.SetBool("Shooting", true);
         isShooting = true;
 
         if (muzzleFlashPrefab)
@@ -99,12 +103,17 @@ public class Gun : MonoBehaviour
             Destroy(tempFlash, destroyTimer);
         }
 
+        /*
+         * Old Bullet
+         * 
         // Cancels if there's no bullet prefeb
         if (!bulletPrefab)
         { yield break; }
 
         // Create a bullet and add force on it in direction of the barrel
-        //Instantiate(bulletPrefab, playerCamera.transform.position, playerCamera.transform.rotation).GetComponent<Rigidbody>().AddForce(playerCamera.transform.forward * 1);
+        Instantiate(bulletPrefab, playerCamera.transform.position, playerCamera.transform.rotation).GetComponent<Rigidbody>().AddForce(playerCamera.transform.forward * 1);
+        */
+
         RaycastHit hit;
         if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 100))
         {
@@ -120,9 +129,10 @@ public class Gun : MonoBehaviour
         currentMagAmmo--;
 
         // Stops the user from queuing another shot
-        //yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.25f);
 
         isShooting = false;
+        gunAnimator.SetBool("Shooting", false);
     }
 
     //This function creates a casing at the ejection slot
@@ -149,7 +159,10 @@ public class Gun : MonoBehaviour
         // Exit reload if no reserves ammo
         if (currentReservesAmmo == 0) yield break;
 
+        gunAnimator.SetBool("Reloading", true);
+        playerAnimator.SetBool("Reloading", true);
         isReloading = true;
+
         yield return new WaitForSeconds(reloadTime);
 
         // Reload a full mag
@@ -165,6 +178,8 @@ public class Gun : MonoBehaviour
         }
         
         isReloading = false;
+        playerAnimator.SetBool("Reloading", false);
+        gunAnimator.SetBool("Reloading", false);
     }
 
     public int getCurrentMagAmmo()
