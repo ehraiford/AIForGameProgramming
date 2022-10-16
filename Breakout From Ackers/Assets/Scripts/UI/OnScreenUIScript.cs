@@ -20,8 +20,8 @@ public class OnScreenUIScript : MonoBehaviour
     [SerializeField] private float[] lowerHealthThreshold = new float[4];
     [SerializeField] private Color healthIndicatorColor;
     [SerializeField] private Image healthIndicator;
-    [SerializeField] private int fontNumber;
-    [SerializeField] private int noteNumber;
+    //[SerializeField] private int fontNumber;
+    //[SerializeField] private int noteNumber;
     [SerializeField] private TMP_FontAsset[] fontsForNotes;
 
     private string path = "Assets/Items/Menu Items/In Game Notes.txt";
@@ -52,7 +52,7 @@ public class OnScreenUIScript : MonoBehaviour
         {
                 CloseNote();  
         }
-        //temporary else if to test notes until we have interactable objects
+        /*
         else if (Input.GetKeyDown(KeyCode.N))
         {
             if (readingNote)
@@ -64,7 +64,7 @@ public class OnScreenUIScript : MonoBehaviour
                 OpenNote();
             }
         }
-
+        */
         if (health != firstPersonController.GetComponent<FirstPersonController>().getCurrentHealth())
         {
             health = firstPersonController.GetComponent<FirstPersonController>().getCurrentHealth();
@@ -140,7 +140,7 @@ public class OnScreenUIScript : MonoBehaviour
     //function currently will pull up the note of the value for the serialized field, noteNumber. 
     //Once we have interactable notes in the world, we will use this function as an onclick function for the interactable note and it will 
     //supply the noteNumber as an argument to the function.
-    void OpenNote()
+    public void OpenNote(int noteNumber, int fontNumber)
     {
         notePanel.SetActive(true);
         ammoDisplayUI.SetActive(false);
