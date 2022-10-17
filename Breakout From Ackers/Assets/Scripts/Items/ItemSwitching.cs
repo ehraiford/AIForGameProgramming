@@ -10,7 +10,7 @@ public class ItemSwitching : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ammoUI = GameObject.Find("Ammo Box");
+        ammoUI = GameObject.Find("HUD");
 
         SelectItem();
     }

@@ -91,6 +91,7 @@ public class Gun : MonoBehaviour
     IEnumerator Shoot()
     {
         gunAnimator.SetBool("Shooting", true);
+        playerAnimator.SetBool("Shooting", true);
         isShooting = true;
 
         if (muzzleFlashPrefab)
@@ -129,9 +130,10 @@ public class Gun : MonoBehaviour
         currentMagAmmo--;
 
         // Stops the user from queuing another shot
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.2f);
 
         isShooting = false;
+        playerAnimator.SetBool("Shooting", false);
         gunAnimator.SetBool("Shooting", false);
     }
 
