@@ -41,7 +41,7 @@ public class OnScreenUIScript : MonoBehaviour
     void Update()
     {
         //open/close inventory
-        if (Input.GetKeyDown(KeyCode.Tab) && !PauseScript.isPaused)
+        if (Input.GetKeyDown(KeyCode.Tab) && !PauseScript.isPaused && !readingNote)
         {
             if (inventoryUp)
             {
