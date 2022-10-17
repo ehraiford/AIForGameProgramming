@@ -53,10 +53,7 @@ public class OnScreenUIScript : MonoBehaviour
             }
         }
         //close note
-        else if (Input.GetKeyDown(KeyCode.Escape) && readingNote)
-        {
-                CloseNote();  
-        }
+        
         else if (Input.GetKeyDown(KeyCode.Escape) && !inventoryUp && !readingNote)
         {
             if (isPaused)
@@ -141,12 +138,10 @@ public class OnScreenUIScript : MonoBehaviour
 
     #region Notes Functions
 
-
-    //function currently will pull up the note of the value for the serialized field, noteNumber. 
-    //Once we have interactable notes in the world, we will use this function as an onclick function for the interactable note and it will 
-    //supply the noteNumber as an argument to the function.
     public void OpenNote(int noteNumber, int fontNumber)
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         readingNote = true;
         notePanel.SetActive(true);
         ammoDisplayUI.SetActive(false);
@@ -177,14 +172,16 @@ public class OnScreenUIScript : MonoBehaviour
         textReader.Close();
     }
 
-    private void CloseNote()
+    public void CloseNote()
     {
         readingNote = false;
         notePanel.SetActive(false);
         ammoDisplayUI.SetActive(true);
         crosshairs.SetActive(true);
         Time.timeScale = 1f;
-        
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
     #endregion
 
@@ -208,7 +205,6 @@ public class OnScreenUIScript : MonoBehaviour
         Time.timeScale = 0f;
         isPaused = true;
 
-        Cursor.visible = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         onScreenUI.SetActive(false);
