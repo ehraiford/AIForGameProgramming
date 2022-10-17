@@ -118,12 +118,12 @@ public class Gun : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 100))
         {
-            if(hit.collider.CompareTag("Zombie/Head"))
-                EnemyStat.OnTakeDamage(100);
-            else if(hit.collider.CompareTag("Zombie/Body"))
-                EnemyStat.OnTakeDamage(35);
+            if (hit.collider.CompareTag("Zombie/Head"))
+                hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(100);
+            else if (hit.collider.CompareTag("Zombie/Body"))
+                hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(35);
             else if (hit.collider.CompareTag("Zombie/Legs"))
-                EnemyStat.OnTakeDamage(25);
+                hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(25);
         }
 
         // Subtract one from the current ammo

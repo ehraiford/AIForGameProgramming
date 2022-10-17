@@ -16,6 +16,7 @@ public class EnemyStat : CharacterStats
         player = GameObject.Find("FirstPersonController").transform;
         Anim = GetComponentInChildren<Animator>();
         collsions = GetComponentsInChildren<BoxCollider>();
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -55,5 +56,10 @@ public class EnemyStat : CharacterStats
         OnDamage?.Invoke(currentHealth);
 
         if (currentHealth <= 0) KillCharacter();
+    }
+
+    public void DoDamage(float dmg)
+    {
+        ApplyDamage(dmg);
     }
 }
