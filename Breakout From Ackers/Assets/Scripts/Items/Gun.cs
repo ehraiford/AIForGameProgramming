@@ -137,7 +137,7 @@ public class Gun : MonoBehaviour
         currentMagAmmo--;
 
         // Stops the user from queuing another shot
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.4f);
 
         isShooting = false;
         playerAnimator.SetBool("Shooting", false);

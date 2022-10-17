@@ -4523,9 +4523,9 @@ MonoBehaviour:
   onScreenUI: {fileID: 116849374641899538}
   inventoryMenuUI: {fileID: 116849375529031874}
   ammoDisplayUI: {fileID: 116849374641899538}
-  crosshairs: {fileID: 416532546618110814}
+  crosshairs: {fileID: 2649444847363840040}
   notePanel: {fileID: 1815712623}
-  firstPersonController: {fileID: 416532545904698590}
+  firstPersonController: {fileID: 2649444846935871400}
   notePanelText: {fileID: 1875419419}
   lowerHealthThreshold:
   - 90
@@ -5192,17 +5192,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &416532545904698590 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7350335166596213555, guid: 224a2f4a7d940eb40b7a4672c5be50c9, type: 3}
-  m_PrefabInstance: {fileID: 4811281390188192923}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &416532546618110814 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7350335165966662835, guid: 224a2f4a7d940eb40b7a4672c5be50c9, type: 3}
-  m_PrefabInstance: {fileID: 4811281390188192923}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &4811281390188192923
+--- !u!1001 &642216992577622580
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -5259,3 +5249,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 224a2f4a7d940eb40b7a4672c5be50c9, type: 3}
+--- !u!1 &2649444846935871400 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7350335166596213555, guid: 224a2f4a7d940eb40b7a4672c5be50c9, type: 3}
+  m_PrefabInstance: {fileID: 642216992577622580}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2649444847363840040 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7350335165966662835, guid: 224a2f4a7d940eb40b7a4672c5be50c9, type: 3}
+  m_PrefabInstance: {fileID: 642216992577622580}
+  m_PrefabAsset: {fileID: 0}
