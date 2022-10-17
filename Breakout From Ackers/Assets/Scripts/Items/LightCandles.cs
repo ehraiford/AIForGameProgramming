@@ -12,11 +12,10 @@ public class LightCandles : Interactable
     {
         flame.SetActive(false);
         unlit = true;
-        light = gameObject.GetComponent<AudioSource>();
+        light = gameObject.GetComponentInChildren<AudioSource>();
     }
     public override void OnFocus()
     {
-        print("Looking at " + gameObject.name);
     }
 
     public override void OnInteract()
@@ -30,6 +29,5 @@ public class LightCandles : Interactable
 
     public override void OnLoseFocus()
     {
-        print("No longer looking at " + gameObject.name);
     }
 }
