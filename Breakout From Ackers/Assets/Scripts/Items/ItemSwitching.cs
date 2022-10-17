@@ -5,9 +5,13 @@ public class ItemSwitching : MonoBehaviour
     public int selectedItem = 0;
     private string currentItemName = "";
 
+    private GameObject ammoUI;
+
     // Start is called before the first frame update
     void Start()
     {
+        ammoUI = GameObject.Find("Ammo Box");
+
         SelectItem();
     }
 
@@ -21,6 +25,11 @@ public class ItemSwitching : MonoBehaviour
 
         if (previousSelectedItem != selectedItem)
             SelectItem();
+
+
+        // Active and deactive ammo display
+        if(currentItemName == "M1911" && !ammoUI.activeSelf) ammoUI.SetActive(true);
+        if (currentItemName != "M1911" && ammoUI.activeSelf) ammoUI.SetActive(false);
     }
 
     void SelectItem()

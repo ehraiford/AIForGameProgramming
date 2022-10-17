@@ -24,7 +24,7 @@ public class AmmoDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!pistol)
+        if (!pistol)
         {
             pistol = GameObject.Find("M1911");
         }
