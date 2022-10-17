@@ -43,7 +43,7 @@ public class AmmoDisplay : MonoBehaviour
             currentReservesAmmo = pistol.GetComponent<Gun>().getCurrentReservesAmmo();
 
             // Update ammo info
-            ammoDisplay.text = currentMagAmmo + " / " + currentReservesAmmo;
+            ammoDisplay.text = currentMagAmmo + "/" + currentReservesAmmo;
         }
         else // Current item is not a gun
         {
