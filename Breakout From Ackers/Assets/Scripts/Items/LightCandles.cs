@@ -21,10 +21,14 @@ public class LightCandles : Interactable
     public override void OnInteract()
     {
         //Interact with items
-        print("Interacted with " + gameObject.name);
-        light.Play();
-        flame.SetActive(true);
-        unlit = false;
+        if (unlit)
+        {
+            print("Interacted with " + gameObject.name);
+            light.Play();
+            flame.SetActive(true);
+            unlit = false;
+        }
+        
     }
 
     public override void OnLoseFocus()
