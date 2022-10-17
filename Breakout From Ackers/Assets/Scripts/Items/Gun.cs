@@ -19,6 +19,11 @@ public class Gun : MonoBehaviour
     [Tooltip("Bullet Speed")] [SerializeField] private float shotPower = 700f;
     [Tooltip("Casing Ejection Speed")] [SerializeField] private float ejectPower = 250f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource m1911AudioSource = default;
+    [SerializeField] private AudioClip shoot = default;
+    [SerializeField] private AudioClip reload = default;
+
     [Header("Ammo")]
     [SerializeField] private int maxMagAmmo = 10;
     [SerializeField] private int maxReservesAmmo = 30;
@@ -115,6 +120,8 @@ public class Gun : MonoBehaviour
         Instantiate(bulletPrefab, playerCamera.transform.position, playerCamera.transform.rotation).GetComponent<Rigidbody>().AddForce(playerCamera.transform.forward * 1);
         */
 
+        m1911AudioSource.PlayOneShot(shoot);
+
         RaycastHit hit;
         if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 100))
         {
@@ -164,6 +171,8 @@ public class Gun : MonoBehaviour
         gunAnimator.SetBool("Reloading", true);
         playerAnimator.SetBool("Reloading", true);
         isReloading = true;
+
+        m1911AudioSource.PlayOneShot(reload);
 
         yield return new WaitForSeconds(reloadTime);
 
