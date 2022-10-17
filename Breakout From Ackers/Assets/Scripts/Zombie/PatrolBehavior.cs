@@ -12,7 +12,25 @@ public class PatrolBehavior : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         timer = 0;
-        Transform waypointsObj = GameObject.FindGameObjectWithTag("Waypoints").transform;
+        GameObject parent = animator.transform.parent.parent.parent.gameObject;
+        //Just defaulting waypoints then change later
+        Transform waypointsObj = GameObject.Find("Room1Waypoints").transform;
+        Debug.Log(parent.name);
+        //Room one
+        switch (parent.name)
+        {
+            case "Room1":
+                waypointsObj = GameObject.Find("Room1Waypoints").transform;
+                break;
+            case "Room2":
+                waypointsObj = GameObject.Find("Room2Waypoints").transform;
+                break;
+            default:
+                break;
+        }
+        
+        //Room two
+        
         foreach( Transform item in waypointsObj)
         {
             wayPoints.Add(item);
