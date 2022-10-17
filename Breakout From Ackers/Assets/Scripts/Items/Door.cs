@@ -13,6 +13,7 @@ public class Door : Interactable
         door = GetComponentInParent<Animation>();
         objName = door.name;
         isOpen = false;
+        doorSound = GetComponentInParent<AudioSource>();
     }
     public override void OnFocus()
     {
