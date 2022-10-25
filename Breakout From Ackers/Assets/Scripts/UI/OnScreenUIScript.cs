@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using TMPro;
+using System;
 
 public class OnScreenUIScript : MonoBehaviour
 {
@@ -20,11 +21,10 @@ public class OnScreenUIScript : MonoBehaviour
     public GameObject firstPersonController;
     public TextMeshProUGUI notePanelText;
 
+    [SerializeField] private TextMeshProUGUI[] inventoryTempText;
     [SerializeField] private float[] lowerHealthThreshold = new float[4];
     [SerializeField] private Color healthIndicatorColor;
     [SerializeField] private Image healthIndicator;
-    //[SerializeField] private int fontNumber;
-    //[SerializeField] private int noteNumber;
     [SerializeField] private TMP_FontAsset[] fontsForNotes;
 
     private string path = "Assets/Items/Menu Items/In Game Notes.txt";
@@ -35,7 +35,7 @@ public class OnScreenUIScript : MonoBehaviour
     {
         inventoryUp = false;
         readingNote = false;
-        health = firstPersonController.GetComponent<FirstPersonController>().getCurrentHealth();
+        health = firstPersonController.GetComponent<FirstPersonController>().GetCurrentHealth();
     }
     
     void Update()
@@ -67,9 +67,9 @@ public class OnScreenUIScript : MonoBehaviour
         }
 
        
-        if (health != firstPersonController.GetComponent<FirstPersonController>().getCurrentHealth())
+        if (health != firstPersonController.GetComponent<FirstPersonController>().GetCurrentHealth())
         {
-            health = firstPersonController.GetComponent<FirstPersonController>().getCurrentHealth();
+            health = firstPersonController.GetComponent<FirstPersonController>().GetCurrentHealth();
             changeHealthIndicator();
         }
     }
@@ -85,6 +85,26 @@ public class OnScreenUIScript : MonoBehaviour
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        DisplayInventoryItems();
+    }
+
+    private void DisplayInventoryItems()
+    {
+        int activeItemCount = firstPersonController.GetComponent<FirstPersonController>().GetInventorySpaceCurrentlyUsed();
+        //iterates over every item in inventory
+        for(int i = 0; i < firstPersonController.GetComponent<FirstPersonController>().inventoryItems.Length; i++)
+        {
+            if(i < activeItemCount)
+            {
+                inventoryTempText[i].text = firstPersonController.GetComponent<FirstPersonController>().inventoryItems[i];
+                inventoryTempText[i].text += " " + firstPersonController.GetComponent<FirstPersonController>().inventoryItemsCount[i];
+            }
+            else
+            {
+                inventoryTempText[i].text = "";
+            }
+        }
     }
 
     private void CloseInventory()

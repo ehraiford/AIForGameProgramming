@@ -38,7 +38,7 @@ public abstract class CharacterStats : MonoBehaviour
             KillCharacter();
     }
 
-    public float getCurrentHealth()
+    public float GetCurrentHealth()
     {
         return currentHealth;
     }

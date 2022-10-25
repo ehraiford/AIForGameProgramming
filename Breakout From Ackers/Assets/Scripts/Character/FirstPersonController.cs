@@ -131,8 +131,10 @@ public class FirstPersonController : CharacterStats
         //Difficulty Adjustment Initialized
         Score = 100;
         lastTimeAdjust = 0;
-    }
 
+        //Set Inventory Item Count
+        inventorySpacesCurrentlyUsed = InitializeInventorySpaceCurrentlyUsed();
+    }
 
     void Update()
     {
@@ -608,6 +610,22 @@ public class FirstPersonController : CharacterStats
                 return false;
         }
         return true;
+    }
+
+    private int InitializeInventorySpaceCurrentlyUsed()
+    {
+        int i = 0;
+        for(; i < inventoryItems.Length; i++)
+        {
+            if (inventoryItems[i].Length == 0)
+                return i;
+        }
+        return i;
+    }
+
+    public int GetInventorySpaceCurrentlyUsed()
+    {
+        return inventorySpacesCurrentlyUsed;
     }
     #endregion
 }
