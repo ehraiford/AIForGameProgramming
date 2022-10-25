@@ -40,6 +40,7 @@ public class MoveRuller : MonoBehaviour
         MoveRulles();
         RotateRullers();
         _lockPassword.Password();
+        
     }
 
     void MoveRulles()
