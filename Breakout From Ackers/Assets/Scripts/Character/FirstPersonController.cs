@@ -81,6 +81,12 @@ public class FirstPersonController : CharacterStats
     // Equipped Item
     private string currentItem;
 
+    [Header("Inventory")]
+    [SerializeField] public string[] inventoryItems = new string[8];
+    [SerializeField] public int[] inventoryItemsCount = new int[8];
+    [SerializeField] public string[] inventoryUnstackableItems;
+    private int inventorySpacesCurrentlyUsed;
+
     [Header("Health And Debuff")]
     [SerializeField] private int Score;
     //Global Variable
@@ -169,8 +175,7 @@ public class FirstPersonController : CharacterStats
                 undoDebuff();
             }
         }
-
-        
+       
     }
 
     #endregion
@@ -527,5 +532,82 @@ public class FirstPersonController : CharacterStats
         if (Score < 79)
             Score = 80;
     }
-    #endregion        
+    #endregion
+
+    #region Inventory Functions
+    public bool AddInventoryItem(string itemName, int itemCount)
+    {
+        int spot = FindItemSpot(itemName);
+
+        if(spot != -1 && IsStackable(itemName))
+        {
+            Debug.Log("Stacked item into pre-existing inventory.");
+            inventoryItemsCount[spot] += itemCount;
+            return true;
+        }
+        else if( inventorySpacesCurrentlyUsed < 8)
+        {
+            Debug.Log("Added item to a new spot in the inventory.");
+
+            inventoryItems[inventorySpacesCurrentlyUsed] = itemName;
+            inventoryItemsCount[inventorySpacesCurrentlyUsed] = itemCount;
+            inventorySpacesCurrentlyUsed++;
+            return true;
+        }
+        else
+        {
+            Debug.Log("No room in inventory to add another item.");
+            return false;
+        }
+    }
+
+    public bool RemoveInventoryItem(string itemName, int itemCount)
+    {
+        int spot = FindItemSpot(itemName);
+        if(spot == -1)
+        {
+            Debug.Log("Item was not found in inventory. Unable to remove from inventory.");
+            return false;
+        }else if(inventoryItemsCount[spot] <= itemCount)
+        {
+            Debug.Log("Remove count met or exceeded current item count. Removed all possible.");
+            inventoryItemsCount[spot] = 0;
+            inventoryItems[spot] = "";
+            inventorySpacesCurrentlyUsed--;
+            return true;
+        }
+        else
+        {
+            Debug.Log("Removed " + itemCount + " " + itemName + " from inventory.");
+            inventoryItemsCount[spot] -= itemCount;
+            return true;
+        }        
+    }
+
+    private int FindItemSpot(string itemName)
+    {
+        int spot = -1;
+        for (int i = 0; i < inventoryItems.Length; i++)
+        {
+            if (inventoryItems[i].CompareTo(itemName) == 0)
+            {
+                spot = i;
+                break;
+            }
+        }
+        if (spot == -1)
+            Debug.LogWarning(itemName + " was not found in inventory.");
+        return spot;
+    }
+
+    private bool IsStackable(string itemName)
+    {
+        for(int i = 0; i < inventoryUnstackableItems.Length; i++)
+        {
+            if (itemName.CompareTo(inventoryUnstackableItems[i]) == 0)
+                return false;
+        }
+        return true;
+    }
+    #endregion
 }
