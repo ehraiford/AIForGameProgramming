@@ -509,7 +509,7 @@ public class FirstPersonController : CharacterStats
     #endregion
 
     #region Difficulty Adjustment Functions
-    private float diffcultyValue()
+    public float diffcultyValue()
     {
         // The Player is doing well Penalize them
         if (Score > 110)
