@@ -53,9 +53,9 @@ public class LightCandles : Interactable
 
             //Probabilty to turn off
             float ran = Random.Range(0f, 100f);
-            Debug.Log(ran);
+            //Debug.Log(ran);
             ran *= DD;
-            Debug.Log(DD);
+            //Debug.Log(DD);
             if (ran >= threshold)
             {
                 canTurnOff = true;
