@@ -1,29 +1,30 @@
-﻿// Script by Marcelli Michele
+﻿// Original Script by Marcelli Michele
 
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MoveRuller : MonoBehaviour
 {
-    PadLockPassword _lockPassword;
-    PadLockEmissionColor _pLockColor;
+
+    public bool isActive;
 
     [HideInInspector]
     public List <GameObject> _rullers = new List<GameObject>();
     private int _scroolRuller = 0;
     private int _changeRuller = 0;
+
     [HideInInspector]
     public int[] _numberArray = {0,0,0,0};
-
     private int _numberRuller = 0;
-
     private bool _isActveEmission = false;
+
+    [SerializeField] int[] _numberPassword = { 0, 0, 0, 0 };
 
 
     void Awake()
     {
-        _lockPassword = FindObjectOfType<PadLockPassword>();
-        _pLockColor = FindObjectOfType<PadLockEmissionColor>();
+        
 
         _rullers.Add(GameObject.Find("Ruller1"));
         _rullers.Add(GameObject.Find("Ruller2"));
@@ -37,10 +38,12 @@ public class MoveRuller : MonoBehaviour
     }
     void Update()
     {
-        MoveRulles();
-        RotateRullers();
-        _lockPassword.Password();
-        
+        if (isActive)
+        {
+            MoveRulles();
+            RotateRullers();
+            Password();
+        }
     }
 
     void MoveRulles()
@@ -90,6 +93,22 @@ public class MoveRuller : MonoBehaviour
 
     }
 
+    public void Password()
+    {
+        if (_numberArray.SequenceEqual(_numberPassword))
+        {
+            // Here enter the event for the correct combination
+            Debug.Log("Password correct");
+
+            // Es. Below the for loop to disable Blinking Material after the correct password
+            for (int i = 0; i < _rullers.Count; i++)
+            {
+                _rullers[i].GetComponent<PadLockEmissionColor>()._isSelect = false;
+                _rullers[i].GetComponent<PadLockEmissionColor>().BlinkingMaterial();
+            }
+
+        }
+    }
     void RotateRullers()
     {
         if (Input.GetKeyDown(KeyCode.W))

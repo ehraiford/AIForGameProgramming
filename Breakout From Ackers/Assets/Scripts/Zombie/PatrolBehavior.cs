@@ -14,7 +14,7 @@ public class PatrolBehavior : StateMachineBehaviour
         timer = 0;
         //Get the parent object (aka the room they are in)
         GameObject parent = animator.transform.parent.parent.parent.gameObject;
-        Debug.Log(parent.name);
+        //Debug.Log(parent.name);
         Transform CorrectWaypoints = parent.transform.GetChild(0).transform;
         //Just defaulting waypoints then change later
         

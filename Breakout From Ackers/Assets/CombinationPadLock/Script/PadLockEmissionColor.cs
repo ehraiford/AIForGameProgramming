@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PadLockEmissionColor : MonoBehaviour
 {
-    TimeBlinking tb;
+
 
     private GameObject _myRuller;
 
@@ -15,7 +15,7 @@ public class PadLockEmissionColor : MonoBehaviour
 
     private void Awake()
     {
-        tb = FindObjectOfType<TimeBlinking>();
+       
     }
     void Start()
     {
@@ -29,7 +29,7 @@ public class PadLockEmissionColor : MonoBehaviour
         
         if (_isSelect)
         {
-            _myRuller.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.Lerp(Color.clear, Color.yellow, Mathf.PingPong(Time.time, tb.blinkingTime)));
+            _myRuller.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.Lerp(Color.clear, Color.yellow, Mathf.PingPong(Time.time, 0.5f)));
         }
         if (_isSelect == false)
         {
