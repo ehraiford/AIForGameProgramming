@@ -24,7 +24,10 @@ public class AttackBehavior : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //Look  at the player
-        animator.transform.LookAt(player.transform.position);
+        Transform t = player.transform;
+        //Use current object Y so it doesnt rotate
+        Vector3 targetPos = new Vector3(t.position.x, animator.transform.position.y, t.position.z);
+        animator.transform.LookAt(targetPos);
         //Calculate the distance to see if enemy need to chase again
         float distance = Vector3.Distance(animator.transform.position, player.transform.position);
 
