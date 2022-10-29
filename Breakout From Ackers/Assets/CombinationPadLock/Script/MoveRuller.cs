@@ -20,7 +20,9 @@ public class MoveRuller : MonoBehaviour
     private bool _isActveEmission = false;
 
     [SerializeField] int[] _numberPassword = { 0, 0, 0, 0 };
-
+    [SerializeField] GameObject firstPersonControllerCamera;
+    [SerializeField] GameObject combinationLockCamera;
+    [SerializeField] GameObject chest;
 
     void Awake()
     {
@@ -30,7 +32,8 @@ public class MoveRuller : MonoBehaviour
         _rullers.Add(GameObject.Find("Ruller2"));
         _rullers.Add(GameObject.Find("Ruller3"));
         _rullers.Add(GameObject.Find("Ruller4"));
-
+        _numberRuller = 0;
+        _isActveEmission = true;
         foreach (GameObject r in _rullers)
         {
             r.transform.Rotate(-144, 0, 0, Space.Self);
@@ -42,7 +45,11 @@ public class MoveRuller : MonoBehaviour
         {
             MoveRulles();
             RotateRullers();
-            Password();
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                Debug.Log("KeyCode read");
+                Password();
+            }
         }
     }
 
@@ -93,20 +100,30 @@ public class MoveRuller : MonoBehaviour
 
     }
 
-    public void Password()
+    public void  Password()
     {
+        combinationLockCamera.SetActive(false);
+        firstPersonControllerCamera.SetActive(true);
+        isActive = false;
+
+        for (int i = 0; i < _rullers.Count; i++)
+        {
+            _rullers[i].GetComponent<PadLockEmissionColor>()._isSelect = false;
+            _rullers[i].GetComponent<PadLockEmissionColor>().BlinkingMaterial();
+        }
+
         if (_numberArray.SequenceEqual(_numberPassword))
         {
             // Here enter the event for the correct combination
-            Debug.Log("Password correct");
-
-            // Es. Below the for loop to disable Blinking Material after the correct password
-            for (int i = 0; i < _rullers.Count; i++)
-            {
-                _rullers[i].GetComponent<PadLockEmissionColor>()._isSelect = false;
-                _rullers[i].GetComponent<PadLockEmissionColor>().BlinkingMaterial();
-            }
-
+            Debug.Log("Correct Password was entered.");
+            chest.GetComponent<Chest>().isLocked = false;
+            Destroy(gameObject);
+           
+        }
+        else
+        {
+            Debug.Log("Incorrect Password was entered.");
+            
         }
     }
     void RotateRullers()

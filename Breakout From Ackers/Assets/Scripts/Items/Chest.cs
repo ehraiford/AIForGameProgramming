@@ -5,6 +5,7 @@ using UnityEngine;
 public class Chest : Interactable
 {
     private Animator anim;
+    public bool isLocked = true;
 
     // Start is called before the first frame update
     void Start()
