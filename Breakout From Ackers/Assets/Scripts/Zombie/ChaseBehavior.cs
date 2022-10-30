@@ -19,7 +19,7 @@ public class ChaseBehavior : StateMachineBehaviour
     {
         agent.SetDestination(player.position);
         float distance = Vector3.Distance(animator.transform.position, player.position);
-        Debug.Log(distance);
+        //Debug.Log(distance);
         if (distance - 1 <= agent.stoppingDistance)
             animator.SetBool("isAttacking", true);
         if (!agent.GetComponent<FOV>().canSeePlayer)
