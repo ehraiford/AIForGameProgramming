@@ -10,6 +10,7 @@ public class EnemyStat : CharacterStats
     private BoxCollider[] collsions;
     Transform player;
     Animator Anim;
+    string name;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class EnemyStat : CharacterStats
         Anim = GetComponentInChildren<Animator>();
         collsions = GetComponentsInChildren<BoxCollider>();
         currentHealth = maxHealth;
+        name = transform.name;
     }
 
     // Update is called once per frame
@@ -31,18 +33,29 @@ public class EnemyStat : CharacterStats
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 toOther = player.position - transform.position;
 
-        //Check where player from enemy
-        if(Vector3.Dot(forward, toOther) < 0)
+        //Check where player from enemy Normal Zombie
+        if(name != "Boss")
         {
-            //Player is behind me fall forward
-            Anim.SetBool("isDeadBehind", true);
+            if (Vector3.Dot(forward, toOther) < 0)
+            {
+                //Player is behind me fall forward
+                Anim.SetBool("isDeadBehind", true);
+            }
+            else
+            {
+                //Player is infront of me fall backwards
+                Anim.SetBool("isDeadInFront", true);
+
+            }
         }
         else
         {
-            //Player is infront of me fall backwards
-            Anim.SetBool("isDeadInFront", true);
-
+            Anim.SetBool("isDead", true);
         }
+        
+
+
+
         //Turn of all colliders
         foreach(BoxCollider collsion in collsions)
         {

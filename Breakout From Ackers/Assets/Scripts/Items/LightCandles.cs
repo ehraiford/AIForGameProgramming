@@ -13,7 +13,6 @@ public class LightCandles : Interactable
     [SerializeField] int randMax = 100; // Max random number for random generator
     [SerializeField] int threshold = 50;// threshold to turn off candle
     FirstPersonController FPC; //first person controller
-    int score; //The player's score
     float DD; //Dynamic Difficulty value
     // Start is called before the first frame update
     void Start()
@@ -52,7 +51,7 @@ public class LightCandles : Interactable
             time = Time.time;
 
             //Probabilty to turn off
-            float ran = Random.Range(0f, 100f);
+            float ran = Random.Range(0f, randMax);
             //Debug.Log(ran);
             ran *= DD;
             //Debug.Log(DD);
