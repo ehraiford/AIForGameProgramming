@@ -9,13 +9,13 @@ public class InteractWIthCombinationLock : Interactable
 
     public override void OnFocus()
     {
-        
+
     }
 
     public override void OnInteract()
     {
         Debug.Log("Interacted with Combination Lock");
-        firstPersonControllerCamera.SetActive(false); 
+        firstPersonControllerCamera.SetActive(false);
         combinationLockCamera.SetActive(true);
         gameObject.GetComponent<MoveRuller>().isActive = true;
 
@@ -23,18 +23,7 @@ public class InteractWIthCombinationLock : Interactable
 
     public override void OnLoseFocus()
     {
-       
+
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

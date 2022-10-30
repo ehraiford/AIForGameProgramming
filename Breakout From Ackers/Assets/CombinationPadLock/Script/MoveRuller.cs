@@ -23,6 +23,7 @@ public class MoveRuller : MonoBehaviour
     [SerializeField] GameObject firstPersonControllerCamera;
     [SerializeField] GameObject combinationLockCamera;
     [SerializeField] GameObject chest;
+    [SerializeField] AudioSource audioSource;
 
     void Awake()
     {
@@ -115,6 +116,7 @@ public class MoveRuller : MonoBehaviour
         if (_numberArray.SequenceEqual(_numberPassword))
         {
             // Here enter the event for the correct combination
+            audioSource.Play();
             Debug.Log("Correct Password was entered.");
             chest.GetComponent<Chest>().isLocked = false;
             Destroy(gameObject);
@@ -123,6 +125,7 @@ public class MoveRuller : MonoBehaviour
         else
         {
             Debug.Log("Incorrect Password was entered.");
+            
             
         }
     }
