@@ -4,6 +4,7 @@ public class ItemSwitching : MonoBehaviour
 {
     public int selectedItem = 0;
     private string currentItemName = "";
+    private string[] inventoryItems;
 
     private GameObject ammoUI;
 
@@ -11,6 +12,7 @@ public class ItemSwitching : MonoBehaviour
     void Start()
     {
         ammoUI = GameObject.Find("HUD");
+        inventoryItems = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>().inventoryItems;
 
         SelectItem();
     }
@@ -18,16 +20,19 @@ public class ItemSwitching : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Updates inventory
+        inventoryItems = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>().inventoryItems;
+
         int previousSelectedItem = selectedItem;
 
         HandleMouseWheelInput();
         HandleNumberInput();
 
-        if (previousSelectedItem != selectedItem)
-            SelectItem();
+        if (previousSelectedItem != selectedItem) SelectItem();
 
+        if (inventoryItems[selectedItem] == "") currentItemName = "";
 
-        // Active and deactive ammo display
+        // Activate and deactivate ammo display
         if(currentItemName == "M1911" && !ammoUI.activeSelf) ammoUI.SetActive(true);
         if (currentItemName != "M1911" && ammoUI.activeSelf) ammoUI.SetActive(false);
     }
@@ -56,7 +61,7 @@ public class ItemSwitching : MonoBehaviour
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
-            if (selectedItem >= transform.childCount - 1)
+            if (selectedItem >= inventoryItems.Length - 1)
                 selectedItem = 0;
             else
                 selectedItem++;
@@ -64,8 +69,8 @@ public class ItemSwitching : MonoBehaviour
 
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
-            if (selectedItem <= transform.childCount - 1)
-                selectedItem = 0;
+            if (selectedItem <= 0)
+                selectedItem = 7;
             else
                 selectedItem--;
         }
@@ -73,14 +78,29 @@ public class ItemSwitching : MonoBehaviour
 
     void HandleNumberInput()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && transform.childCount >= 1)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && inventoryItems[0] != "")
             selectedItem = 0;
 
-        if (Input.GetKeyDown(KeyCode.Alpha2) && transform.childCount >= 2)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && inventoryItems[1] != "")
             selectedItem = 1;
 
-        if (Input.GetKeyDown(KeyCode.Alpha3) && transform.childCount >= 3)
+        if (Input.GetKeyDown(KeyCode.Alpha3) && inventoryItems[2] != "")
             selectedItem = 2;
+
+        if (Input.GetKeyDown(KeyCode.Alpha4) && inventoryItems[3] != "")
+            selectedItem = 3;
+
+        if (Input.GetKeyDown(KeyCode.Alpha5) && inventoryItems[4] != "")
+            selectedItem = 4;
+
+        if (Input.GetKeyDown(KeyCode.Alpha6) && inventoryItems[5] != "")
+            selectedItem = 5;
+
+        if (Input.GetKeyDown(KeyCode.Alpha7) && inventoryItems[6] != "")
+            selectedItem = 6;
+
+        if (Input.GetKeyDown(KeyCode.Alpha8) && inventoryItems[7] != "")
+            selectedItem = 7;
     }
 
     public string getCurrentItemName()
