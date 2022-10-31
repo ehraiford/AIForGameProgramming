@@ -179,13 +179,23 @@ public class Gun : MonoBehaviour
         // Reload a full mag
         if(currentReservesAmmo >= maxMagAmmo)
         {
+            currentReservesAmmo -= (maxMagAmmo - currentMagAmmo);
             currentMagAmmo = maxMagAmmo;
-            currentReservesAmmo -= maxMagAmmo;
         }
         else // Reload a partial mag
         {
-            currentMagAmmo = currentReservesAmmo;
-            currentReservesAmmo = 0;
+            int ammoNeeded = maxMagAmmo - currentMagAmmo;
+
+            if(ammoNeeded <= currentReservesAmmo)
+            {
+                currentReservesAmmo -= ammoNeeded;
+                currentMagAmmo = maxMagAmmo;
+            }
+            else
+            {
+                currentMagAmmo += currentReservesAmmo;
+                currentReservesAmmo = 0;
+            }
         }
         
         isReloading = false;
