@@ -65,6 +65,13 @@ public class ItemSwitching : MonoBehaviour
                 selectedItem = 0;
             else
                 selectedItem++;
+
+            while (inventoryItems[selectedItem] == "")
+            {
+                selectedItem++;
+
+                if (selectedItem >= inventoryItems.Length - 1) selectedItem = 0;
+            }
         }
 
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
@@ -72,7 +79,14 @@ public class ItemSwitching : MonoBehaviour
             if (selectedItem <= 0)
                 selectedItem = 7;
             else
+                selectedItem--;    
+
+            while (inventoryItems[selectedItem] == "")
+            {
                 selectedItem--;
+
+                if (selectedItem <= 0) selectedItem = 7;
+            }
         }
     }
 
