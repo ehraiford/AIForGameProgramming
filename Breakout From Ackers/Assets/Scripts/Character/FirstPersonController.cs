@@ -37,7 +37,7 @@ public class FirstPersonController : CharacterStats
     [SerializeField, Range(1, 180)] private float lowerLookLimit = 80.0f;
 
     [Header("Jumping Parameters")]
-    [SerializeField] private float jumpForce = 8.0f;
+    [SerializeField] private float jumpForce = 6.0f;
     [SerializeField] private float gravity = 30.0f;
     private bool justLanded = false;
 
@@ -219,6 +219,16 @@ public class FirstPersonController : CharacterStats
         {
             moveDirection.y = jumpForce;
         }
+
+        // If the player jumps and hits the ceiling
+        if (characterController.collisionFlags == CollisionFlags.Above)
+        {
+            // Remove y velocity from jumping
+            moveDirection.y = 0;
+
+            // Set stepOffset to zero to prevent player moving and sticking to the ceiling
+            characterController.stepOffset = 0;
+        }
     }
 
     private void HandleCrouch()
@@ -294,38 +304,47 @@ public class FirstPersonController : CharacterStats
     {
         if (IsSprinting && currentInput != Vector2.zero) // Sprinting and moving
         {
-            if (regeneratingStamina != null)
+            if (regeneratingStamina != null) // Stop regenerating stamina if player starts sprinting
             {
                 StopCoroutine(regeneratingStamina);
                 regeneratingStamina = null;
             }
 
+            // Remove stamina while player is sprinting
             currentStamina -= staminaUseMultiplier * Time.deltaTime;
 
+            // Don't let stamina go below 0
             if (currentStamina < 0) currentStamina = 0;
 
+            // Stop the player from sprinting if they run out of stamina
             if (currentStamina <= 0) canSprint = false;
         }
 
+        // If the player is not sprinting, not at max stamina, and isn't already regenerating stamina, start regenerating stamina
         if (!IsSprinting && currentStamina < maxStamina && regeneratingStamina == null) regeneratingStamina = StartCoroutine(RegenerateStamina());
     }
 
     private IEnumerator RegenerateStamina()
     {
+        // Waits for given time to start regenerating stamina
         yield return new WaitForSeconds(timeBeforeStaminaRegen);
         WaitForSeconds timeToWait = new WaitForSeconds(staminaTimeIncrement);
 
         while(currentStamina < maxStamina)
         {
+            // If any amount of stamina is there, allow the player to sprint
             if (currentStamina > 0) canSprint = true;
 
+            // Add stamina based on increment amount
             currentStamina += staminaValueIncrement;
 
+            // Don't let stamina go above 100
             if (currentStamina > maxStamina) currentStamina = maxStamina;
 
             yield return timeToWait;
         }
 
+        // Stops the coroutine
         regeneratingStamina = null;
     }
 
