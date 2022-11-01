@@ -11,6 +11,7 @@ public class Chest : Interactable
     void Start()
     {
         anim = GetComponent<Animator>();
+        isLocked = true;
     }
     public override void OnFocus()
     {
@@ -19,7 +20,10 @@ public class Chest : Interactable
 
     public override void OnInteract()
     {
-        anim.SetBool("isOpen", true);
+        if (!isLocked)
+        {
+            anim.SetBool("isOpen", true);
+        }
     }
 
     public override void OnLoseFocus()

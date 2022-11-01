@@ -24,10 +24,11 @@ public class MoveRuller : MonoBehaviour
     [SerializeField] int[] _numberPassword = { 0, 0, 0, 0 };
     [SerializeField] GameObject firstPersonControllerCamera;
     [SerializeField] GameObject combinationLockCamera;
-    [SerializeField] GameObject chest;
-    [SerializeField] AudioSource openLock;
-    [SerializeField] AudioSource dontOpenLock;
-
+    [SerializeField] GameObject parentObject;
+    [SerializeField] AudioSource audioSource;
+    
+    [SerializeField] AudioClip failedToUnlock;
+    [SerializeField] AudioClip successfullyUnlock;
     void Awake()
     {
         
@@ -57,13 +58,12 @@ public class MoveRuller : MonoBehaviour
         }
         if (unlocked)
         {
-            if (Time.time - time > 3.0)
-            {
+           
+            if (Time.time - time > 1.5)
+            { 
+                parentObject.GetComponent<Animator>().SetBool("isOpen", true);
+                parentObject.GetComponent<AudioSource>().Play();
                 Destroy(gameObject);
-            }
-            else if (Time.time - time > 1.5)
-            {
-                chest.GetComponent<Animator>().SetBool("isOpen", true);
             }
         }
     }
@@ -132,14 +132,17 @@ public class MoveRuller : MonoBehaviour
             
             Debug.Log("Correct Password was entered.");
             time = Time.time;
-            openLock.Play();
+            unlocked = true;
+            audioSource.clip = successfullyUnlock;
+            audioSource.Play();
             
         }
         else
         {
             Debug.Log("Incorrect Password was entered.");
 
-            dontOpenLock.Play();
+            audioSource.clip = failedToUnlock;
+            audioSource.Play();
         }
     }
     void RotateRullers()
