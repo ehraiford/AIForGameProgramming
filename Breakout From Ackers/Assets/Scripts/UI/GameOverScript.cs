@@ -9,7 +9,7 @@ public class GameOverScript : MonoBehaviour
     [SerializeField] TextMeshProUGUI firstText;
     [SerializeField] TextMeshProUGUI secondText;
     [SerializeField] AudioSource audioSource;
-    
+    private float firstAlpha, secondAlpha;
 
     //freezes time, starts the audio, and starts tracking time passed.
     private void Awake()
@@ -17,8 +17,8 @@ public class GameOverScript : MonoBehaviour
         timePassed = Time.realtimeSinceStartup;
         Time.timeScale = 0.0f;
 
-        firstText.color = new Color(0, 0, 0, 255);
-        secondText.color = new Color(0, 0, 0, 255);
+        firstText.color = new Color(0, 0, 0, 0);
+        secondText.color = new Color(0, 0, 0, 0);
 
 
         audioSource.Play();
@@ -26,17 +26,34 @@ public class GameOverScript : MonoBehaviour
 
     void Update()
     {
-       
+        if (firstAlpha > 1.0f)
+            firstAlpha = 1.0f;
+        if (secondAlpha > 1.0f)
+            secondAlpha = 1.0f;
+
         //switch case handles the opacity changes of the text and then restarts time and removes the death screen after 18 seconds
         switch(Time.realtimeSinceStartup - timePassed)
         {
-            case  <3:
+            case  <2f:
                 break;
-            case <10:
-                ChangeAlpha(firstText, 0.002f);
+            case <8:
+                firstAlpha += 0.002f;
+                firstText.color = new Color(255, 255, 255, firstAlpha);
+                
                 break;
-            case <18:
-                ChangeAlpha(secondText, 0.002f);
+            case <9:
+                secondAlpha += 0.002f;
+                secondText.color = new Color(255, 255, 255, secondAlpha);
+                break;
+            case < 13:
+                firstAlpha -= 0.003f;
+                firstText.color = new Color(255, 255, 255, firstAlpha);
+                secondAlpha += 0.002f;
+                secondText.color = new Color(255, 255, 255, secondAlpha);
+                break;
+            case < 18:
+                secondAlpha -= 0.004f;
+                secondText.color = new Color(255, 255, 255, secondAlpha);
                 break;
             default:
                 Time.timeScale = 1.0f;
@@ -46,12 +63,5 @@ public class GameOverScript : MonoBehaviour
                 break;
         }
        
-    }
-
-    //Adds or Subtracts the alpha difference from the text.
-    private void ChangeAlpha(TextMeshProUGUI text, float alphaChange)
-    {
-        text.color = new Color(1, 1, 1, text.faceColor.a + alphaChange);
-        Debug.Log("New Alpha:" + text.color.a);
     }
 }
