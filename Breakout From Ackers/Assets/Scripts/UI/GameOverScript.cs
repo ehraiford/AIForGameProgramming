@@ -12,6 +12,8 @@ public class GameOverScript : MonoBehaviour
     {
         timePassed = Time.realtimeSinceStartup;
         Time.timeScale = 0.0f;
+        firstText.SetActive(false);
+        secondText.SetActive(false);
     }
 
     // Update is called once per frame
