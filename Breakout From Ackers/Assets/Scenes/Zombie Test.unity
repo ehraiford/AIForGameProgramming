@@ -1001,6 +1001,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1778550664}
     - target: {fileID: 3404402356410622241, guid: 852a11fecc1877149be52139ea40a3be, type: 3}
+      propertyPath: parentObject
+      value: 
+      objectReference: {fileID: 1006853545}
+    - target: {fileID: 3404402356410622241, guid: 852a11fecc1877149be52139ea40a3be, type: 3}
+      propertyPath: failedToUnlock
+      value: 
+      objectReference: {fileID: 8300000, guid: 8644ac063c15ddd44ae56248a47761be, type: 3}
+    - target: {fileID: 3404402356410622241, guid: 852a11fecc1877149be52139ea40a3be, type: 3}
+      propertyPath: successfullyUnlock
+      value: 
+      objectReference: {fileID: 8300000, guid: 8b561ea0ca2f9e744a96e1e287a43c43, type: 3}
+    - target: {fileID: 3404402356410622241, guid: 852a11fecc1877149be52139ea40a3be, type: 3}
       propertyPath: combinationLockCamera
       value: 
       objectReference: {fileID: 458963612}
@@ -1122,7 +1134,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006853545}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fdecec5ddf1fe8544aa53c787b7878b3, type: 3}
   m_Name: 

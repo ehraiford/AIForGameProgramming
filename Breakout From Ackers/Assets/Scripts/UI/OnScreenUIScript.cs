@@ -41,7 +41,7 @@ public class OnScreenUIScript : MonoBehaviour
     void Update()
     {
         //open/close inventory
-        if (Input.GetKeyDown(KeyCode.Tab) && !PauseScript.isPaused && !readingNote)
+        if (Input.GetKeyDown(KeyCode.Tab) && !isPaused && !readingNote)
         {
             if (inventoryUp)
             {
@@ -56,12 +56,8 @@ public class OnScreenUIScript : MonoBehaviour
         
         else if (Input.GetKeyDown(KeyCode.Escape) && !inventoryUp && !readingNote)
         {
-            if (isPaused)
-            {
-                Resume();
-            }
-            else
-            {
+            if (!isPaused)
+            { 
                 Pause();
             }
         }
@@ -209,12 +205,13 @@ public class OnScreenUIScript : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
-        crosshairs.SetActive(true);
+        crosshairs.SetActive(true); 
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;
         isPaused = false;
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        
         onScreenUI.SetActive(true);
     }
 
