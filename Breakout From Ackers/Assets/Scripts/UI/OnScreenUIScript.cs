@@ -19,13 +19,25 @@ public class OnScreenUIScript : MonoBehaviour
     public GameObject crosshairs;
     public GameObject notePanel;
     public GameObject firstPersonController;
+
+   
     public TextMeshProUGUI notePanelText;
+    
 
     [SerializeField] private TextMeshProUGUI[] inventoryTempText;
     [SerializeField] private float[] lowerHealthThreshold = new float[4];
     [SerializeField] private Color healthIndicatorColor;
     [SerializeField] private Image healthIndicator;
     [SerializeField] private TMP_FontAsset[] fontsForNotes;
+
+    [Header("Objective Stuff")] 
+    public TextMeshProUGUI objective;
+    [SerializeField] private string[] objectiveList;
+     
+    [Header("Heads Up Stuff")]
+    [SerializeField] private TextMeshProUGUI headsUpText;
+    private bool displayHeadsUpText;
+
 
     private string path = "Assets/Items/Menu Items/In Game Notes.txt";
     private float health;
@@ -36,6 +48,10 @@ public class OnScreenUIScript : MonoBehaviour
         inventoryUp = false;
         readingNote = false;
         health = firstPersonController.GetComponent<FirstPersonController>().GetCurrentHealth();
+
+        SetCurrentObjective(0);
+        headsUpText.color = new Color(0, 0, 0, 0);
+
     }
     
     void Update()
@@ -53,7 +69,6 @@ public class OnScreenUIScript : MonoBehaviour
             }
         }
         //close note
-        
         else if (Input.GetKeyDown(KeyCode.Escape) && !inventoryUp && !readingNote)
         {
             if (!isPaused)
@@ -62,12 +77,15 @@ public class OnScreenUIScript : MonoBehaviour
             }
         }
 
-       
+       //changes health indicator if it isn't accurate
         if (health != firstPersonController.GetComponent<FirstPersonController>().GetCurrentHealth())
         {
             health = firstPersonController.GetComponent<FirstPersonController>().GetCurrentHealth();
             changeHealthIndicator();
         }
+
+        //handles fade in / out of heads up text
+        
     }
 
     #region Inventory Functions 
@@ -149,6 +167,12 @@ public class OnScreenUIScript : MonoBehaviour
         }
         healthIndicatorColor.a = 1f;
         healthIndicator.color = healthIndicatorColor;
+    }
+
+    public void SetCurrentObjective(int objectiveNumber)
+    {
+        objective.text = objectiveList[objectiveNumber];
+        SetHeadsUpText("Objective" + objectiveList[objectiveNumber]);
     }
     #endregion
 
@@ -234,6 +258,16 @@ public class OnScreenUIScript : MonoBehaviour
         Application.Quit();
     }
 
+
+    #endregion
+
+    #region HeadsUpDisplay
+    public void SetHeadsUpText(string newHeadsUpText)
+    {
+        headsUpText.text = newHeadsUpText;
+        
+        
+    }
 
     #endregion
 }
