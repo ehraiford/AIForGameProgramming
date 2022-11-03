@@ -29,6 +29,7 @@ public class FirstPersonController : CharacterStats
 
     [Header("Additional Movement Parameters")]
     [SerializeField] private float crouchSpeed = 1.5f;
+    private string currentMovement;
 
     [Header("Look Parameters")]
     [SerializeField, Range(1, 10)] private float lookSpeedX = 2.0f;
@@ -200,6 +201,15 @@ public class FirstPersonController : CharacterStats
     private void HandleMovementInput()
     {
         currentInput = new Vector2((isCrouching ? crouchSpeed : IsSprinting ? sprintSpeed : walkSpeed) * Input.GetAxis("Vertical"), (isCrouching ? crouchSpeed : IsSprinting ? sprintSpeed : walkSpeed) * Input.GetAxis("Horizontal"));
+
+        if (isCrouching && currentInput != Vector2.zero)
+            currentMovement = "Crouch Walking";
+        else if (IsSprinting && currentInput != Vector2.zero)
+            currentMovement = "Sprinting";
+        else if (currentInput != Vector2.zero)
+            currentMovement = "Walking";
+        else
+            currentMovement = "None";
 
         float moveDirectionY = moveDirection.y;
         moveDirection = (transform.TransformDirection(Vector3.forward) * currentInput.x) + (transform.TransformDirection(Vector3.right) * currentInput.y);
@@ -421,6 +431,11 @@ public class FirstPersonController : CharacterStats
         }
 
         characterController.Move(moveDirection * Time.deltaTime);
+    }
+
+    public string getCurrentMovement()
+    {
+        return currentMovement;
     }
 
     #endregion

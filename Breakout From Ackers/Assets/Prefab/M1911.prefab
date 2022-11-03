@@ -347,8 +347,8 @@ MonoBehaviour:
   m1911AudioSource: {fileID: 6243857507448901761}
   shoot: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
   reload: {fileID: 8300000, guid: 35d0716e1e6e75d478cb8174c12a1c8c, type: 3}
-  maxMagAmmo: 10
-  maxReservesAmmo: 30
+  maxMagAmmo: 7
+  maxReservesAmmo: 28
   reloadTime: 1
 --- !u!82 &6243857507448901761
 AudioSource:

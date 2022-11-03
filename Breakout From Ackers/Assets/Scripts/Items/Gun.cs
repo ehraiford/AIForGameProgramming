@@ -124,9 +124,27 @@ public class Gun : MonoBehaviour
 
         m1911AudioSource.PlayOneShot(shoot);
 
+        // Calculates inaccuracy based on how fast the player is moving
+        float inaccuracy = 0.0f;
+
+        if (GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>().getCurrentMovement() == "Sprinting")
+            inaccuracy = 0.5f;
+        else if (GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>().getCurrentMovement() == "Walking")
+            inaccuracy = 0.25f;
+        else if (GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>().getCurrentMovement() == "Crouch Walking")
+            inaccuracy = 0.1f;
+
+        inaccuracy = Random.Range(-inaccuracy, inaccuracy);
+
+        // Adjusts the bullet spawn point based on inaccuracy
+        Vector3 currentCameraPos = playerCamera.transform.position;
+        currentCameraPos.x += inaccuracy;
+        currentCameraPos.y += inaccuracy;
+
         RaycastHit hit;
-        if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 100))
+        if(Physics.Raycast(currentCameraPos, playerCamera.transform.forward, out hit, 100))
         {
+            // Damages zombie based on where it is shot
             if (hit.collider.CompareTag("Zombie/Head"))
                 hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(100);
             else if (hit.collider.CompareTag("Zombie/Body"))
@@ -134,6 +152,7 @@ public class Gun : MonoBehaviour
             else if (hit.collider.CompareTag("Zombie/Legs"))
                 hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(25);
 
+            // Spawns a bullet hole if the environment is shot
             if (!(hit.collider.CompareTag("Zombie/Head")) && !(hit.collider.CompareTag("Zombie/Body")) && !(hit.collider.CompareTag("Zombie/Legs")))
             {
                 GameObject newHole = Instantiate(bulletHolePrefab, hit.point + hit.normal * 0.001f, Quaternion.identity) as GameObject;
