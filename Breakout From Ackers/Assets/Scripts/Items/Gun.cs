@@ -144,8 +144,6 @@ public class Gun : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(currentCameraPos, playerCamera.transform.forward, out hit, 100))
         {
-            Debug.Log(hit.distance);
-
             // Damages zombie based on where it is shot
             if (hit.collider.CompareTag("Zombie/Head"))
                 hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(100 - (hit.distance / 3));

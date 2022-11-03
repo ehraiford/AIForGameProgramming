@@ -53,7 +53,7 @@ public class FirstPersonController : CharacterStats
 
     [Header("Additional Health Parameters")]
     public static Action<float> OnHeal;
-    
+    [SerializeField] private Transform respawnPoint;
 
     [Header("Stamina Parameters")]
     [SerializeField] private float maxStamina = 100;
@@ -550,9 +550,9 @@ public class FirstPersonController : CharacterStats
     {
         currentHealth = 0;
 
-        // Add respawn/death screen here
         gameOver.SetActive(true);
-        print("Player has died.");
+
+        transform.position = respawnPoint.transform.position;
     }
     protected override void ApplyDamage(float dmg)
     {
