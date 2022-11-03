@@ -2276,6 +2276,7 @@ MonoBehaviour:
   canUseHeadbob: 1
   useFootsteps: 1
   canInteract: 1
+  useStamina: 1
   sprintKey: 304
   jumpKey: 32
   crouchKey: 306
@@ -2292,13 +2293,18 @@ MonoBehaviour:
   timeToCrouch: 0.25
   crouchingCenter: {x: 0, y: 0.5, z: 0}
   standingCenter: {x: 0, y: 0, z: 0}
-  walkBobSpeed: 14
+  maxStamina: 100
+  staminaUseMultiplier: 20
+  timeBeforeStaminaRegen: 5
+  staminaValueIncrement: 2
+  staminaTimeIncrement: 0.1
+  walkBobSpeed: 8
   walkBobAmount: 0.05
-  sprintBobSpeed: 18
+  sprintBobSpeed: 12
   sprintBobAmount: 0.11
-  crouchBobSpeed: 8
+  crouchBobSpeed: 4
   crouchBobAmount: 0.025
-  baseStepSpeed: 0.5
+  baseStepSpeed: 0.6
   crouchStepMultiplier: 1.5
   sprintStepMultiplier: 0.6
   footstepAudioSource: {fileID: 7350335166596213583}
@@ -2313,7 +2319,19 @@ MonoBehaviour:
   interactionLayer:
     serializedVersion: 2
     m_Bits: 2048
+  inventoryItems:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  inventoryItemsCount: 0000000000000000000000000000000000000000000000000000000000000000
+  inventoryUnstackableItems: []
   Score: 0
+  gameOver: {fileID: 0}
 --- !u!82 &7350335166596213583
 AudioSource:
   m_ObjectHideFlags: 0
