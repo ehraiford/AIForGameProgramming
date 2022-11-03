@@ -8,6 +8,8 @@ public class Gun : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject casingPrefab;
     public GameObject muzzleFlashPrefab;
+    public GameObject bulletHolePrefab;
+    public LayerMask canBeShot;
 
     [Header("Location Refrences")]
     [SerializeField] private Animator gunAnimator;
@@ -131,6 +133,14 @@ public class Gun : MonoBehaviour
                 hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(35);
             else if (hit.collider.CompareTag("Zombie/Legs"))
                 hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(25);
+
+            if (!(hit.collider.CompareTag("Zombie/Head")) && !(hit.collider.CompareTag("Zombie/Body")) && !(hit.collider.CompareTag("Zombie/Legs")))
+            {
+                GameObject newHole = Instantiate(bulletHolePrefab, hit.point + hit.normal * 0.001f, Quaternion.identity) as GameObject;
+                newHole.transform.LookAt(hit.point + hit.normal);
+                Destroy(newHole, 5f);
+            }
+                
         }
 
         // Subtract one from the current ammo
