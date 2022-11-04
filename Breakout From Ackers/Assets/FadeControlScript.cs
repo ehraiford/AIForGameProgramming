@@ -6,8 +6,10 @@ using UnityEngine;
 public class FadeControlScript : MonoBehaviour
 {
     private TextMeshProUGUI text;
-    private float timeSinceStarted;
+    private float timeStarted, inTime, stayTime, outTime;
     private bool fading;
+    private Color textColor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +19,33 @@ public class FadeControlScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (fading)
+        {
+            if(Time.realtimeSinceStartup - timeStarted < inTime)
+            {
+                text.color = new Color(text.color.r, text.color.g, text.color.b, 255 * ((Time.realtimeSinceStartup - timeStarted)/inTime));
+            } else if(Time.realtimeSinceStartup - timeStarted < inTime + stayTime)
+            {
+                
+            } else if(Time.realtimeSinceStartup - timeStarted < inTime + stayTime + outTime)
+            {
+              //  text.color = new Color(text.color.r, text.color.g, text.color.b, 255 * ((Time.realtimeSinceStartup - timeStarted) / (inTime + stay)));
+            }
+            
+        }
     }
 
-   // public void fadeInAnd
+    public void FadeInAndOut(TextMeshProUGUI fadeText, Color newTextColor, float newInTime, float newStayTime, float newOutTime ) 
+    {
+        fading = true;
+        text = fadeText;
+        textColor = newTextColor;
+        inTime = newInTime;
+        stayTime = newStayTime;
+        outTime = newOutTime;
+        timeStarted = Time.realtimeSinceStartup;
+
+        text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
+
+    }
 }

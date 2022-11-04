@@ -20,6 +20,7 @@ public class OnScreenUIScript : MonoBehaviour
     public GameObject notePanel;
     public GameObject firstPersonController;
 
+
    
     public TextMeshProUGUI notePanelText;
     
@@ -36,7 +37,7 @@ public class OnScreenUIScript : MonoBehaviour
      
     [Header("Heads Up Stuff")]
     [SerializeField] private TextMeshProUGUI headsUpText;
-    private bool displayHeadsUpText;
+    private FadeControlScript fadeControl;
 
 
     private string path = "Assets/Items/Menu Items/In Game Notes.txt";
@@ -264,7 +265,7 @@ public class OnScreenUIScript : MonoBehaviour
     public void SetHeadsUpText(string newHeadsUpText)
     {
         headsUpText.text = newHeadsUpText;
-        
+        fadeControl.FadeInAndOut(headsUpText, headsUpText.color, 3, 3, 3);
         
     }
 
