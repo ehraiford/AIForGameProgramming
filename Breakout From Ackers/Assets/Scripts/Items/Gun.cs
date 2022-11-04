@@ -134,12 +134,13 @@ public class Gun : MonoBehaviour
         else if (GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>().getCurrentMovement() == "Crouch Walking")
             inaccuracy = 0.1f;
 
-        inaccuracy = Random.Range(-inaccuracy, inaccuracy);
+        float inaccuracyX = Random.Range(-inaccuracy, inaccuracy);
+        float inaccuracyY = Random.Range(-inaccuracy, inaccuracy);
 
         // Adjusts the bullet spawn point based on inaccuracy
         Vector3 currentCameraPos = playerCamera.transform.position;
-        currentCameraPos.x += inaccuracy;
-        currentCameraPos.y += inaccuracy;
+        currentCameraPos.x += inaccuracyX;
+        currentCameraPos.y += inaccuracyY;
 
         RaycastHit hit;
         if(Physics.Raycast(currentCameraPos, playerCamera.transform.forward, out hit, 100))
