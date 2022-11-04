@@ -84,7 +84,6 @@ public class OnScreenUIScript : MonoBehaviour
             changeHealthIndicator();
         }
 
-        //handles fade in / out of heads up text
         
     }
 
@@ -270,4 +269,5 @@ public class OnScreenUIScript : MonoBehaviour
     }
 
     #endregion
+
 }
