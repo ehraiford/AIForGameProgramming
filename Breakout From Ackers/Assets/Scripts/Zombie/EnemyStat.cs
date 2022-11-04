@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnemyStat : CharacterStats
 {
 
-    public float damage = 15;
-    public float attackSpeed = 3f;
+    public float damage = 25;
+    public float attackSpeed = 1.2f;
     private BoxCollider[] collsions;
     Transform player;
     Animator Anim;

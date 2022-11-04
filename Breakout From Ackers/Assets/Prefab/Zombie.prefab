@@ -1364,8 +1364,8 @@ MonoBehaviour:
   currentHealth: 0
   walkSpeed: 3
   sprintSpeed: 6
-  damage: 15
-  attackSpeed: 3
+  damage: 25
+  attackSpeed: 1.5
 --- !u!1 &3245029108095050696
 GameObject:
   m_ObjectHideFlags: 0
