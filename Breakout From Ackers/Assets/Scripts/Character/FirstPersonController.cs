@@ -651,26 +651,29 @@ public class FirstPersonController : CharacterStats
         }
     }
 
-    public bool RemoveInventoryItem(string itemName, int itemCount)
+    //checks the inventory for an item corresponding to the string given and removes the item count given.
+    //Returns a value corresponding to the amount removed from inventory. A zero return means none were in inventory.
+    public int RemoveInventoryItem(string itemName, int itemCount)
     {
         int spot = FindItemSpot(itemName);
         if(spot == -1)
         {
             Debug.Log("Item was not found in inventory. Unable to remove from inventory.");
-            return false;
+            return 0;
         }else if(inventoryItemsCount[spot] <= itemCount)
         {
             Debug.Log("Remove count met or exceeded current item count. Removed all possible.");
+            int removeAmount = inventoryItemsCount[spot];
             inventoryItemsCount[spot] = 0;
             inventoryItems[spot] = "";
             inventorySpacesCurrentlyUsed--;
-            return true;
+            return removeAmount;
         }
         else
         {
             Debug.Log("Removed " + itemCount + " " + itemName + " from inventory.");
             inventoryItemsCount[spot] -= itemCount;
-            return true;
+            return itemCount;
         }        
     }
 
@@ -689,6 +692,7 @@ public class FirstPersonController : CharacterStats
             Debug.LogWarning(itemName + " was not found in inventory.");
         return spot;
     }
+
 
     private bool IsStackable(string itemName)
     {
