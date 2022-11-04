@@ -6,10 +6,16 @@ public class Door : Interactable
 {
     private Animation door;
     [SerializeField] private AudioSource doorSound;
+    [SerializeField] private AudioSource LockedDoorSound;
+    [SerializeField] private AudioSource unlockDoorSound;
+    [SerializeField] private bool isLocked = false;
+    [SerializeField] private FirstPersonController FPC;
+    [SerializeField] private string KeyName;
     private bool isOpen;
     private string objName;
     void Start()
     {
+        FPC = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
         door = GetComponentInParent<Animation>();
         objName = door.name;
         isOpen = false;
@@ -22,24 +28,44 @@ public class Door : Interactable
 
     public override void OnInteract()
     {
-        if (objName.Contains("Door1"))
-            objName = "Door1";
-        else if (objName.Contains("Door2"))
-            objName = "Door2";
-        if (!isOpen)
+
+        if (isLocked)
         {
-            isOpen = true;
-            Debug.Log("DOOR OPEN");
-            door.Play(objName+"_Open");
-            doorSound.Play();
+            //Has key
+            if(FPC.RemoveInventoryItem(KeyName, 1) == 1)
+            {
+                unlockDoorSound.Play();
+                isLocked = false;
+            }
+            else
+            {
+                LockedDoorSound.Play();
+            }
+            //no Key
+            
         }
         else
         {
-            isOpen = false;
-            Debug.Log("DOOR Close");
-            door.Play(objName+"_Close");
-            doorSound.Play();
+            if (objName.Contains("Door1"))
+                objName = "Door1";
+            else if (objName.Contains("Door2"))
+                objName = "Door2";
+            if (!isOpen)
+            {
+                isOpen = true;
+                Debug.Log("DOOR OPEN");
+                door.Play(objName + "_Open");
+                doorSound.Play();
+            }
+            else
+            {
+                isOpen = false;
+                Debug.Log("DOOR Close");
+                door.Play(objName + "_Close");
+                doorSound.Play();
+            }
         }
+        
     }
 
 
