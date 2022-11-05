@@ -10,6 +10,7 @@ public class AttackBehavior : StateMachineBehaviour
     FirstPersonController playerStat;
     EnemyStat enemyStat;
     float lastTimeOfAttack;
+    AudioSource attackSound;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -18,6 +19,7 @@ public class AttackBehavior : StateMachineBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerStat = player.GetComponent<FirstPersonController>();
         enemyStat = animator.GetComponentInParent<EnemyStat>();
+        attackSound = animator.transform.Find("AttackSound").GetComponent<AudioSource>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -36,6 +38,7 @@ public class AttackBehavior : StateMachineBehaviour
         //Put time between damage call;
         if(Time.time > lastTimeOfAttack + enemyStat.attackSpeed)
         {
+            attackSound.Play();
             lastTimeOfAttack = Time.time;
             playerStat.doDamage(enemyStat.damage);
         }
