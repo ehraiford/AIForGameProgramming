@@ -19,8 +19,9 @@ public class MedkitInBathroomSpawnZombieScript : Interactable
         onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Picked up MedKit.");
         firstPersonController.GetComponent<FirstPersonController>().AddInventoryItem("MedKit", 1); 
         hallwayZombie.SetActive(true);
+      
         foyerDoor.GetComponent<Door>().isLocked = false;
-        foyerDoor.GetComponent<Door>().door.Play();
+        foyerDoor.GetComponent<Door>().door.Play("Door2_Open");
 
     }
 
