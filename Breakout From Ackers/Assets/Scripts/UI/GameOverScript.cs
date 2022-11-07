@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class GameOverScript : MonoBehaviour
 {
-    private float timePassed;
+    public float timePassed;
     [SerializeField] TextMeshProUGUI firstText;
     [SerializeField] TextMeshProUGUI secondText;
     [SerializeField] AudioSource audioSource;
     private float firstAlpha, secondAlpha;
+    [SerializeField] private GameObject playerController;
 
     //freezes time, starts the audio, and starts tracking time passed.
     private void Awake()
     {
-        timePassed = Time.realtimeSinceStartup;
         Time.timeScale = 0.0f;
 
         firstText.color = new Color(0, 0, 0, 0);
@@ -57,11 +57,13 @@ public class GameOverScript : MonoBehaviour
                 break;
             default:
                 Time.timeScale = 1.0f;
+                playerController.GetComponent<FirstPersonController>().RespawnCharacter();
                 gameObject.SetActive(false);
 
-                //Logan, if you want to move the player character or reset their health or anything through the script, this would be the spot to do it.
+                //Logan, if you want to move the player character or reset their health or anything through the script, this would be the spot to do it. 
+                
                 break;
         }
-       
+        
     }
 }

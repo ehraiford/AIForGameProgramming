@@ -549,11 +549,17 @@ public class FirstPersonController : CharacterStats
     protected override void KillCharacter()
     {
         currentHealth = 0;
-
         gameOver.SetActive(true);
+        gameOver.GetComponent<GameOverScript>().timePassed = Time.realtimeSinceStartup;
+    }
 
+    public void RespawnCharacter()
+    {
+        Debug.Log("Respawn");
+        currentHealth = 50;
         transform.position = respawnPoint.transform.position;
     }
+
     protected override void ApplyDamage(float dmg)
     {
         currentHealth -= dmg;
