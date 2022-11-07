@@ -21,15 +21,15 @@ public class FadeControlScript : MonoBehaviour
     {
         if (fading)
         {
-            if(Time.realtimeSinceStartup - timeStarted < inTime)
+            if(Time.time - timeStarted < inTime)
             {
                 text.color = new Color(text.color.r, text.color.g, text.color.b, 255 * ((Time.realtimeSinceStartup - timeStarted)/inTime));
             } else if(Time.realtimeSinceStartup - timeStarted < inTime + stayTime)
             {
                 
-            } else if(Time.realtimeSinceStartup - timeStarted < inTime + stayTime + outTime)
+            } else if(Time.time - timeStarted < inTime + stayTime + outTime)
             {
-              //  text.color = new Color(text.color.r, text.color.g, text.color.b, 255 * ((Time.realtimeSinceStartup - timeStarted) / (inTime + stay)));
+                text.color = new Color(text.color.r, text.color.g, text.color.b, 255 * ((Time.realtimeSinceStartup - timeStarted) / (inTime + stayTime)));
             }
             
         }
@@ -43,7 +43,7 @@ public class FadeControlScript : MonoBehaviour
         inTime = newInTime;
         stayTime = newStayTime;
         outTime = newOutTime;
-        timeStarted = Time.realtimeSinceStartup;
+        timeStarted = Time.time;
 
         text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
 

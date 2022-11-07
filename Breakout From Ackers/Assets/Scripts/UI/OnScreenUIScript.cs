@@ -37,7 +37,11 @@ public class OnScreenUIScript : MonoBehaviour
      
     [Header("Heads Up Stuff")]
     [SerializeField] private TextMeshProUGUI headsUpText;
-    private FadeControlScript fadeControl;
+    [SerializeField] float fadeInTime, stayTime, fadeOutTime;
+    public static bool fadeHeadsUp = false;
+    private float fadeTimer;
+
+
 
 
     private string path = "Assets/Items/Menu Items/In Game Notes.txt";
@@ -51,7 +55,7 @@ public class OnScreenUIScript : MonoBehaviour
         health = firstPersonController.GetComponent<FirstPersonController>().GetCurrentHealth();
 
         SetCurrentObjective(0);
-        headsUpText.color = new Color(0, 0, 0, 0);
+        headsUpText.color = new Color(255, 255, 255, 255);
 
     }
     
@@ -85,7 +89,29 @@ public class OnScreenUIScript : MonoBehaviour
             changeHealthIndicator();
         }
 
-        
+        //handles fade in / out of headsUp text
+        if (fadeHeadsUp)
+        {
+            if(Time.time - fadeTimer < fadeInTime)
+            {
+                float alpha =  (Time.time - fadeTimer) / fadeInTime;
+                headsUpText.color = new Color(headsUpText.color.r, headsUpText.color.g, headsUpText.color.b, alpha);
+            }
+            else if (Time.time - fadeTimer < fadeInTime + stayTime)
+            {
+                headsUpText.color = new Color(headsUpText.color.r, headsUpText.color.g, headsUpText.color.b, 1);
+            }
+            else if (Time.time - fadeTimer < fadeInTime + stayTime + fadeOutTime)
+            {
+                float alpha = 1 - (Time.time - fadeTimer - fadeTimer - fadeInTime - stayTime)/ fadeOutTime;
+                
+                headsUpText.color = new Color(headsUpText.color.r, headsUpText.color.g, headsUpText.color.b, alpha);
+            }
+            else
+            {
+                fadeHeadsUp = true;
+            }
+        }
     }
 
     #region Inventory Functions 
@@ -172,7 +198,7 @@ public class OnScreenUIScript : MonoBehaviour
     public void SetCurrentObjective(int objectiveNumber)
     {
         objective.text = objectiveList[objectiveNumber];
-        SetHeadsUpText("Objective" + objectiveList[objectiveNumber]);
+        SetHeadsUpText(objectiveList[objectiveNumber]);
     }
     #endregion
 
@@ -265,11 +291,8 @@ public class OnScreenUIScript : MonoBehaviour
     public void SetHeadsUpText(string newHeadsUpText)
     {
         headsUpText.text = newHeadsUpText;
-        //fadeControl.FadeInAndOut(headsUpText, 3, 3, 3);
-
-        
+        fadeHeadsUp = true;
+        fadeTimer = Time.time;
     }
-
     #endregion
-
 }

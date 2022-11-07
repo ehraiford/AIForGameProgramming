@@ -124,6 +124,8 @@ public class FirstPersonController : CharacterStats
 
     private float rotationX = 0;
 
+    [SerializeField] GameObject onscreenUI;
+
     #endregion
 
     #region Awake and Update
@@ -650,11 +652,13 @@ public class FirstPersonController : CharacterStats
             inventoryItems[inventorySpacesCurrentlyUsed] = itemName;
             inventoryItemsCount[inventorySpacesCurrentlyUsed] = itemCount;
             inventorySpacesCurrentlyUsed++;
+            onscreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Added " + itemName + " to inventory.");
             return true;
         }
         else
         {
             Debug.Log("No room in inventory to add another item.");
+            onscreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Cannot pick up item. Inventory full.");
             return false;
         }
     }
