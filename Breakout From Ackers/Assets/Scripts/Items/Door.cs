@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Door : Interactable
 {
-    private Animation door;
+    public Animation door;
     [SerializeField] private AudioSource doorSound;
     [SerializeField] private AudioSource LockedDoorSound;
     [SerializeField] private AudioSource unlockDoorSound;
-    [SerializeField] private bool isLocked = false;
+    [SerializeField] public bool isLocked = false;
     [SerializeField] private FirstPersonController FPC;
     [SerializeField] private string KeyName;
     private bool isOpen;

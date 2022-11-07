@@ -7,16 +7,21 @@ public class MedkitInBathroomSpawnZombieScript : Interactable
     [SerializeField] GameObject onScreenUI;
     [SerializeField] GameObject hallwayZombie;
     [SerializeField] GameObject foyerDoor;
+    [SerializeField] GameObject firstPersonController;
 
     public override void OnFocus()
     {
-        Debug.Log("Onfocus");
     }
 
     public override void OnInteract()
     {
         Debug.Log("interacted with object");
         onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Picked up MedKit.");
+        firstPersonController.GetComponent<FirstPersonController>().AddInventoryItem("MedKit", 1); 
+        hallwayZombie.SetActive(true);
+        foyerDoor.GetComponent<Door>().isLocked = false;
+        foyerDoor.GetComponent<Door>().door.Play();
+
     }
 
     public override void OnLoseFocus()
