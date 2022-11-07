@@ -548,16 +548,18 @@ public class FirstPersonController : CharacterStats
     #region Health / Debuff Functions
     protected override void KillCharacter()
     {
-        currentHealth = 0;
+        //currentHealth = 0;
+        gameOver.GetComponent<GameOverScript>().timePassed = Time.unscaledDeltaTime;
         gameOver.SetActive(true);
-        gameOver.GetComponent<GameOverScript>().timePassed = Time.realtimeSinceStartup;
+
+        Debug.Log("Respawn");
+        currentHealth = 50;
+        transform.position = respawnPoint.transform.position;
     }
 
     public void RespawnCharacter()
     {
-        Debug.Log("Respawn");
-        currentHealth = 50;
-        transform.position = respawnPoint.transform.position;
+        gameOver.SetActive(false);
     }
 
     protected override void ApplyDamage(float dmg)

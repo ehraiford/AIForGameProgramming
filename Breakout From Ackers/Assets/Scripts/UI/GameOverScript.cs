@@ -31,6 +31,8 @@ public class GameOverScript : MonoBehaviour
         if (secondAlpha > 1.0f)
             secondAlpha = 1.0f;
 
+        Debug.Log(Time.realtimeSinceStartup - timePassed);
+
         //switch case handles the opacity changes of the text and then restarts time and removes the death screen after 18 seconds
         switch(Time.realtimeSinceStartup - timePassed)
         {
@@ -58,7 +60,7 @@ public class GameOverScript : MonoBehaviour
             default:
                 Time.timeScale = 1.0f;
                 playerController.GetComponent<FirstPersonController>().RespawnCharacter();
-                gameObject.SetActive(false);
+                //gameObject.SetActive(false);
 
                 //Logan, if you want to move the player character or reset their health or anything through the script, this would be the spot to do it. 
                 
