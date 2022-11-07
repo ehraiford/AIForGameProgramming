@@ -93,14 +93,14 @@ public class EnemyStat : CharacterStats
     protected override void ApplyDamage(float dmg)
     {
         currentHealth -= dmg;
-        if (currentHealth <= 0)
+        OnDamage?.Invoke(currentHealth);
+        if (currentHealth > 0)
         {
-            KillCharacter();
+            damagedSound.Play();      
         }
         else
-        { 
-            OnDamage?.Invoke(currentHealth);
-            damagedSound.Play();
+        {
+            KillCharacter();
         }
     }
 

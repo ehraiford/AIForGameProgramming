@@ -15,6 +15,7 @@ TagManager:
   - Zombie/Head
   - Zombie/Body
   - Zombie/Legs
+  - Door
   layers:
   - Default
   - TransparentFX
