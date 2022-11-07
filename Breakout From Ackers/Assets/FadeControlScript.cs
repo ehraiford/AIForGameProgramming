@@ -35,11 +35,11 @@ public class FadeControlScript : MonoBehaviour
         }
     }
 
-    public void FadeInAndOut(TextMeshProUGUI fadeText, Color newTextColor, float newInTime, float newStayTime, float newOutTime ) 
+    public void FadeInAndOut(TextMeshProUGUI fadeText, float newInTime, float newStayTime, float newOutTime ) 
     {
         fading = true;
         text = fadeText;
-        textColor = newTextColor;
+        textColor = fadeText.color;
         inTime = newInTime;
         stayTime = newStayTime;
         outTime = newOutTime;

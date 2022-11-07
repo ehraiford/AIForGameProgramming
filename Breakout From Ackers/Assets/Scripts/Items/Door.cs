@@ -55,6 +55,7 @@ public class Door : Interactable
                 isOpen = true;
                 Debug.Log("DOOR OPEN");
                 door.Play(objName + "_Open");
+                Debug.Log(objName.ToString());
                 doorSound.Play();
             }
             else

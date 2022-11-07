@@ -265,7 +265,8 @@ public class OnScreenUIScript : MonoBehaviour
     public void SetHeadsUpText(string newHeadsUpText)
     {
         headsUpText.text = newHeadsUpText;
-       // fadeControl.FadeInAndOut(headsUpText, headsUpText.color, 3, 3, 3);
+        //fadeControl.FadeInAndOut(headsUpText, 3, 3, 3);
+
         
     }
 
