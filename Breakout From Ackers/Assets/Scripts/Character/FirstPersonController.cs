@@ -643,6 +643,7 @@ public class FirstPersonController : CharacterStats
         {
             Debug.Log("Stacked item into pre-existing inventory.");
             inventoryItemsCount[spot] += itemCount;
+            onscreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Added " + itemName + " to inventory.");
             return true;
         }
         else if( inventorySpacesCurrentlyUsed < 8)

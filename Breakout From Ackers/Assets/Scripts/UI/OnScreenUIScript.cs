@@ -92,24 +92,24 @@ public class OnScreenUIScript : MonoBehaviour
         //handles fade in / out of headsUp text
         if (fadeHeadsUp)
         {
-            if(Time.time - fadeTimer < fadeInTime)
+            if(Time.time - fadeTimer <= fadeInTime)
             {
                 float alpha =  (Time.time - fadeTimer) / fadeInTime;
                 headsUpText.color = new Color(headsUpText.color.r, headsUpText.color.g, headsUpText.color.b, alpha);
             }
-            else if (Time.time - fadeTimer < fadeInTime + stayTime)
+            else if (Time.time - fadeTimer <= fadeInTime + stayTime)
             {
                 headsUpText.color = new Color(headsUpText.color.r, headsUpText.color.g, headsUpText.color.b, 1);
             }
-            else if (Time.time - fadeTimer < fadeInTime + stayTime + fadeOutTime)
+            else if (Time.time - fadeTimer <= fadeInTime + stayTime + fadeOutTime)
             {
-                float alpha = 1 - (Time.time - fadeTimer - fadeTimer - fadeInTime - stayTime)/ fadeOutTime;
+                float alpha = 1 - (Time.time - fadeTimer - fadeInTime - stayTime)/ fadeOutTime;
                 
                 headsUpText.color = new Color(headsUpText.color.r, headsUpText.color.g, headsUpText.color.b, alpha);
             }
             else
             {
-                fadeHeadsUp = true;
+                fadeHeadsUp = false;
             }
         }
     }
