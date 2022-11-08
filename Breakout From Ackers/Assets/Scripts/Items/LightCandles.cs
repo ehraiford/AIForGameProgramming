@@ -12,12 +12,13 @@ public class LightCandles : Interactable
     [SerializeField] float timeToOff = 100; // seconds to turn off candle
     [SerializeField] int randMax = 100; // Max random number for random generator
     [SerializeField] int threshold = 50;// threshold to turn off candle
+    [SerializeField] bool startingState = false;
     FirstPersonController FPC; //first person controller
     float DD; //Dynamic Difficulty value
     // Start is called before the first frame update
     void Start()
     {
-        flame.SetActive(false);
+        flame.SetActive(startingState);
         unlit = true;
         light = gameObject.GetComponentInChildren<AudioSource>();
         FPC = GameObject.Find("FirstPersonController").GetComponent<FirstPersonController>();
@@ -65,5 +66,10 @@ public class LightCandles : Interactable
 
     public override void OnLoseFocus()
     {
+    }
+
+    public void forceLightingState(bool onOff)
+    {
+        flame.SetActive(onOff);
     }
 }

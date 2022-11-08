@@ -11,7 +11,7 @@ public class Door : Interactable
     [SerializeField] public bool isLocked = false;
     [SerializeField] private FirstPersonController FPC;
     [SerializeField] private string KeyName;
-    private bool isOpen;
+    public bool isOpen;
     private string objName;
     void Start()
     {
@@ -54,7 +54,7 @@ public class Door : Interactable
             {
                 isOpen = true;
                 Debug.Log("DOOR OPEN");
-                door.Play(objName + "_Open");
+                door.Play("Door2_Open");
                 Debug.Log(objName.ToString());
                 doorSound.Play();
             }
@@ -62,7 +62,7 @@ public class Door : Interactable
             {
                 isOpen = false;
                 Debug.Log("DOOR Close");
-                door.Play(objName + "_Close");
+                door.Play("Door2_Close");
                 doorSound.Play();
             }
         }
