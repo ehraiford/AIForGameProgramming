@@ -16,6 +16,7 @@ TagManager:
   - Zombie/Body
   - Zombie/Legs
   - Door
+  - Menu
   layers:
   - Default
   - TransparentFX

@@ -11,11 +11,13 @@ public class Door : Interactable
     [SerializeField] public bool isLocked = false;
     [SerializeField] private FirstPersonController FPC;
     [SerializeField] private string KeyName;
+    private GameObject onScreenUI;
     public bool isOpen;
     private string objName;
     void Start()
     {
         FPC = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
+        onScreenUI = GameObject.FindGameObjectWithTag("Menu");
         door = GetComponentInParent<Animation>();
         objName = door.name;
         isOpen = false;
@@ -34,11 +36,22 @@ public class Door : Interactable
             //Has key
             if(FPC.RemoveInventoryItem(KeyName, 1) == 1)
             {
+                onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Unlocked door.");
                 unlockDoorSound.Play();
                 isLocked = false;
             }
             else
             {
+                if(KeyName.CompareTo("") == 0)
+                {
+                    onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("The door is barred shut. Not even a key can open it.");
+
+                }
+                else
+                {
+                    onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("The door is locked. You need the " + KeyName + ".");
+                }
+
                 LockedDoorSound.Play();
             }
             //no Key

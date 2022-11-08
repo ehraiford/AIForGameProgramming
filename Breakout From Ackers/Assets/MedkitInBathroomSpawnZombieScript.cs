@@ -8,10 +8,14 @@ public class MedkitInBathroomSpawnZombieScript : Interactable
     [SerializeField] GameObject hallwayZombie;
     [SerializeField] GameObject foyerDoor;
     [SerializeField] GameObject firstPersonController;
-    [SerializeField] GameObject candle;
-    [SerializeField] GameObject medKit;
-    [SerializeField] GameObject creepySound;
+    [SerializeField] GameObject primaryCandle;
+    [SerializeField] GameObject[] secondaryCandles;
 
+    [SerializeField] GameObject medKit;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip creepySound;
+    [SerializeField] AudioClip gustSound;
+    private bool creepySoundPlayed = false, gustSoundPlayed = false;
     private float timer = 0;
     
 
@@ -23,16 +27,36 @@ public class MedkitInBathroomSpawnZombieScript : Interactable
             {
                 case < 2: //nothing happens for two seconds
                     break;
-                case < 12:
-                    creepySound.SetActive(true);
+                case < 8:
+                    //play a creepy sound and blow out the other candles.
+                    if (!creepySoundPlayed)
+                    {
+                        audioSource.clip = creepySound;
+                        audioSource.Play();
+                        creepySoundPlayed = true;
+
+                        for(int i = 0; i < secondaryCandles.Length; i++)
+                        {
+                            secondaryCandles[i].GetComponent<LightCandles>().forceLightingState(false);
+                        }
+                    }
+                    
                     break;
+                case < 9:
+                    //play gust sound and blow out candle.
+                    if (!gustSoundPlayed)
+                    {
+                        audioSource.clip = gustSound;
+                        audioSource.Play();
+                        gustSoundPlayed = true;
+                    }
+                    break;
+
                 case < 13:
-                    candle.GetComponent<LightCandles>().forceLightingState(false);
+                    primaryCandle.GetComponent<LightCandles>().forceLightingState(false);
                     break;
-
-
                 default:
-                    gameObject.SetActive(false); //deactivate gameobject after all events are complete
+                   //gameObject.SetActive(false); //deactivate gameobject after all events are complete
                     break;
             
                     
