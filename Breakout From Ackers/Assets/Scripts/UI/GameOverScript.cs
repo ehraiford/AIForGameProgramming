@@ -11,6 +11,7 @@ public class GameOverScript : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     private float firstAlpha, secondAlpha;
     [SerializeField] private GameObject playerController;
+    [SerializeField] private GameObject respawnPoint;
 
     //freezes time, starts the audio, and starts tracking time passed.
     private void Awake()
@@ -60,12 +61,19 @@ public class GameOverScript : MonoBehaviour
                 secondText.color = new Color(255, 255, 255, secondAlpha);
                 break;
             default:
+                //playerController.GetComponent<Respawn>().RespawnCharacter();
+                Debug.Log("Respawn");
+                playerController.GetComponent<FirstPersonController>().AddHealth(50);
+                playerController.GetComponent<FirstPersonController>().enabled = false;
+                playerController.transform.position = respawnPoint.transform.position;
+                Physics.SyncTransforms();
+                playerController.GetComponent<FirstPersonController>().enabled = true;
                 Time.timeScale = 1.0f;
-                playerController.GetComponent<FirstPersonController>().RespawnCharacter();
-                //gameObject.SetActive(false);
+                playerController.GetComponent<FirstPersonController>().isDead = false;
+                gameObject.SetActive(false);
 
                 //Logan, if you want to move the player character or reset their health or anything through the script, this would be the spot to do it. 
-                
+
                 break;
         }
         

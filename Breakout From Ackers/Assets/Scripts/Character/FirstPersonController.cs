@@ -54,6 +54,7 @@ public class FirstPersonController : CharacterStats
     [Header("Additional Health Parameters")]
     public static Action<float> OnHeal;
     [SerializeField] private Transform respawnPoint;
+    public bool isDead;
 
     [Header("Stamina Parameters")]
     [SerializeField] private float maxStamina = 100;
@@ -149,14 +150,19 @@ public class FirstPersonController : CharacterStats
 
         //Set Inventory Item Count
         inventorySpacesCurrentlyUsed = InitializeInventorySpaceCurrentlyUsed();
+
+        // Player is alive
+        isDead = false;
     }
 
     void Update()
     {
         currentItem = GetComponentInChildren<ItemSwitching>().getCurrentItemName();
 
+        //if (!isDead) gameOver.SetActive(false);
+
         // Script works only when the game is unpaused
-        if (Time.timeScale > 0.9)
+        if (Time.timeScale > 0.9 && !isDead)
         {
             if (CanMove)
             {
@@ -550,7 +556,8 @@ public class FirstPersonController : CharacterStats
     #region Health / Debuff Functions
     protected override void KillCharacter()
     {
-        //currentHealth = 0;
+        isDead = true;
+        currentHealth = 0;
         gameOver.SetActive(true);
         gameOver.GetComponent<GameOverScript>().timePassed = Time.realtimeSinceStartup;
         Time.timeScale = 0.0f;
@@ -561,7 +568,10 @@ public class FirstPersonController : CharacterStats
         gameOver.SetActive(false);
         Debug.Log("Respawn");
         transform.position = respawnPoint.transform.position;
-        currentHealth = 50;   
+        currentHealth = 50;
+        Time.timeScale = 1.0f;
+        isDead = false;
+        transform.position = respawnPoint.transform.position;
     }
 
     protected override void ApplyDamage(float dmg)
