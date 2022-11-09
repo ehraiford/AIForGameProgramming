@@ -36,7 +36,7 @@ public class Door : Interactable
             //Has key
             if(FPC.RemoveInventoryItem(KeyName, 1) == 1)
             {
-                onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Unlocked door.");
+                onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Unlocked door using the " + KeyName + ".");
                 unlockDoorSound.Play();
                 isLocked = false;
             }

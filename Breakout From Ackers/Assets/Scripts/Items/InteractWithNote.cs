@@ -5,9 +5,11 @@ using UnityEngine;
 public class InteractWithNote : Interactable
 {
     private GameObject OnScreenUI;
+    [SerializeField] private AudioSource audioSource;
 
     [SerializeField] int noteNumber;
     [SerializeField] int fontNumber;
+   
     public override void OnFocus()
     {
        
@@ -17,6 +19,7 @@ public class InteractWithNote : Interactable
     {
         Debug.Log("Item Has been Interacted with");
         OnScreenUI.GetComponent<OnScreenUIScript>().OpenNote(noteNumber, fontNumber);
+        audioSource.Play();
     }
 
     public override void OnLoseFocus()
@@ -28,6 +31,8 @@ public class InteractWithNote : Interactable
     void Start()
     {
         OnScreenUI = GameObject.Find("On Screen UI");
+
+        
     }
 
     // Update is called once per frame
