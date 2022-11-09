@@ -40,6 +40,8 @@ public class ItemSwitching : MonoBehaviour
 
     void SelectItem()
     {
+        //System.Threading.Thread.Sleep(1000);
+
         int currentItem = 0;
 
         foreach (Transform item in transform)
