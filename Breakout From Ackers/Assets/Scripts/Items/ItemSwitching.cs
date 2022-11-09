@@ -5,6 +5,7 @@ public class ItemSwitching : MonoBehaviour
     public int selectedItem = 0;
     private string currentItemName = "";
     private string[] inventoryItems;
+    private string[] equippableItems = new string[4];
     private int numItems;
 
     private GameObject ammoUI;
@@ -16,6 +17,7 @@ public class ItemSwitching : MonoBehaviour
         ammoUI = GameObject.Find("HUD");
         inventoryItems = playerController.GetComponent<FirstPersonController>().inventoryItems;
 
+        setEquippableItems();
         SelectItem();
     }
 
@@ -27,7 +29,7 @@ public class ItemSwitching : MonoBehaviour
 
         int previousSelectedItem = selectedItem;
 
-        numItems = calcNumItems();
+        numItems = calcNumEquippableItems();
 
         if(numItems > 1)
         {
@@ -44,13 +46,21 @@ public class ItemSwitching : MonoBehaviour
         if (currentItemName != "M1911" && ammoUI.activeSelf) ammoUI.SetActive(false);
     }
 
-    int calcNumItems()
+    void setEquippableItems()
+    {
+        equippableItems[0] = "M1911";
+        equippableItems[1] = "MedKit";
+        equippableItems[2] = "Pills";
+        equippableItems[3] = "Knife";
+    }
+
+    int calcNumEquippableItems()
     {
         int numItems = 0;
 
         for(int i = 0; i < inventoryItems.Length; i++)
         {
-            if (inventoryItems[i] != "") numItems++;
+            if (isItemEquippable(i)) numItems++;
         }
 
         return numItems;
@@ -58,7 +68,7 @@ public class ItemSwitching : MonoBehaviour
 
     void SelectItem()
     {
-        //System.Threading.Thread.Sleep(1000);
+        
 
         int currentItem = 0;
 
@@ -87,7 +97,7 @@ public class ItemSwitching : MonoBehaviour
             else
                 selectedItem++;
 
-            while (inventoryItems[selectedItem] == "")
+            while (!isItemEquippable(selectedItem))
             {
                 selectedItem++;
 
@@ -102,7 +112,7 @@ public class ItemSwitching : MonoBehaviour
             else
                 selectedItem--;    
 
-            while (inventoryItems[selectedItem] == "")
+            while (!isItemEquippable(selectedItem))
             {
                 selectedItem--;
 
@@ -113,29 +123,34 @@ public class ItemSwitching : MonoBehaviour
 
     void HandleNumberInput()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && inventoryItems[0] != "")
+        if (Input.GetKeyDown(KeyCode.Alpha1) && isItemEquippable(0))
             selectedItem = 0;
 
-        if (Input.GetKeyDown(KeyCode.Alpha2) && inventoryItems[1] != "")
+        if (Input.GetKeyDown(KeyCode.Alpha2) && isItemEquippable(1))
             selectedItem = 1;
 
-        if (Input.GetKeyDown(KeyCode.Alpha3) && inventoryItems[2] != "")
+        if (Input.GetKeyDown(KeyCode.Alpha3) && isItemEquippable(2))
             selectedItem = 2;
 
-        if (Input.GetKeyDown(KeyCode.Alpha4) && inventoryItems[3] != "")
+        if (Input.GetKeyDown(KeyCode.Alpha4) && isItemEquippable(3))
             selectedItem = 3;
 
-        if (Input.GetKeyDown(KeyCode.Alpha5) && inventoryItems[4] != "")
+        if (Input.GetKeyDown(KeyCode.Alpha5) && isItemEquippable(4))
             selectedItem = 4;
 
-        if (Input.GetKeyDown(KeyCode.Alpha6) && inventoryItems[5] != "")
+        if (Input.GetKeyDown(KeyCode.Alpha6) && isItemEquippable(5))
             selectedItem = 5;
 
-        if (Input.GetKeyDown(KeyCode.Alpha7) && inventoryItems[6] != "")
+        if (Input.GetKeyDown(KeyCode.Alpha7) && isItemEquippable(6))
             selectedItem = 6;
 
-        if (Input.GetKeyDown(KeyCode.Alpha8) && inventoryItems[7] != "")
+        if (Input.GetKeyDown(KeyCode.Alpha8) && isItemEquippable(7))
             selectedItem = 7;
+    }
+
+    bool isItemEquippable(int itemNum)
+    {
+        return inventoryItems[itemNum] == equippableItems[0] || inventoryItems[itemNum] == equippableItems[1] || inventoryItems[itemNum] == equippableItems[2] || inventoryItems[itemNum] == equippableItems[3];
     }
 
     public string getCurrentItemName()
