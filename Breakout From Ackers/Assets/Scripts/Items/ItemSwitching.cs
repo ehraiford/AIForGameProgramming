@@ -5,6 +5,7 @@ public class ItemSwitching : MonoBehaviour
     public int selectedItem = 0;
     private string currentItemName = "";
     private string[] inventoryItems;
+    private int numItems;
 
     private GameObject ammoUI;
     [SerializeField] private GameObject playerController;
@@ -26,8 +27,13 @@ public class ItemSwitching : MonoBehaviour
 
         int previousSelectedItem = selectedItem;
 
-        HandleMouseWheelInput();
-        HandleNumberInput();
+        numItems = calcNumItems();
+
+        if(numItems > 1)
+        {
+            HandleMouseWheelInput();
+            HandleNumberInput();
+        }
 
         if (previousSelectedItem != selectedItem) SelectItem();
 
@@ -36,6 +42,18 @@ public class ItemSwitching : MonoBehaviour
         // Activate and deactivate ammo display
         if(currentItemName == "M1911" && !ammoUI.activeSelf) ammoUI.SetActive(true);
         if (currentItemName != "M1911" && ammoUI.activeSelf) ammoUI.SetActive(false);
+    }
+
+    int calcNumItems()
+    {
+        int numItems = 0;
+
+        for(int i = 0; i < inventoryItems.Length; i++)
+        {
+            if (inventoryItems[i] != "") numItems++;
+        }
+
+        return numItems;
     }
 
     void SelectItem()
