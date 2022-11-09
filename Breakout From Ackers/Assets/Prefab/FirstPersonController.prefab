@@ -3513,7 +3513,6 @@ GameObject:
   - component: {fileID: 7350335166596213580}
   - component: {fileID: 7350335166596213581}
   - component: {fileID: 7350335166596213554}
-  - component: {fileID: 4120976097617665570}
   - component: {fileID: 7350335166596213583}
   m_Layer: 6
   m_Name: FirstPersonController
@@ -3529,7 +3528,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7350335166596213555}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -41.3, y: 4.69, z: 124.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3596,6 +3595,7 @@ MonoBehaviour:
   crouchingCenter: {x: 0, y: 0.5, z: 0}
   standingCenter: {x: 0, y: 0, z: 0}
   respawnPoint: {fileID: 0}
+  isDead: 0
   maxStamina: 100
   staminaUseMultiplier: 20
   timeBeforeStaminaRegen: 5
@@ -3637,20 +3637,6 @@ MonoBehaviour:
   Score: 0
   gameOver: {fileID: 0}
   onscreenUI: {fileID: 0}
---- !u!114 &4120976097617665570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7350335166596213555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c53c370d57ae9ed478360be3bc8d5f8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameOver: {fileID: 0}
-  respawnPoint: {fileID: 0}
 --- !u!82 &7350335166596213583
 AudioSource:
   m_ObjectHideFlags: 0

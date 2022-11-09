@@ -10,7 +10,7 @@ public class GameOverScript : MonoBehaviour
     [SerializeField] TextMeshProUGUI secondText;
     [SerializeField] AudioSource audioSource;
     private float firstAlpha, secondAlpha;
-    [SerializeField] private GameObject playerController;
+    [SerializeField] private FirstPersonController playerController;
     [SerializeField] private GameObject respawnPoint;
 
     //freezes time, starts the audio, and starts tracking time passed.
@@ -61,15 +61,17 @@ public class GameOverScript : MonoBehaviour
                 secondText.color = new Color(255, 255, 255, secondAlpha);
                 break;
             default:
-                //playerController.GetComponent<Respawn>().RespawnCharacter();
-                Debug.Log("Respawn");
-                playerController.GetComponent<FirstPersonController>().AddHealth(50);
-                playerController.GetComponent<FirstPersonController>().enabled = false;
+
+                // Respawns the player
+                // TODO: Respawn in correct place depending on scene
+                playerController.AddHealth(50);
+                playerController.enabled = false;
                 playerController.transform.position = respawnPoint.transform.position;
+                // TODO: Set rotations in final map
                 Physics.SyncTransforms();
-                playerController.GetComponent<FirstPersonController>().enabled = true;
+                playerController.enabled = true;
                 Time.timeScale = 1.0f;
-                playerController.GetComponent<FirstPersonController>().isDead = false;
+                playerController.isDead = false;
                 gameObject.SetActive(false);
 
                 //Logan, if you want to move the player character or reset their health or anything through the script, this would be the spot to do it. 

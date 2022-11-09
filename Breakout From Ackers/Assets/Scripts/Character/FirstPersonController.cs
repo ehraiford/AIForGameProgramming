@@ -563,17 +563,6 @@ public class FirstPersonController : CharacterStats
         Time.timeScale = 0.0f;
     }
 
-    public void RespawnCharacter()
-    {
-        gameOver.SetActive(false);
-        Debug.Log("Respawn");
-        transform.position = respawnPoint.transform.position;
-        currentHealth = 50;
-        Time.timeScale = 1.0f;
-        isDead = false;
-        transform.position = respawnPoint.transform.position;
-    }
-
     protected override void ApplyDamage(float dmg)
     {
         currentHealth -= dmg;
