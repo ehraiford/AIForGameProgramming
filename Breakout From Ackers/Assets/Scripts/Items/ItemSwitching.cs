@@ -7,12 +7,13 @@ public class ItemSwitching : MonoBehaviour
     private string[] inventoryItems;
 
     private GameObject ammoUI;
+    [SerializeField] private GameObject playerController;
 
     // Start is called before the first frame update
     void Start()
     {
         ammoUI = GameObject.Find("HUD");
-        inventoryItems = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>().inventoryItems;
+        inventoryItems = playerController.GetComponent<FirstPersonController>().inventoryItems;
 
         SelectItem();
     }
@@ -21,7 +22,7 @@ public class ItemSwitching : MonoBehaviour
     void Update()
     {
         // Updates inventory
-        inventoryItems = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>().inventoryItems;
+        inventoryItems = playerController.GetComponent<FirstPersonController>().inventoryItems;
 
         int previousSelectedItem = selectedItem;
 

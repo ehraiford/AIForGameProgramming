@@ -35,13 +35,13 @@ public class Gun : MonoBehaviour
     private bool isReloading = false;
     private bool isShooting = false;
 
-    private GameObject playerCamera;
+    [SerializeField] private GameObject playerController;
+    [SerializeField] private GameObject playerCamera;
     private Animator playerAnimator;
 
     void Start()
     {
-        playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        playerAnimator = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
+        playerAnimator = playerController.GetComponentInChildren<Animator>();
 
         if (barrelLocation == null)
             barrelLocation = transform;
@@ -127,11 +127,11 @@ public class Gun : MonoBehaviour
         // Calculates inaccuracy based on how fast the player is moving
         float inaccuracy = 0.0f;
 
-        if (GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>().getCurrentMovement() == "Sprinting")
+        if (playerController.GetComponent<FirstPersonController>().getCurrentMovement() == "Sprinting")
             inaccuracy = 0.5f;
-        else if (GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>().getCurrentMovement() == "Walking")
+        else if (playerController.GetComponent<FirstPersonController>().getCurrentMovement() == "Walking")
             inaccuracy = 0.25f;
-        else if (GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>().getCurrentMovement() == "Crouch Walking")
+        else if (playerController.GetComponent<FirstPersonController>().getCurrentMovement() == "Crouch Walking")
             inaccuracy = 0.1f;
 
         float inaccuracyX = Random.Range(-inaccuracy, inaccuracy);
