@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 970692f762915e848878ff4a426116c9
+guid: ae94c66ed4369fa45998b9e796441ea4
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
       74: -623603649343465320
-    second: Holding M1911 Idle
+    second: M1911 Equip
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,11 +36,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Holding M1911 Idle
+      name: M1911 Equip
       takeName: Scene
       internalID: 0
       firstFrame: 1
-      lastFrame: 100
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
