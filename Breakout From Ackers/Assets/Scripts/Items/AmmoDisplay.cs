@@ -10,31 +10,21 @@ public class AmmoDisplay : MonoBehaviour
     private int currentReservesAmmo;
 
     private string currentItemName;
-    private GameObject pistol;
-    private GameObject medkit;
+    [SerializeField] private GameObject pistol;
+    [SerializeField] private GameObject medkit;
+    [SerializeField] private GameObject itemHolder;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Fetch items
-        pistol = GameObject.Find("M1911");
-        medkit = GameObject.Find("MedKit");
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!pistol)
-        {
-            pistol = GameObject.Find("M1911");
-        }
-        if(!medkit)
-        {
-            medkit = GameObject.Find("MedKit");
-        }
-
         // Fetch current item name
-        currentItemName = GameObject.Find("Item Holder").GetComponentInChildren<ItemSwitching>().getCurrentItemName();
+        currentItemName = itemHolder.GetComponentInChildren<ItemSwitching>().getCurrentItemName();
 
         if (currentItemName == "M1911") // Current item is a gun
         {

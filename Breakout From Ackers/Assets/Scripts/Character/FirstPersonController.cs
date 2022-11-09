@@ -137,8 +137,8 @@ public class FirstPersonController : CharacterStats
         // Cache components
         playerCamera = GetComponentInChildren<Camera>();
         characterController = GetComponent<CharacterController>();
-        defaultYPos = playerCamera.transform.localPosition.y;
         playerAnimations = GetComponentInChildren<Animator>();
+        defaultYPos = playerCamera.transform.localPosition.y;
 
         // Lock and hide cursor
         Cursor.lockState = CursorLockMode.Locked;
@@ -452,57 +452,53 @@ public class FirstPersonController : CharacterStats
 
     private void HandleAnimations()
     {
-        if(currentItem == "") // Empty Hands
+        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D)) // Standing Still
         {
-            if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D)) // Standing Still
-            {
-                playerAnimations.SetFloat("Speed", 0);
-            }
-            else // Moving
-            {
-                if (isCrouching)
-                {
-                    playerAnimations.SetFloat("Speed", 1);
-                }
-                else if (IsSprinting)
-                {
-                    playerAnimations.SetFloat("Speed", 3);
-                }
-                else
-                {
-                    playerAnimations.SetFloat("Speed", 2);
-                }
-
-
-            }
+            playerAnimations.SetFloat("Speed", 0);
         }
-        else if(currentItem == "M1911")
+        else // Moving
         {
-            playerAnimations.SetBool("isStartingPistol", true);
+            if (isCrouching)
+            {
+                playerAnimations.SetFloat("Speed", 1);
+            }
+            else if (IsSprinting)
+            {
+                playerAnimations.SetFloat("Speed", 3);
+            }
+            else
+            {
+                playerAnimations.SetFloat("Speed", 2);
+            }
 
-            if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D)) // Standing Still
-            {
-                playerAnimations.SetFloat("Speed", 0);
-            }
-            else // Moving
-            {
-                if (isCrouching)
-                {
-                    playerAnimations.SetFloat("Speed", 1);
-                }
-                else if (IsSprinting)
-                {
-                    playerAnimations.SetFloat("Speed", 3);
-                }
-                else
-                {
-                    playerAnimations.SetFloat("Speed", 2);
-                }
-            }
+
+        }
+
+        if (currentItem == "Hands") // Nothing is equipped
+        {
+            playerAnimations.SetBool("Hands", true);
         }
         else
         {
-            playerAnimations.SetBool("isStartingPistol", false);
+            playerAnimations.SetBool("Hands", false);
+        }
+
+        if(currentItem == "M1911") // M1911 is equipped
+        {
+            playerAnimations.SetBool("M1911", true);
+        }
+        else
+        {
+            playerAnimations.SetBool("M1911", false);
+        }
+
+        if (currentItem == "MedKit") // MedKit is equipped
+        {
+            playerAnimations.SetBool("Hands", true);
+        }
+        else
+        {
+            playerAnimations.SetBool("Hands", false);
         }
 
     }

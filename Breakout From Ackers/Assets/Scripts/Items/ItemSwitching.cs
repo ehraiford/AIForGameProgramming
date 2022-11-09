@@ -10,6 +10,7 @@ public class ItemSwitching : MonoBehaviour
 
     private GameObject ammoUI;
     [SerializeField] private FirstPersonController playerController;
+    [SerializeField] private Animator playerAnimations;
 
     // Start is called before the first frame update
     void Start()
@@ -17,8 +18,11 @@ public class ItemSwitching : MonoBehaviour
         ammoUI = GameObject.Find("HUD");
         inventoryItems = playerController.inventoryItems;
 
+        //Disable all items since the player starts with an empty inventory
+        foreach (Transform item in transform) item.gameObject.SetActive(false);
+
+        // Create array of all equippable items
         setEquippableItems();
-        SelectItem();
     }
 
     // Update is called once per frame
@@ -29,9 +33,27 @@ public class ItemSwitching : MonoBehaviour
 
         int previousSelectedItem = selectedItem;
 
+        // Calculates the number of equippable items and handles inputs accordingly
         numItems = calcNumEquippableItems();
 
-        if(numItems > 1)
+        if (numItems == 0) // Player has no equippable items
+        {
+            selectedItem = 0;
+            currentItemName = "Hands";
+        }
+        else if (numItems == 1) // Player has 1 equippable item
+        {
+            for (int i = 0; i < inventoryItems.Length; i++)
+            {
+                if (isItemEquippable(i)) selectedItem = i;
+            }
+
+            if (currentItemName == "Hands")
+            {
+                SelectItem();
+            }
+        }
+        else // Player has multiple equippable items
         {
             HandleMouseWheelInput();
             HandleNumberInput();
@@ -39,11 +61,9 @@ public class ItemSwitching : MonoBehaviour
 
         if (previousSelectedItem != selectedItem) SelectItem();
 
-        if (inventoryItems[selectedItem] == "") currentItemName = "";
-
         // Activate and deactivate ammo display
         if(currentItemName == "M1911" && !ammoUI.activeSelf) ammoUI.SetActive(true);
-        if (currentItemName != "M1911" && ammoUI.activeSelf) ammoUI.SetActive(false);
+        if(currentItemName != "M1911" && ammoUI.activeSelf) ammoUI.SetActive(false);
     }
 
     void setEquippableItems()
@@ -70,11 +90,9 @@ public class ItemSwitching : MonoBehaviour
     {
         //Time time = Time.timeScale;
 
-        int currentItem = 0;
-
         foreach (Transform item in transform)
         {
-            if (currentItem == selectedItem)
+            if (item.name == inventoryItems[selectedItem])
             {
                 item.gameObject.SetActive(true);
                 currentItemName = item.name;
@@ -83,8 +101,6 @@ public class ItemSwitching : MonoBehaviour
             {
                 item.gameObject.SetActive(false);
             }
-
-            currentItem++;
         }
     }
 
