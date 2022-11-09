@@ -55,7 +55,7 @@ public class OnScreenUIScript : MonoBehaviour
         health = firstPersonController.GetComponent<FirstPersonController>().GetCurrentHealth();
 
         SetCurrentObjective(0);
-        headsUpText.color = new Color(255, 255, 255, 255);
+       
 
     }
     
@@ -138,7 +138,10 @@ public class OnScreenUIScript : MonoBehaviour
             if(i < activeItemCount)
             {
                 inventoryTempText[i].text = firstPersonController.GetComponent<FirstPersonController>().inventoryItems[i];
-                inventoryTempText[i].text += " " + firstPersonController.GetComponent<FirstPersonController>().inventoryItemsCount[i];
+                if (!inventoryTempText[i].text.Contains("Key") && inventoryTempText[i].text.CompareTo("M1911") != 0)
+                {
+                    inventoryTempText[i].text += " (" + firstPersonController.GetComponent<FirstPersonController>().inventoryItemsCount[i] + ")";
+                }
             }
             else
             {

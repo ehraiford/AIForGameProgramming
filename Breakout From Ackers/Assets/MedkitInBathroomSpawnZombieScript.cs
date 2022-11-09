@@ -27,7 +27,7 @@ public class MedkitInBathroomSpawnZombieScript : Interactable
             {
                 case < 2: //nothing happens for two seconds
                     break;
-                case < 8:
+                case < 6:
                     //play a creepy sound and blow out the other candles.
                     if (!creepySoundPlayed)
                     {
@@ -42,7 +42,7 @@ public class MedkitInBathroomSpawnZombieScript : Interactable
                     }
                     
                     break;
-                case < 9:
+                case < 7:
                     //play gust sound and blow out candle.
                     if (!gustSoundPlayed)
                     {

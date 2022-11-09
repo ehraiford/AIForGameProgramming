@@ -6,7 +6,7 @@ public class LightCandles : Interactable
 {
 
     [SerializeField] private GameObject flame;
-    private bool unlit, canTurnOff = false;
+    private bool  canTurnOff = false, unlit; 
     AudioSource light;
     float time;
     [SerializeField] float timeToOff = 100; // seconds to turn off candle
@@ -19,7 +19,7 @@ public class LightCandles : Interactable
     void Start()
     {
         flame.SetActive(startingState);
-        unlit = true;
+        unlit = !startingState;
         light = gameObject.GetComponentInChildren<AudioSource>();
         FPC = GameObject.Find("FirstPersonController").GetComponent<FirstPersonController>();
         DD = FPC.diffcultyValue();
@@ -71,5 +71,7 @@ public class LightCandles : Interactable
     public void forceLightingState(bool onOff)
     {
         flame.SetActive(onOff);
+        unlit = !onOff;
+        //canTurnOff = onOff;
     }
 }
