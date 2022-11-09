@@ -68,7 +68,7 @@ public class ItemSwitching : MonoBehaviour
 
     void SelectItem()
     {
-        
+        //Time time = Time.timeScale;
 
         int currentItem = 0;
 

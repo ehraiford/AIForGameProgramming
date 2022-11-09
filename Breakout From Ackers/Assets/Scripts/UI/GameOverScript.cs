@@ -15,17 +15,19 @@ public class GameOverScript : MonoBehaviour
     //freezes time, starts the audio, and starts tracking time passed.
     private void Awake()
     {
-        Time.timeScale = 0.0f;
-
         firstText.color = new Color(0, 0, 0, 0);
         secondText.color = new Color(0, 0, 0, 0);
-
 
         audioSource.Play();
     }
 
     void Update()
     {
+        if (firstAlpha < 0f)
+            firstAlpha = 0f;
+        if (secondAlpha < 0f)
+            secondAlpha = 0f;
+
         if (firstAlpha > 1.0f)
             firstAlpha = 1.0f;
         if (secondAlpha > 1.0f)
