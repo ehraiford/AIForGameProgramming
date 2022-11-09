@@ -653,7 +653,7 @@ public class FirstPersonController : CharacterStats
         {
             Debug.Log("Stacked item into pre-existing inventory.");
             inventoryItemsCount[spot] += itemCount;
-            onscreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Added " + itemName + " to inventory.");
+            onscreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Picked up " + itemName + ".");
             return true;
         }
         else if( inventorySpacesCurrentlyUsed < 8)
@@ -663,7 +663,7 @@ public class FirstPersonController : CharacterStats
             inventoryItems[inventorySpacesCurrentlyUsed] = itemName;
             inventoryItemsCount[inventorySpacesCurrentlyUsed] = itemCount;
             inventorySpacesCurrentlyUsed++;
-            onscreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Added " + itemName + " to inventory.");
+            onscreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Picked up " + itemName + ".");
             return true;
         }
         else

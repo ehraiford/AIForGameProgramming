@@ -10,6 +10,8 @@ public class ItemPickup : Interactable
     [SerializeField] string itemName;
     [SerializeField] GameObject firstPersonController;
     [SerializeField] bool itemCountAffectedByScore;
+    [SerializeField] private bool destroyOnInteract = true;
+    private bool alreadyPickedUp = false;
     public override void OnFocus()
     {
       
@@ -19,31 +21,25 @@ public class ItemPickup : Interactable
     {
         int adjustedItemCount = itemCount;
 
+        //alters item pickup count dependent on player score if bool is true
         if (itemCountAffectedByScore)
         {
             float denominator = firstPersonController.GetComponent<FirstPersonController>().diffcultyValue();
-            //denominator = denominator * denominator;
-            print("Denominator " + denominator);
+            
+           
             adjustedItemCount = (int)((float)adjustedItemCount / denominator);
-            print("Added item count" + adjustedItemCount);
+           
         }
-        if (firstPersonController.GetComponent<FirstPersonController>().AddInventoryItem(itemName, adjustedItemCount))
-            Destroy(gameObject);
+        if (!alreadyPickedUp && firstPersonController.GetComponent<FirstPersonController>().AddInventoryItem(itemName, adjustedItemCount))
+        {
+            alreadyPickedUp = true;
+            if(destroyOnInteract)
+                Destroy(gameObject);
+        }
+            
     }
 
     public override void OnLoseFocus()
-    {
-
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
-
-    // Update is called once per frame
-    void Update()
     {
 
     }
