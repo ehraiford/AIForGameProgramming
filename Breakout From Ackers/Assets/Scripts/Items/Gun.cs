@@ -16,6 +16,11 @@ public class Gun : MonoBehaviour
     [SerializeField] private Transform barrelLocation;
     [SerializeField] private Transform casingExitLocation;
 
+    [Header("Object References")]
+    [SerializeField] private GameObject playerController;
+    [SerializeField] private GameObject playerCamera;
+    private Animator playerAnimator;
+
     [Header("Settings")]
     [Tooltip("Specify time to destory the casing object")] [SerializeField] private float destroyTimer = 2f;
     [Tooltip("Bullet Speed")] [SerializeField] private float shotPower = 700f;
@@ -29,15 +34,12 @@ public class Gun : MonoBehaviour
     [Header("Ammo")]
     [SerializeField] private int maxMagAmmo = 10;
     [SerializeField] private int maxReservesAmmo = 30;
+    [SerializeField] private float reloadTime = 1f;
+    [SerializeField] private float fireRate = 0.3f;
     private int currentMagAmmo;
     private int currentReservesAmmo;
-    [SerializeField] private float reloadTime = 1f;
     private bool isReloading = false;
     private bool isShooting = false;
-
-    [SerializeField] private GameObject playerController;
-    [SerializeField] private GameObject playerCamera;
-    private Animator playerAnimator;
 
     void Start()
     {
@@ -168,11 +170,12 @@ public class Gun : MonoBehaviour
         currentMagAmmo--;
 
         // Stops the user from queuing another shot
-        yield return new WaitForSeconds(0.4f);
-
-        isShooting = false;
+        yield return new WaitForSeconds(0.3f);
         playerAnimator.SetBool("Shooting", false);
         gunAnimator.SetBool("Shooting", false);
+
+        yield return new WaitForSeconds(fireRate);
+        isShooting = false;
     }
 
     //This function creates a casing at the ejection slot
