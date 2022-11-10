@@ -7,7 +7,8 @@ public class HeardGunshot : StateMachineBehaviour
 {
     NavMeshAgent agent;
     Transform player;
-    float speed = 1f;
+    Transform lastLocation;
+    float speed = 20f;
     float time;
     Quaternion lookRotation;
     Vector3 newDir;
@@ -18,31 +19,25 @@ public class HeardGunshot : StateMachineBehaviour
         time = 0;
         agent = animator.GetComponentInParent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        
+        lastLocation = player;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
-        //Lets try setting the position via scaling it by the normalized vector?
-
-        Vector3 targetPos = new Vector3(player.position.x, animator.transform.position.y, player.position.z);
-        //animator.transform.LookAt(targetPos);
-
-        //Determin which direction to rotate towards
-        Vector3 targetDir = player.position - agent.transform.position;
-
-        //step size
-        float singleStep = speed * Time.deltaTime;
-        
-        //Rotate the foward Vector
-        Vector3 newDir = Vector3.RotateTowards(agent.transform.forward, targetPos, singleStep, 0.0f);
-
-        Debug.DrawRay(agent.transform.position, targetDir, Color.red);
-        animator.transform.LookAt(newDir);
-        agent.transform.rotation = Quaternion.LookRotation(newDir);
-
+        //Go to player's last location to see if they're there
+        agent.SetDestination(lastLocation.position);
+        time += Time.deltaTime;
+        //Couldnt find player so go back to patrolling
+        if(time > 2)
+        {
+            animator.SetBool("isPatrolling", true);
+        }
+        //Found player so chase after them
+        if (agent.GetComponent<FOV>().canSeePlayer)
+        {
+            animator.SetBool("isChasing", true);
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

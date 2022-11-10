@@ -5,53 +5,27 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private NavMeshAgent enemyMesh;
-    [SerializeField] private Transform[] waypoints;
-    [SerializeField] private Transform player;
-    private Animator anim;
-    public GameObject enemyObject;
-    private int currentWaypoint;
-    private float timeOfLastAttack;
-
-
-    private void Awake()
+    public Transform player;
+    float speed = 100f;
+    private void Start()
     {
-        enemyMesh = GetComponent<NavMeshAgent>();
-        //enemyObject = GameObject.FindGameObjectWithTag("Enemy");
-        currentWaypoint = 0;
-        anim = GetComponentInChildren<Animator>();
-        timeOfLastAttack = 0f;
+        
     }
     void Update()
     {
-        if (enemyObject.GetComponent<FOV>().canSeePlayer)
+        float distance = Vector3.Distance(transform.position, player.position);
+        
+        if (Input.GetButtonDown("Fire1") && distance < 5)
         {
-            
-        }    
-        else
-        {
-
-        } 
-
+            rotateToPlayer();
+        }
     }
 
     private void rotateToPlayer()
     {
+        Debug.Log("ROTATE");
+        //transform.LookAt(player);
+        this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.Euler(player.position.x, player.position.y, player.position.z), speed * Time.deltaTime);
 
-    }
-
-    private void Patrol()
-    {
-
-    }
-    private void Chase()
-    {
-
-    }
-
-    private void attackPlayer()
-    {
-        anim.SetTrigger("Attack");
-        //DO DAMAGE TO PLAYER
     }
 }

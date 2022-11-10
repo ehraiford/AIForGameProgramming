@@ -43,7 +43,7 @@ public class EnemyStat : CharacterStats
     void Update()
     {
         Vector3 playerDistance = player.transform.position - transform.position;
-        if (playerDistance.magnitude < 10)
+        if (playerDistance.magnitude < 4)
         {
             groanSound.volume = .5f;
         }

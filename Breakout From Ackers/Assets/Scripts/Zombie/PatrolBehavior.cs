@@ -33,14 +33,23 @@ public class PatrolBehavior : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        //If player shoots near zombie, make zombie go to player's location
+        float distance = Vector3.Distance(animator.transform.position, player.position);
+        if (Input.GetButtonDown("Fire1") && distance < 5)
+        {
+            animator.SetTrigger("heardGunshot");
+        }
+
+        //Choose next location to go to
         if (agent.remainingDistance <= agent.stoppingDistance)
             agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
         timer += Time.deltaTime;
+        //Go back to idle
         if (timer > 10)
         {
             animator.SetBool("isPatrolling", false);
         }
-
+        //Chase after players
         if (agent.GetComponent<FOV>().canSeePlayer)
         {
             animator.SetBool("isChasing", true);
