@@ -9,14 +9,13 @@ public class ItemSwitching : MonoBehaviour
     private string[] equippableItems = new string[4];
     private int numItems;
 
-    private GameObject ammoUI;
+    [SerializeField] private GameObject ammoUI;
     [SerializeField] private FirstPersonController playerController;
     [SerializeField] private Animator playerAnimations;
 
     // Start is called before the first frame update
     void Start()
     {
-        ammoUI = GameObject.Find("HUD");
         inventoryItems = playerController.inventoryItems;
 
         //Disable all items since the player starts with an empty inventory
