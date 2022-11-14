@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class ItemSwitching : MonoBehaviour
 {
@@ -50,7 +51,7 @@ public class ItemSwitching : MonoBehaviour
 
             if (currentItemName == "Hands")
             {
-                SelectItem();
+                StartCoroutine(SelectItem());
             }
         }
         else // Player has multiple equippable items
@@ -59,14 +60,14 @@ public class ItemSwitching : MonoBehaviour
             HandleNumberInput();
         }
 
-        if (previousSelectedItem != selectedItem) SelectItem();
+        if (previousSelectedItem != selectedItem) StartCoroutine(SelectItem());
 
         // Activate and deactivate ammo display
-        if(currentItemName == "M1911" && !ammoUI.activeSelf) ammoUI.SetActive(true);
+        if (currentItemName == "M1911" && !ammoUI.activeSelf) ammoUI.SetActive(true);
         if(currentItemName != "M1911" && ammoUI.activeSelf) ammoUI.SetActive(false);
     }
 
-    void setEquippableItems()
+    private void setEquippableItems()
     {
         equippableItems[0] = "M1911";
         equippableItems[1] = "MedKit";
@@ -74,7 +75,7 @@ public class ItemSwitching : MonoBehaviour
         equippableItems[3] = "Knife";
     }
 
-    int calcNumEquippableItems()
+    private int calcNumEquippableItems()
     {
         int numItems = 0;
 
@@ -86,16 +87,26 @@ public class ItemSwitching : MonoBehaviour
         return numItems;
     }
 
-    void SelectItem()
+    private IEnumerator SelectItem()
     {
-        //Time time = Time.timeScale;
+        // Updates the current item's name to the new item
+        foreach (Transform item in transform)
+        {
+            if (item.name == inventoryItems[selectedItem])
+            {
+                currentItemName = item.name;
+            }
+        }
 
+        // Waits for the hands to go all the way down
+        yield return new WaitForSeconds(0.5f);
+
+        // Activates the new item and deactiveates the old one
         foreach (Transform item in transform)
         {
             if (item.name == inventoryItems[selectedItem])
             {
                 item.gameObject.SetActive(true);
-                currentItemName = item.name;
             }
             else
             {
@@ -104,15 +115,18 @@ public class ItemSwitching : MonoBehaviour
         }
     }
 
-    void HandleMouseWheelInput()
+    private void HandleMouseWheelInput()
     {
+        // Handles mousewheele up
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
+            // Moves up through the inventory and loops back to the begining if necessary
             if (selectedItem >= inventoryItems.Length - 1)
                 selectedItem = 0;
             else
                 selectedItem++;
 
+            // If the current inventory item isn't equippable, skip to the next equippable item and loop back to the start if necessary
             while (!isItemEquippable(selectedItem))
             {
                 selectedItem++;
@@ -121,13 +135,16 @@ public class ItemSwitching : MonoBehaviour
             }
         }
 
+        // Handles mousewheel down
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
+            // Moves down through the inventory and loops back to the end if necessary
             if (selectedItem <= 0)
                 selectedItem = 7;
             else
                 selectedItem--;    
 
+            // If the current inventory item isn't equippable, skip to the next equippable item and loop back to the end if necessary
             while (!isItemEquippable(selectedItem))
             {
                 selectedItem--;
@@ -137,8 +154,10 @@ public class ItemSwitching : MonoBehaviour
         }
     }
 
-    void HandleNumberInput()
+    private void HandleNumberInput()
     {
+        // Equips the item depending on the key press only if its equippable
+
         if (Input.GetKeyDown(KeyCode.Alpha1) && isItemEquippable(0))
             selectedItem = 0;
 
@@ -164,8 +183,9 @@ public class ItemSwitching : MonoBehaviour
             selectedItem = 7;
     }
 
-    bool isItemEquippable(int itemNum)
+    private bool isItemEquippable(int itemNum)
     {
+        // Checks if the item in the givern inventory space matches the name of an equippable item
         return inventoryItems[itemNum] == equippableItems[0] || inventoryItems[itemNum] == equippableItems[1] || inventoryItems[itemNum] == equippableItems[2] || inventoryItems[itemNum] == equippableItems[3];
     }
 
