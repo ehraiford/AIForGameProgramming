@@ -30,6 +30,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private AudioSource m1911AudioSource = default;
     [SerializeField] private AudioClip shoot = default;
     [SerializeField] private AudioClip reload = default;
+    [SerializeField] private AudioClip emptyShot = default;
 
     [Header("Ammo")]
     [SerializeField] private int maxMagAmmo = 10;
@@ -70,28 +71,15 @@ public class Gun : MonoBehaviour
 
             if (isShooting) return;
 
-            // Check if mag runs out of ammo
-            if (currentMagAmmo <= 0)
-            {
-                StartCoroutine(Reload());
+            // Automatically reloads when the gun runs out of ammo and there is ammo in reserves
+            if (currentMagAmmo <= 0 && currentReservesAmmo > 0) StartCoroutine(Reload());
 
-                // Exit update so the player cannot shoot
-                return;
-            }
+            // Fires gun
+            if (Input.GetButtonDown("Fire1")) StartCoroutine(Shoot());
 
-            //If you want a different input, change it here
-            if (Input.GetButtonDown("Fire1"))
-            {
-                //Calls animation on the gun that has the relevant animation events that will fire
-                //gunAnimator.SetTrigger("Fire");
-                StartCoroutine(Shoot());
-            }
+            // Reloads gun
+            if (Input.GetKeyDown(KeyCode.R) && currentMagAmmo != maxMagAmmo && currentReservesAmmo > 0) StartCoroutine(Reload());
 
-            //If you want a different input, change it here
-            if (Input.GetKeyDown(KeyCode.R) && currentMagAmmo != maxMagAmmo)
-            {
-                StartCoroutine(Reload());
-            }
         }
     }
 
@@ -99,9 +87,18 @@ public class Gun : MonoBehaviour
     //This function creates the bullet behavior
     private IEnumerator Shoot()
     {
+        isShooting = true;
+
+        if (currentMagAmmo <= 0)
+        {
+            m1911AudioSource.PlayOneShot(emptyShot);
+            yield return new WaitForSeconds(0.3f);
+            isShooting = false;
+            yield break;
+        }
+
         gunAnimator.SetBool("Shooting", true);
         playerAnimator.SetBool("Shooting", true);
-        isShooting = true;
 
         if (muzzleFlashPrefab)
         {
@@ -154,8 +151,6 @@ public class Gun : MonoBehaviour
                 hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(35 - (hit.distance / 3));
             else if (hit.collider.CompareTag("Zombie/Legs"))
                 hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(25 - (hit.distance / 3));
-
-            if (hit.collider.CompareTag("Door")) Debug.Log("Door");
 
             // Spawns a bullet hole if the environment is shot
             if (!(hit.collider.CompareTag("Zombie/Head")) && !(hit.collider.CompareTag("Zombie/Body")) && !(hit.collider.CompareTag("Zombie/Legs")) && !(hit.collider.CompareTag("Door")))

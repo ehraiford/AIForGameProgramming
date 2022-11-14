@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 5634862639493231826}
   - component: {fileID: 5965509987644744274}
   - component: {fileID: 5975064702461836722}
-  - component: {fileID: 5724109275853760786}
   - component: {fileID: 5962657837612288532}
   m_Layer: 0
-  m_Name: Medkit
+  m_Name: MedKit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5630911576882066938}
-  m_LocalRotation: {x: 0.99999857, y: -0.0017112494, z: 0.000000014901161, w: -0.000000014901161}
-  m_LocalPosition: {x: 0.218, y: -0.171, z: 0.646}
+  m_LocalRotation: {x: -0.05206862, y: -0.009159073, z: -0.9955772, w: 0.07766068}
+  m_LocalPosition: {x: 0.229, y: -0.18, z: 0.559}
   m_LocalScale: {x: 0.21121144, y: 0.21121144, z: 0.21121144}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: -179.804}
+  m_LocalEulerAnglesHint: {x: -1.508, y: 5.871, z: -171.157}
 --- !u!33 &5965509987644744274
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -85,26 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &5724109275853760786
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5630911576882066938}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 334a15b23e6d31f44bef4858676d704a, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &5962657837612288532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,3 +97,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healTime: 1
+  playerController: {fileID: 0}
