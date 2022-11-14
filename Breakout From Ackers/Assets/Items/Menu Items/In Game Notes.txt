@@ -29,7 +29,7 @@ So Cool.
 Text 3
 
 I left this unfinished puzzle to remind myself of the combination for
-the chest in the upstair servant quarters
+the chest in the upstairs servants' quarters.
 
 5 3 4 | 6 7 8 | 9 1 2
 6 7 2 | 1 9 5 | 3 4 8
@@ -43,4 +43,13 @@ the chest in the upstair servant quarters
 2 8 7 | 4 1    | 6 3 5
 3 4 5 | 2 8 6 | 1 7 9
 
+*
+Text 4
+I've moved the old chest out from the attic and into the game room. Some things I just don't think ought to be left lying around. I'd rather have them locked up safe.
+
+If Acker has an issue with it, let me know. 
+
+It's an old chest he got years ago, back in the "good" days. It was from when he helped structure all of the ancillary information for derby and their game day schedules and programming. AI for Game Programming, I think they called it. The code should be something with that, too.
+
+I think it'll be fine for us to use.
 *
