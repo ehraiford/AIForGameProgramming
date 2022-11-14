@@ -722,9 +722,15 @@ public class FirstPersonController : CharacterStats
 
     void reorganizeInventory()
     {
-        for(int i = 0; i < 8; i++)
+        for(int i = 0; i < 7; i++)
         {
-
+            if(inventoryItems[i].CompareTo("") == 0)
+            {
+                inventoryItems[i] = inventoryItems[i + 1];
+                inventoryItems[i + 1] = "";
+                inventoryItemsCount[i] = inventoryItemsCount[i + 1];
+                inventoryItemsCount[i + 1] = 0;
+            }
         }
     }
     public int GetInventorySpaceCurrentlyUsed()

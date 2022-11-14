@@ -29,14 +29,15 @@ public class MoveRuller : MonoBehaviour
     
     [SerializeField] AudioClip failedToUnlock;
     [SerializeField] AudioClip successfullyUnlock;
+    [SerializeField] GameObject[] rullers;
     void Awake()
     {
         
 
-        _rullers.Add(GameObject.Find("Ruller1"));
-        _rullers.Add(GameObject.Find("Ruller2"));
-        _rullers.Add(GameObject.Find("Ruller3"));
-        _rullers.Add(GameObject.Find("Ruller4"));
+        _rullers.Add(rullers[0]);
+        _rullers.Add(rullers[1]);
+        _rullers.Add(rullers[2]);
+        _rullers.Add(rullers[3]);
         _numberRuller = 0;
         _isActveEmission = true;
         foreach (GameObject r in _rullers)
