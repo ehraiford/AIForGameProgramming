@@ -675,6 +675,7 @@ public class FirstPersonController : CharacterStats
             inventoryItemsCount[spot] = 0;
             inventoryItems[spot] = "";
             inventorySpacesCurrentlyUsed--;
+            reorganizeInventory();
             return removeAmount;
         }
         else
@@ -723,6 +724,13 @@ public class FirstPersonController : CharacterStats
         return i;
     }
 
+    void reorganizeInventory()
+    {
+        for(int i = 0; i < 8; i++)
+        {
+
+        }
+    }
     public int GetInventorySpaceCurrentlyUsed()
     {
         return inventorySpacesCurrentlyUsed;
