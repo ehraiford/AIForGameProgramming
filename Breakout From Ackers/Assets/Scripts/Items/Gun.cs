@@ -39,8 +39,8 @@ public class Gun : MonoBehaviour
     [SerializeField] private float fireRate = 0.3f;
     private int currentMagAmmo;
     private int currentReservesAmmo;
-    private bool isReloading = false;
-    private bool isShooting = false;
+    public bool isReloading = false;
+    public bool isShooting = false;
 
     void Start()
     {

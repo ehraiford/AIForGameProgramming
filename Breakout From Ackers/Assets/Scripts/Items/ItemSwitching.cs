@@ -12,6 +12,7 @@ public class ItemSwitching : MonoBehaviour
     [SerializeField] private GameObject ammoUI;
     [SerializeField] private FirstPersonController playerController;
     [SerializeField] private Animator playerAnimations;
+    [SerializeField] private GameObject m1911;
 
     // Start is called before the first frame update
     void Start()
@@ -55,8 +56,12 @@ public class ItemSwitching : MonoBehaviour
         }
         else // Player has multiple equippable items
         {
-            HandleMouseWheelInput();
-            HandleNumberInput();
+            // Doesn't allow the player to swap if they are in the middle of shooting or reloading
+            if(!(m1911.GetComponent<Gun>().isShooting || m1911.GetComponent<Gun>().isReloading))
+            {
+                HandleMouseWheelInput();
+                HandleNumberInput();
+            }
         }
 
         if (previousSelectedItem != selectedItem) StartCoroutine(SelectItem());

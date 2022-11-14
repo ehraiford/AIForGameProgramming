@@ -209,7 +209,8 @@ MonoBehaviour:
   selectedItem: 0
   ammoUI: {fileID: 0}
   playerController: {fileID: 7350335166596213554}
-  playerAnimations: {fileID: 0}
+  playerAnimations: {fileID: 7350335166857782838}
+  m1911: {fileID: 7406988083660101512}
 --- !u!1 &1410253418983004007
 GameObject:
   m_ObjectHideFlags: 0
@@ -2325,7 +2326,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7350335166596213555}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -40.121, y: 4.12, z: 15.604}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3006,6 +3007,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47f0794d805a3e14ea35a5808c2e2fc7, type: 3}
+--- !u!1 &7406988083660101512 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4413447847953879463, guid: 47f0794d805a3e14ea35a5808c2e2fc7, type: 3}
+  m_PrefabInstance: {fileID: 6626306898102339119}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7412287558720778750 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4407022129942706129, guid: 47f0794d805a3e14ea35a5808c2e2fc7, type: 3}
