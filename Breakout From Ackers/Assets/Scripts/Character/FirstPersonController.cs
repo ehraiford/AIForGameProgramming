@@ -490,11 +490,11 @@ public class FirstPersonController : CharacterStats
 
         if (currentItem == "MedKit") // MedKit is equipped
         {
-            playerAnimations.SetBool("Hands", true);
+            playerAnimations.SetBool("MedKit", true);
         }
         else
         {
-            playerAnimations.SetBool("Hands", false);
+            playerAnimations.SetBool("MedKit", false);
         }
 
     }
