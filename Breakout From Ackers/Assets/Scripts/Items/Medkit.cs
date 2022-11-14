@@ -10,7 +10,7 @@ public class MedKit : MonoBehaviour
     [SerializeField] private FirstPersonController playerController;
     [SerializeField] private GameObject itemHandler;
     private Animator playerAnimator;
-    private bool isHealing = false;
+    public bool isHealing = false;
 
     void Start()
     {
