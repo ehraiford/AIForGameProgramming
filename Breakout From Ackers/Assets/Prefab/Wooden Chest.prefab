@@ -799,6 +799,9 @@ GameObject:
   - component: {fileID: 3290746958934601215}
   - component: {fileID: 3290746958933614445}
   - component: {fileID: 966338237}
+  - component: {fileID: 916668271}
+  - component: {fileID: 916668272}
+  - component: {fileID: 916668273}
   m_Layer: 0
   m_Name: reinforced_wooden_chest_base
   m_TagString: Untagged
@@ -882,8 +885,47 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0000002, y: 0.90575737, z: 2.0113177}
-  m_Center: {x: 0.00000005960465, y: 0.45287958, z: -0.0000038146973}
+  m_Size: {x: 0.1, y: 0.90575737, z: 1.8}
+  m_Center: {x: 0.4, y: 0.45287958, z: -0.0000038146973}
+--- !u!65 &916668271
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3290746958931453689}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000002, y: 0.90575737, z: 0.2}
+  m_Center: {x: 0.00000005960465, y: 0.45287958, z: 0.8}
+--- !u!65 &916668272
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3290746958931453689}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000002, y: 0.90575737, z: 0.2}
+  m_Center: {x: 0.00000005960465, y: 0.45287958, z: -0.8}
+--- !u!65 &916668273
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3290746958931453689}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.90575737, z: 1.8}
+  m_Center: {x: -0.4, y: 0.45287958, z: 0}
 --- !u!1 &3290746960099612662
 GameObject:
   m_ObjectHideFlags: 0
