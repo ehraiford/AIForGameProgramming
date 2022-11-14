@@ -19,6 +19,7 @@ public class Gun : MonoBehaviour
     [Header("Object References")]
     [SerializeField] private GameObject playerController;
     [SerializeField] private GameObject playerCamera;
+    [SerializeField] private GameObject itemHandler;
     private Animator playerAnimator;
 
     [Header("Settings")]
@@ -75,10 +76,10 @@ public class Gun : MonoBehaviour
             if (currentMagAmmo <= 0 && currentReservesAmmo > 0) StartCoroutine(Reload());
 
             // Fires gun
-            if (Input.GetButtonDown("Fire1")) StartCoroutine(Shoot());
+            if (Input.GetButtonDown("Fire1") && !itemHandler.GetComponent<ItemSwitching>().isSwitching) StartCoroutine(Shoot());
 
             // Reloads gun
-            if (Input.GetKeyDown(KeyCode.R) && currentMagAmmo != maxMagAmmo && currentReservesAmmo > 0) StartCoroutine(Reload());
+            if (Input.GetKeyDown(KeyCode.R) && currentMagAmmo != maxMagAmmo && currentReservesAmmo > 0 && !itemHandler.GetComponent<ItemSwitching>().isSwitching) StartCoroutine(Reload());
 
         }
     }
