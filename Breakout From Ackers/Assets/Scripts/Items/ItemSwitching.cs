@@ -187,6 +187,18 @@ public class ItemSwitching : MonoBehaviour
             selectedItem = 7;
     }
 
+    public void NoRemaingingItemsFindNext()
+    {
+        while (!isItemEquippable(selectedItem))
+        {
+            selectedItem++;
+
+            if (selectedItem >= inventoryItems.Length - 1) selectedItem = 0;
+        }
+
+        StartCoroutine(SelectItem());
+    }
+
     private bool isItemEquippable(int itemNum)
     {
         // Checks if the item in the givern inventory space matches the name of an equippable item

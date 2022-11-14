@@ -5,19 +5,21 @@ using UnityEngine;
 public class MedKit : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private float healTime = 1f;
+    [SerializeField] private float healTime = 4f;
 
     [SerializeField] private FirstPersonController playerController;
+    private Animator playerAnimator;
+    private bool isHealing = false;
 
     void Start()
     {
-        
+        playerAnimator = playerController.GetComponentInChildren<Animator>();
     }
 
     void Update()
     {
-        // If you want a different input, change it here
-        if (Input.GetButtonDown("Fire1"))
+        // Heal
+        if (Input.GetButtonDown("Fire1") && !isHealing)
         {
             StartCoroutine(Heal());
         }
@@ -25,7 +27,40 @@ public class MedKit : MonoBehaviour
 
     private IEnumerator Heal()
     {
-        yield return new WaitForSeconds(healTime);
+        isHealing = true;
+        playerAnimator.SetBool("Healing", true);
+
+        // Heals the player
+        yield return new WaitForSeconds(healTime - 0.5f);
         playerController.AddHealth(50);
+
+        // Finds the MedKit position in the player's inventory
+        int medKitSlot = 0 ;
+        for(int i = 0; i < 8; i++)
+        {
+            if (playerController.inventoryItems[i] == "MedKit") medKitSlot = i;
+        }
+
+        // Removes a MedKit from the player's inventory
+        playerController.inventoryItemsCount[medKitSlot]--;
+
+        
+
+        // Checks if the player runs out of MedKits
+        if (playerController.inventoryItemsCount[medKitSlot] > 0) // Player has more MedKits
+        {
+            playerAnimator.SetBool("RemainingMedKit", true);
+        }
+        else // Player runs out of MedKits
+        {
+            playerAnimator.SetBool("RemainingMedKit", false);
+            playerController.inventoryItems[medKitSlot] = "";
+            playerController.GetComponentInChildren<ItemSwitching>().NoRemaingingItemsFindNext();
+        }
+
+        //yield return new WaitForSeconds(0.5f);
+        playerAnimator.SetBool("Healing", false);
+
+        isHealing = false;
     }
 }
