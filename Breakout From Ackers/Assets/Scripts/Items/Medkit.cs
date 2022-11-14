@@ -50,16 +50,19 @@ public class MedKit : MonoBehaviour
         if (playerController.inventoryItemsCount[medKitSlot] > 0) // Player has more MedKits
         {
             playerAnimator.SetBool("RemainingMedKit", true);
+            playerAnimator.SetBool("Healing", false);
         }
         else // Player runs out of MedKits
         {
             playerAnimator.SetBool("RemainingMedKit", false);
+            playerAnimator.SetBool("Healing", false);
             playerController.inventoryItems[medKitSlot] = "";
             playerController.GetComponentInChildren<ItemSwitching>().NoRemaingingItemsFindNext();
         }
 
+        // TODO: Tune coroutine and animation time
+
         //yield return new WaitForSeconds(0.5f);
-        playerAnimator.SetBool("Healing", false);
 
         isHealing = false;
     }
