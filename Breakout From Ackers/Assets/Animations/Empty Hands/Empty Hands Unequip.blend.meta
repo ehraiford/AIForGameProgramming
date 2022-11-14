@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: a6d035e0b6cde8947876cfc005a047d2
+guid: c74a9aa00fda3724aa3f0092c4deadcd
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
       74: -623603649343465320
-    second: 'M1911: Unequip'
+    second: 'Empty Hands: Unequip'
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,7 +36,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: 'M1911: Unequip'
+      name: 'Empty Hands: Unequip'
       takeName: Scene
       internalID: 0
       firstFrame: 1

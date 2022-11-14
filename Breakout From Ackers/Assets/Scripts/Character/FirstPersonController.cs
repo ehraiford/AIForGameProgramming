@@ -91,14 +91,12 @@ public class FirstPersonController : CharacterStats
     [SerializeField] private LayerMask interactionLayer = default;
     private Interactable currentInteractable;
 
-    // Equipped Item
-    private string currentItem;
-
     [Header("Inventory")]
     [SerializeField] public string[] inventoryItems = new string[8];
     [SerializeField] public int[] inventoryItemsCount = new int[8];
     [SerializeField] public string[] inventoryUnstackableItems;
     private int inventorySpacesCurrentlyUsed;
+    private string currentItem;
 
     [Header("Health And Debuff")]
     [SerializeField] private int Score;
@@ -158,8 +156,6 @@ public class FirstPersonController : CharacterStats
     void Update()
     {
         currentItem = GetComponentInChildren<ItemSwitching>().getCurrentItemName();
-
-        //if (!isDead) gameOver.SetActive(false);
 
         // Script works only when the game is unpaused
         if (Time.timeScale > 0.9 && !isDead)

@@ -5,7 +5,7 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: -623603649343465320
-    second: Reload
+    second: 'M1911: Reload'
   externalObjects: {}
   materials:
     materialImportMode: 0
@@ -36,7 +36,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Reload
+      name: 'M1911: Reload'
       takeName: Scene
       internalID: 0
       firstFrame: 1

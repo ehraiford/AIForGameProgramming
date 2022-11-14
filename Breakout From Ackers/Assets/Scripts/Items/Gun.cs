@@ -97,7 +97,7 @@ public class Gun : MonoBehaviour
 
 
     //This function creates the bullet behavior
-    IEnumerator Shoot()
+    private IEnumerator Shoot()
     {
         gunAnimator.SetBool("Shooting", true);
         playerAnimator.SetBool("Shooting", true);
@@ -179,7 +179,7 @@ public class Gun : MonoBehaviour
     }
 
     //This function creates a casing at the ejection slot
-    void CasingRelease()
+    private void CasingRelease()
     {
         //Cancels function if ejection slot hasn't been set or there's no casing
         if (!casingExitLocation || !casingPrefab)
@@ -197,7 +197,7 @@ public class Gun : MonoBehaviour
         Destroy(tempCasing, destroyTimer);
     }
 
-    IEnumerator Reload()
+    private IEnumerator Reload()
     {
         // Exit reload if no reserves ammo
         if (currentReservesAmmo == 0) yield break;
