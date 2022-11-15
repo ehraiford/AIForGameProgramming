@@ -7,10 +7,16 @@ public class MedKit : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float healTime = 4f;
 
+    [Header("Object References")]
     [SerializeField] private FirstPersonController playerController;
     [SerializeField] private GameObject itemHandler;
     private Animator playerAnimator;
     public bool isHealing = false;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource medKitAudioSource = default;
+    [SerializeField] private AudioClip zipper = default;
+    [SerializeField] private AudioClip bandage = default;
 
     void Start()
     {
@@ -31,8 +37,16 @@ public class MedKit : MonoBehaviour
         isHealing = true;
         playerAnimator.SetBool("Healing", true);
 
-        // Heals the player
-        yield return new WaitForSeconds(healTime - 0.5f);
+        // Wait for hand to reach MedKit then play zipper sound effect
+        yield return new WaitForSeconds(0.5f);
+        medKitAudioSource.PlayOneShot(zipper);
+
+        // Wait for zipper sound effect to stop then play bandage sound effect
+        yield return new WaitForSeconds(0.5f);
+        medKitAudioSource.PlayOneShot(bandage);
+
+        // Heals the player once animation is done
+        yield return new WaitForSeconds(healTime - 1f);
         playerController.AddHealth(50);
 
         // Finds the MedKit position in the player's inventory
@@ -44,8 +58,6 @@ public class MedKit : MonoBehaviour
 
         // Removes a MedKit from the player's inventory
         playerController.inventoryItemsCount[medKitSlot]--;
-
-        
 
         // Checks if the player runs out of MedKits
         if (playerController.inventoryItemsCount[medKitSlot] > 0) // Player has more MedKits
@@ -60,10 +72,6 @@ public class MedKit : MonoBehaviour
             playerController.inventoryItems[medKitSlot] = "";
             playerController.GetComponentInChildren<ItemSwitching>().NoRemaingingItemsFindNext();
         }
-
-        // TODO: Tune coroutine and animation time
-
-        //yield return new WaitForSeconds(0.5f);
 
         isHealing = false;
     }

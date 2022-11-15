@@ -197,13 +197,21 @@ public class ItemSwitching : MonoBehaviour
 
     public void NoRemaingingItemsFindNext()
     {
+        int maxCheck = 0;
+
+        // Search for next equippable item
         while (!isItemEquippable(selectedItem))
         {
+            if (maxCheck > inventoryItems.Length) break; // If there are no remaining items stop searching
+
             selectedItem++;
 
             if (selectedItem >= inventoryItems.Length - 1) selectedItem = 0;
+
+            maxCheck++;
         }
 
+        // Equip the new item
         StartCoroutine(SelectItem());
     }
 

@@ -207,10 +207,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedItem: 0
+  isSwitching: 0
   ammoUI: {fileID: 0}
   playerController: {fileID: 7350335166596213554}
   playerAnimations: {fileID: 7350335166857782838}
   m1911: {fileID: 7406988083660101512}
+  medKit: {fileID: 8407889991387940512}
 --- !u!1 &1410253418983004007
 GameObject:
   m_ObjectHideFlags: 0
@@ -2326,8 +2328,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7350335166596213555}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -40.121, y: 4.12, z: 15.604}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -40.121, y: 3.94, z: 18.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2932,11 +2934,20 @@ PrefabInstance:
       value: -171.157
       objectReference: {fileID: 0}
     - target: {fileID: 5962657837612288532, guid: a4872ae5e3b5132469ff5eb2cc280f43, type: 3}
+      propertyPath: itemHandler
+      value: 
+      objectReference: {fileID: 1290931975454139164}
+    - target: {fileID: 5962657837612288532, guid: a4872ae5e3b5132469ff5eb2cc280f43, type: 3}
       propertyPath: playerController
       value: 
       objectReference: {fileID: 7350335166596213554}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4872ae5e3b5132469ff5eb2cc280f43, type: 3}
+--- !u!1 &8407889991387940512 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5630911576882066938, guid: a4872ae5e3b5132469ff5eb2cc280f43, type: 3}
+  m_PrefabInstance: {fileID: 4218702252049511258}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8410713028366960520 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5634862639493231826, guid: a4872ae5e3b5132469ff5eb2cc280f43, type: 3}
@@ -2949,6 +2960,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1290931975454139167}
     m_Modifications:
+    - target: {fileID: 3280004324149247641, guid: 47f0794d805a3e14ea35a5808c2e2fc7, type: 3}
+      propertyPath: itemHandler
+      value: 
+      objectReference: {fileID: 1290931975454139164}
     - target: {fileID: 3280004324149247641, guid: 47f0794d805a3e14ea35a5808c2e2fc7, type: 3}
       propertyPath: playerCamera
       value: 
