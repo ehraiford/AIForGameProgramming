@@ -497,6 +497,15 @@ public class FirstPersonController : CharacterStats
             playerAnimations.SetBool("MedKit", false);
         }
 
+        if (currentItem == "Pills") // Pills are equipped
+        {
+            playerAnimations.SetBool("Hands", true);
+        }
+        else
+        {
+            playerAnimations.SetBool("Hands", false);
+        }
+
     }
 
     #endregion
