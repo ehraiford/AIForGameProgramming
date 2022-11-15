@@ -18,6 +18,7 @@ TagManager:
   - Door
   - Menu
   - NormalZombie
+  - Puzzle/Destructable
   layers:
   - Default
   - TransparentFX
