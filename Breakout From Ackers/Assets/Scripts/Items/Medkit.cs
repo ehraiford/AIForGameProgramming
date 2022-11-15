@@ -8,8 +8,9 @@ public class MedKit : MonoBehaviour
     [SerializeField] private float healTime = 4f;
 
     [SerializeField] private FirstPersonController playerController;
+    [SerializeField] private GameObject itemHandler;
     private Animator playerAnimator;
-    private bool isHealing = false;
+    public bool isHealing = false;
 
     void Start()
     {
@@ -19,7 +20,7 @@ public class MedKit : MonoBehaviour
     void Update()
     {
         // Heal
-        if (Input.GetButtonDown("Fire1") && !isHealing)
+        if (Input.GetButtonDown("Fire1") && !isHealing && !itemHandler.GetComponent<ItemSwitching>().isSwitching)
         {
             StartCoroutine(Heal());
         }

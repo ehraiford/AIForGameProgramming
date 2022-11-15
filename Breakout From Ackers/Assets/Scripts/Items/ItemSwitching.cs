@@ -8,11 +8,13 @@ public class ItemSwitching : MonoBehaviour
     private string[] inventoryItems;
     private string[] equippableItems = new string[4];
     private int numItems;
+    public bool isSwitching = false;
 
     [SerializeField] private GameObject ammoUI;
     [SerializeField] private FirstPersonController playerController;
     [SerializeField] private Animator playerAnimations;
     [SerializeField] private GameObject m1911;
+    [SerializeField] private GameObject medKit;
 
     // Start is called before the first frame update
     void Start()
@@ -57,7 +59,7 @@ public class ItemSwitching : MonoBehaviour
         else // Player has multiple equippable items
         {
             // Doesn't allow the player to swap if they are in the middle of shooting or reloading
-            if(!(m1911.GetComponent<Gun>().isShooting || m1911.GetComponent<Gun>().isReloading))
+            if(!(m1911.GetComponent<Gun>().isShooting || m1911.GetComponent<Gun>().isReloading || medKit.GetComponent<MedKit>().isHealing))
             {
                 HandleMouseWheelInput();
                 HandleNumberInput();
@@ -93,6 +95,8 @@ public class ItemSwitching : MonoBehaviour
 
     private IEnumerator SelectItem()
     {
+        isSwitching = true;
+
         // Updates the current item's name to the new item
         foreach (Transform item in transform)
         {
@@ -117,6 +121,8 @@ public class ItemSwitching : MonoBehaviour
                 item.gameObject.SetActive(false);
             }
         }
+
+        isSwitching = false;
     }
 
     private void HandleMouseWheelInput()
@@ -124,6 +130,8 @@ public class ItemSwitching : MonoBehaviour
         // Handles mousewheele up
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
+            isSwitching = true;
+
             // Moves up through the inventory and loops back to the begining if necessary
             if (selectedItem >= inventoryItems.Length - 1)
                 selectedItem = 0;
