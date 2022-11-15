@@ -87,5 +87,17 @@ public class Door : Interactable
     {
         
     }
+    //For enemy (mainly stalker boss) to open doors
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag.Contains("Reach") && !isOpen)
+        {
+            isOpen = true;
+            Debug.Log("DOOR OPEN");
+            door.Play("Door2_Open");
+            Debug.Log(objName.ToString());
+            doorSound.Play();
+        }
+    }
 
 }

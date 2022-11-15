@@ -19,6 +19,8 @@ TagManager:
   - Menu
   - NormalZombie
   - Puzzle/Destructable
+  - BossReach
+  - Boss
   layers:
   - Default
   - TransparentFX

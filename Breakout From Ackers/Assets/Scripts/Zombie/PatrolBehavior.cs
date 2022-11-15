@@ -6,12 +6,16 @@ public class PatrolBehavior : StateMachineBehaviour
     float timer;
     List<Transform> wayPoints = new List<Transform>();
     NavMeshAgent agent;
-
+    float TimeToIdle; // Duration of patrolling
     Transform player;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         timer = 0;
+        if (animator.name == "Zombie Mutant")
+            TimeToIdle = 30f;
+        else
+            TimeToIdle = 10f;
         //Get the parent object (aka the room they are in)
         GameObject parent = animator.transform.parent.parent.parent.gameObject;
         //Debug.Log(parent.name);
@@ -45,7 +49,7 @@ public class PatrolBehavior : StateMachineBehaviour
             agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
         timer += Time.deltaTime;
         //Go back to idle
-        if (timer > 10)
+        if (timer > TimeToIdle)
         {
             animator.SetBool("isPatrolling", false);
         }
