@@ -66,15 +66,15 @@ public class Knife : MonoBehaviour
             // Plays audio depending on what is hit
             if(hit.collider.CompareTag("Zombie/Head") || hit.collider.CompareTag("Zombie/Head") || hit.collider.CompareTag("Zombie/Legs"))
             {
-
+                knifeAudioSource.PlayOneShot(slashEnemy);
             }
             else if(hit.collider.CompareTag("Object"))
             {
-
+                knifeAudioSource.PlayOneShot(slashObject);
             }
             else
             {
-
+                knifeAudioSource.PlayOneShot(slashAir);
             }
         }
 

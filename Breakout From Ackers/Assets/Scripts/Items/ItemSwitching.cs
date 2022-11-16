@@ -10,12 +10,16 @@ public class ItemSwitching : MonoBehaviour
     private int numItems;
     public bool isSwitching = false;
 
+    [Header("Object References")]
     [SerializeField] private GameObject ammoUI;
     [SerializeField] private FirstPersonController playerController;
     [SerializeField] private Animator playerAnimations;
+
+    [Header("Item References")]
     [SerializeField] private GameObject m1911;
     [SerializeField] private GameObject medKit;
     [SerializeField] private GameObject pills;
+    [SerializeField] private GameObject knife;
 
     // Start is called before the first frame update
     void Start()
@@ -63,8 +67,8 @@ public class ItemSwitching : MonoBehaviour
         }
         else // Player has multiple equippable items
         {
-            // Doesn't allow the player to swap if they are in the middle of shooting or reloading
-            if(!(m1911.GetComponent<Gun>().isShooting || m1911.GetComponent<Gun>().isReloading || medKit.GetComponent<MedKit>().isHealing || pills.GetComponent<Pills>().isPopping))
+            // Doesn't allow the player to swap if they are in the middle of using an item
+            if(!(m1911.GetComponent<Gun>().isShooting || m1911.GetComponent<Gun>().isReloading || medKit.GetComponent<MedKit>().isHealing || pills.GetComponent<Pills>().isPopping || knife.GetComponent<Knife>().isAttacking))
             {
                 HandleMouseWheelInput();
                 HandleNumberInput();
