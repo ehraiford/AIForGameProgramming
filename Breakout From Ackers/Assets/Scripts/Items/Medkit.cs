@@ -5,7 +5,7 @@ using UnityEngine;
 public class MedKit : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private float healTime = 4f;
+    private float healTime = 4f;
 
     [Header("Object References")]
     [SerializeField] private FirstPersonController playerController;
@@ -46,7 +46,7 @@ public class MedKit : MonoBehaviour
         medKitAudioSource.PlayOneShot(bandage);
 
         // Heals the player once animation is done
-        yield return new WaitForSeconds(healTime - 1f);
+        yield return new WaitForSeconds(healTime - 2f);
         playerController.AddHealth(50);
 
         // Finds the MedKit position in the player's inventory
@@ -70,7 +70,6 @@ public class MedKit : MonoBehaviour
         {
             playerAnimator.SetBool("RemainingMedKit", false);
             playerAnimator.SetBool("Healing", false);
-            playerController.inventoryItems[medKitSlot] = "";
             playerController.GetComponentInChildren<ItemSwitching>().NoRemaingingItemsFindNext();
         }
         
