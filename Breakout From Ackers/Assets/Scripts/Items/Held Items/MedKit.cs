@@ -25,11 +25,20 @@ public class MedKit : MonoBehaviour
 
     void Update()
     {
-        // Heal
-        if (Input.GetButtonDown("Fire1") && !isHealing && !itemHandler.GetComponent<ItemSwitching>().isSwitching)
+        if (Time.timeScale > 0.9)
         {
-            StartCoroutine(Heal());
+            // Heal
+            if (Input.GetButtonDown("Fire1") && !isHealing && !itemHandler.GetComponent<ItemSwitching>().isSwitching)
+            {
+                StartCoroutine(Heal());
+            }
         }
+    }
+
+    void OnEnable()
+    {
+        // Handles the case where you switch items while reloading
+        isHealing = false;
     }
 
     private IEnumerator Heal()

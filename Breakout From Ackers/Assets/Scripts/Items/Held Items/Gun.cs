@@ -59,7 +59,7 @@ public class Gun : MonoBehaviour
 
     void OnEnable()
     {
-        // Handles the case where you switch weapons while reloading
+        // Handles the case where you switch items while reloading
         isReloading = false;
     }
 

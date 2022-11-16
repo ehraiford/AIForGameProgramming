@@ -26,11 +26,20 @@ public class Pills : MonoBehaviour
 
     void Update()
     {
-        // Heal
-        if (Input.GetButtonDown("Fire1") && !isPopping && !itemHandler.GetComponent<ItemSwitching>().isSwitching)
+        if (Time.timeScale > 0.9)
         {
-            StartCoroutine(Pop());
-        }
+            // Pop pill
+            if (Input.GetButtonDown("Fire1") && !isPopping && !itemHandler.GetComponent<ItemSwitching>().isSwitching)
+            {
+                StartCoroutine(Pop());
+            }
+        } 
+    }
+
+    void OnEnable()
+    {
+        // Handles the case where you switch items while using
+        isPopping = false;
     }
 
     private IEnumerator Pop()
@@ -75,7 +84,6 @@ public class Pills : MonoBehaviour
         {
             playerAnimator.SetBool("RemainingPills", false);
             playerAnimator.SetBool("Popping", false);
-            yield return new WaitForSeconds(1f);
             playerController.GetComponentInChildren<ItemSwitching>().NoRemaingingItemsFindNext();
         }
 
