@@ -7,9 +7,15 @@ public class ChaseBehavior : StateMachineBehaviour
 {
     NavMeshAgent agent;
     Transform player;
+    AudioSource bossFootSteps;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (animator.name == "Zombie Mutant")
+        {
+            bossFootSteps = animator.GetComponent<AudioSource>();
+            bossFootSteps.Play();
+        }
         agent = animator.GetComponentInParent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }

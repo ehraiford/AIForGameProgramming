@@ -8,12 +8,17 @@ public class PatrolBehavior : StateMachineBehaviour
     NavMeshAgent agent;
     float TimeToIdle; // Duration of patrolling
     Transform player;
+    AudioSource bossFootSteps;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         timer = 0;
         if (animator.name == "Zombie Mutant")
+        {
             TimeToIdle = 30f;
+            bossFootSteps = animator.GetComponent<AudioSource>();
+            bossFootSteps.Play();
+        }
         else
             TimeToIdle = 10f;
         //Get the parent object (aka the room they are in)
