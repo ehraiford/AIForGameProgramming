@@ -6,14 +6,10 @@ using UnityEngine;
 public class passThroughDoorScript : MonoBehaviour
 {
 
-    public bool firstCollider, secondCollider;
+    private bool firstCollider, secondCollider;
     [SerializeField] string firstRoomName, secondRoomName;
     [SerializeField] GameObject roomInfo;
-    public int cameFromFirstSecondNone;
-    private void Update()
-    {
-        
-    }
+    private int cameFromFirstSecondNone;
 
     internal void colliderEntered(bool isFirst)
     {
