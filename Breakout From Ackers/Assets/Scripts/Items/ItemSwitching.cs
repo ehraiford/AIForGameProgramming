@@ -27,6 +27,10 @@ public class ItemSwitching : MonoBehaviour
 
         // Create array of all equippable items
         setEquippableItems();
+
+        // Start player with empty hands
+        selectedItem = 0;
+        currentItemName = "Hands";
     }
 
     // Update is called once per frame
