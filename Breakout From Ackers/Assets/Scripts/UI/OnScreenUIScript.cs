@@ -131,22 +131,25 @@ public class OnScreenUIScript : MonoBehaviour
 
     private void DisplayInventoryItems()
     {
-        int activeItemCount = firstPersonController.GetComponent<FirstPersonController>().GetInventorySpaceCurrentlyUsed();
-        //iterates over every item in inventory
-        for(int i = 0; i < firstPersonController.GetComponent<FirstPersonController>().inventoryItems.Length; i++)
+        int displaySpot = 0;
+        //iterates over every inventory spot
+        for (int i = 0; i < 8; i++)
         {
-            if(i < activeItemCount)
+            if (firstPersonController.GetComponent<FirstPersonController>().inventoryItems[i].CompareTo("") != 0)
             {
-                inventoryTempText[i].text = firstPersonController.GetComponent<FirstPersonController>().inventoryItems[i];
-                if (!inventoryTempText[i].text.Contains("Key") && inventoryTempText[i].text.CompareTo("M1911") != 0)
+
+
+                inventoryTempText[displaySpot].text = firstPersonController.GetComponent<FirstPersonController>().inventoryItems[i];
+                if (inventoryTempText[displaySpot].text.Contains("Ammo") || inventoryTempText[displaySpot].text.CompareTo("Blue Mass Pills") == 0)
                 {
-                    inventoryTempText[i].text += " (" + firstPersonController.GetComponent<FirstPersonController>().inventoryItemsCount[i] + ")";
+                    inventoryTempText[displaySpot].text += " (" + firstPersonController.GetComponent<FirstPersonController>().inventoryItemsCount[i] + ")";
                 }
+                displaySpot++;
             }
-            else
-            {
-                inventoryTempText[i].text = "";
-            }
+        }
+        for( ; displaySpot < 8; displaySpot++)
+        {
+            inventoryTempText[displaySpot].text = "";
         }
     }
 
