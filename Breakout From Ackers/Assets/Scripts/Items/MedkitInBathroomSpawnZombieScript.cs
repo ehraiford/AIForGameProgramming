@@ -76,7 +76,7 @@ public class MedkitInBathroomSpawnZombieScript : Interactable
       
         foyerDoor.GetComponent<Door>().isLocked = false; //unlock door to foyer
         foyerDoor.GetComponent<Door>().door.Play("Door2_Open"); //open door to foyer
-        foyerDoor.GetComponent<Door>().isOpen = false;
+        foyerDoor.GetComponent<Door>().isOpen = true;
 
 
         medKit.SetActive(false);
