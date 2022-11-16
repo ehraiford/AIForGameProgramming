@@ -497,13 +497,13 @@ public class FirstPersonController : CharacterStats
             playerAnimations.SetBool("MedKit", false);
         }
 
-        if (currentItem == "Pills") // Pills are equipped
+        if (currentItem == "Blue Mass Pills") // Pills are equipped
         {
-            playerAnimations.SetBool("Hands", true);
+            playerAnimations.SetBool("Blue Mass Pills", true);
         }
         else
         {
-            playerAnimations.SetBool("Hands", false);
+            playerAnimations.SetBool("Blue Mass Pills", false);
         }
 
     }
@@ -680,7 +680,7 @@ public class FirstPersonController : CharacterStats
             inventoryItemsCount[spot] = 0;
             inventoryItems[spot] = "";
             inventorySpacesCurrentlyUsed--;
-            reorganizeInventory();
+            //reorganizeInventory();
             return removeAmount;
         }
         else

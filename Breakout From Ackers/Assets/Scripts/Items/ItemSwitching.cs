@@ -77,7 +77,7 @@ public class ItemSwitching : MonoBehaviour
     {
         equippableItems[0] = "M1911";
         equippableItems[1] = "MedKit";
-        equippableItems[2] = "Pills";
+        equippableItems[2] = "Blue Mass Pills";
         equippableItems[3] = "Knife";
     }
 
