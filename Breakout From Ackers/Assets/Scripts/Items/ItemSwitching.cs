@@ -35,6 +35,8 @@ public class ItemSwitching : MonoBehaviour
         // Start player with empty hands
         selectedItem = 0;
         currentItemName = "Hands";
+
+        StartCoroutine(SelectItem());
     }
 
     // Update is called once per frame
@@ -68,7 +70,7 @@ public class ItemSwitching : MonoBehaviour
         else // Player has multiple equippable items
         {
             // Doesn't allow the player to swap if they are in the middle of using an item
-            if(!(m1911.GetComponent<Gun>().isShooting || m1911.GetComponent<Gun>().isReloading || medKit.GetComponent<MedKit>().isHealing || pills.GetComponent<Pills>().isPopping || knife.GetComponent<Knife>().isAttacking))
+            if(!(m1911.GetComponent<Gun>().isShooting || m1911.GetComponent<Gun>().isReloading || medKit.GetComponent<MedKit>().isHealing || pills.GetComponent<Pills>().isPopping)) // || knife.GetComponent<Knife>().isAttacking
             {
                 HandleMouseWheelInput();
                 HandleNumberInput();

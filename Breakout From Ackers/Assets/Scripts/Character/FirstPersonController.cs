@@ -506,7 +506,7 @@ public class FirstPersonController : CharacterStats
             playerAnimations.SetBool("Blue Mass Pills", false);
         }
 
-        if (currentItem == "Knife") // Pills are equipped
+        if (currentItem == "Knife") // Knife is equipped
         {
             playerAnimations.SetBool("Knife", true);
         }
