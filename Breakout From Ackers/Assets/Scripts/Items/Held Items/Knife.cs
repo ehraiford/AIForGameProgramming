@@ -11,7 +11,7 @@ public class Knife : MonoBehaviour
     private Animator playerAnimator;
 
     [Header("Settings")]
-    [SerializeField] private float attackSpeed = 1f;
+    [SerializeField] private float attackSpeed = 0.5f;
     public bool isAttacking = false;
 
     [Header("Audio")]
@@ -50,6 +50,11 @@ public class Knife : MonoBehaviour
         isAttacking = true;
         playerAnimator.SetBool("Meleeing", true);
 
+        // Randomizes the animation
+        float attackVal = Random.Range(0f, 1f);
+        if (attackVal < 0.5) playerAnimator.SetFloat("Attack Value", attackVal);
+        else if (attackVal > 0.5) playerAnimator.SetFloat("Attack Value", attackVal);
+
         RaycastHit hit;
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 1))
         {
@@ -82,7 +87,7 @@ public class Knife : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         playerAnimator.SetBool("Meleeing", false);
 
-        yield return new WaitForSeconds(attackSpeed);
+        //yield return new WaitForSeconds(attackSpeed - 0.3f);
         isAttacking = false;
     }
 }
