@@ -657,9 +657,9 @@ public class FirstPersonController : CharacterStats
         else if( inventorySpacesCurrentlyUsed < 8)
         {
             Debug.Log("Added item to a new spot in the inventory.");
-
-            inventoryItems[inventorySpacesCurrentlyUsed] = itemName;
-            inventoryItemsCount[inventorySpacesCurrentlyUsed] = itemCount;
+            int openSpot = findOpenSpot();
+            inventoryItems[openSpot] = itemName;
+            inventoryItemsCount[openSpot] = itemCount;
             inventorySpacesCurrentlyUsed++;
             onscreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Picked up " + itemName + ".");
             return true;
@@ -670,6 +670,18 @@ public class FirstPersonController : CharacterStats
             onscreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Cannot pick up item. Inventory full.");
             return false;
         }
+    }
+
+    private int findOpenSpot()
+    {
+        for(int i = 0; i < 8; i++)
+        {
+            if (inventoryItems[i].CompareTo("") == 0)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
     //checks the inventory for an item corresponding to the string given and removes the item count given.
