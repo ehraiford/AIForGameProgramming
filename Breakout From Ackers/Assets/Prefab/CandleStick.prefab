@@ -14524,6 +14524,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flame: {fileID: 5746910658778416736}
+  timeToOff: 100
+  randMax: 100
+  threshold: 50
+  startingState: 0
+  ChangeDiffScore: 2
 --- !u!65 &7854420626769860153
 BoxCollider:
   m_ObjectHideFlags: 0

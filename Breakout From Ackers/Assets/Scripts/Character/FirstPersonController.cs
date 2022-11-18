@@ -618,20 +618,20 @@ public class FirstPersonController : CharacterStats
     public float diffcultyValue()
     {
         // The Player is doing well Penalize them
-        if (Score > 110)
+        if (Score > 120)
             return 1.2f;
         // The Player is doing normal Don't do anything
-        else if (110 > Score && Score > 90)
+        else if (120 > Score && Score > 80)
             return 1f;
         // The Player is doing bad Help them
-        else if (90 > Score)
+        else if (80 > Score)
             return .8f;
 
         //Should never get to here but 
         return 1f;
     }
     //This function changes the score via how many times a player heals and got hit
-    private void scoreAdjustment(int value)
+    public void scoreAdjustment(int value)
     {
         //Clamp the score
         Score = Score + value;

@@ -15,6 +15,7 @@ public class LightCandles : Interactable
     [SerializeField] bool startingState = false;
     FirstPersonController FPC; //first person controller
     float DD; //Dynamic Difficulty value
+    [SerializeField] int ChangeDiffScore;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +61,8 @@ public class LightCandles : Interactable
             {
                 canTurnOff = true;
             }
+            //Increase the difficulty for the player
+            FPC.scoreAdjustment(ChangeDiffScore);
         }
         
     }
