@@ -24,7 +24,7 @@ public class BearStatueInteract : Interactable
     {
         if (FPC.RemoveInventoryItem(KeyName, 1) == 1)
         {
-            onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Gave the bear the " + KeyName + " and it dropped something...");
+            onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("The fish dislodged a key and it fell to the floor.");
             //TODO:Play some kind of sound
         }
         else
@@ -36,8 +36,7 @@ public class BearStatueInteract : Interactable
             }
             else
             {
-                onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Hmm looks like something can fit in the bears mouth..." +
-                    "\nMaybe there is something in the kitchen. ");
+                onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("A large statue of a bear with a gaping mouth.\nSomething might fit it.");
             }
         }
     }

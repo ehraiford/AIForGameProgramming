@@ -19,12 +19,16 @@ Inside, we both know what's been going on (going on)
 We know the game and we're gonna play it
 *
 Text 2
-This is yet again a completely different string.
-We also support multiple paragraphs. 
+Hey. Sorry to leave you all alone like this. But if you're reading this, that means you're at least feeling well enough again to walk about.
 
-I know.
+I'm not really sure what happened but I think one of the privates mixed up some of their pills with with ones the old owner left in the house. A couple of hours later and all things went to hell. He went off and starting attacking the other patients. Acted like he lost his mind. 
 
-So Cool.
+It's been a few hours now and I don't hear much out there besides a couple of groans every once in a while. I'm gonna go out and see if I can find anybody still alright out there. If I'm not back before you read this, I've left a gun for you on the table to your left. The key to the door is back behind you.
+
+Hopefully, I'll be back before you even can get up and see this. If not, get to the foyer and use the large door to get out of here. 
+
+		- Alberto
+
 *
 Text 3
 
@@ -54,9 +58,7 @@ It's an old chest he got years ago, back in the "good" days. It was from when he
 I think it'll be fine for us to use.
 *
 Text 5
-Acker has gotten... strange these last few months. Occasionally, he would order us to randomly scatter these little statues around the second floor.
-This time, he had me hide 3 statues.
-He wouldn't tell us what they were for, but he often destroys them and  disappears for a few hours... Where could he have gone?
+
 *
 Text 6
 My secrets are mine and mine alone. 

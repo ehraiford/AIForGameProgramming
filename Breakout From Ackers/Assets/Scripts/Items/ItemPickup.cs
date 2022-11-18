@@ -8,10 +8,15 @@ public class ItemPickup : Interactable
 
     [SerializeField] int itemCount;
     [SerializeField] string itemName;
-    [SerializeField] GameObject firstPersonController;
     [SerializeField] bool itemCountAffectedByScore;
     [SerializeField] private bool destroyOnInteract = true;
     private bool alreadyPickedUp = false;
+    private GameObject firstPersonController;
+
+    private void Start()
+    {
+        firstPersonController = GameObject.FindGameObjectWithTag("Player");
+    }
     public override void OnFocus()
     {
       
@@ -19,24 +24,26 @@ public class ItemPickup : Interactable
 
     public override void OnInteract()
     {
-        int adjustedItemCount = itemCount;
+       
+            int adjustedItemCount = itemCount;
 
-        //alters item pickup count dependent on player score if bool is true
-        if (itemCountAffectedByScore)
-        {
-            float denominator = firstPersonController.GetComponent<FirstPersonController>().diffcultyValue();
-            
-           
-            adjustedItemCount = (int)((float)adjustedItemCount / denominator);
-           
-        }
-        if (!alreadyPickedUp && firstPersonController.GetComponent<FirstPersonController>().AddInventoryItem(itemName, adjustedItemCount))
-        {
-            alreadyPickedUp = true;
-            if(destroyOnInteract)
-                Destroy(gameObject);
-        }
-            
+            //alters item pickup count dependent on player score if bool is true
+            if (itemCountAffectedByScore)
+            {
+                float denominator = firstPersonController.GetComponent<FirstPersonController>().diffcultyValue();
+
+
+                adjustedItemCount = (int)((float)adjustedItemCount / denominator);
+
+            }
+            if (!alreadyPickedUp && firstPersonController.GetComponent<FirstPersonController>().AddInventoryItem(itemName, adjustedItemCount))
+            {
+                alreadyPickedUp = true;
+                if (destroyOnInteract)
+                    Destroy(gameObject);
+            }
+        
+       
     }
 
     public override void OnLoseFocus()
