@@ -568,8 +568,9 @@ public class FirstPersonController : CharacterStats
         isDead = true;
         currentHealth = 0;
         gameOver.SetActive(true);
-        gameOver.GetComponent<GameOverScript>().timePassed = Time.realtimeSinceStartup;
-        Time.timeScale = 0.0f;
+        gameOver.GetComponent<GameOverScript>().timePassed = Time.time;
+        gameOver.GetComponent<GameOverScript>().movePlayerOutOfThePlaySpace();
+
     }
 
     protected override void ApplyDamage(float dmg)
