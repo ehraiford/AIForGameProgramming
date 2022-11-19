@@ -77,4 +77,9 @@ public class LightCandles : Interactable
         unlit = !onOff;
         //canTurnOff = onOff;
     }
+
+    public bool GetLightingState()
+    {
+        return !unlit;
+    }
 }

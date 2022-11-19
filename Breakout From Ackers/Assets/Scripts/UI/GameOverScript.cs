@@ -34,7 +34,6 @@ public class GameOverScript : MonoBehaviour
         if (secondAlpha > 1.0f)
             secondAlpha = 1.0f;
 
-        Debug.Log(Time.realtimeSinceStartup - timePassed);
 
         //switch case handles the opacity changes of the text and then restarts time and removes the death screen after 18 seconds
         switch(Time.realtimeSinceStartup - timePassed)
