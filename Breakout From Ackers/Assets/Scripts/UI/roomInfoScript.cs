@@ -9,12 +9,14 @@ public class roomInfoScript : MonoBehaviour
     [SerializeField] float fadeInTime, stayTime, fadeOutTime;
     public static bool fadeRoomText = false;
     private float fadeTimer = 0;
+    private GameObject onScreenUI;
 
     // Start is called before the first frame update
     void Start()
     {
-        roomInfoText.color = new Color(255, 255, 255, 255);
-        setRoomInfoText("Starting Room");
+        roomInfoText.color = new Color(1, 1, 1, 0);
+        onScreenUI = GameObject.Find("On Screen UI");
+
     }
 
     // Update is called once per frame
@@ -48,5 +50,6 @@ public class roomInfoScript : MonoBehaviour
         roomInfoText.text = newRoomText;
         fadeRoomText = true;
         fadeTimer = Time.time;
+        onScreenUI.GetComponent<OnScreenUIScript>().currentRoom.text = newRoomText;
     }
 }

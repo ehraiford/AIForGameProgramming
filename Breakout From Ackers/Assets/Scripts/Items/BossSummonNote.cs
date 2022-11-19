@@ -12,8 +12,7 @@ public class BossSummonNote : Interactable
     [SerializeField] int fontNumber;
     [SerializeField] GameObject boss;
     public override void OnFocus()
-    {
-        
+    {  
     }
 
     public override void OnInteract()
@@ -21,6 +20,7 @@ public class BossSummonNote : Interactable
         boss.SetActive(true);
         Debug.Log("Item Has been Interacted with");
         OnScreenUI.GetComponent<OnScreenUIScript>().OpenNote(noteNumber, fontNumber);
+        OnScreenUI.GetComponent<OnScreenUIScript>().SetCurrentObjective(4);
         audioSource.Play();
     }
 
@@ -32,8 +32,6 @@ public class BossSummonNote : Interactable
     void Start()
     {
         OnScreenUI = GameObject.Find("On Screen UI");
-
-
     }
 
 }

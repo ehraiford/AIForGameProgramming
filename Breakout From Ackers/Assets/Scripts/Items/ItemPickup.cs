@@ -10,12 +10,16 @@ public class ItemPickup : Interactable
     [SerializeField] string itemName;
     [SerializeField] bool itemCountAffectedByScore;
     [SerializeField] private bool destroyOnInteract = true;
+    [SerializeField] bool setObjective = false;
+    [SerializeField] int objectiveNumber = 0;
     private bool alreadyPickedUp = false;
     private GameObject firstPersonController;
+    private GameObject onScreenUI;
 
     private void Start()
     {
         firstPersonController = GameObject.FindGameObjectWithTag("Player");
+        onScreenUI = GameObject.FindGameObjectWithTag("Menu");
     }
     public override void OnFocus()
     {
@@ -25,23 +29,23 @@ public class ItemPickup : Interactable
     public override void OnInteract()
     {
        
-            int adjustedItemCount = itemCount;
+        int adjustedItemCount = itemCount;
 
-            //alters item pickup count dependent on player score if bool is true
-            if (itemCountAffectedByScore)
-            {
-                float denominator = firstPersonController.GetComponent<FirstPersonController>().diffcultyValue();
+        //alters item pickup count dependent on player score if bool is true
+        if (itemCountAffectedByScore)
+        {
+            float denominator = firstPersonController.GetComponent<FirstPersonController>().diffcultyValue();
+            adjustedItemCount = (int)((float)adjustedItemCount / denominator);
+        }
 
+        if (setObjective && !alreadyPickedUp) onScreenUI.GetComponent<OnScreenUIScript>().SetCurrentObjective(objectiveNumber);
 
-                adjustedItemCount = (int)((float)adjustedItemCount / denominator);
-
-            }
-            if (!alreadyPickedUp && firstPersonController.GetComponent<FirstPersonController>().AddInventoryItem(itemName, adjustedItemCount))
-            {
-                alreadyPickedUp = true;
-                if (destroyOnInteract)
-                    Destroy(gameObject);
-            }
+        if (!alreadyPickedUp && firstPersonController.GetComponent<FirstPersonController>().AddInventoryItem(itemName, adjustedItemCount))
+        {
+            alreadyPickedUp = true;
+            if (destroyOnInteract)
+                Destroy(gameObject);
+        }
         
        
     }

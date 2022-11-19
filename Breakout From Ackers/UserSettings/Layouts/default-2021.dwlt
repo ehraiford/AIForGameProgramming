@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 43379
+  controlID: 15873
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 43323
+  controlID: 15936
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 43283
+  controlID: 15874
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -242,8 +242,8 @@ MonoBehaviour:
     y: 0
     width: 1052
     height: 510
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 43251
+  controlID: 15875
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -294,8 +294,8 @@ MonoBehaviour:
     y: 0
     width: 701
     height: 437
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -392,7 +392,7 @@ MonoBehaviour:
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
-  m_EnterPlayModeBehavior: 0
+  m_EnterPlayModeBehavior: 1
   m_UseMipMap: 0
   m_VSyncEnabled: 0
   m_Gizmos: 0
@@ -476,10 +476,10 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 4e0bf9ffa068f9ff6216fbfff4bcfcff8ec0fcff8ec6fcff48cbfcff3ad1fcffe4e1fcffcce5fcff82effcff68f3fcff66f8fcff8835fdff32f7fdff94f7fdff6a84feff8684feffd2e2feff0afbffffeee3000096e400005ee600007ae7000066ec00008af600009af80000e0fe000000030100080a01008a0a0100340e0100be0e01003e110100c2110100f41101005e1c0100261d0100381d0100da1e010048200100822701005629010092300100403d01005e3d0100803e01005e3f0100fa3f01001441010058410100ec410100204301004a43010080430100a443010072722a00a6782a00e2962a00
+      scrollPos: {x: 0, y: 4845}
+      m_SelectedIDs: b0a2ffff
+      m_LastClickedID: -23888
+      m_ExpandedIDs: 64dafeff62e9feff20f2feff34f2feff3cf2feff3af8feff56f8feff0afbffff70600000fe60000070610000ce64000048660000e467000056690000be6b0000526d0000626d0000a46f00009e700000b2730000be7400008a750000d2790000367e00008a82000064850000028600002a860000f68700000e88000054880000188d0000ea8e0000148f000052920000f2930000bc9b00006e9f000016a3000064a7000094a900007caa000054ac000028b000006eb000002cb5000066b600006cb70000a8b8000034b9000018bc00009cbc000070bd000004be0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -544,23 +544,23 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefab
+    - Assets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Prefab
+  - Assets
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\Evan Raiford\Documents\GitHub\AIForGameProgramming\Breakout
     From Ackers
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 23}
-    m_SelectedIDs: b8d00000
-    m_LastClickedID: 53432
-    m_ExpandedIDs: 000000008cd000008ed0000090d00000a0d00000c4d0000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: fcd20000
+    m_LastClickedID: 54012
+    m_ExpandedIDs: 00000000e2d20000e4d20000e6d20000e8d2000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -588,7 +588,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000008cd000008ed0000090d00000c4d0000000ca9a3b
+    m_ExpandedIDs: 00000000e2d20000e4d20000e6d20000e8d2000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -640,7 +640,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 66}
     m_GridSize: 16
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207
@@ -869,9 +869,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -36.429173, y: 7.5469995, z: -22.90391}
+    m_Target: {x: -48.694447, y: 0.20923185, z: -13.173531}
     speed: 2
-    m_Value: {x: -36.429173, y: 7.5469995, z: -22.90391}
+    m_Value: {x: -48.694447, y: 0.20923185, z: -13.173531}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -918,13 +918,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.36228037, y: -0.08398041, z: 0.033216592, w: -0.92777884}
+    m_Target: {x: -0.3255926, y: 0.2585959, z: -0.09266816, w: -0.9048405}
     speed: 2
-    m_Value: {x: -0.36224836, y: -0.08397299, z: 0.033213656, w: -0.9276969}
+    m_Value: {x: -0.3255926, y: 0.2585959, z: -0.09266816, w: -0.9048405}
   m_Size:
-    m_Target: 0.2177469
+    m_Target: 4.398173
     speed: 2
-    m_Value: 0.2177469
+    m_Value: 4.398173
   m_Ortho:
     m_Target: 0
     speed: 2

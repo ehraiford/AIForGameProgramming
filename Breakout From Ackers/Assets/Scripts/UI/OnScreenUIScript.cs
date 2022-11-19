@@ -23,12 +23,13 @@ public class OnScreenUIScript : MonoBehaviour
 
    
     public TextMeshProUGUI notePanelText;
-    
 
+    [Header("Inventory Screen Stuff")]
     [SerializeField] private TextMeshProUGUI[] inventoryTempText;
     [SerializeField] private float[] lowerHealthThreshold = new float[4];
     [SerializeField] private Color healthIndicatorColor;
     [SerializeField] private Image healthIndicator;
+    public TextMeshProUGUI currentRoom;
     [SerializeField] private TMP_FontAsset[] fontsForNotes;
 
     [Header("Objective Stuff")] 
@@ -55,7 +56,7 @@ public class OnScreenUIScript : MonoBehaviour
         health = firstPersonController.GetComponent<FirstPersonController>().GetCurrentHealth();
 
         SetCurrentObjective(0);
-       
+        currentRoom.text = "Temporary Hospital";
 
     }
     
@@ -204,7 +205,6 @@ public class OnScreenUIScript : MonoBehaviour
     public void SetCurrentObjective(int objectiveNumber)
     {
         objective.text = objectiveList[objectiveNumber];
-        SetHeadsUpText(objectiveList[objectiveNumber]);
     }
     #endregion
 
