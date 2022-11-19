@@ -20,7 +20,7 @@ public class PatrolBehavior : StateMachineBehaviour
             bossFootSteps.Play();
         }
         else
-            TimeToIdle = 10f;
+            TimeToIdle = Random.Range(0f, 10f);
         //Get the parent object (aka the room they are in)
         GameObject parent = animator.transform.parent.parent.parent.gameObject;
         //Debug.Log(parent.name);
