@@ -16,6 +16,8 @@ public class LightCandles : Interactable
     FirstPersonController FPC; //first person controller
     float DD; //Dynamic Difficulty value
     [SerializeField] int ChangeDiffScore;
+    //Zombies Parent object
+    [SerializeField] GameObject EnemyParent;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,8 +65,22 @@ public class LightCandles : Interactable
             }
             //Increase the difficulty for the player
             FPC.scoreAdjustment(ChangeDiffScore);
+            //Increase the Zombies POV radius
+            if(EnemyParent != null)
+            {
+                foreach(Transform child in EnemyParent.transform)
+                {
+                    changeFovRadius(child);
+                }
+            }
+
         }
         
+    }
+
+    private void changeFovRadius(Transform enemy)
+    {
+        enemy.GetComponent<FOV>().radius += .2f;
     }
 
     public override void OnLoseFocus()
