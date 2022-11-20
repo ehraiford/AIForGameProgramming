@@ -17,7 +17,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private Transform casingExitLocation;
 
     [Header("Object References")]
-    [SerializeField] private GameObject playerController;
+    [SerializeField] private FirstPersonController playerController;
     [SerializeField] private GameObject playerCamera;
     [SerializeField] private GameObject itemHandler;
     private Animator playerAnimator;
@@ -43,9 +43,14 @@ public class Gun : MonoBehaviour
     public bool isReloading = false;
     public bool isShooting = false;
 
+    private string[] inventoryItems;
+    private int ammoSlot;
+
     void Start()
     {
         playerAnimator = playerController.GetComponentInChildren<Animator>();
+
+        inventoryItems = playerController.inventoryItems;
 
         if (barrelLocation == null)
             barrelLocation = transform;
@@ -54,7 +59,7 @@ public class Gun : MonoBehaviour
             gunAnimator = GetComponentInChildren<Animator>();
 
         currentMagAmmo = maxMagAmmo;
-        currentReservesAmmo = maxReservesAmmo;
+        currentReservesAmmo = getReservesAmmo();
     }
 
     void OnEnable()
@@ -67,9 +72,11 @@ public class Gun : MonoBehaviour
     {
         if (Time.timeScale > 0.9)
         {
+            // Fetches ammo from inventory
+            currentReservesAmmo = getReservesAmmo();
+
             // Can't use the gun while reloading or mid shot
             if (isReloading) return;
-
             if (isShooting) return;
 
             // Automatically reloads when the gun runs out of ammo and there is ammo in reserves
@@ -127,11 +134,11 @@ public class Gun : MonoBehaviour
         // Calculates inaccuracy based on how fast the player is moving
         float inaccuracy = 0.0f;
 
-        if (playerController.GetComponent<FirstPersonController>().getCurrentMovement() == "Sprinting")
+        if (playerController.getCurrentMovement() == "Sprinting")
             inaccuracy = 0.5f;
-        else if (playerController.GetComponent<FirstPersonController>().getCurrentMovement() == "Walking")
+        else if (playerController.getCurrentMovement() == "Walking")
             inaccuracy = 0.25f;
-        else if (playerController.GetComponent<FirstPersonController>().getCurrentMovement() == "Crouch Walking")
+        else if (playerController.getCurrentMovement() == "Crouch Walking")
             inaccuracy = 0.1f;
 
         float inaccuracyX = Random.Range(-inaccuracy, inaccuracy);
@@ -214,31 +221,41 @@ public class Gun : MonoBehaviour
 
         yield return new WaitForSeconds(reloadTime);
 
-        // Reload a full mag
-        if(currentReservesAmmo >= maxMagAmmo)
+
+        // Reload
+
+        int ammoNeeded = maxMagAmmo - currentMagAmmo;
+        
+        if (currentReservesAmmo >= ammoNeeded) // Player has enough ammo to fill up mag
         {
-            currentReservesAmmo -= (maxMagAmmo - currentMagAmmo);
+            playerController.RemoveInventoryItem("Pistol Ammo", ammoNeeded);
             currentMagAmmo = maxMagAmmo;
         }
-        else // Reload a partial mag
+        else // Player only has enough ammo to fill up part of the mag
         {
-            int ammoNeeded = maxMagAmmo - currentMagAmmo;
-
-            if(ammoNeeded <= currentReservesAmmo)
-            {
-                currentReservesAmmo -= ammoNeeded;
-                currentMagAmmo = maxMagAmmo;
-            }
-            else
-            {
-                currentMagAmmo += currentReservesAmmo;
-                currentReservesAmmo = 0;
-            }
+            currentMagAmmo += currentReservesAmmo;
+            playerController.RemoveInventoryItem("Pistol Ammo", 999);
         }
         
         isReloading = false;
         playerAnimator.SetBool("Reloading", false);
         gunAnimator.SetBool("Reloading", false);
+    }
+
+    private int getReservesAmmo()
+    {
+        for (int i = 0; i < inventoryItems.Length; i++)
+        {
+            if (inventoryItems[i] == "Pistol Ammo")
+            {
+                ammoSlot = i;
+                return playerController.inventoryItemsCount[ammoSlot];
+            }
+        }
+
+        // No ammo found
+        ammoSlot = -1;
+        return 0;
     }
 
     public int getCurrentMagAmmo()
