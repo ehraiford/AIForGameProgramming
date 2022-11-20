@@ -6,7 +6,7 @@ public class Pills : MonoBehaviour
 {
     [Header("Settings")]
     private float popTime = 3f;
-
+    [SerializeField] private int pillDDAdjustment = -5;
     [Header("Object References")]
     [SerializeField] private FirstPersonController playerController;
     [SerializeField] private GameObject itemHandler;
@@ -62,7 +62,7 @@ public class Pills : MonoBehaviour
         // Removes debuff the player once animation is done
         yield return new WaitForSeconds(popTime - 2.75f);
         playerController.undoDebuff();
-
+        playerController.scoreAdjustment(pillDDAdjustment);
         // Finds the Blue Mass Pills position in the player's inventory
         int pillsSlot = 0;
         for (int i = 0; i < 8; i++)
