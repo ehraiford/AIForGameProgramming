@@ -103,9 +103,9 @@ public class FirstPersonController : CharacterStats
     [SerializeField] GameObject gameOver;
     //Global Variable
     private int GotHitValue = -5;
-    private int GotHealValue = -5;
     private int timeAdjuster = 5;
-    
+    private int healDDScore = -10;
+    private int deathDDScore = -10;
     //Difficulty adjustment based on time
     private float deltaTime = 150;
     private float lastTimeAdjust;
@@ -566,6 +566,7 @@ public class FirstPersonController : CharacterStats
     protected override void KillCharacter()
     {
         isDead = true;
+        scoreAdjustment(deathDDScore);
         currentHealth = 0;
         gameOver.SetActive(true);
         gameOver.GetComponent<GameOverScript>().timePassed = Time.time;
@@ -583,7 +584,9 @@ public class FirstPersonController : CharacterStats
     public void AddHealth(float healAmt)
     {
         currentHealth += healAmt;
-
+        //They healed game to hard;
+        scoreAdjustment(healDDScore);
+        
         if (currentHealth >= 100) currentHealth = 100;
     }
     public void doDamage(float dmg)
