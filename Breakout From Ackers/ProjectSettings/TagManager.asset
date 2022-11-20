@@ -21,6 +21,7 @@ TagManager:
   - Puzzle/Destructable
   - BossReach
   - Boss
+  - Furniture
   layers:
   - Default
   - TransparentFX

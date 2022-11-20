@@ -29,7 +29,7 @@ public class HeardGunshot : StateMachineBehaviour
         agent.SetDestination(lastLocation.position);
         time += Time.deltaTime;
         //Couldnt find player so go back to patrolling
-        if(time > 2)
+        if(time > 5)
         {
             animator.SetBool("isPatrolling", true);
         }
@@ -39,7 +39,6 @@ public class HeardGunshot : StateMachineBehaviour
             animator.SetBool("isChasing", true);
         }
     }
-
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{

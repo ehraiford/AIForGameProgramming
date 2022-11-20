@@ -44,7 +44,7 @@ public class PatrolBehavior : StateMachineBehaviour
     {
         //If player shoots near zombie, make zombie go to player's location
         float distance = Vector3.Distance(animator.transform.position, player.position);
-        if (Input.GetButtonDown("Fire1") && distance < 5)
+        if (Input.GetButtonDown("Fire1") && distance < 10)
         {
             animator.SetTrigger("heardGunshot");
         }

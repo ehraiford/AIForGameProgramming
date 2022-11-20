@@ -14487,7 +14487,7 @@ GameObject:
   - component: {fileID: 7854420626769860153}
   m_Layer: 11
   m_Name: CandleStick
-  m_TagString: Untagged
+  m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14529,6 +14529,7 @@ MonoBehaviour:
   threshold: 50
   startingState: 0
   ChangeDiffScore: 2
+  EnemyParent: {fileID: 0}
 --- !u!65 &7854420626769860153
 BoxCollider:
   m_ObjectHideFlags: 0
