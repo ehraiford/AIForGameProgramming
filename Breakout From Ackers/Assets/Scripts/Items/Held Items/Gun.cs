@@ -152,12 +152,17 @@ public class Gun : MonoBehaviour
                 hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(35 - (hit.distance / 3));
             else if (hit.collider.CompareTag("Zombie/Legs"))
                 hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(25 - (hit.distance / 3));
+            else if (hit.collider.CompareTag("Boss/Head"))
+                Debug.Log("Boss/Head");
+            else if (hit.collider.CompareTag("Boss/Body"))
+                Debug.Log("Boss/Body");
+
             //Shooting puzzle object
             if (hit.collider.CompareTag("Puzzle/Destructable"))
-                Destroy(hit.transform.gameObject);
+                    Destroy(hit.transform.gameObject);
                 
             // Spawns a bullet hole if the environment is shot
-            if (!(hit.collider.CompareTag("Zombie/Head")) && !(hit.collider.CompareTag("Zombie/Body")) && !(hit.collider.CompareTag("Zombie/Legs")) && !(hit.collider.CompareTag("Door")))
+            if (!(hit.collider.CompareTag("Zombie/Head")) && !(hit.collider.CompareTag("Zombie/Body")) && !(hit.collider.CompareTag("Zombie/Legs")) && !(hit.collider.CompareTag("Boss/Head")) && !(hit.collider.CompareTag("Boss/Body")) && !(hit.collider.CompareTag("Door")))
             {
                 GameObject newHole = Instantiate(bulletHolePrefab, hit.point + hit.normal * 0.001f, Quaternion.identity) as GameObject;
                 newHole.transform.LookAt(hit.point + hit.normal);
