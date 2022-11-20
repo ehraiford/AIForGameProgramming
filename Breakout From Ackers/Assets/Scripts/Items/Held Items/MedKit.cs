@@ -68,23 +68,10 @@ public class MedKit : MonoBehaviour
         // Removes a MedKit from the player's inventory
         playerController.RemoveInventoryItem("MedKit", 1);
 
-        
-        // Checks if the player runs out of MedKits
-        if (playerController.inventoryItemsCount[medKitSlot] > 0) // Player has more MedKits
-        {
-            playerAnimator.SetBool("RemainingMedKit", true);
-            playerAnimator.SetBool("Healing", false);
-        }
-        else // Player runs out of MedKits
-        {
-            playerAnimator.SetBool("RemainingMedKit", false);
-            playerAnimator.SetBool("Healing", false);
-            playerController.GetComponentInChildren<ItemSwitching>().NoRemaingingItemsFindNext();
-        }
-        
+        // Equips next item
+        playerController.GetComponentInChildren<ItemSwitching>().NoRemaingingItemsFindNext();
 
-       
-
+        playerAnimator.SetBool("Healing", false);
         isHealing = false;
     }
 }

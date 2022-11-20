@@ -73,20 +73,10 @@ public class Pills : MonoBehaviour
         // Removes a pill from the player's inventory
         playerController.RemoveInventoryItem("Blue Mass Pills", 1);
 
+        // Equips next item
+        playerController.GetComponentInChildren<ItemSwitching>().NoRemaingingItemsFindNext();
 
-        // Checks if the player runs out of pills
-        if (playerController.inventoryItemsCount[pillsSlot] > 0) // Player has more MedKits
-        {
-            playerAnimator.SetBool("RemainingPills", true);
-            playerAnimator.SetBool("Popping", false);
-        }
-        else // Player runs out of pills
-        {
-            playerAnimator.SetBool("RemainingPills", false);
-            playerAnimator.SetBool("Popping", false);
-            playerController.GetComponentInChildren<ItemSwitching>().NoRemaingingItemsFindNext();
-        }
-
+        playerAnimator.SetBool("Popping", false);
         isPopping = false;
     }
 }
