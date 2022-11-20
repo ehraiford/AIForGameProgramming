@@ -22,6 +22,10 @@ TagManager:
   - BossReach
   - Boss
   - Furniture
+  - Walls
+  - Floors
+  - Boss/Body
+  - Boss/Head
   layers:
   - Default
   - TransparentFX
