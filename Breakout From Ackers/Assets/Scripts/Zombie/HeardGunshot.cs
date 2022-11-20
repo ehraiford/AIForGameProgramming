@@ -29,7 +29,7 @@ public class HeardGunshot : StateMachineBehaviour
         agent.SetDestination(lastLocation.position);
         time += Time.deltaTime;
         //Couldnt find player so go back to patrolling
-        if(time > 2)
+        if(time > 5)
         {
             animator.SetBool("isPatrolling", true);
         }
