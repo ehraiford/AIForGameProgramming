@@ -116,7 +116,7 @@ public class FirstPersonController : CharacterStats
 
     private bool isDebuffed = false;
     private float debuffTimer = 0;
-
+    [SerializeField] private float debuffDuraction;
     //--------end of health and debuff-------------------
     private Vector3 moveDirection;
     private Vector2 currentInput;
@@ -191,7 +191,7 @@ public class FirstPersonController : CharacterStats
                 lastTimeAdjust = Time.time;
                 scoreAdjustment(timeAdjuster);
             }
-            if (Time.time > debuffTimer + 5 && isDebuffed)
+            if (Time.time > debuffTimer + debuffDuraction && isDebuffed)
             {
                 undoDebuff();
             }
