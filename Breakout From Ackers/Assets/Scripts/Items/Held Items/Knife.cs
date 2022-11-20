@@ -68,11 +68,11 @@ public class Knife : MonoBehaviour
             // Add potential melee puzzle
 
             // Plays audio depending on what is hit
-            if(hit.collider.CompareTag("Zombie/Head") || hit.collider.CompareTag("Zombie/Head") || hit.collider.CompareTag("Zombie/Legs"))
+            if (hit.collider.CompareTag("Zombie/Head") || hit.collider.CompareTag("Zombie/Body") || hit.collider.CompareTag("Zombie/Legs"))
             {
                 knifeAudioSource.PlayOneShot(slashEnemy);
             }
-            else if(hit.collider.CompareTag("Object"))
+            else if (hit.collider.CompareTag("Furniture") || hit.collider.CompareTag("Walls") || hit.collider.CompareTag("Floors"))
             {
                 knifeAudioSource.PlayOneShot(slashObject);
             }
@@ -81,6 +81,8 @@ public class Knife : MonoBehaviour
                 knifeAudioSource.PlayOneShot(slashAir);
             }
         }
+
+        knifeAudioSource.PlayOneShot(slashAir);
 
         // Stops the user from queuing another melee attack
         yield return new WaitForSeconds(0.8f);
