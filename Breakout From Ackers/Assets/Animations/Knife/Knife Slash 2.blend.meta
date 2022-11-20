@@ -5,7 +5,7 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: -623603649343465320
-    second: 'Knife: Chop'
+    second: 'Knife: Slash 2'
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,7 +36,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: 'Knife: Chop'
+      name: 'Knife: Slash 2'
       takeName: Scene
       internalID: 0
       firstFrame: 1

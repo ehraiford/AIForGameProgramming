@@ -52,19 +52,18 @@ public class Knife : MonoBehaviour
 
         // Randomizes the animation
         float attackVal = Random.Range(0f, 1f);
-        if (attackVal < 0.5) playerAnimator.SetFloat("Attack Value", attackVal);
-        else if (attackVal > 0.5) playerAnimator.SetFloat("Attack Value", attackVal);
-
+        playerAnimator.SetFloat("Attack Value", attackVal);
+       
         RaycastHit hit;
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 1))
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 1.5f))
         {
             // Damages zombie based on where it is sliced
             if (hit.collider.CompareTag("Zombie/Head"))
-                hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(100 - (hit.distance / 3));
+                hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(55);
             else if (hit.collider.CompareTag("Zombie/Body"))
-                hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(35 - (hit.distance / 3));
+                hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(55);
             else if (hit.collider.CompareTag("Zombie/Legs"))
-                hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(25 - (hit.distance / 3));
+                hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(55);
 
             // Add potential melee puzzle
 
@@ -84,7 +83,7 @@ public class Knife : MonoBehaviour
         }
 
         // Stops the user from queuing another melee attack
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.8f);
         playerAnimator.SetBool("Meleeing", false);
 
         //yield return new WaitForSeconds(attackSpeed - 0.3f);
