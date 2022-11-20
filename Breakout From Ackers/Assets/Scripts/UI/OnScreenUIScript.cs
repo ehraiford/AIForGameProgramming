@@ -141,7 +141,7 @@ public class OnScreenUIScript : MonoBehaviour
 
 
                 inventoryTempText[displaySpot].text = firstPersonController.GetComponent<FirstPersonController>().inventoryItems[i];
-                if (inventoryTempText[displaySpot].text.Contains("Ammo") || inventoryTempText[displaySpot].text.CompareTo("Blue Mass Pills") == 0)
+                if (inventoryTempText[displaySpot].text.Contains("Ammo"))
                 {
                     inventoryTempText[displaySpot].text += " (" + firstPersonController.GetComponent<FirstPersonController>().inventoryItemsCount[i] + ")";
                 }
