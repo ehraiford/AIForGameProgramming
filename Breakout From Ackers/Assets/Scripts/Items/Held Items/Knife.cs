@@ -53,7 +53,10 @@ public class Knife : MonoBehaviour
         // Randomizes the animation
         float attackVal = Random.Range(0f, 1f);
         playerAnimator.SetFloat("Attack Value", attackVal);
-       
+
+        // Wait for knife to get into slashing position
+        yield return new WaitForSeconds(0.2f);
+
         RaycastHit hit;
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 1.5f))
         {
@@ -81,11 +84,13 @@ public class Knife : MonoBehaviour
                 knifeAudioSource.PlayOneShot(slashAir);
             }
         }
-
-        knifeAudioSource.PlayOneShot(slashAir);
+        else
+        {
+            knifeAudioSource.PlayOneShot(slashAir);
+        }
 
         // Stops the user from queuing another melee attack
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(attackSpeed);
         playerAnimator.SetBool("Meleeing", false);
 
         //yield return new WaitForSeconds(attackSpeed - 0.3f);
