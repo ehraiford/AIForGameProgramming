@@ -420,16 +420,11 @@ MonoBehaviour:
   canBeShot:
     serializedVersion: 2
     m_Bits: 2147483647
-  gunAnimator: {fileID: 3280004324149247640}
   barrelLocation: {fileID: 4410755589222938667}
   casingExitLocation: {fileID: 1154392656586524999}
-  playerController: {fileID: 0}
-  playerCamera: {fileID: 0}
-  itemHandler: {fileID: 0}
   destroyTimer: 2
   shotPower: 700
   ejectPower: 250
-  m1911AudioSource: {fileID: 6243857507448901761}
   shoot: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
   reload: {fileID: 8300000, guid: 35d0716e1e6e75d478cb8174c12a1c8c, type: 3}
   emptyShot: {fileID: 8300000, guid: 1a4009d21b14ebb4aa691aed0ddbd05f, type: 3}
@@ -451,7 +446,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.25
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0

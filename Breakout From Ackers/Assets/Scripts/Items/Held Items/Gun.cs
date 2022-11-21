@@ -12,14 +12,14 @@ public class Gun : MonoBehaviour
     public LayerMask canBeShot;
 
     [Header("Location Refrences")]
-    [SerializeField] private Animator gunAnimator;
+    private Animator gunAnimator;
     [SerializeField] private Transform barrelLocation;
     [SerializeField] private Transform casingExitLocation;
 
     [Header("Object References")]
-    [SerializeField] private FirstPersonController playerController;
-    [SerializeField] private GameObject playerCamera;
-    [SerializeField] private GameObject itemHandler;
+    private FirstPersonController playerController;
+    private Camera playerCamera;
+    private ItemSwitching itemHandler;
     private Animator playerAnimator;
 
     [Header("Settings")]
@@ -28,7 +28,7 @@ public class Gun : MonoBehaviour
     [Tooltip("Casing Ejection Speed")] [SerializeField] private float ejectPower = 250f;
 
     [Header("Audio")]
-    [SerializeField] private AudioSource m1911AudioSource = default;
+    private AudioSource m1911AudioSource = default;
     [SerializeField] private AudioClip shoot = default;
     [SerializeField] private AudioClip reload = default;
     [SerializeField] private AudioClip emptyShot = default;
@@ -48,7 +48,12 @@ public class Gun : MonoBehaviour
 
     void Start()
     {
+        playerController = GetComponentInParent<FirstPersonController>();
+        playerCamera = GetComponentInParent<Camera>();
         playerAnimator = playerController.GetComponentInChildren<Animator>();
+        itemHandler = GetComponentInParent<ItemSwitching>();
+        m1911AudioSource = GetComponent<AudioSource>();
+        gunAnimator = GetComponent<Animator>();
 
         inventoryItems = playerController.inventoryItems;
 
@@ -83,10 +88,10 @@ public class Gun : MonoBehaviour
             if (currentMagAmmo <= 0 && currentReservesAmmo > 0) StartCoroutine(Reload());
 
             // Fires gun
-            if (Input.GetButtonDown("Fire1") && !itemHandler.GetComponent<ItemSwitching>().isSwitching) StartCoroutine(Shoot());
+            if (Input.GetButtonDown("Fire1") && !itemHandler.isSwitching) StartCoroutine(Shoot());
 
             // Reloads gun
-            if (Input.GetKeyDown(KeyCode.R) && currentMagAmmo != maxMagAmmo && currentReservesAmmo > 0 && !itemHandler.GetComponent<ItemSwitching>().isSwitching) StartCoroutine(Reload());
+            if (Input.GetKeyDown(KeyCode.R) && currentMagAmmo != maxMagAmmo && currentReservesAmmo > 0 && !itemHandler.isSwitching) StartCoroutine(Reload());
 
         }
     }
@@ -150,7 +155,7 @@ public class Gun : MonoBehaviour
         currentCameraPos.y += inaccuracyY;
 
         RaycastHit hit;
-        if(Physics.Raycast(currentCameraPos, playerCamera.transform.forward, out hit, 100))
+        if (Physics.Raycast(currentCameraPos, playerCamera.transform.forward, out hit, 100))
         {
             // Damages zombie based on where it is shot
             if (hit.collider.CompareTag("Zombie/Head"))
@@ -166,8 +171,8 @@ public class Gun : MonoBehaviour
 
             //Shooting puzzle object
             if (hit.collider.CompareTag("Puzzle/Destructable"))
-                    Destroy(hit.transform.gameObject);
-                
+                Destroy(hit.transform.gameObject);
+
             // Spawns a bullet hole if the environment is shot
             if (!(hit.collider.CompareTag("Zombie/Head")) && !(hit.collider.CompareTag("Zombie/Body")) && !(hit.collider.CompareTag("Zombie/Legs")) && !(hit.collider.CompareTag("Boss/Head")) && !(hit.collider.CompareTag("Boss/Body")) && !(hit.collider.CompareTag("Door")))
             {
@@ -225,7 +230,7 @@ public class Gun : MonoBehaviour
         // Reload
 
         int ammoNeeded = maxMagAmmo - currentMagAmmo;
-        
+
         if (currentReservesAmmo >= ammoNeeded) // Player has enough ammo to fill up mag
         {
             playerController.RemoveInventoryItem("Pistol Ammo", ammoNeeded);
@@ -236,7 +241,7 @@ public class Gun : MonoBehaviour
             currentMagAmmo += currentReservesAmmo;
             playerController.RemoveInventoryItem("Pistol Ammo", 999);
         }
-        
+
         isReloading = false;
         playerAnimator.SetBool("Reloading", false);
         gunAnimator.SetBool("Reloading", false);
