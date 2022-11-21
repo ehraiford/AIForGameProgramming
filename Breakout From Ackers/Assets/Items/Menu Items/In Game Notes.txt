@@ -47,7 +47,7 @@ If you forget the code to the chest up in the servants' quarters, this puzzle sh
 
 *
 Text 4
-I've moved the old chest out from the attic and into the game room. Some things I just don't think ought to be left lying around. I'd rather have them locked up safe.
+I've moved the old chest out from the attic and into the game room. That much ammo just shouldn't be left lying around. I'd rather have it locked up safe.
 
 If Acker has an issue with it, let me know. 
 
