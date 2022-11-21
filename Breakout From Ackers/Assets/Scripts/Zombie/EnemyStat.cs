@@ -106,6 +106,9 @@ public class EnemyStat : CharacterStats
 
     public void DoDamage(float dmg)
     {
+        //Do damage to zombie
         ApplyDamage(dmg);
+        //Make zombie chase player
+        Anim.SetBool("isChasing", true);
     }
 }
