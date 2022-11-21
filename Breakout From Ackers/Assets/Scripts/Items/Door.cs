@@ -5,15 +5,17 @@ using UnityEngine;
 public class Door : Interactable
 {
     public Animation door;
-    [SerializeField] private AudioSource doorSound;
-    [SerializeField] private AudioSource LockedDoorSound;
-    [SerializeField] private AudioSource unlockDoorSound;
+    private AudioSource doorAudio;
+    [SerializeField] private AudioClip doorUse;
+    [SerializeField] private AudioClip doorLocked;
+    [SerializeField] private AudioClip doorUnlock;
     [SerializeField] public bool isLocked = false;
     [SerializeField] private FirstPersonController FPC;
     [SerializeField] private string KeyName;
     private GameObject onScreenUI;
     public bool isOpen;
     private string objName;
+
     void Start()
     {
         FPC = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
@@ -21,7 +23,7 @@ public class Door : Interactable
         door = GetComponentInParent<Animation>();
         objName = door.name;
         isOpen = false;
-        doorSound = GetComponentInParent<AudioSource>();
+        doorAudio = GetComponentInParent<AudioSource>();
     }
     public override void OnFocus()
     {
@@ -30,14 +32,13 @@ public class Door : Interactable
 
     public override void OnInteract()
     {
-
         if (isLocked)
         {
             //Has key
             if(FPC.RemoveInventoryItem(KeyName, 1) == 1)
             {
                 onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Unlocked door using the " + KeyName + ".");
-                unlockDoorSound.Play();
+                doorAudio.PlayOneShot(doorUnlock);
                 isLocked = false;
             }
             else
@@ -52,7 +53,7 @@ public class Door : Interactable
                     onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("The door is locked. You need the " + KeyName + ".");
                 }
 
-                LockedDoorSound.Play();
+                doorAudio.PlayOneShot(doorLocked);
             }
             //no Key
             
@@ -69,14 +70,14 @@ public class Door : Interactable
                 Debug.Log("DOOR OPEN");
                 door.Play("Door2_Open");
                 Debug.Log(objName.ToString());
-                doorSound.Play();
+                doorAudio.PlayOneShot(doorUse);
             }
             else
             {
                 isOpen = false;
                 Debug.Log("DOOR Close");
                 door.Play("Door2_Close");
-                doorSound.Play();
+                doorAudio.PlayOneShot(doorUse);
             }
         }
         
@@ -96,7 +97,7 @@ public class Door : Interactable
             Debug.Log("DOOR OPEN");
             door.Play("Door2_Open");
             Debug.Log(objName.ToString());
-            doorSound.Play();
+            doorAudio.PlayOneShot(doorUse);
         }
     }
 
