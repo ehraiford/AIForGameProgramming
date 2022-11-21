@@ -114,7 +114,7 @@ public class FirstPersonController : CharacterStats
     private CharacterController characterController;
     private Animator playerAnimations;
 
-    private bool isDebuffed = false;
+    public bool isDebuffed = false;
     private float debuffTimer = 0;
     [SerializeField] private float debuffDuraction;
     //--------end of health and debuff-------------------
