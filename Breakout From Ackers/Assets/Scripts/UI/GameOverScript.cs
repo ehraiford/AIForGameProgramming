@@ -24,6 +24,18 @@ public class GameOverScript : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.KeypadEnter)|| Input.GetKeyDown(KeyCode.Return))
+        {
+            // Respawns the player
+            playerController.AddHealth(50);
+            playerController.enabled = false;
+            playerController.transform.position = respawnPoint.transform.position;
+            Physics.SyncTransforms();
+            playerController.enabled = true;
+            playerController.isDead = false;
+            gameObject.SetActive(false);
+        }
+
         if (firstAlpha < 0f)
             firstAlpha = 0f;
         if (secondAlpha < 0f)
@@ -38,24 +50,24 @@ public class GameOverScript : MonoBehaviour
         //switch case handles the opacity changes of the text and then restarts time and removes the death screen after 18 seconds
         switch(Time.time - timePassed)
         {
-            case  <2f:
+            case  <=2f:
                 break;
-            case <8:
+            case <=8:
                 firstAlpha += 0.002f;
                 firstText.color = new Color(255, 255, 255, firstAlpha);
                 
                 break;
-            case <9:
+            case <=9:
                 secondAlpha += 0.002f;
                 secondText.color = new Color(255, 255, 255, secondAlpha);
                 break;
-            case < 13:
+            case <= 13:
                 firstAlpha -= 0.003f;
                 firstText.color = new Color(255, 255, 255, firstAlpha);
                 secondAlpha += 0.002f;
                 secondText.color = new Color(255, 255, 255, secondAlpha);
                 break;
-            case < 18:
+            case <= 18:
                 firstText.color = new Color(0, 0, 0, 0);
                 secondAlpha -= 0.004f;
                 secondText.color = new Color(255, 255, 255, secondAlpha);
