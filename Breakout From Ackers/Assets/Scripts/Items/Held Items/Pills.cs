@@ -61,7 +61,9 @@ public class Pills : MonoBehaviour
 
         // Removes debuff the player once animation is done
         yield return new WaitForSeconds(popTime - 2.75f);
-        playerController.undoDebuff();
+
+        if(playerController.isDebuffed) playerController.undoDebuff();
+
         playerController.scoreAdjustment(pillDDAdjustment);
         // Finds the Blue Mass Pills position in the player's inventory
         int pillsSlot = 0;

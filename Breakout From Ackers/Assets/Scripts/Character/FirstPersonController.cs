@@ -116,7 +116,7 @@ public class FirstPersonController : CharacterStats
 
     public bool isDebuffed = false;
     private float debuffTimer = 0;
-    [SerializeField] private float debuffDuraction;
+    [SerializeField] private float debuffDuration;
     //--------end of health and debuff-------------------
     private Vector3 moveDirection;
     private Vector2 currentInput;
@@ -191,7 +191,7 @@ public class FirstPersonController : CharacterStats
                 lastTimeAdjust = Time.time;
                 scoreAdjustment(timeAdjuster);
             }
-            if (Time.time > debuffTimer + debuffDuraction && isDebuffed)
+            if (Time.time > debuffTimer + debuffDuration && isDebuffed)
             {
                 undoDebuff();
             }
@@ -598,23 +598,31 @@ public class FirstPersonController : CharacterStats
 
         //Player will randomly get debuffed
         int i = Random.Range(0, 100);
+
+        //if(!isDebuffed) debuffPlayer();
+
+
+
+        /*
         if(i < 30)
         {
             debuffPlayer();
         }
+        */
     }
 
     public void debuffPlayer()
     {
         isDebuffed = true;
         canSprint = false;
+        walkSpeed /= 2;
         debuffTimer = Time.time;
     }
     public void undoDebuff()
     {
-        isDebuffed = false;
+        //walkSpeed *= 2;
         canSprint = true;
-
+        isDebuffed = false;
     }
     #endregion
 
