@@ -97,6 +97,7 @@ public class FirstPersonController : CharacterStats
     [SerializeField] public string[] inventoryUnstackableItems;
     private int inventorySpacesCurrentlyUsed;
     private string currentItem;
+    private bool craftedBlueMass = false;
 
     [Header("Health And Debuff")]
     [SerializeField] private int Score;
@@ -657,6 +658,10 @@ public class FirstPersonController : CharacterStats
     #region Inventory Functions
     public bool AddInventoryItem(string itemName, int itemCount)
     {
+        if(itemName.CompareTo("Pistol Ammo") == 0 && craftedBlueMass)
+        {
+            itemName = "Blue Mass Ammo";
+        }
         int spot = FindItemSpot(itemName);
 
         if(spot != -1 && IsStackable(itemName))
@@ -761,6 +766,16 @@ public class FirstPersonController : CharacterStats
         return i;
     }
 
+    public void craftBlueMassAmmo()
+    {
+        craftedBlueMass = true;
+        for(int i = 0; i < inventoryItems.Length; i++)
+        {
+            if (inventoryItems[i].CompareTo("Pistol Ammo") == 0)
+                inventoryItems[i] = "Blue Mass Ammo";
+        }
+    }
+    //removed function. We no longer reorganize the inventory. Leaving here in case we change it back.
     void reorganizeInventory()
     {
         for(int i = 0; i < 7; i++)
