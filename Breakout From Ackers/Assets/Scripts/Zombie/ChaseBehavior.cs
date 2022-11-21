@@ -8,14 +8,19 @@ public class ChaseBehavior : StateMachineBehaviour
     NavMeshAgent agent;
     Transform player;
     AudioSource bossFootSteps;
+    float lastTimeOfAttack;
+    EnemyStat enemyStat;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (animator.name == "Zombie Mutant")
+        //Dont think we need this
+        /*if (animator.name == "Zombie Mutant")
         {
             bossFootSteps = animator.GetComponent<AudioSource>();
             bossFootSteps.Play();
-        }
+        }*/
+        lastTimeOfAttack = 0;
+        enemyStat = animator.GetComponentInParent<EnemyStat>();
         agent = animator.GetComponentInParent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -28,7 +33,17 @@ public class ChaseBehavior : StateMachineBehaviour
         //Debug.Log(distance);
         //Close enough to attack 
         if (distance - 1 <= agent.stoppingDistance)
-            animator.SetBool("isAttacking", true);
+        {
+            //Wait a bit before actually attacking
+            if (Time.time > lastTimeOfAttack + enemyStat.attackSpeed)
+            {
+                lastTimeOfAttack = Time.time;
+                Debug.Log("IM attacking");
+                animator.SetBool("isAttacking", true);
+            }
+            
+        }
+            
         //Lose player just do nothing
         if (!agent.GetComponent<FOV>().canSeePlayer)
             animator.SetBool("isChasing", false);
