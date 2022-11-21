@@ -100,5 +100,24 @@ public class Door : Interactable
             doorAudio.PlayOneShot(doorUse);
         }
     }
+    //Function to let boss open doors
+    public void bossOpenDoor()
+    {
+        if (!isLocked)
+        {
+            if (objName.Contains("Door1"))
+                objName = "Door1";
+            else if (objName.Contains("Door2"))
+                objName = "Door2";
+            if (!isOpen)
+            {
+                isOpen = true;
+                Debug.Log("DOOR OPEN");
+                door.Play("Door2_Open");
+                Debug.Log(objName.ToString());
+                doorAudio.PlayOneShot(doorUse);
+            }
+        }
+    }
 
 }
