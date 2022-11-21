@@ -9,7 +9,7 @@ public class sittingRoomCandlePuzzleScript : MonoBehaviour
     private float startTime;
     private bool wrongCode = false, playedAudio = false, complete = false;
     [SerializeField] GameObject[] candles;
-    [SerializeField] GameObject diningRoomDoor;
+    [SerializeField] GameObject diningRoomDoor, zombie;
     [SerializeField] AudioClip[] audioClips;
     void Start()
     {
@@ -32,6 +32,7 @@ public class sittingRoomCandlePuzzleScript : MonoBehaviour
             diningRoomDoor.GetComponent<Door>().door.Play("Door2_Open"); //open door to foyer
             diningRoomDoor.GetComponent<Door>().isOpen = true;
             startTime = Time.time;
+            zombie.SetActive(true);
             complete = true;
         }
 
