@@ -20,7 +20,7 @@ public class IdleBehavior : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         float distance = Vector3.Distance(animator.transform.position, player.position);
-        if (Input.GetButtonDown("Fire1") && distance < 10)
+        /*if (Input.GetButtonDown("Fire1") && distance < 10)
         {
            animator.SetTrigger("heardGunshot");
         }
@@ -32,7 +32,7 @@ public class IdleBehavior : StateMachineBehaviour
         if (agent.GetComponent<FOV>().canSeePlayer)
         {
             animator.SetBool("isChasing", true);
-        }
+        }*/
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

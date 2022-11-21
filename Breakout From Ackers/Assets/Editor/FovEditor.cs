@@ -9,17 +9,30 @@ public class FovEditor : Editor
     private void OnSceneGUI()
     {
         FOV fov = (FOV)target;
-        //Draws the Circle
+        //Draws the outer Circle
         Handles.color = Color.white;
-        Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.radius);
+        Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.outerRadius);
 
-        Vector3 angle1 = DirectionFromAngle(fov.transform.eulerAngles.y, -fov.angle / 2);
-        Vector3 angle2 = DirectionFromAngle(fov.transform.eulerAngles.y, fov.angle / 2);
+        Vector3 angle1 = DirectionFromAngle(fov.transform.eulerAngles.y, -fov.outerAngle / 2);
+        Vector3 angle2 = DirectionFromAngle(fov.transform.eulerAngles.y, fov.outerAngle / 2);
 
         //Draw FOV triangle
         Handles.color = Color.yellow;
-        Handles.DrawLine(fov.transform.position, fov.transform.position + angle1 * fov.radius);
-        Handles.DrawLine(fov.transform.position, fov.transform.position + angle2 * fov.radius);
+        Handles.DrawLine(fov.transform.position, fov.transform.position + angle1 * fov.outerRadius);
+        Handles.DrawLine(fov.transform.position, fov.transform.position + angle2 * fov.outerRadius);
+
+        //Draw the inner Circle
+        Handles.color = Color.red;
+        Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.innerRadius);
+
+        Vector3 angle3 = DirectionFromAngle(fov.transform.eulerAngles.y, -fov.innerAngle / 2);
+        Vector3 angle4 = DirectionFromAngle(fov.transform.eulerAngles.y, fov.innerAngle / 2);
+
+        //Draw FOV triangle
+        Handles.color = Color.red;
+        Handles.DrawLine(fov.transform.position, fov.transform.position + angle3 * fov.innerRadius);
+        Handles.DrawLine(fov.transform.position, fov.transform.position + angle4 * fov.innerRadius);
+
 
         //Draw line to player if seen
         if (fov.canSeePlayer)

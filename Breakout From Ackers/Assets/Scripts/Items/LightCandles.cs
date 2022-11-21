@@ -80,7 +80,8 @@ public class LightCandles : Interactable
 
     private void changeFovRadius(Transform enemy)
     {
-        enemy.GetComponent<FOV>().radius += .2f;
+        enemy.GetComponent<FOV>().innerRadius += .2f;
+        enemy.GetComponent<FOV>().outerRadius += .2f;
     }
 
     public override void OnLoseFocus()

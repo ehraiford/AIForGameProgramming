@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class FOV : MonoBehaviour
 {
-    public float radius;
+    public float outerRadius;
     [Range(0, 360)]
-    public float angle;
+    public float outerAngle;
+
+    public float innerRadius;
+    [Range(0, 360)]
+    public float innerAngle;
 
     public GameObject playerRef;
 
@@ -34,36 +38,79 @@ public class FOV : MonoBehaviour
         }
     }
 
-    private void FieldOfViewCheck()
+    private bool innerCircle()
     {
-        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
+        Collider[] innerRangeChecks = Physics.OverlapSphere(transform.position, innerRadius, targetMask);
 
-        if(rangeChecks.Length != 0)
+        if (innerRangeChecks.Length != 0)
         {
-            Transform target = rangeChecks[0].transform;
+            Transform target = innerRangeChecks[0].transform;
             Vector3 directionToTarget = (target.position - transform.position).normalized;
 
-            if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
+            if (Vector3.Angle(transform.forward, directionToTarget) < innerAngle / 2)
             {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
-                if(!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask)) 
-                { 
-                    canSeePlayer = true;
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+                {
+                    return true;
                 }
                 else
                 {
-                    canSeePlayer = false;
+                    return false;
                 }
             }
             else
             {
-                canSeePlayer = false;
+                return false;
             }
         }
-        else if(canSeePlayer)
+        else if (canSeePlayer)
         {
-            canSeePlayer = false;
+            return false;
         }
+        return false;
+    }
+    private bool outerCircle()
+    {
+        Collider[] rangeChecker = Physics.OverlapSphere(transform.position, outerRadius, targetMask);
+
+        if (rangeChecker.Length != 0)
+        {
+            Transform target = rangeChecker[0].transform;
+            Vector3 directionToTarget = (target.position - transform.position).normalized;
+
+            if (Vector3.Angle(transform.forward, directionToTarget) < outerAngle / 2)
+            {
+                float distanceToTarget = Vector3.Distance(transform.position, target.position);
+
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if (canSeePlayer)
+        {
+             return false;
+        }
+        return false;
+    }
+    private void FieldOfViewCheck()
+    {
+        if (innerCircle())
+            canSeePlayer = true;
+        else if (outerCircle())
+            canSeePlayer = true;
+        else
+            canSeePlayer = false;
     }
 }
