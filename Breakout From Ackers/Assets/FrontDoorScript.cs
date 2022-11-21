@@ -34,7 +34,15 @@ public class FrontDoorScript : Interactable
 
     private void Update()
     {
-        
+        if (timeStarted != -1 && Time.time - timeStarted > 2)
+        {
+            winScreen.SetActive(true);
+
+            Time.timeScale = 0.0f;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
+        }
     }
     public override void OnInteract()
     {
@@ -78,10 +86,7 @@ public class FrontDoorScript : Interactable
                 Debug.Log(objName.ToString());
                 doorAudio.PlayOneShot(doorUse);
                 timeStarted = Time.time;
-                winScreen.SetActive(true);
-                Time.timeScale = 0.0f;
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
+                
             }
             else
             {
