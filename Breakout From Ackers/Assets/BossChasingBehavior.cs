@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ChaseBehavior : StateMachineBehaviour
+public class BossChasingBehavior : StateMachineBehaviour
 {
     NavMeshAgent agent;
     Transform player;
     float timerToAttack;
-    EnemyStat enemyStat;
+    BossStat bossStat;
     Transform lastKnownPos;
     float time;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        enemyStat = animator.GetComponentInParent<EnemyStat>();
-        timerToAttack = enemyStat.attackSpeed;
+        //Dont think we need this
+        /*if (animator.name == "Zombie Mutant")
+        {
+            bossFootSteps = animator.GetComponent<AudioSource>();
+            bossFootSteps.Play();
+        }*/
+        bossStat = animator.GetComponentInParent<BossStat>();
+        timerToAttack = bossStat.attackSpeed;
         agent = animator.GetComponentInParent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         time = 0;
@@ -26,41 +32,38 @@ public class ChaseBehavior : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent.SetDestination(player.position);
-        
+
         float distance = Vector3.Distance(animator.transform.position, player.position);
         //Debug.Log(distance);
         //Close enough to attack 
         if (distance <= agent.stoppingDistance)
         {
-            //Wait before attacking
             if (timerToAttack > 0)
             {
                 timerToAttack -= Time.deltaTime;
             }
             else
             {
-                //Timers up attack the player
                 animator.SetBool("isAttacking", true);
             }
 
         }
         else
         {
-            timerToAttack = enemyStat.attackSpeed;
+            timerToAttack = bossStat.attackSpeed;
         }
-
         //Lose sight of player
         if (!agent.GetComponent<FOV>().canSeePlayer)
         {
             //Set last known position
-            if(lastKnownPos == null)
+            if (lastKnownPos == null)
             {
                 lastKnownPos = player;
                 //Move to last known pos
                 agent.SetDestination(lastKnownPos.transform.position);
             }
-            
-            if(lastKnownPos != null)
+
+            if (lastKnownPos != null)
             {
                 float distance2 = Vector3.Distance(animator.transform.position, lastKnownPos.position);
                 time += Time.deltaTime;
@@ -71,7 +74,7 @@ public class ChaseBehavior : StateMachineBehaviour
                 }
             }
         }
-            
+
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

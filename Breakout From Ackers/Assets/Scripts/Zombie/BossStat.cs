@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BossStat : CharacterStats
 {
+    public float damage = 40;
+    public float attackSpeed = 3f;
     protected override void ApplyDamage(float dmg)
     {
         
