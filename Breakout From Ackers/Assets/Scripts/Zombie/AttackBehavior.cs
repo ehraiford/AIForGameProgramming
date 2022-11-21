@@ -42,6 +42,9 @@ public class AttackBehavior : StateMachineBehaviour
             lastTimeOfAttack = Time.time;
             playerStat.doDamage(enemyStat.damage);
         }
+        //Done with attack go back
+        animator.SetBool("isAttacking", false);
+
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
