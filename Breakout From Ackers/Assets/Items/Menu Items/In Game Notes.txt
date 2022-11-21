@@ -1,9 +1,6 @@
 Text 0
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a ante non diam aliquet pharetra. Vivamus hendrerit accumsan enim, ac euismod nunc tincidunt et. Aenean sit amet purus auctor, ornare ipsum eu, pellentesque urna. Suspendisse potenti. Suspendisse id sapien vel justo sagittis feugiat a at nibh. Proin tempor nunc massa, in faucibus lectus pretium sed. Donec nulla elit, ultricies nec lobortis nec, auctor a arcu. Mauris sed faucibus mi, nec efficitur est. Suspendisse potenti. Nullam vitae nulla nec ante interdum porta eu at enim. Ut consequat ante ac lobortis accumsan. Quisque ultrices mollis volutpat. Phasellus quis porta arcu. Nunc posuere turpis non eros pretium, et tincidunt neque posuere. Integer aliquet urna tellus, quis dignissim diam tincidunt non.
 
-Praesent cursus risus dui, eget luctus dui scelerisque maximus. Donec sagittis non diam at dictum. Vestibulum lobortis lorem eu ullamcorper egestas. Quisque euismod lorem non pharetra porttitor. Donec tristique ligula mi, ac feugiat mauris lacinia in. Ut quis tellus diam. Morbi volutpat rutrum massa scelerisque rhoncus.
 
-Sed in facilisis lectus. Etiam mattis, ante quis laoreet egestas, enim nisl molestie erat, sit amet tincidunt sapien velit ut mauris. Nunc rutrum dui et orci tincidunt, sed finibus magna lobortis. Donec non augue dictum, interdum est at, pellentesque dolor. Maecenas vel libero nec turpis egestas elementum. Suspendisse maximus, tellus rutrum suscipit aliquam, nunc ligula hendrerit arcu, vel imperdiet dolor tellus quis magna. Nulla eget odio mi. Pellentesque sed risus augue.
 *
 Text 1
 The blue mass here is as pure as is possible. 
@@ -28,8 +25,7 @@ Hopefully, I'll be back before you even can get up and see this. If not, get to 
 *
 Text 3
 
-I left this unfinished puzzle to remind myself of the combination for
-the chest in the upstairs servants' quarters.
+If you forget the code to the chest up in the servants' quarters, this puzzle should help clear it up.
 
 5 3 4 | 6 7 8 | 9 1 2
 6 7 2 | 1 9 5 | 3 4 8

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BearStatueInteract : Interactable
 {
-    [SerializeField] GameObject player;
+    [SerializeField] GameObject player, fish, itemDrop;
     FirstPersonController FPC;
     private GameObject onScreenUI;
     [SerializeField] private string KeyName;
@@ -24,7 +24,10 @@ public class BearStatueInteract : Interactable
     {
         if (FPC.RemoveInventoryItem(KeyName, 1) == 1)
         {
-            onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("The fish dislodged a key and it fell to the floor.");
+            onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("The fish dislodged something it the bears mouth and it fell to the floor.");
+            fish.SetActive(true);
+            itemDrop.SetActive(true);
+            gameObject.GetComponent<AudioSource>().Play();
             //TODO:Play some kind of sound
         }
         else
@@ -36,7 +39,7 @@ public class BearStatueInteract : Interactable
             }
             else
             {
-                onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("A large statue of a bear with a gaping mouth.\nSomething might fit it.");
+                onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("A large statue of a bear with a gaping mouth.\nSomething might fit in it.");
             }
         }
     }
