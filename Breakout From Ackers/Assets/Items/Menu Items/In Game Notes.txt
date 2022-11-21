@@ -1,5 +1,11 @@
 Text 0
+There are candles all over this mansion. 
 
+And, yeah, it costs you nothing to light them and it'll make it easier to see, sure. But it'll make it easier for everything else out there to see you, too.
+
+Plus, it's just plain bad luck to have that many candles lit. You're likely to burn this whole place down.
+
+Light the candles, but don't go nuts out there.
 
 *
 Text 1
