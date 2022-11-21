@@ -41,6 +41,13 @@ public class AttackBehavior : StateMachineBehaviour
             attackSound.Play();
             lastTimeOfAttack = Time.time;
             playerStat.doDamage(enemyStat.damage);
+            float DD = playerStat.diffcultyValue();
+            //Debuff the player
+            int i = Random.Range(0, 100);
+            if (i < 50 / DD)
+            {
+                playerStat.debuffPlayer();
+            }
         }
         //Done with attack go back
         animator.SetBool("isAttacking", false);

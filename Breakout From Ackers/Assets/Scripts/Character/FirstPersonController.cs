@@ -621,7 +621,10 @@ public class FirstPersonController : CharacterStats
     }
     public void undoDebuff()
     {
-        //walkSpeed *= 2;
+        if (isDebuffed)
+        {
+            walkSpeed *= 2;
+        }
         canSprint = true;
         isDebuffed = false;
     }
