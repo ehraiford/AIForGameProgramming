@@ -10,6 +10,8 @@ public class ChaseBehavior : StateMachineBehaviour
     AudioSource bossFootSteps;
     float lastTimeOfAttack;
     EnemyStat enemyStat;
+    Transform lastKnownPos;
+    float time;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -23,12 +25,15 @@ public class ChaseBehavior : StateMachineBehaviour
         enemyStat = animator.GetComponentInParent<EnemyStat>();
         agent = animator.GetComponentInParent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        time = 0;
+        lastKnownPos = null;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent.SetDestination(player.position);
+        
         float distance = Vector3.Distance(animator.transform.position, player.position);
         //Debug.Log(distance);
         //Close enough to attack 
@@ -44,15 +49,35 @@ public class ChaseBehavior : StateMachineBehaviour
             
         }
             
-        //Lose player just do nothing
+        //Lose sight of player
         if (!agent.GetComponent<FOV>().canSeePlayer)
-            animator.SetBool("isChasing", false);
+        {
+            //Set last known position
+            if(lastKnownPos == null)
+            {
+                lastKnownPos = player;
+                //Move to last known pos
+                agent.SetDestination(lastKnownPos.transform.position);
+            }
+            
+            if(lastKnownPos != null)
+            {
+                float distance2 = Vector3.Distance(animator.transform.position, lastKnownPos.position);
+                time += Time.deltaTime;
+                //At last known position switch animation to idle or unable to reach position
+                if (distance2 <= agent.stoppingDistance || time > 8)
+                {
+                    animator.SetBool("isChasing", false);
+                }
+            }
+        }
+            
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent.SetDestination(animator.transform.position);  
+        agent.SetDestination(animator.transform.position);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
