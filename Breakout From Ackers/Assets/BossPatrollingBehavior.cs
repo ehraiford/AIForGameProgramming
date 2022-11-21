@@ -1,27 +1,30 @@
 using UnityEngine.AI;
 using System.Collections.Generic;
 using UnityEngine;
-public class PatrolBehavior : StateMachineBehaviour
+public class BossPatrollingBehavior : StateMachineBehaviour
 {
     float timer;
     List<Transform> wayPoints = new List<Transform>();
     NavMeshAgent agent;
     float TimeToIdle; // Duration of patrolling
     Transform player;
+    AudioSource bossFootSteps;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         timer = 0;
-        TimeToIdle = Random.Range(0f, 10f);
+        TimeToIdle = 30f;
+        //bossFootSteps = animator.GetComponent<AudioSource>();
+        //bossFootSteps.Play();
         //Get the parent object (aka the room they are in)
         GameObject parent = animator.transform.parent.parent.parent.gameObject;
         //Debug.Log(parent.name);
         Transform CorrectWaypoints = parent.transform.GetChild(0).transform;
         //Just defaulting waypoints then change later
-        
-        
+
+
         //Add the waypoints to the list
-        foreach( Transform item in CorrectWaypoints)
+        foreach (Transform item in CorrectWaypoints)
         {
             wayPoints.Add(item);
         }
