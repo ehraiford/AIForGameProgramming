@@ -19,6 +19,7 @@ public class idleAtLastPos : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         time += Time.deltaTime;
+        //Debug.Log(time);
         //let 60 seconds go by
         if(time > 60)
         {
