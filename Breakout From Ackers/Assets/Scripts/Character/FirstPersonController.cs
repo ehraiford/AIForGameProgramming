@@ -614,13 +614,18 @@ public class FirstPersonController : CharacterStats
 
     public void debuffPlayer()
     {
-        isDebuffed = true;
-        canSprint = false;
-        walkSpeed /= 2;
-        debuffTimer = Time.time;
+        //Only debuff when not debuffed
+        if (!isDebuffed)
+        {
+            isDebuffed = true;
+            canSprint = false;
+            walkSpeed /= 2;
+            debuffTimer = Time.time;
+        }
     }
     public void undoDebuff()
     {
+        //Revert change from debuff else just skip
         if (isDebuffed)
         {
             walkSpeed *= 2;
