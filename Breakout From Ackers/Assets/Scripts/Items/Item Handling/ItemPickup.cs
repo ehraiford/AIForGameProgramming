@@ -16,6 +16,9 @@ public class ItemPickup : Interactable
     private GameObject firstPersonController;
     private GameObject onScreenUI;
 
+    [SerializeField] GameObject DespawnBoss;
+    [SerializeField] GameObject SpawnBoss;
+
     private void Start()
     {
         firstPersonController = GameObject.FindGameObjectWithTag("Player");
@@ -46,12 +49,25 @@ public class ItemPickup : Interactable
             if (destroyOnInteract)
                 Destroy(gameObject);
         }
-        
-       
+
+        loadFirstFloorBoss();
     }
 
     public override void OnLoseFocus()
     {
 
+    }
+
+    private void loadFirstFloorBoss()
+    {
+        if(DespawnBoss == null || SpawnBoss == null)
+        {
+            return;
+        }
+        else
+        {
+            DespawnBoss.SetActive(false);
+            SpawnBoss.SetActive(true);
+        }
     }
 }
