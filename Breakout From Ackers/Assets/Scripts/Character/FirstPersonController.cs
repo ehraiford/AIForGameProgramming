@@ -107,6 +107,8 @@ public class FirstPersonController : CharacterStats
     private int timeAdjuster = 5;
     private int healDDScore = -10;
     private int deathDDScore = -10;
+    [SerializeField] private float walkSpeedModifer = 1.5f;
+    [SerializeField] private float runSpeedModifer = 1f;
     //Difficulty adjustment based on time
     private float deltaTime = 150;
     private float lastTimeAdjust;
@@ -618,8 +620,8 @@ public class FirstPersonController : CharacterStats
         if (!isDebuffed)
         {
             isDebuffed = true;
-            canSprint = false;
-            walkSpeed /= 2;
+            walkSpeed -= walkSpeedModifer;
+            sprintSpeed -= runSpeedModifer;
             debuffTimer = Time.time;
         }
     }
@@ -628,9 +630,9 @@ public class FirstPersonController : CharacterStats
         //Revert change from debuff else just skip
         if (isDebuffed)
         {
-            walkSpeed *= 2;
+            walkSpeed += walkSpeedModifer;
+            sprintSpeed += runSpeedModifer;
         }
-        canSprint = true;
         isDebuffed = false;
     }
     #endregion
