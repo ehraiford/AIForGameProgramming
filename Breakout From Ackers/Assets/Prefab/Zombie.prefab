@@ -1849,7 +1849,7 @@ MonoBehaviour:
   walkSpeed: 3
   sprintSpeed: 6
   damage: 20
-  attackSpeed: 1.5
+  attackSpeed: 1
   groanSound: {fileID: 2258234887076919502}
   damagedSound: {fileID: 2258234887781912157}
   DeathSound: {fileID: 2258234887525923367}
