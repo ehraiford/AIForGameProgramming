@@ -44,11 +44,11 @@ public class AttackBehavior : StateMachineBehaviour
             float DD = playerStat.diffcultyValue();
             //Debuff the player
             int i = Random.Range(0, 100);
-            playerStat.debuffPlayer();
+            
             //20% +/- (80 / DD) chance of getting debuffed
             if (i > 80 / DD)
             {
-                
+                playerStat.debuffPlayer();
             }
         }
         //Done with attack go back
