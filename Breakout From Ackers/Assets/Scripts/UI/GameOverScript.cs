@@ -24,6 +24,7 @@ public class GameOverScript : MonoBehaviour
 
     void Update()
     {
+        
         if(Input.GetKeyDown(KeyCode.KeypadEnter)|| Input.GetKeyDown(KeyCode.Return))
         {
             // Respawns the player
