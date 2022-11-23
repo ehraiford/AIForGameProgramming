@@ -48,10 +48,14 @@ public class BossPatrollingBehavior : StateMachineBehaviour
         if (agent.remainingDistance <= agent.stoppingDistance)
             agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
         timer += Time.deltaTime;
-        //Go back to idle
+
         if (timer > TimeToIdle)
         {
-            animator.SetBool("isPatrolling", false);
+            //animator.SetBool("isPatrolling", false);
+            //Lets not make the boss idle lets just have him keep roaming around
+            //This also prevent him from being soft lock at a locked door
+            timer = 0;
+            agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
         }
         //Chase after players
         if (agent.GetComponent<FOV>().canSeePlayer)
@@ -63,7 +67,7 @@ public class BossPatrollingBehavior : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent.SetDestination(agent.transform.position);
+        
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
