@@ -272,6 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef37c14e7afa9424e8530f424dc603e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackSound: {fileID: 8300000, guid: 4b9ff1772b5a92341a0410c6e107c9f8, type: 3}
 --- !u!1102 &-593362792051643672
 AnimatorState:
   serializedVersion: 6
