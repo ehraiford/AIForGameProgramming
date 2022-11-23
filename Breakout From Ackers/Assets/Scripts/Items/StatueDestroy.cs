@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class StatueDestroy : MonoBehaviour
 {
-    [SerializeField] AudioSource shatterSound;
-    [SerializeField] GameObject bookcase;
+    private AudioSource statueAudio;
+    [SerializeField] private AudioClip shatter;
+    [SerializeField] private GameObject bookcase;
+
+    private void Start()
+    {
+        statueAudio = GetComponentInParent<AudioSource>();
+    }
     private void OnDestroy()
     {
         bookcase.GetComponent<MoveBookcase>().decreaseNumStatue(1);
-        shatterSound.Play();
+        statueAudio.PlayOneShot(shatter);
     }
 }
