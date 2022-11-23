@@ -25,7 +25,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 33185
+  controlID: 36618
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 33186
+  controlID: 36619
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -199,10 +199,10 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
+      scrollPos: {x: 0, y: 1547.6001}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: a8f7fdff06fbffffb6a90b0060ac0b000cb00b00f6b60b0078b90b009ebc0b009cc10b0056c20b00c2c20b002cc30b0050c40b009ac70b0064cf0b0064d00b00bed50b0074d60b00cedc0b00e0de0b00eae20b00f2e40b0026e60b0080e70b00c6e70b00b0ea0b00feeb0b0056ed0b00a0ed0b0044f30b00d6f40b0030f50b0034f60b00f4fa0b00f0fc0b003a020c006a020c0058040c0060050c008a060c00b0070c0046080c00000a0c00
+      m_ExpandedIDs: a8f7fdff06fbffffb6a90b0060ac0b000cb00b005eb40b00f6b60b0078b90b009ebc0b009cc10b0056c20b00c2c20b002cc30b0050c40b009ac70b0064cf0b0054d00b0064d00b00bed50b0074d60b00cedc0b00e0de0b00eae20b00f2e40b0026e60b0080e70b00c6e70b00b0ea0b00feeb0b0056ed0b00a0ed0b0044f30b00d6f40b0030f50b0034f60b00f4fa0b00f0fc0b003a020c006a020c0058040c0060050c008a060c00b0070c00be070c0046080c00000a0c00
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -293,13 +293,13 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/SFX
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets
+  - Assets/SFX
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\logan\Documents\GitHub Projects\AIForGameProgramming\Breakout
     From Ackers
@@ -307,8 +307,8 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 94d80000
-    m_LastClickedID: 55444
+    m_SelectedIDs: e8d80000
+    m_LastClickedID: 55528
     m_ExpandedIDs: 0000000094d8000096d8000098d800009ad800009cd800009ed80000a0d80000a2d80000a4d80000a6d80000a8d80000aad80000acd80000aed8000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -362,8 +362,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 56ed0b00
-    m_LastClickedInstanceID: 781654
+    m_SelectedInstanceIDs: 54d00b00
+    m_LastClickedInstanceID: 774228
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000aeb10200d4e60200
     m_RenameOverlay:
@@ -417,7 +417,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 33171
+  controlID: 36596
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -671,9 +671,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -21.942226, y: -5.0153275, z: 43.978493}
+    m_Target: {x: -54.350693, y: -8.618406, z: 23.514645}
     speed: 2
-    m_Value: {x: -21.942226, y: -5.0153275, z: 43.978493}
+    m_Value: {x: -54.350693, y: -8.618406, z: 23.514645}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -720,13 +720,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.29395866, y: -0.10695041, z: 0.033122987, w: -0.94925123}
+    m_Target: {x: -0.22962022, y: 0.5380084, z: -0.15517445, w: -0.7960954}
     speed: 2
-    m_Value: {x: -0.293955, y: -0.10694907, z: 0.033122573, w: -0.9492394}
+    m_Value: {x: -0.22961731, y: 0.5380016, z: -0.15517248, w: -0.7960853}
   m_Size:
-    m_Target: 16.363358
+    m_Target: 17.76086
     speed: 2
-    m_Value: 16.363358
+    m_Value: 17.76086
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1032,8 +1032,8 @@ MonoBehaviour:
     m_CachedPref: 160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: 781654
-  m_LastVerticalScrollValue: 0
+  m_LastInspectedObjectInstanceID: 774228
+  m_LastVerticalScrollValue: 159.20007
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
