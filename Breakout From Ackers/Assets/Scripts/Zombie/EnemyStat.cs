@@ -11,46 +11,42 @@ public class EnemyStat : CharacterStats
     Transform player;
     Animator Anim;
     string name;
-    [SerializeField] private AudioSource groanSound;
-    [SerializeField] private AudioSource damagedSound;
-    [SerializeField] private AudioSource DeathSound;
+    bool isGroaning = false;
+    [SerializeField] private AudioClip groanSound;
+    [SerializeField] private AudioClip damagedSound;
+    [SerializeField] private AudioClip deathSound;
+    private AudioSource zombieAudio;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("FirstPersonController").transform;
         Anim = GetComponentInChildren<Animator>();
         collsions = GetComponentsInChildren<BoxCollider>();
+        zombieAudio = GetComponent<AudioSource>();
         currentHealth = maxHealth;
         name = transform.name;
-        
-        Invoke("ZombieGroan", 0f);
     }
 
-    void ZombieGroan()
+    IEnumerator ZombieGroan()
     {
-        if(currentHealth > 0)
+        isGroaning = true;
+
+        if (currentHealth > 0)
         {
-            float randomTime = Random.Range(0f, 10f);
+            float groanRandom = Random.Range(0f, 1f);
 
-            groanSound.Play();
-
-            Invoke("ZombieGroan", randomTime);
+            if (groanRandom < 0.2) zombieAudio.PlayOneShot(groanSound);
         }
-        
+
+        yield return new WaitForSeconds(5f);
+
+        isGroaning = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 playerDistance = player.transform.position - transform.position;
-        if (playerDistance.magnitude < 4)
-        {
-            groanSound.volume = .5f;
-        }
-        else
-        {
-            groanSound.volume = 0f;
-        }
+        if (!isGroaning) StartCoroutine(ZombieGroan());
     }
 
     protected override void KillCharacter()
@@ -62,7 +58,7 @@ public class EnemyStat : CharacterStats
         //Check where player from enemy Normal Zombie
         if(name != "Boss")
         {
-            DeathSound.Play();
+            zombieAudio.PlayOneShot(deathSound);
             if (Vector3.Dot(forward, toOther) < 0)
             {
                 //Player is behind me fall forward
@@ -96,7 +92,7 @@ public class EnemyStat : CharacterStats
         OnDamage?.Invoke(currentHealth);
         if (currentHealth > 0)
         {
-            damagedSound.Play();      
+            zombieAudio.PlayOneShot(damagedSound);
         }
         else
         {
