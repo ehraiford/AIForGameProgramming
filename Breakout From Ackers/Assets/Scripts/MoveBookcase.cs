@@ -5,9 +5,10 @@ using UnityEngine;
 public class MoveBookcase : MonoBehaviour
 {
     [SerializeField] public int numOfStatues;
-    [SerializeField] private AudioSource rumbleSound;
+    private AudioSource bookcaseAudio;
     private bool doOnce = true;
     private GameObject onScreenUI;
+    [SerializeField] AudioClip rumble;
 
     // Update is called once per frame
     void Update()
@@ -16,7 +17,7 @@ public class MoveBookcase : MonoBehaviour
         {
             this.transform.position = new Vector3(-30.747f, 7.1769f, 10.073f);
             doOnce = false;
-            rumbleSound.Play();
+            bookcaseAudio.PlayOneShot(rumble);
             onScreenUI.GetComponent<OnScreenUIScript>().SetCurrentObjective(3);
         }
         
@@ -29,6 +30,7 @@ public class MoveBookcase : MonoBehaviour
 
     private void Start()
     {
+        bookcaseAudio = GetComponent<AudioSource>();
         onScreenUI = GameObject.FindGameObjectWithTag("Menu");
     }
 }
