@@ -58,15 +58,15 @@ public class Knife : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
         RaycastHit hit;
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 1.5f))
+        if (Physics.SphereCast(playerCamera.transform.position, 0.75f, playerCamera.transform.forward, out hit, 0.75f))
         {
             // Damages zombie based on where it is sliced
             if (hit.collider.CompareTag("Zombie/Head"))
-                hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(55);
+                hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(25);
             else if (hit.collider.CompareTag("Zombie/Body"))
-                hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(55);
+                hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(25);
             else if (hit.collider.CompareTag("Zombie/Legs"))
-                hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(55);
+                hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(25);
 
             // Add potential melee puzzle
 
