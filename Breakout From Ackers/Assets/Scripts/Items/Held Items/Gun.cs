@@ -42,6 +42,7 @@ public class Gun : MonoBehaviour
     private int currentReservesAmmo;
     public bool isReloading = false;
     public bool isShooting = false;
+    private bool canDamageBoss = false;
 
     private string[] inventoryItems;
     private int ammoSlot;
@@ -164,10 +165,13 @@ public class Gun : MonoBehaviour
                 hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(35 - (hit.distance / 3));
             else if (hit.collider.CompareTag("Zombie/Legs"))
                 hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(25 - (hit.distance / 3));
-            else if (hit.collider.CompareTag("Boss/Head"))
-                Debug.Log("Boss/Head");
-            else if (hit.collider.CompareTag("Boss/Body"))
-                Debug.Log("Boss/Body");
+            else if (canDamageBoss)
+            {
+                if (hit.collider.CompareTag("Boss/Head"))
+                    hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(100 - (hit.distance / 3));
+                else if (hit.collider.CompareTag("Boss/Body"))
+                    hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(35 - (hit.distance / 3));
+            }
 
             //Shooting puzzle object
             if (hit.collider.CompareTag("Puzzle/Destructable"))
@@ -254,6 +258,12 @@ public class Gun : MonoBehaviour
             if (inventoryItems[i] == "Pistol Ammo")
             {
                 ammoSlot = i;
+                canDamageBoss = false;
+                return playerController.inventoryItemsCount[ammoSlot];
+            }else if (inventoryItems[i] == "Blue Mass Ammo")
+            {
+                ammoSlot = i;
+                canDamageBoss = true;
                 return playerController.inventoryItemsCount[ammoSlot];
             }
         }
