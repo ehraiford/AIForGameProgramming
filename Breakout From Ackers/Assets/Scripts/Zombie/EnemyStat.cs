@@ -16,6 +16,7 @@ public class EnemyStat : CharacterStats
     [SerializeField] private AudioClip damagedSound;
     [SerializeField] private AudioClip deathSound;
     private AudioSource zombieAudio;
+    float dd;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,7 @@ public class EnemyStat : CharacterStats
         zombieAudio = GetComponent<AudioSource>();
         currentHealth = maxHealth;
         name = transform.name;
+        dd = player.GetComponent<FirstPersonController>().diffcultyValue();
     }
 
     IEnumerator ZombieGroan()
@@ -88,7 +90,7 @@ public class EnemyStat : CharacterStats
 
     protected override void ApplyDamage(float dmg)
     {
-        currentHealth -= dmg;
+        currentHealth -= (dmg / dd);
         OnDamage?.Invoke(currentHealth);
         if (currentHealth > 0)
         {
