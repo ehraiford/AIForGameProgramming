@@ -12,7 +12,7 @@ public class FrontDoorScript : Interactable
     [SerializeField] public bool isLocked = false;
     [SerializeField] private FirstPersonController FPC;
     [SerializeField] private string KeyName;
-    [SerializeField] GameObject winScreen;
+    [SerializeField] GameObject winScreen, backgroundMusic;
     private GameObject onScreenUI;
     public bool isOpen;
     private string objName;
@@ -37,6 +37,7 @@ public class FrontDoorScript : Interactable
         if (timeStarted != -1 && Time.time - timeStarted > 2)
         {
             winScreen.SetActive(true);
+            backgroundMusic.GetComponent<BGMScript>().PauseMusic();
 
             Time.timeScale = 0.0f;
             Cursor.visible = true;

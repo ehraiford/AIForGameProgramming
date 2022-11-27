@@ -19,6 +19,7 @@ public class OnScreenUIScript : MonoBehaviour
     public GameObject crosshairs;
     public GameObject notePanel;
     public GameObject firstPersonController;
+    [SerializeField] GameObject backgroundMusic;
 
 
    
@@ -260,19 +261,20 @@ public class OnScreenUIScript : MonoBehaviour
     #region Pause Menu
     public void Resume()
     {
+        backgroundMusic.GetComponent<BGMScript>().Unpause();
         pauseMenuUI.SetActive(false);
         crosshairs.SetActive(true); 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;
         isPaused = false;
-
-        
+ 
         onScreenUI.SetActive(true);
     }
 
     void Pause()
     {
+        backgroundMusic.GetComponent<BGMScript>().PauseMusic();
         pauseMenuUI.SetActive(true);
         crosshairs.SetActive(false);
         Time.timeScale = 0f;

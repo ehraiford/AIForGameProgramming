@@ -6,15 +6,15 @@ public class BGMScript : MonoBehaviour
 {
     [SerializeField] public AudioClip[] BGMArray;
     AudioSource BGM;
-    // Start is called before the first frame update
+    private int currentPlayingNumber;
+
     void Start()
     {
         BGM = GetComponent<AudioSource>();
         BGM.PlayOneShot(BGMArray[0]);
-        
+        currentPlayingNumber = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -23,7 +23,8 @@ public class BGMScript : MonoBehaviour
     {
         StartCoroutine(StartFade(BGM, 3, 0f));
         BGM.PlayOneShot(BGMArray[i]);
-        StartCoroutine(StartFade(BGM, 10, 0.05f));
+        StartCoroutine(StartFade(BGM, 10, 0.20f));
+        currentPlayingNumber = i;
 
     }
     //0 is normal background music
@@ -42,5 +43,20 @@ public class BGMScript : MonoBehaviour
             yield return null;
         }
         yield break;
+    }
+
+    public void PauseMusic()
+    {
+        BGM.Pause();
+    }
+
+    public void Unpause()
+    {
+        BGM.UnPause();
+    }
+
+    public void RestartMusic()
+    {
+        setNewMusic(currentPlayingNumber);
     }
 }
