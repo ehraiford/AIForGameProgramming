@@ -11,6 +11,7 @@ public class BGMScript : MonoBehaviour
     {
         BGM = GetComponent<AudioSource>();
         BGM.PlayOneShot(BGMArray[0]);
+        
     }
 
     // Update is called once per frame
@@ -20,8 +21,26 @@ public class BGMScript : MonoBehaviour
     }
     public void setNewMusic(int i)
     {
+        StartCoroutine(StartFade(BGM, 3, 0f));
         BGM.PlayOneShot(BGMArray[i]);
+        StartCoroutine(StartFade(BGM, 10, 0.05f));
+
     }
     //0 is normal background music
     //1 is the boss music
+    
+
+    //Fade music in and out
+    public static IEnumerator StartFade(AudioSource audioSource, float duration, float targetVolume)
+    {
+        float currentTime = 0;
+        float start = audioSource.volume;
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
+            yield return null;
+        }
+        yield break;
+    }
 }
