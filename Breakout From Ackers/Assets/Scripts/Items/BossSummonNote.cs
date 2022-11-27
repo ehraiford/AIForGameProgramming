@@ -11,12 +11,18 @@ public class BossSummonNote : Interactable
     [SerializeField] int noteNumber;
     [SerializeField] int fontNumber;
     [SerializeField] GameObject boss;
+    [SerializeField] GameObject musicSource;
+
     public override void OnFocus()
     {  
     }
 
     public override void OnInteract()
     {
+        //Set new music
+        BGMScript bgm = musicSource.GetComponent<BGMScript>();
+        bgm.setNewMusic(1);
+        //Activate Boss
         boss.SetActive(true);
         Debug.Log("Item Has been Interacted with");
         OnScreenUI.GetComponent<OnScreenUIScript>().OpenNote(noteNumber, fontNumber);
