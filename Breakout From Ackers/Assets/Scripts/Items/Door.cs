@@ -15,6 +15,8 @@ public class Door : Interactable
     private GameObject onScreenUI;
     public bool isOpen;
     private string objName;
+    GameObject obstruction;
+    float time;
 
     void Start()
     {
@@ -24,8 +26,23 @@ public class Door : Interactable
         objName = door.name;
         isOpen = false;
         doorAudio = GetComponentInParent<AudioSource>();
+        obstruction = transform.parent.GetChild(1).gameObject;
     }
-    public override void OnFocus()
+    void Update()
+    {
+        time += Time.deltaTime;
+        if (time > 1)
+        {
+            if (isLocked && isOpen)
+            {
+                isOpen = false;
+                door.Play("Door2_Close");
+                doorAudio.PlayOneShot(doorUse);
+            }
+        }
+
+    }
+public override void OnFocus()
     {
         
     }
@@ -80,7 +97,7 @@ public class Door : Interactable
                 doorAudio.PlayOneShot(doorUse);
             }
         }
-        
+        obstruction.SetActive(!isOpen);
     }
 
 
@@ -103,21 +120,19 @@ public class Door : Interactable
     //Function to let boss open doors
     public void bossOpenDoor()
     {
-        if (!isLocked)
+        if (objName.Contains("Door1"))
+            objName = "Door1";
+        else if (objName.Contains("Door2"))
+            objName = "Door2";
+        if (!isOpen)
         {
-            if (objName.Contains("Door1"))
-                objName = "Door1";
-            else if (objName.Contains("Door2"))
-                objName = "Door2";
-            if (!isOpen)
-            {
-                isOpen = true;
-                Debug.Log("DOOR OPEN");
-                door.Play("Door2_Open");
-                Debug.Log(objName.ToString());
-                doorAudio.PlayOneShot(doorUse);
-            }
+            isOpen = true;
+            Debug.Log("DOOR OPEN");
+            door.Play("Door2_Open");
+            Debug.Log(objName.ToString());
+            doorAudio.PlayOneShot(doorUse);
         }
+        time = 0; //reset timer so door can close if locked
     }
 
 }
