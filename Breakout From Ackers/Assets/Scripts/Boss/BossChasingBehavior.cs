@@ -11,6 +11,7 @@ public class BossChasingBehavior : StateMachineBehaviour
     BossStat bossStat;
     Transform lastKnownPos;
     float time;
+    float timeToIdle;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -25,6 +26,7 @@ public class BossChasingBehavior : StateMachineBehaviour
         agent = animator.GetComponentInParent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         time = 0;
+        timeToIdle = 0;
         lastKnownPos = null;
     }
 
@@ -32,7 +34,11 @@ public class BossChasingBehavior : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent.SetDestination(player.position);
-
+        timeToIdle += Time.deltaTime;
+        if(timeToIdle > 13)
+        {
+            animator.SetBool("isChasing", false);
+        }
         float distance = Vector3.Distance(animator.transform.position, player.position);
         //Debug.Log(distance);
         //Close enough to attack 

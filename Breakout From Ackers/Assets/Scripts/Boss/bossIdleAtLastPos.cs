@@ -25,7 +25,7 @@ public class bossIdleAtLastPos : StateMachineBehaviour
             //Go back to patrolling
             animator.SetBool("isPatrolling", true);
         }
-        if (agent.GetComponent<FOV>().canSeePlayer)
+        if (agent.GetComponent<FOV>().canSeePlayer && time > 4)
         {
             animator.SetBool("isChasing", true);
         }
