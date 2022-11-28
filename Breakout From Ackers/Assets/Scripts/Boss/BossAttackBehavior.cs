@@ -14,11 +14,12 @@ public class BossAttackBehavior : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        lastTimeOfAttack = 0;
+        
         agent = animator.GetComponentInParent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
         playerStat = player.GetComponent<FirstPersonController>();
         bossStat = animator.GetComponentInParent<BossStat>();
+        lastTimeOfAttack = bossStat.attackSpeed;
         //attackSound = animator.transform.Find("AttackSound").GetComponent<AudioSource>();
     }
 
@@ -36,14 +37,24 @@ public class BossAttackBehavior : StateMachineBehaviour
         if (distance > agent.stoppingDistance)
             animator.SetBool("isAttacking", false);
         //Put time between damage call;
-        if (Time.time > lastTimeOfAttack + bossStat.attackSpeed)
-        {
-            //attackSound.Play();
-            lastTimeOfAttack = Time.time;
-            playerStat.doDamage(bossStat.damage);
-        }
         //Done with attack go back
-        animator.SetBool("isAttacking", false);
+        
+        if (distance <= agent.stoppingDistance)
+        {
+            //Wait before attacking
+            if (lastTimeOfAttack > 0)
+            {
+                lastTimeOfAttack -= Time.deltaTime;
+            }
+            else
+            {
+                //Timers up attack the player
+                lastTimeOfAttack = bossStat.attackSpeed;
+                playerStat.doDamage(bossStat.damage);
+                animator.SetBool("isAttacking", false);
+            }
+
+        }
 
     }
 
