@@ -47,7 +47,6 @@ public class ItemPickup : Interactable
                 Destroy(gameObject);
         }
 
-        loadFirstFloorBoss();
     }
 
     public override void OnLoseFocus()
