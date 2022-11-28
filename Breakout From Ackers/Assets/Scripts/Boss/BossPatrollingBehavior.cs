@@ -4,34 +4,38 @@ using UnityEngine;
 public class BossPatrollingBehavior : StateMachineBehaviour
 {
     float timer;
-    List<Transform> wayPoints = new List<Transform>();
+    List<Transform> wayPointsFirst = new List<Transform>();
+    List<Transform> wayPointsSecond = new List<Transform>();
     NavMeshAgent agent;
     float TimeToIdle; // Duration of patrolling
     Transform player;
     AudioSource bossFootSteps;
+    GameObject wpoints1;
+    GameObject wpoints2;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         timer = 0;
         TimeToIdle = 30f;
-        //bossFootSteps = animator.GetComponent<AudioSource>();
-        //bossFootSteps.Play();
-        //Get the parent object (aka the room they are in)
-        GameObject parent = animator.transform.parent.parent.parent.gameObject;
-        //Debug.Log(parent.name);
-        Transform CorrectWaypoints = parent.transform.GetChild(0).transform;
-        //Just defaulting waypoints then change later
 
-
-        //Add the waypoints to the list
-        foreach (Transform item in CorrectWaypoints)
-        {
-            wayPoints.Add(item);
-        }
         agent = animator.GetComponentInParent<NavMeshAgent>();
         //agent.SetDestination(wayPoints[0].position);
+        //Set the first destination
+        wpoints1 = GameObject.Find("BossWpoint1");
+        wpoints2 = GameObject.Find("BossWpoint2");
+        foreach(Transform item in wpoints1.transform)
+        {
+            wayPointsFirst.Add(item);
+            //Debug.Log(item.localPosition);
+        }
+        foreach (Transform item in wpoints2.transform)
+        {
+            wayPointsSecond.Add(item);
+            //Debug.Log(item.localPosition);
+        }
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        //agent.SetDestination(wayPointsSecond[9].localPosition);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -46,7 +50,23 @@ public class BossPatrollingBehavior : StateMachineBehaviour
 
         //Choose next location to go to
         if (agent.remainingDistance <= agent.stoppingDistance)
-            agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
+        {
+            
+            //Pick between first and second floor
+            //based on the player's y position
+            //Second Floor
+            if (player.transform.position.y > 7f)
+            {
+                Debug.Log(player.transform.position.y);
+                agent.SetDestination(wayPointsSecond[Random.Range(0, wayPointsSecond.Count)].position);
+            }
+            else if (player.transform.position.y < 6f)//First Floor
+            {
+                Debug.Log(player.transform.position.y);
+                agent.SetDestination(wayPointsFirst[Random.Range(0, wayPointsFirst.Count)].position);
+            }
+        }
+
         timer += Time.deltaTime;
 
         if (timer > TimeToIdle)
@@ -55,7 +75,7 @@ public class BossPatrollingBehavior : StateMachineBehaviour
             //Lets not make the boss idle lets just have him keep roaming around
             //This also prevent him from being soft lock at a locked door
             timer = 0;
-            agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
+            //agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
         }
         //Chase after players
         if (agent.GetComponent<FOV>().canSeePlayer)
