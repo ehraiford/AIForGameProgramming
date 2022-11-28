@@ -41,6 +41,10 @@ public class BossPatrollingBehavior : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        //This is to make it so the player must fight acker after blue mass
+        if (true)
+            animator.SetBool("isChasing", true);
+
         //If player shoots near zombie, make zombie go to player's location
         float distance = Vector3.Distance(animator.transform.position, player.position);
         if (Input.GetButtonDown("Fire1") && distance < 10)

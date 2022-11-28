@@ -52,28 +52,32 @@ public class BossChasingBehavior : StateMachineBehaviour
         {
             timerToAttack = bossStat.attackSpeed;
         }
-        //Lose sight of player
-        if (!agent.GetComponent<FOV>().canSeePlayer)
-        {
-            //Set last known position
-            if (lastKnownPos == null)
+        /*if (false) //developed blue mass yet?
+        {*/
+            //Lose sight of player
+            if (!agent.GetComponent<FOV>().canSeePlayer)
             {
-                lastKnownPos = player;
-                //Move to last known pos
-                agent.SetDestination(lastKnownPos.transform.position);
-            }
-
-            if (lastKnownPos != null)
-            {
-                float distance2 = Vector3.Distance(animator.transform.position, lastKnownPos.position);
-                time += Time.deltaTime;
-                //At last known position switch animation to idle or unable to reach position
-                if (distance2 <= agent.stoppingDistance || time > 8)
+                //Set last known position
+                if (lastKnownPos == null)
                 {
-                    animator.SetBool("isChasing", false);
+                    lastKnownPos = player;
+                    //Move to last known pos
+                    agent.SetDestination(lastKnownPos.transform.position);
+                }
+
+                if (lastKnownPos != null)
+                {
+                    float distance2 = Vector3.Distance(animator.transform.position, lastKnownPos.position);
+                    time += Time.deltaTime;
+                    //At last known position switch animation to idle or unable to reach position
+                    if (distance2 <= agent.stoppingDistance || time > 8)
+                    {
+                        animator.SetBool("isChasing", false);
+                    }
                 }
             }
-        }
+        //}
+        
 
     }
 
