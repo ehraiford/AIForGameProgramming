@@ -15,7 +15,8 @@ public class Door : Interactable
     private GameObject onScreenUI;
     public bool isOpen;
     private string objName;
-
+    GameObject obstruction;
+    float time;
     void Start()
     {
         FPC = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
@@ -24,6 +25,21 @@ public class Door : Interactable
         objName = door.name;
         isOpen = false;
         doorAudio = GetComponentInParent<AudioSource>();
+        obstruction = transform.parent.GetChild(1).gameObject;
+    }
+    private void Update()
+    {
+        time += Time.deltaTime;
+        if(time > 1)
+        {
+            if (isLocked && isOpen)
+            {
+                isOpen = false;
+                door.Play("Door2_Close");
+                doorAudio.PlayOneShot(doorUse);
+            }
+        }
+        
     }
     public override void OnFocus()
     {
@@ -67,20 +83,17 @@ public class Door : Interactable
             if (!isOpen)
             {
                 isOpen = true;
-                Debug.Log("DOOR OPEN");
                 door.Play("Door2_Open");
-                Debug.Log(objName.ToString());
                 doorAudio.PlayOneShot(doorUse);
             }
             else
             {
                 isOpen = false;
-                Debug.Log("DOOR Close");
                 door.Play("Door2_Close");
                 doorAudio.PlayOneShot(doorUse);
             }
         }
-        
+        obstruction.SetActive(!isOpen);
     }
 
 
@@ -88,36 +101,21 @@ public class Door : Interactable
     {
         
     }
-    //For enemy (mainly stalker boss) to open doors
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag.Contains("Reach") && !isOpen)
-        {
-            isOpen = true;
-            Debug.Log("DOOR OPEN");
-            door.Play("Door2_Open");
-            Debug.Log(objName.ToString());
-            doorAudio.PlayOneShot(doorUse);
-        }
-    }
     //Function to let boss open doors
     public void bossOpenDoor()
     {
-        if (!isLocked)
+        //Has master key open all doors
+        if (objName.Contains("Door1"))
+            objName = "Door1";
+        else if (objName.Contains("Door2"))
+            objName = "Door2";
+        if (!isOpen)
         {
-            if (objName.Contains("Door1"))
-                objName = "Door1";
-            else if (objName.Contains("Door2"))
-                objName = "Door2";
-            if (!isOpen)
-            {
-                isOpen = true;
-                Debug.Log("DOOR OPEN");
-                door.Play("Door2_Open");
-                Debug.Log(objName.ToString());
-                doorAudio.PlayOneShot(doorUse);
-            }
+            isOpen = true;
+            door.Play("Door2_Open");
+            doorAudio.PlayOneShot(doorUse);
         }
+        time = 0; //reset timer so door can close if locked
     }
 
 }
