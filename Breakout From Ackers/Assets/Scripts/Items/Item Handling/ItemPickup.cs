@@ -44,9 +44,7 @@ public class ItemPickup : Interactable
         {
             alreadyPickedUp = true;
             if (destroyOnInteract) Destroy(gameObject);
-        }
-
-        if (alreadyPickedUp) onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("You already picked up everything available. It's empty now.");
+        } else if (alreadyPickedUp) onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("You already picked up everything available. It's empty now.");
 
     }
 
