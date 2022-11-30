@@ -42,8 +42,8 @@ public class BossPatrollingBehavior : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //This is to make it so the player must fight acker after blue mass
-        /*if (true)
-            animator.SetBool("isChasing", true);*/
+        if (animator.GetComponentInParent<BossStat>().craftedBlueMass) ;
+           animator.SetBool("isChasing", true);
 
         //If player shoots near zombie, make zombie go to player's location
         float distance = Vector3.Distance(animator.transform.position, player.position);
@@ -61,12 +61,12 @@ public class BossPatrollingBehavior : StateMachineBehaviour
             //Second Floor
             if (player.transform.position.y > 7f)
             {
-                Debug.Log(player.transform.position.y);
+                //Debug.Log(player.transform.position.y);
                 agent.SetDestination(wayPointsSecond[Random.Range(0, wayPointsSecond.Count)].position);
             }
             else if (player.transform.position.y < 6f)//First Floor
             {
-                Debug.Log(player.transform.position.y);
+                //Debug.Log(player.transform.position.y);
                 agent.SetDestination(wayPointsFirst[Random.Range(0, wayPointsFirst.Count)].position);
             }
         }
@@ -91,7 +91,7 @@ public class BossPatrollingBehavior : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        animator.SetBool("isPatrolling", false);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

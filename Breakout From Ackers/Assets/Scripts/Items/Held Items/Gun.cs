@@ -171,13 +171,11 @@ public class Gun : MonoBehaviour
                 hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(35 - (rangeDropoff * 1.5f));
             else if (hit.collider.CompareTag("Zombie/Legs"))
                 hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(25 - rangeDropoff);
-            else if (canDamageBoss)
-            {
-                if (hit.collider.CompareTag("Boss/Head"))
-                    hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(100 - (hit.distance / 3));
-                else if (hit.collider.CompareTag("Boss/Body"))
-                    hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(35 - (hit.distance / 3));
-            }
+            // Damage the Boss
+            if (hit.collider.CompareTag("Boss/Head"))
+                hit.transform.gameObject.GetComponent<BossStat>().DoDamage(100 - (hit.distance / 3));
+            else if (hit.collider.CompareTag("Boss/Body"))
+                hit.transform.gameObject.GetComponent<BossStat>().DoDamage(35 - (hit.distance / 3));
 
             //Shooting puzzle object
             if (hit.collider.CompareTag("Puzzle/Destructable"))
