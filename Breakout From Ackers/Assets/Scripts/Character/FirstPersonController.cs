@@ -158,7 +158,7 @@ public class FirstPersonController : CharacterStats
 
     void Update()
     {
-        currentItem = GetComponentInChildren<ItemSwitching>().getCurrentItemName();
+        if(playerCamera.isActiveAndEnabled) currentItem = GetComponentInChildren<ItemSwitching>().getCurrentItemName();
 
         // Script works only when the game is unpaused
         if (Time.timeScale > 0.9 && !isDead)
