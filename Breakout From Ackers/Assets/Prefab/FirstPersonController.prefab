@@ -2332,8 +2332,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7350335166596213555}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -40.121, y: 3.94, z: 18.4}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -42, y: 4.36, z: 21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2415,19 +2415,16 @@ MonoBehaviour:
   crouchStepMultiplier: 1.3
   sprintStepMultiplier: 0.7
   footstepAudioSource: {fileID: 7350335166596213583}
-  woodClips:
-  - {fileID: 8300000, guid: cca0cd7f2c55fdc47af6d51f7cb7d094, type: 3}
-  - {fileID: 8300000, guid: 7c3b247b02865d74b8ac4597f5751f09, type: 3}
-  - {fileID: 8300000, guid: 76fbd10d4dc06304d9ec85d7e0dda58a, type: 3}
-  - {fileID: 8300000, guid: 78c768bef2a037143b52a1f7a5dd6cb4, type: 3}
-  dirtClips: []
+  footstepClips:
+  - {fileID: 8300000, guid: d2ffd34bc57ffad4388d4b0b10e17963, type: 3}
+  - {fileID: 8300000, guid: ed2ae0ebdf6cb384db96537fac547594, type: 3}
+  - {fileID: 8300000, guid: 84b5fa5cff7955f45855911c64757241, type: 3}
   interactionRayPoint: {x: 0.5, y: 0.5, z: 0}
   interactionDistance: 2
   interactionLayer:
     serializedVersion: 2
     m_Bits: 2048
   inventoryItems:
-  - Fish
   - 
   - 
   - 
@@ -2435,7 +2432,8 @@ MonoBehaviour:
   - 
   - 
   - 
-  inventoryItemsCount: 0100000000000000000000000000000000000000000000000000000000000000
+  - 
+  inventoryItemsCount: 0000000000000000000000000000000000000000000000000000000000000000
   inventoryUnstackableItems:
   - MedKit
   - Blue Mass Pills
@@ -2444,7 +2442,7 @@ MonoBehaviour:
   walkSpeedModifer: 1.5
   runSpeedModifer: 1
   isDebuffed: 0
-  debuffDuration: 0
+  debuffDuration: 60
   onscreenUI: {fileID: 0}
 --- !u!82 &7350335166596213583
 AudioSource:
@@ -2602,8 +2600,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7692371581005953222}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.15, z: -0.2}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.15000004, z: -0.20000076}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

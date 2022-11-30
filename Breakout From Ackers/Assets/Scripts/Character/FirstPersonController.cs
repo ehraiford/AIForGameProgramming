@@ -80,8 +80,7 @@ public class FirstPersonController : CharacterStats
     [SerializeField] private float crouchStepMultiplier = 1.5f;
     [SerializeField] private float sprintStepMultiplier = 0.6f;
     [SerializeField] private AudioSource footstepAudioSource = default;
-    [SerializeField] private AudioClip[] woodClips = default;
-    [SerializeField] private AudioClip[] dirtClips = default;
+    [SerializeField] private AudioClip[] footstepClips = default;
     private float footstepTimer = 0;
     private float GetCurrentOffset => isCrouching ? baseStepSpeed * crouchStepMultiplier : IsSprinting ? baseStepSpeed * sprintStepMultiplier : baseStepSpeed;
 
@@ -415,18 +414,7 @@ public class FirstPersonController : CharacterStats
     {
         if (Physics.Raycast(playerCamera.transform.position, Vector3.down, out RaycastHit hit, 5))
         {
-            switch (hit.collider.tag)
-            {
-                case "Footsteps/Wood":
-                    footstepAudioSource.PlayOneShot(woodClips[UnityEngine.Random.Range(0, woodClips.Length - 1)]);
-                    break;
-                case "Footsteps/Dirt":
-                    //footstepAudioSource.PlayOneShot(dirtClips[UnityEngine.Random.Range(0, dirtClips.Length - 1)]);
-                    break;
-                default:
-                    footstepAudioSource.PlayOneShot(woodClips[UnityEngine.Random.Range(0, woodClips.Length - 1)]);
-                    break;
-            }
+            footstepAudioSource.PlayOneShot(footstepClips[UnityEngine.Random.Range(0, footstepClips.Length - 1)]);
         }
     }
 
