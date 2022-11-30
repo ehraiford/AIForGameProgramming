@@ -8,14 +8,12 @@ public class MedkitInBathroomSpawnZombieScript : Interactable
     [SerializeField] GameObject hallwayZombie;
     [SerializeField] GameObject foyerDoor;
     [SerializeField] GameObject firstPersonController;
-    [SerializeField] GameObject primaryCandle;
     [SerializeField] GameObject[] secondaryCandles;
 
     [SerializeField] GameObject medKit;
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip creepySound;
-    [SerializeField] AudioClip gustSound;
-    private bool creepySoundPlayed = false, gustSoundPlayed = false;
+    private bool creepySoundPlayed = false;
     private float timer = 0;
     
 
@@ -41,19 +39,6 @@ public class MedkitInBathroomSpawnZombieScript : Interactable
                         }
                     }
                     
-                    break;
-                case < 7:
-                    //play gust sound and blow out candle.
-                    if (!gustSoundPlayed)
-                    {
-                        audioSource.clip = gustSound;
-                        audioSource.Play();
-                        gustSoundPlayed = true;
-                    }
-                    break;
-
-                case < 13:
-                    primaryCandle.GetComponent<LightCandles>().forceLightingState(false);
                     break;
                 default:
                    //gameObject.SetActive(false); //deactivate gameobject after all events are complete
