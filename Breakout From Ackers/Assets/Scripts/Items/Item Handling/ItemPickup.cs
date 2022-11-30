@@ -43,9 +43,10 @@ public class ItemPickup : Interactable
         if (!alreadyPickedUp && firstPersonController.GetComponent<FirstPersonController>().AddInventoryItem(itemName, adjustedItemCount))
         {
             alreadyPickedUp = true;
-            if (destroyOnInteract)
-                Destroy(gameObject);
+            if (destroyOnInteract) Destroy(gameObject);
         }
+
+        if (alreadyPickedUp) onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("You already picked up everything available. It's empty now.");
 
     }
 
