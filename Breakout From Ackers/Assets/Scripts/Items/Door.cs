@@ -40,7 +40,7 @@ public class Door : Interactable
                 doorAudio.PlayOneShot(doorUse);
             }
         }
-
+        obstruction.SetActive(!isOpen);
     }
 public override void OnFocus()
     {
@@ -97,7 +97,7 @@ public override void OnFocus()
                 doorAudio.PlayOneShot(doorUse);
             }
         }
-        obstruction.SetActive(!isOpen);
+        
     }
 
 
