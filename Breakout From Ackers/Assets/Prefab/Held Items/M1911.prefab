@@ -364,7 +364,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4413447847953879463}
-  m_LocalRotation: {x: -0.015878726, y: -0.0243669, z: -0.8618694, w: -0.5062956}
+  m_LocalRotation: {x: 0.015878705, y: 0.024362097, z: 0.8618692, w: 0.50629616}
   m_LocalPosition: {x: 0.2381, y: -0.2057, z: 0.4971}
   m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_ConstrainProportionsScale: 0
@@ -380,7 +380,7 @@ Transform:
   - {fileID: 1154392656586524999}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.485, y: 2.984, z: 119.098}
 --- !u!95 &3280004324149247640
 Animator:
   serializedVersion: 4
@@ -425,9 +425,9 @@ MonoBehaviour:
   destroyTimer: 2
   shotPower: 700
   ejectPower: 250
-  shoot: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
-  reload: {fileID: 8300000, guid: 35d0716e1e6e75d478cb8174c12a1c8c, type: 3}
-  emptyShot: {fileID: 8300000, guid: 1a4009d21b14ebb4aa691aed0ddbd05f, type: 3}
+  shoot: {fileID: 8300000, guid: fbc92d60b819ddf4a89dd83c1f2e8524, type: 3}
+  reload: {fileID: 8300000, guid: 3c5c1d4d7b9307c458890a4beb12e4ae, type: 3}
+  emptyShot: {fileID: 8300000, guid: 42d6e45b5da995b49aad1eed258a09f5, type: 3}
   maxMagAmmo: 7
   maxReservesAmmo: 28
   reloadTime: 1
@@ -446,7 +446,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

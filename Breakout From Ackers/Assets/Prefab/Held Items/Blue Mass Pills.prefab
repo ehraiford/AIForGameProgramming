@@ -97,7 +97,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -193,10 +193,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5472fb4a82f42747a8cb7b7036277fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pillDDAdjustment: -5
   playerController: {fileID: 0}
   itemHandler: {fileID: 0}
   isPopping: 0
   pillsAudioSource: {fileID: 1391387240}
-  capPop: {fileID: 8300000, guid: 96adb34cdb264cc47a39c52c22e8de52, type: 3}
-  pillShake: {fileID: 8300000, guid: 69f5e9f7e0484234aa12c5939a54f5ed, type: 3}
+  capPop: {fileID: 8300000, guid: 6e317e5ce18623c438e7c9b21919093a, type: 3}
+  pillShake: {fileID: 8300000, guid: 542683ff71d61af4ebf273d3909a4e0b, type: 3}
   swallow: {fileID: 8300000, guid: ada50011e221e4e44809f1020472eebc, type: 3}
