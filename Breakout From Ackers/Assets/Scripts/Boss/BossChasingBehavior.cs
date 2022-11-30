@@ -91,6 +91,7 @@ public class BossChasingBehavior : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent.SetDestination(animator.transform.position);
+        animator.SetBool("isChasing", false);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

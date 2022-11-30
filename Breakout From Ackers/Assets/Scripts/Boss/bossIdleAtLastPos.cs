@@ -20,15 +20,20 @@ public class bossIdleAtLastPos : StateMachineBehaviour
     {
         time += Time.deltaTime;
         //let 10 seconds go by
-        if (time > 10)
+        if (time > 4)
         {
-            //Go back to patrolling
-            animator.SetBool("isPatrolling", true);
+            //Go back to patrolling or chasing
+            if (agent.GetComponent<FOV>().canSeePlayer && time > 4)
+            {
+                animator.SetBool("isChasing", true);
+            }
+            else
+            {
+                animator.SetBool("isPatrolling", true);
+            }
+            
         }
-        if (agent.GetComponent<FOV>().canSeePlayer && time > 4)
-        {
-            animator.SetBool("isChasing", true);
-        }
+        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

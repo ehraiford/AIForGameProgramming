@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class interactAndCreateBlueMassAmmo : Interactable
 {
-    private GameObject onScreenUI, firstPersonController;
+    private GameObject onScreenUI, firstPersonController, bossObject;
     public override void OnFocus()
     {
     }
@@ -16,6 +16,7 @@ public class interactAndCreateBlueMassAmmo : Interactable
             onScreenUI.GetComponent<OnScreenUIScript>().SetCurrentObjective(7);
             firstPersonController.GetComponent<FirstPersonController>().craftBlueMassAmmo();
             onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Crafted Blue Mass Ammo.");
+            bossObject.GetComponent<BossStat>().craftedBlueMass = true;
 
         }
         else
@@ -32,6 +33,7 @@ public class interactAndCreateBlueMassAmmo : Interactable
     {
         onScreenUI = GameObject.Find("On Screen UI");
         firstPersonController = GameObject.FindGameObjectWithTag("Player");
+        bossObject = GameObject.Find("WorkingBoss");
     }
 
     // Update is called once per frame
