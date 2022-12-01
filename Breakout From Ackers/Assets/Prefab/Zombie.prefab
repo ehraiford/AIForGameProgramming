@@ -1338,7 +1338,7 @@ MonoBehaviour:
   walkSpeed: 3
   sprintSpeed: 6
   damage: 20
-  attackSpeed: 1
+  attackSpeed: 0.25
   groanSound: {fileID: 8300000, guid: 87b58526b4bb80242b0473e78be0a3c9, type: 3}
   damagedSound: {fileID: 8300000, guid: e77df5e8f2f6c2148888dce0009b1aa4, type: 3}
   deathSound: {fileID: 8300000, guid: 098822b479df8ee428102ca4a1253c1f, type: 3}
@@ -1354,7 +1354,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
