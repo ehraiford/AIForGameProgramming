@@ -16,7 +16,9 @@ public class interactAndCreateBlueMassAmmo : Interactable
             onScreenUI.GetComponent<OnScreenUIScript>().SetCurrentObjective(7);
             firstPersonController.GetComponent<FirstPersonController>().craftBlueMassAmmo();
             onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Crafted Blue Mass Ammo.");
-            bossObject.GetComponent<BossStat>().craftedBlueMass = true;
+            //Putting boss here since boss is not activated during start
+            bossObject = GameObject.FindGameObjectWithTag("Boss");
+            bossObject.GetComponent<BossStat>().createdBM();
 
         }
         else
@@ -33,7 +35,7 @@ public class interactAndCreateBlueMassAmmo : Interactable
     {
         onScreenUI = GameObject.Find("On Screen UI");
         firstPersonController = GameObject.FindGameObjectWithTag("Player");
-        bossObject = GameObject.Find("WorkingBoss");
+        
     }
 
     // Update is called once per frame

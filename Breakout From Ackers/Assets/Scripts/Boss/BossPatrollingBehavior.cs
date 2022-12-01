@@ -42,7 +42,7 @@ public class BossPatrollingBehavior : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //This is to make it so the player must fight acker after blue mass
-        if (animator.GetComponentInParent<BossStat>().craftedBlueMass) ;
+        if (animator.GetComponentInParent<BossStat>().craftedBlueMass)
            animator.SetBool("isChasing", true);
 
         //If player shoots near zombie, make zombie go to player's location
