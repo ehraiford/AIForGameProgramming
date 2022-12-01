@@ -12,9 +12,11 @@ public class AttackBehavior : StateMachineBehaviour
     float lastTimeOfAttack;
     [SerializeField] private AudioClip attackSound;
     private AudioSource zombieAudio;
+    bool hasAttack;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        hasAttack = false;
         zombieAudio = animator.GetComponentInParent<AudioSource>();
         lastTimeOfAttack = 0;
         agent = animator.GetComponentInParent<NavMeshAgent>();
@@ -37,30 +39,45 @@ public class AttackBehavior : StateMachineBehaviour
         if (distance > agent.stoppingDistance)
             animator.SetBool("isAttacking", false);
         //Put time between damage call;
-        if(Time.time > lastTimeOfAttack + enemyStat.attackSpeed)
+        if (hasAttack)
         {
-            zombieAudio.PlayOneShot(attackSound);
-            lastTimeOfAttack = Time.time;
-            playerStat.doDamage(enemyStat.damage);
-            float DD = playerStat.diffcultyValue();
-            //Debuff the player
-            int i = Random.Range(0, 100);
-            
-            //20% +/- (80 / DD) chance of getting debuffed
-            if (i > 80 / DD)
-            {
-                playerStat.debuffPlayer();
-            }
+            animator.SetBool("isAttacking", false);
+            return;
         }
-        //Done with attack go back
-        animator.SetBool("isAttacking", false);
+        if (distance <= agent.stoppingDistance)
+        {
+            //Wait before attacking
+            if (lastTimeOfAttack > 0)
+            {
+                lastTimeOfAttack -= Time.deltaTime;
+            }
+            else
+            {
+                //Timers up attack the player
+                zombieAudio.PlayOneShot(attackSound);
+                lastTimeOfAttack = enemyStat.attackSpeed;
+                playerStat.doDamage(enemyStat.damage);
+                float DD = playerStat.diffcultyValue();
+                //Debuff the player
+                int i = Random.Range(0, 100);
+
+                //20% +/- (80 / DD) chance of getting debuffed
+                if (i > 80 / DD)
+                {
+                    playerStat.debuffPlayer();
+                }
+                hasAttack = true;
+                animator.SetBool("isAttacking", false);
+            }
+
+        }
 
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        animator.SetBool("isAttacking", false);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
