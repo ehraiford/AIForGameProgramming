@@ -169,7 +169,13 @@ public class OnScreenUIScript : MonoBehaviour
 
     public void changeHealthIndicator()
     {
-        if (health >= lowerHealthThreshold[0])
+        if (firstPersonController.GetComponent<FirstPersonController>().isDebuffed)
+        {
+            healthIndicatorColor.r = 0.1961f;
+            healthIndicatorColor.g = 0.098f;
+            healthIndicatorColor.b = 0.1961f;
+        }
+        else if (health >= lowerHealthThreshold[0])
         {
             healthIndicatorColor.r = 0.1768868f;
             healthIndicatorColor.g = 0.5f;
@@ -201,6 +207,7 @@ public class OnScreenUIScript : MonoBehaviour
         }
         healthIndicatorColor.a = 1f;
         healthIndicator.color = healthIndicatorColor;
+
     }
 
     public void SetCurrentObjective(int objectiveNumber)
