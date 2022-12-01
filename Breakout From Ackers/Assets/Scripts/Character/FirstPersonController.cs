@@ -189,6 +189,7 @@ public class FirstPersonController : CharacterStats
                 }
 
                 HandleAnimations();
+                //HandleGruntAudio();
 
                 ApplyFinalMovements();
             }
@@ -561,8 +562,6 @@ public class FirstPersonController : CharacterStats
     #region Health / Debuff Functions
     protected override void KillCharacter()
     {
-        Debug.Log("Death");
-        playerAudioSource.PlayOneShot(deathGrunt);
         isDead = true;
         scoreAdjustment(deathDDScore);
         currentHealth = 0;
@@ -576,7 +575,16 @@ public class FirstPersonController : CharacterStats
         currentHealth -= dmg;
         OnDamage?.Invoke(currentHealth);
 
-        if (currentHealth <= 0) KillCharacter();
+        if (currentHealth <= 0)
+        {
+            PlayGruntSound(3);
+            KillCharacter();
+        }
+        else
+        {
+            PlayGruntSound(1);
+        }
+            
     }
     public void AddHealth(float healAmt)
     {
@@ -588,24 +596,10 @@ public class FirstPersonController : CharacterStats
     }
     public void doDamage(float dmg)
     {
-        Debug.Log("Damage");
-        
         //Do damage
         ApplyDamage(dmg * diffcultyValue());
         //Adjust Score after getting hit;
         scoreAdjustment(GotHitValue);
-
-        //Player will randomly get debuffed
-        int i = Random.Range(0, 100);
-
-        if(i < 30)
-        {
-            if (!isDebuffed) debuffPlayer();
-        }
-        else
-        {
-            playerAudioSource.PlayOneShot(gruntClips[UnityEngine.Random.Range(0, gruntClips.Length - 1)]);
-        }
     }
 
     public void debuffPlayer()
@@ -613,8 +607,7 @@ public class FirstPersonController : CharacterStats
         //Only debuff when not debuffed
         if (!isDebuffed)
         {
-            Debug.Log("Debuff");
-            playerAudioSource.PlayOneShot(debuffGrunt);
+            PlayGruntSound(2);
             isDebuffed = true;
             walkSpeed -= walkSpeedModifer;
             sprintSpeed -= runSpeedModifer;
@@ -630,6 +623,18 @@ public class FirstPersonController : CharacterStats
             sprintSpeed += runSpeedModifer;
         }
         isDebuffed = false;
+    }
+
+    private void PlayGruntSound(int gruntSelect)
+    {
+        if (gruntSelect == 0) return;
+        else if (gruntSelect == 1) playerAudioSource.PlayOneShot(gruntClips[UnityEngine.Random.Range(0, gruntClips.Length - 1)]);
+        else if (gruntSelect == 2) playerAudioSource.PlayOneShot(debuffGrunt);
+        else if (gruntSelect == 3) playerAudioSource.PlayOneShot(deathGrunt);
+
+        Debug.Log(gruntSelect);
+
+        gruntSelect = 0;
     }
 
     #endregion
