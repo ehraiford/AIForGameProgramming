@@ -8,6 +8,7 @@ public class Gun : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject casingPrefab;
     public GameObject muzzleFlashPrefab;
+    public GameObject advancedMuzzleFlashPrefab;
     public GameObject bulletHolePrefab;
     public LayerMask canBeShot;
 
@@ -30,6 +31,7 @@ public class Gun : MonoBehaviour
     [Header("Audio")]
     private AudioSource m1911AudioSource = default;
     [SerializeField] private AudioClip shoot = default;
+    [SerializeField] private AudioClip advancedShoot = default;
     [SerializeField] private AudioClip reload = default;
     [SerializeField] private AudioClip emptyShot = default;
 
@@ -115,18 +117,21 @@ public class Gun : MonoBehaviour
         playerAnimator.SetBool("Shooting", true);
 
         // Handles muzzle flash
-        if (muzzleFlashPrefab)
+        if (muzzleFlashPrefab && advancedMuzzleFlashPrefab)
         {
             //Create the muzzle flash
             GameObject tempFlash;
-            tempFlash = Instantiate(muzzleFlashPrefab, barrelLocation.position, barrelLocation.rotation);
+
+            if (canDamageBoss) tempFlash = Instantiate(advancedMuzzleFlashPrefab, barrelLocation.position, barrelLocation.rotation);
+            else tempFlash = Instantiate(muzzleFlashPrefab, barrelLocation.position, barrelLocation.rotation);
 
             //Destroy the muzzle flash effect
             Destroy(tempFlash, destroyTimer);
         }
 
-        // Plays gunshot sound
-        m1911AudioSource.PlayOneShot(shoot);
+        // Plays gunshot sound depending on ammo type
+        if(canDamageBoss) m1911AudioSource.PlayOneShot(advancedShoot);
+        else  m1911AudioSource.PlayOneShot(shoot);
 
         // Calculates inaccuracy based on how fast the player is moving
         float inaccuracy = 0.0f;
