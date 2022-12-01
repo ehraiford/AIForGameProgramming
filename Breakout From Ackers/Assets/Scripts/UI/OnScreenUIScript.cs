@@ -133,8 +133,9 @@ public class OnScreenUIScript : MonoBehaviour
 
     private void DisplayInventoryItems()
     {
-        int displaySpot = 0;
+
         //iterates over every inventory spot
+        /*int displaySpot = 0;
         for (int i = 0; i < 8; i++)
         {
             if (firstPersonController.GetComponent<FirstPersonController>().inventoryItems[i].CompareTo("") != 0)
@@ -153,6 +154,17 @@ public class OnScreenUIScript : MonoBehaviour
         {
             inventoryTempText[displaySpot].text = "";
         }
+        */
+
+        for (int i = 0; i < 8; i++)
+        {
+            inventoryTempText[i].text = firstPersonController.GetComponent<FirstPersonController>().inventoryItems[i];
+            if (inventoryTempText[i].text.Contains("Ammo"))
+            {
+                inventoryTempText[i].text += " (" + firstPersonController.GetComponent<FirstPersonController>().inventoryItemsCount[i] + ")";
+            }
+        }
+
     }
 
     private void CloseInventory()
