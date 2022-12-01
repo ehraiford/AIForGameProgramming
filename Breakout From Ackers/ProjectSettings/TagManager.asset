@@ -26,6 +26,7 @@ TagManager:
   - Floors
   - Boss/Body
   - Boss/Head
+  - Ceiling
   layers:
   - Default
   - TransparentFX

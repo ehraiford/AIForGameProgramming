@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BossStat : CharacterStats
 {
@@ -10,19 +11,34 @@ public class BossStat : CharacterStats
     private int timeGotHit;
     private Animator anim;
     float dd;
+    GameObject onScreenUI;
+    public bool isDead;
+    public Collider[] cols;
+    NavMeshAgent agent;
     // Start is called before the first frame update
     void Start()
     {
         timeGotHit = 1;
         craftedBlueMass = false;
+        isDead = false;
         anim = GetComponentInChildren<Animator>();
         dd = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>().diffcultyValue();
+        onScreenUI = GameObject.Find("On Screen UI");
+        agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+    public void createdBM()
+    {
+        craftedBlueMass = true;
+        //Buff up the boss
+        agent.speed = 4;
+        attackSpeed = 1f;
+        damage = 60f;
     }
     protected override void ApplyDamage(float dmg)
     {
@@ -67,6 +83,15 @@ public class BossStat : CharacterStats
     {
         anim.SetBool("isDead", true);
         //Play a noise here
+        isDead = true;
+        //Turn off hitbox colliders
+        foreach(Collider x in cols)
+        {
+            x.enabled = false;
+        }
+        //Turn on collider for getting key
+        cols[cols.Length-1].enabled = true;
+        onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Pick up the key from Acker's body");
     }
 
     

@@ -43,6 +43,9 @@ public class ItemSwitching : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (numScrollInput > 0) playerAnimations.SetBool("Switching", true);
+        else playerAnimations.SetBool("Switching", false);
+
         // Updates inventory
         inventoryItems = playerController.inventoryItems;
 
@@ -107,7 +110,6 @@ public class ItemSwitching : MonoBehaviour
 
     private IEnumerator SelectItem()
     {
-        playerAnimations.SetBool("Switching", true);
         isSwitching = true;
         numScrollInput++;
 
@@ -123,8 +125,6 @@ public class ItemSwitching : MonoBehaviour
         // Waits for the hands to go all the way down
         yield return new WaitForSeconds(0.5f);
 
-        playerAnimations.SetBool("Switching", false);
-
         // Activates the new item and deactiveates the old one
         foreach (Transform item in transform)
         {
@@ -138,14 +138,12 @@ public class ItemSwitching : MonoBehaviour
             }
         }
 
-        // Waits for the hands to go all the way up
-        yield return new WaitForSeconds(0.6f);
-
         numScrollInput--;
-        isSwitching = false;
 
-        //yield return new WaitForSeconds(0.5f);
-        
+        // Waits for the hands to go all the way up
+        yield return new WaitForSeconds(0.8f);
+       
+        isSwitching = false; 
     }
 
     private void HandleMouseWheelInput()

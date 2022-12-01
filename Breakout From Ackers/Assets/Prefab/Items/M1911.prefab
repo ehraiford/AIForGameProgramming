@@ -416,6 +416,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1122964723992546, guid: 674adf642abf5614aae2995443c8250f, type: 3}
   casingPrefab: {fileID: 4362657251999731927, guid: 4cb20e8abae957146a8b78e670d3fe74, type: 3}
   muzzleFlashPrefab: {fileID: 1782395880954752, guid: 3dd9cf2e209c504448f1c4c6835675cf, type: 3}
+  advancedMuzzleFlashPrefab: {fileID: 1782395880954752, guid: 3443112662a1cb74eb6185f671a8abab, type: 3}
   bulletHolePrefab: {fileID: 3536441184655969525, guid: a9f5ac38b21d0fe488a0dff8dc104094, type: 3}
   canBeShot:
     serializedVersion: 2
@@ -426,6 +427,7 @@ MonoBehaviour:
   shotPower: 700
   ejectPower: 250
   shoot: {fileID: 8300000, guid: fbc92d60b819ddf4a89dd83c1f2e8524, type: 3}
+  advancedShoot: {fileID: 8300000, guid: f806880f168216445add38f8350f9e44, type: 3}
   reload: {fileID: 8300000, guid: 3c5c1d4d7b9307c458890a4beb12e4ae, type: 3}
   emptyShot: {fileID: 8300000, guid: 42d6e45b5da995b49aad1eed258a09f5, type: 3}
   maxMagAmmo: 7
