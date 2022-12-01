@@ -102,6 +102,7 @@ public class Gun : MonoBehaviour
     {
         isShooting = true;
 
+        // No ammo in mag, play empty click and return
         if (currentMagAmmo <= 0)
         {
             m1911AudioSource.PlayOneShot(emptyShot);
@@ -113,6 +114,7 @@ public class Gun : MonoBehaviour
         gunAnimator.SetBool("Shooting", true);
         playerAnimator.SetBool("Shooting", true);
 
+        // Handles muzzle flash
         if (muzzleFlashPrefab)
         {
             //Create the muzzle flash
@@ -123,17 +125,7 @@ public class Gun : MonoBehaviour
             Destroy(tempFlash, destroyTimer);
         }
 
-        /*
-         * Old Bullet
-         * 
-        // Cancels if there's no bullet prefeb
-        if (!bulletPrefab)
-        { yield break; }
-
-        // Create a bullet and add force on it in direction of the barrel
-        Instantiate(bulletPrefab, playerCamera.transform.position, playerCamera.transform.rotation).GetComponent<Rigidbody>().AddForce(playerCamera.transform.forward * 1);
-        */
-
+        // Plays gunshot sound
         m1911AudioSource.PlayOneShot(shoot);
 
         // Calculates inaccuracy based on how fast the player is moving
@@ -146,6 +138,7 @@ public class Gun : MonoBehaviour
         else if (playerController.getCurrentMovement() == "Crouch Walking")
             inaccuracy = 0.1f;
 
+        // Calculates inaccuracy for x and y axis
         float inaccuracyX = Random.Range(-inaccuracy, inaccuracy);
         float inaccuracyY = Random.Range(-inaccuracy, inaccuracy);
 
@@ -155,8 +148,11 @@ public class Gun : MonoBehaviour
         currentCameraPos.y += inaccuracyY;
 
         RaycastHit hit;
-        if (Physics.Raycast(currentCameraPos, playerCamera.transform.forward, out hit, 100))
+        if (Physics.Raycast(currentCameraPos, playerCamera.transform.forward, out hit, 100)) // Bullet hit something
         {
+            Debug.Log(hit.collider.tag);
+            //Calculates damage dropoff at range
+
             int rangeDropoff = 0;
 
             if (hit.distance < 3) rangeDropoff = 0;
@@ -164,25 +160,19 @@ public class Gun : MonoBehaviour
             else if (hit.distance >= 8) rangeDropoff = 20;
 
             // Damages zombie based on where it is shot
-            if (hit.collider.CompareTag("Zombie/Head"))
+            if (hit.collider.CompareTag("Zombie/Head")) // Hit zombie head
                 hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(100 - (rangeDropoff * 2));
-            else if (hit.collider.CompareTag("Zombie/Body"))
+            else if (hit.collider.CompareTag("Zombie/Body")) // Hit zombie body
                 hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(35 - (rangeDropoff * 1.5f));
-            else if (hit.collider.CompareTag("Zombie/Legs"))
+            else if (hit.collider.CompareTag("Zombie/Legs")) // Hit zombie legs
                 hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(25 - rangeDropoff);
-
-            // Damage the Boss
-            if (hit.collider.CompareTag("Boss/Head"))
+            else if (hit.collider.CompareTag("Boss/Head")) // Hit boss head
                 hit.transform.gameObject.GetComponent<BossStat>().DoDamage(100 - (hit.distance / 3));
-            else if (hit.collider.CompareTag("Boss/Body"))
+            else if (hit.collider.CompareTag("Boss/Body")) // Hit zombie body
                 hit.transform.gameObject.GetComponent<BossStat>().DoDamage(35 - (hit.distance / 3));
-
-            //Shooting puzzle object
-            if (hit.collider.CompareTag("Puzzle/Destructable"))
+            else if (hit.collider.CompareTag("Puzzle/Destructable")) // Hit puzzle
                 Destroy(hit.transform.gameObject);
-
-            // Spawns a bullet hole if the environment is shot
-            if (!(hit.collider.CompareTag("Zombie/Head")) && !(hit.collider.CompareTag("Zombie/Body")) && !(hit.collider.CompareTag("Zombie/Legs")) && !(hit.collider.CompareTag("Boss/Head")) && !(hit.collider.CompareTag("Boss/Body")) && !(hit.collider.CompareTag("Door")) && !(hit.collider.CompareTag("Puzzle/Destructable")))
+            else if (hit.collider.CompareTag("Walls") || hit.collider.CompareTag("Floors") || hit.collider.CompareTag("Ceiling") || hit.collider.CompareTag("Furniture")) // Hit shootable environment
             {
                 GameObject newHole = Instantiate(bulletHolePrefab, hit.point + hit.normal * 0.001f, Quaternion.identity) as GameObject;
                 newHole.transform.LookAt(hit.point + hit.normal);
