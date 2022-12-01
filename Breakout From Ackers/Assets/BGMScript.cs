@@ -23,7 +23,7 @@ public class BGMScript : MonoBehaviour
     {
         StartCoroutine(StartFade(BGM, 3, 0f));
         BGM.PlayOneShot(BGMArray[i]);
-        StartCoroutine(StartFade(BGM, 10, 0.20f));
+        StartCoroutine(StartFade(BGM, 10, 0.10f));
         currentPlayingNumber = i;
 
     }
