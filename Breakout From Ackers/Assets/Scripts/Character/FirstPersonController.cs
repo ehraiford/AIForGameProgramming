@@ -12,6 +12,8 @@ public class FirstPersonController : CharacterStats
     private bool ShouldJump => Input.GetKey(jumpKey) && characterController.isGrounded;
     private bool ShouldCrouch => Input.GetKeyDown(crouchKey) && !duringCrouchAnimation && characterController.isGrounded;
 
+    private AudioSource playerAudioSource;
+
     [Header("Functional Options")]
     [SerializeField] private bool canSprint = true;
     [SerializeField] private bool canJump = true;
@@ -79,7 +81,6 @@ public class FirstPersonController : CharacterStats
     [SerializeField] private float baseStepSpeed = 0.5f;
     [SerializeField] private float crouchStepMultiplier = 1.5f;
     [SerializeField] private float sprintStepMultiplier = 0.6f;
-    [SerializeField] private AudioSource footstepAudioSource = default;
     [SerializeField] private AudioClip[] footstepClips = default;
     private float footstepTimer = 0;
     private float GetCurrentOffset => isCrouching ? baseStepSpeed * crouchStepMultiplier : IsSprinting ? baseStepSpeed * sprintStepMultiplier : baseStepSpeed;
@@ -108,6 +109,9 @@ public class FirstPersonController : CharacterStats
     private int deathDDScore = -10;
     [SerializeField] private float walkSpeedModifer = 1.5f;
     [SerializeField] private float runSpeedModifer = 1f;
+    [SerializeField] private AudioClip[] gruntClips = default;
+    [SerializeField] private AudioClip debuffGrunt = default;
+    [SerializeField] private AudioClip deathGrunt = default;
     //Difficulty adjustment based on time
     private float deltaTime = 150;
     private float lastTimeAdjust;
@@ -138,6 +142,7 @@ public class FirstPersonController : CharacterStats
         playerCamera = GetComponentInChildren<Camera>();
         characterController = GetComponent<CharacterController>();
         playerAnimations = GetComponentInChildren<Animator>();
+        playerAudioSource = GetComponent<AudioSource>();
         defaultYPos = playerCamera.transform.localPosition.y;
 
         // Lock and hide cursor
@@ -414,7 +419,7 @@ public class FirstPersonController : CharacterStats
     {
         if (Physics.Raycast(playerCamera.transform.position, Vector3.down, out RaycastHit hit, 5))
         {
-            footstepAudioSource.PlayOneShot(footstepClips[UnityEngine.Random.Range(0, footstepClips.Length - 1)]);
+            playerAudioSource.PlayOneShot(footstepClips[UnityEngine.Random.Range(0, footstepClips.Length - 1)]);
         }
     }
 
@@ -556,13 +561,14 @@ public class FirstPersonController : CharacterStats
     #region Health / Debuff Functions
     protected override void KillCharacter()
     {
+        Debug.Log("Death");
+        playerAudioSource.PlayOneShot(deathGrunt);
         isDead = true;
         scoreAdjustment(deathDDScore);
         currentHealth = 0;
         gameOver.SetActive(true);
         gameOver.GetComponent<GameOverScript>().timePassed = Time.time;
         gameOver.GetComponent<GameOverScript>().movePlayerOutOfThePlaySpace();
-
     }
 
     protected override void ApplyDamage(float dmg)
@@ -582,6 +588,8 @@ public class FirstPersonController : CharacterStats
     }
     public void doDamage(float dmg)
     {
+        Debug.Log("Damage");
+        
         //Do damage
         ApplyDamage(dmg * diffcultyValue());
         //Adjust Score after getting hit;
@@ -590,16 +598,14 @@ public class FirstPersonController : CharacterStats
         //Player will randomly get debuffed
         int i = Random.Range(0, 100);
 
-        //if(!isDebuffed) debuffPlayer();
-
-
-
-        /*
         if(i < 30)
         {
-            debuffPlayer();
+            if (!isDebuffed) debuffPlayer();
         }
-        */
+        else
+        {
+            playerAudioSource.PlayOneShot(gruntClips[UnityEngine.Random.Range(0, gruntClips.Length - 1)]);
+        }
     }
 
     public void debuffPlayer()
@@ -607,6 +613,8 @@ public class FirstPersonController : CharacterStats
         //Only debuff when not debuffed
         if (!isDebuffed)
         {
+            Debug.Log("Debuff");
+            playerAudioSource.PlayOneShot(debuffGrunt);
             isDebuffed = true;
             walkSpeed -= walkSpeedModifer;
             sprintSpeed -= runSpeedModifer;
@@ -623,6 +631,7 @@ public class FirstPersonController : CharacterStats
         }
         isDebuffed = false;
     }
+
     #endregion
 
     #region Difficulty Adjustment Functions

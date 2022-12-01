@@ -81,9 +81,8 @@ public class Gun : MonoBehaviour
             // Fetches ammo from inventory
             currentReservesAmmo = getReservesAmmo();
 
-            // Can't use the gun while reloading or mid shot
-            if (isReloading) return;
-            if (isShooting) return;
+            // Can't use the gun while switching weapons, reloading, or shooting
+            if (isReloading || isShooting || itemHandler.GetComponent<ItemSwitching>().isSwitching) return;
 
             // Automatically reloads when the gun runs out of ammo and there is ammo in reserves
             if (currentMagAmmo <= 0 && currentReservesAmmo > 0) StartCoroutine(Reload());
@@ -160,9 +159,9 @@ public class Gun : MonoBehaviour
         {
             int rangeDropoff = 0;
 
-            if (hit.distance < 10) rangeDropoff = 0;
-            else if (hit.distance >= 10) rangeDropoff = 10;
-            else if (hit.distance >= 20) rangeDropoff = 20;
+            if (hit.distance < 3) rangeDropoff = 0;
+            else if (hit.distance >= 3) rangeDropoff = 10;
+            else if (hit.distance >= 8) rangeDropoff = 20;
 
             // Damages zombie based on where it is shot
             if (hit.collider.CompareTag("Zombie/Head"))
@@ -171,6 +170,7 @@ public class Gun : MonoBehaviour
                 hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(35 - (rangeDropoff * 1.5f));
             else if (hit.collider.CompareTag("Zombie/Legs"))
                 hit.transform.gameObject.GetComponent<EnemyStat>().DoDamage(25 - rangeDropoff);
+
             // Damage the Boss
             if (hit.collider.CompareTag("Boss/Head"))
                 hit.transform.gameObject.GetComponent<BossStat>().DoDamage(100 - (hit.distance / 3));

@@ -9,6 +9,7 @@ public class ItemSwitching : MonoBehaviour
     private string[] equippableItems = new string[4];
     private int numItems;
     public bool isSwitching = false;
+    private int numScrollInput = 0;
 
     [Header("Object References")]
     [SerializeField] private GameObject ammoUI;
@@ -72,7 +73,7 @@ public class ItemSwitching : MonoBehaviour
             // Doesn't allow the player to swap if they are in the middle of using an item
             if(!(m1911.GetComponent<Gun>().isShooting || m1911.GetComponent<Gun>().isReloading || medKit.GetComponent<MedKit>().isHealing || pills.GetComponent<Pills>().isPopping)) // || knife.GetComponent<Knife>().isAttacking
             {
-                HandleMouseWheelInput();
+                if(numScrollInput <= 8) HandleMouseWheelInput();
                 HandleNumberInput();
             }
         }
@@ -106,7 +107,9 @@ public class ItemSwitching : MonoBehaviour
 
     private IEnumerator SelectItem()
     {
+        playerAnimations.SetBool("Switching", true);
         isSwitching = true;
+        numScrollInput++;
 
         // Updates the current item's name to the new item
         foreach (Transform item in transform)
@@ -119,6 +122,8 @@ public class ItemSwitching : MonoBehaviour
 
         // Waits for the hands to go all the way down
         yield return new WaitForSeconds(0.5f);
+
+        playerAnimations.SetBool("Switching", false);
 
         // Activates the new item and deactiveates the old one
         foreach (Transform item in transform)
@@ -133,7 +138,14 @@ public class ItemSwitching : MonoBehaviour
             }
         }
 
+        // Waits for the hands to go all the way up
+        yield return new WaitForSeconds(0.6f);
+
+        numScrollInput--;
         isSwitching = false;
+
+        //yield return new WaitForSeconds(0.5f);
+        
     }
 
     private void HandleMouseWheelInput()

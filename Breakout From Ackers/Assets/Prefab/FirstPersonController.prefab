@@ -216,7 +216,7 @@ MonoBehaviour:
   m1911: {fileID: 7406988083660101512}
   medKit: {fileID: 8407889991387940512}
   pills: {fileID: 3440452242130717461}
-  knife: {fileID: 0}
+  knife: {fileID: 2614162149976321866}
 --- !u!1 &1410253418983004007
 GameObject:
   m_ObjectHideFlags: 0
@@ -2414,7 +2414,6 @@ MonoBehaviour:
   baseStepSpeed: 0.8
   crouchStepMultiplier: 1.3
   sprintStepMultiplier: 0.7
-  footstepAudioSource: {fileID: 7350335166596213583}
   footstepClips:
   - {fileID: 8300000, guid: d2ffd34bc57ffad4388d4b0b10e17963, type: 3}
   - {fileID: 8300000, guid: ed2ae0ebdf6cb384db96537fac547594, type: 3}
@@ -2441,6 +2440,10 @@ MonoBehaviour:
   gameOver: {fileID: 0}
   walkSpeedModifer: 1.5
   runSpeedModifer: 1
+  gruntClips:
+  - {fileID: 8300000, guid: 3b1caa79104e7384896f6e9dc0455157, type: 3}
+  - {fileID: 8300000, guid: 4db63e0d5874839479c253bca9a30925, type: 3}
+  - {fileID: 8300000, guid: 5e0f13839a0c11e4294a793691cf6b3f, type: 3}
   isDebuffed: 0
   debuffDuration: 60
   onscreenUI: {fileID: 0}
@@ -2971,6 +2974,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 122109429960260901, guid: 54df49b3785c980438d169c3c08532d9, type: 3}
   m_PrefabInstance: {fileID: 2735531598527729231}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2614162149976321866 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 122109429960548613, guid: 54df49b3785c980438d169c3c08532d9, type: 3}
+  m_PrefabInstance: {fileID: 2735531598527729231}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3439057633757772953
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3128,18 +3136,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1290931975454139167}
     m_Modifications:
-    - target: {fileID: 3280004324149247641, guid: 47f0794d805a3e14ea35a5808c2e2fc7, type: 3}
-      propertyPath: itemHandler
-      value: 
-      objectReference: {fileID: 1290931975454139164}
-    - target: {fileID: 3280004324149247641, guid: 47f0794d805a3e14ea35a5808c2e2fc7, type: 3}
-      propertyPath: playerCamera
-      value: 
-      objectReference: {fileID: 7350335165163504743}
-    - target: {fileID: 3280004324149247641, guid: 47f0794d805a3e14ea35a5808c2e2fc7, type: 3}
-      propertyPath: playerController
-      value: 
-      objectReference: {fileID: 7350335166596213554}
     - target: {fileID: 4407022129942706129, guid: 47f0794d805a3e14ea35a5808c2e2fc7, type: 3}
       propertyPath: m_RootOrder
       value: 0

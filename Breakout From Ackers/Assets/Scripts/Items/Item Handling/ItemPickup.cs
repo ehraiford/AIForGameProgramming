@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ItemPickup : Interactable
 {
-   
-
     [SerializeField] int itemCount;
     [SerializeField] string itemName;
     [SerializeField] bool itemCountAffectedByScore;
@@ -15,11 +13,14 @@ public class ItemPickup : Interactable
     private bool alreadyPickedUp = false;
     private GameObject firstPersonController;
     private GameObject onScreenUI;
+    private AudioSource playerAudioSource;
+    [SerializeField] private AudioClip itemPickupSound = default;
 
     private void Start()
     {
         firstPersonController = GameObject.FindGameObjectWithTag("Player");
         onScreenUI = GameObject.FindGameObjectWithTag("Menu");
+        playerAudioSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
     }
     public override void OnFocus()
     {
@@ -42,6 +43,7 @@ public class ItemPickup : Interactable
 
         if (!alreadyPickedUp && firstPersonController.GetComponent<FirstPersonController>().AddInventoryItem(itemName, adjustedItemCount))
         {
+            playerAudioSource.PlayOneShot(itemPickupSound);
             alreadyPickedUp = true;
             if (destroyOnInteract) Destroy(gameObject);
         } else if (alreadyPickedUp) onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("You already picked up everything available. It's empty now.");
