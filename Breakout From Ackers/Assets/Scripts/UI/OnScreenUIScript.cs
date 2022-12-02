@@ -134,7 +134,7 @@ public class OnScreenUIScript : MonoBehaviour
     private void DisplayInventoryItems()
     {
 
-        //iterates over every inventory spot
+        //This was the previous way. Keeping in case the new way gives issues.
         /*int displaySpot = 0;
         for (int i = 0; i < 8; i++)
         {

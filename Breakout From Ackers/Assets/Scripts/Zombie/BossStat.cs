@@ -91,7 +91,8 @@ public class BossStat : CharacterStats
         }
         //Turn on collider for getting key
         cols[cols.Length-1].enabled = true;
-        onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Pick up the key from Acker's body");
+        onScreenUI.GetComponent<OnScreenUIScript>().SetCurrentObjective(8);
+        onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Retrieve the key from Acker's body and escape.");
     }
 
     
