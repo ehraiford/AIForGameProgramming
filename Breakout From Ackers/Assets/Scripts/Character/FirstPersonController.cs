@@ -413,7 +413,7 @@ public class FirstPersonController : CharacterStats
         }
         else // If player isn't grounded, set justLanded to true to prepare for the landing on a surface
         {
-            justLanded = true;
+            if(moveDirection.y > 1) justLanded = true;
         }
     }
 
