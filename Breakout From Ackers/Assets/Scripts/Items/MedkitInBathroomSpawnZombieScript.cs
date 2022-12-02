@@ -15,7 +15,10 @@ public class MedkitInBathroomSpawnZombieScript : Interactable
     [SerializeField] AudioClip creepySound;
     private bool creepySoundPlayed = false;
     private float timer = 0;
-    
+
+    private AudioSource playerAudioSource;
+    [SerializeField] private AudioClip itemPickupSound = default;
+
 
     private void Update()
     {
@@ -56,7 +59,10 @@ public class MedkitInBathroomSpawnZombieScript : Interactable
     {
         //the traditional adding item to inventory.
         firstPersonController.GetComponent<FirstPersonController>().AddInventoryItem("MedKit", 1);
-        
+
+        // Play pickup sound
+        playerAudioSource.PlayOneShot(itemPickupSound);
+
         hallwayZombie.SetActive(true); //activate Alberto, the first zombie
       
         foyerDoor.GetComponent<Door>().isLocked = false; //unlock door to foyer
@@ -78,7 +84,7 @@ public class MedkitInBathroomSpawnZombieScript : Interactable
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerAudioSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
     }
 
    
