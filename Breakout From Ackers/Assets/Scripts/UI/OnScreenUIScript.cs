@@ -27,8 +27,6 @@ public class OnScreenUIScript : MonoBehaviour
 
     [Header("Inventory Screen Stuff")]
     [SerializeField] private TextMeshProUGUI[] inventoryTempText;
-    [SerializeField] private Image[] inventoryImages;
-    [SerializeField] private Sprite[] imageSources;
     [SerializeField] private float[] lowerHealthThreshold = new float[4];
     [SerializeField] private Color healthIndicatorColor;
     [SerializeField] private Image healthIndicator;
@@ -164,18 +162,6 @@ public class OnScreenUIScript : MonoBehaviour
             if (inventoryTempText[i].text.Contains("Ammo"))
             {
                 inventoryTempText[i].text += " (" + firstPersonController.GetComponent<FirstPersonController>().inventoryItemsCount[i] + ")";
-            }
-
-            if(inventoryTempText[i].text.CompareTo("M1911") == 0)
-            {
-                inventoryImages[i].color = new Color(inventoryImages[i].color.r, inventoryImages[i].color.g, inventoryImages[i].color.b, 1); 
-                inventoryImages[i].sprite = imageSources[0];
-                
-            }
-            else
-            {
-                inventoryImages[i].sprite = null;
-                inventoryImages[i].color = new Color(inventoryImages[i].color.r, inventoryImages[i].color.g, inventoryImages[i].color.b, 0);
             }
         }
 
