@@ -22,21 +22,23 @@ public class OnScreenUIScript : MonoBehaviour
     [SerializeField] GameObject backgroundMusic;
 
 
-   
+
     public TextMeshProUGUI notePanelText;
 
     [Header("Inventory Screen Stuff")]
     [SerializeField] private TextMeshProUGUI[] inventoryTempText;
+    [SerializeField] private Image[] inventoryImages;
+    [SerializeField] private Sprite[] imageSources;
     [SerializeField] private float[] lowerHealthThreshold = new float[4];
     [SerializeField] private Color healthIndicatorColor;
     [SerializeField] private Image healthIndicator;
     public TextMeshProUGUI currentRoom;
     [SerializeField] private TMP_FontAsset[] fontsForNotes;
 
-    [Header("Objective Stuff")] 
+    [Header("Objective Stuff")]
     public TextMeshProUGUI objective;
     [SerializeField] private string[] objectiveList;
-     
+
     [Header("Heads Up Stuff")]
     [SerializeField] private TextMeshProUGUI headsUpText;
     [SerializeField] float fadeInTime, stayTime, fadeOutTime;
@@ -60,7 +62,7 @@ public class OnScreenUIScript : MonoBehaviour
         currentRoom.text = "Temporary Hospital";
 
     }
-    
+
     void Update()
     {
         //open/close inventory
@@ -79,12 +81,12 @@ public class OnScreenUIScript : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Escape) && !inventoryUp && !readingNote)
         {
             if (!isPaused)
-            { 
+            {
                 Pause();
             }
         }
 
-       //changes health indicator if it isn't accurate
+        //changes health indicator if it isn't accurate
         if (health != firstPersonController.GetComponent<FirstPersonController>().GetCurrentHealth())
         {
             health = firstPersonController.GetComponent<FirstPersonController>().GetCurrentHealth();
@@ -94,9 +96,9 @@ public class OnScreenUIScript : MonoBehaviour
         //handles fade in / out of headsUp text
         if (fadeHeadsUp)
         {
-            if(Time.time - fadeTimer <= fadeInTime)
+            if (Time.time - fadeTimer <= fadeInTime)
             {
-                float alpha =  (Time.time - fadeTimer) / fadeInTime;
+                float alpha = (Time.time - fadeTimer) / fadeInTime;
                 headsUpText.color = new Color(headsUpText.color.r, headsUpText.color.g, headsUpText.color.b, alpha);
             }
             else if (Time.time - fadeTimer <= fadeInTime + stayTime)
@@ -105,8 +107,8 @@ public class OnScreenUIScript : MonoBehaviour
             }
             else if (Time.time - fadeTimer <= fadeInTime + stayTime + fadeOutTime)
             {
-                float alpha = 1 - (Time.time - fadeTimer - fadeInTime - stayTime)/ fadeOutTime;
-                
+                float alpha = 1 - (Time.time - fadeTimer - fadeInTime - stayTime) / fadeOutTime;
+
                 headsUpText.color = new Color(headsUpText.color.r, headsUpText.color.g, headsUpText.color.b, alpha);
             }
             else
@@ -163,6 +165,18 @@ public class OnScreenUIScript : MonoBehaviour
             {
                 inventoryTempText[i].text += " (" + firstPersonController.GetComponent<FirstPersonController>().inventoryItemsCount[i] + ")";
             }
+
+            if (inventoryTempText[i].text.CompareTo("M1911") == 0)
+            {
+                inventoryImages[i].color = new Color(inventoryImages[i].color.r, inventoryImages[i].color.g, inventoryImages[i].color.b, 1);
+                inventoryImages[i].sprite = imageSources[0];
+
+            }
+            else
+            {
+                inventoryImages[i].sprite = null;
+                inventoryImages[i].color = new Color(inventoryImages[i].color.r, inventoryImages[i].color.g, inventoryImages[i].color.b, 0);
+            }
         }
 
     }
@@ -205,7 +219,7 @@ public class OnScreenUIScript : MonoBehaviour
             healthIndicatorColor.g = 0.4325789f;
             healthIndicatorColor.b = 0.1764706f;
         }
-        else if(health > lowerHealthThreshold[3])
+        else if (health > lowerHealthThreshold[3])
         {
             healthIndicatorColor.r = 0.5019608f;
             healthIndicatorColor.g = 0.3170498f;
@@ -239,13 +253,13 @@ public class OnScreenUIScript : MonoBehaviour
         ammoDisplayUI.SetActive(false);
         crosshairs.SetActive(false);
         Time.timeScale = 0f;
-        
+
 
 
         StreamReader textReader = new StreamReader(path);
 
-        string currentText = textReader.ReadLine(); 
-        while(currentText.CompareTo("Text "+ noteNumber.ToString()) != 0 && !textReader.EndOfStream)
+        string currentText = textReader.ReadLine();
+        while (currentText.CompareTo("Text " + noteNumber.ToString()) != 0 && !textReader.EndOfStream)
         {
             currentText = textReader.ReadLine();
         }
@@ -255,9 +269,9 @@ public class OnScreenUIScript : MonoBehaviour
         while (textReader.Peek() != 42 && !textReader.EndOfStream)
         {
             addOn = textReader.ReadLine();
-           
+
             currentText = currentText + addOn + "\n";
-            
+
         }
         notePanelText.text = currentText;
         notePanelText.font = fontsForNotes[fontNumber];
@@ -282,12 +296,12 @@ public class OnScreenUIScript : MonoBehaviour
     {
         backgroundMusic.GetComponent<BGMScript>().Unpause();
         pauseMenuUI.SetActive(false);
-        crosshairs.SetActive(true); 
+        crosshairs.SetActive(true);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;
         isPaused = false;
- 
+
         onScreenUI.SetActive(true);
     }
 
