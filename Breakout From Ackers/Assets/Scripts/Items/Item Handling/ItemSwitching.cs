@@ -77,7 +77,7 @@ public class ItemSwitching : MonoBehaviour
             if(!(m1911.GetComponent<Gun>().isShooting || m1911.GetComponent<Gun>().isReloading || medKit.GetComponent<MedKit>().isHealing || pills.GetComponent<Pills>().isPopping)) // || knife.GetComponent<Knife>().isAttacking
             {
                 if(numScrollInput <= 8) HandleMouseWheelInput();
-                HandleNumberInput();
+                if(!isSwitching) HandleNumberInput();
             }
         }
 
@@ -124,6 +124,7 @@ public class ItemSwitching : MonoBehaviour
 
         // Waits for the hands to go all the way down
         yield return new WaitForSeconds(0.5f);
+        numScrollInput--;
 
         // Activates the new item and deactiveates the old one
         foreach (Transform item in transform)
@@ -137,8 +138,6 @@ public class ItemSwitching : MonoBehaviour
                 item.gameObject.SetActive(false);
             }
         }
-
-        numScrollInput--;
 
         // Waits for the hands to go all the way up
         yield return new WaitForSeconds(0.8f);

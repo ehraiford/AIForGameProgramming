@@ -73,7 +73,6 @@ public class MedKit : MonoBehaviour
         playerController.GetComponentInChildren<ItemSwitching>().NoRemaingingItemsFindNext();
 
         playerAnimator.SetBool("Healing", false);
-        playerAnimator.SetBool("Switching", false);
         isHealing = false;
     }
 }
