@@ -19,7 +19,6 @@ public class MedkitInBathroomSpawnZombieScript : Interactable
     private AudioSource playerAudioSource;
     [SerializeField] private AudioClip itemPickupSound = default;
 
-
     private void Update()
     {
         if (timer != 0)

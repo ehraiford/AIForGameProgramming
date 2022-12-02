@@ -2424,18 +2424,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   inventoryItems:
+  - M1911
+  - Pistol Ammo
+  - Pure Blue Mass
   - 
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  inventoryItemsCount: 0000000000000000000000000000000000000000000000000000000000000000
+  inventoryItemsCount: 010000000a000000010000000000000000000000000000000000000000000000
   inventoryUnstackableItems:
   - MedKit
   - Blue Mass Pills
+  craftBlueMassAmmoSound: {fileID: 8300000, guid: 5e74bbb1d3610c640a1fab4cba5f749e, type: 3}
   Score: 0
   gameOver: {fileID: 0}
   walkSpeedModifer: 1.5
@@ -2444,6 +2445,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3b1caa79104e7384896f6e9dc0455157, type: 3}
   - {fileID: 8300000, guid: 4db63e0d5874839479c253bca9a30925, type: 3}
   - {fileID: 8300000, guid: 5e0f13839a0c11e4294a793691cf6b3f, type: 3}
+  debuffGrunt: {fileID: 0}
+  deathGrunt: {fileID: 0}
   isDebuffed: 0
   debuffDuration: 60
   onscreenUI: {fileID: 0}

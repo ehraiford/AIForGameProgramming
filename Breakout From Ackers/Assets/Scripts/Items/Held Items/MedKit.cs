@@ -45,6 +45,7 @@ public class MedKit : MonoBehaviour
     {
         isHealing = true;
         playerAnimator.SetBool("Healing", true);
+        playerAnimator.SetBool("Switching", true);
 
         // Wait for hand to reach MedKit then play zipper sound effect
         yield return new WaitForSeconds(0.5f);
@@ -72,6 +73,7 @@ public class MedKit : MonoBehaviour
         playerController.GetComponentInChildren<ItemSwitching>().NoRemaingingItemsFindNext();
 
         playerAnimator.SetBool("Healing", false);
+        playerAnimator.SetBool("Switching", false);
         isHealing = false;
     }
 }

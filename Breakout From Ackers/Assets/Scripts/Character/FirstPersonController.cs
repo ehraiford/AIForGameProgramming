@@ -85,21 +85,22 @@ public class FirstPersonController : CharacterStats
     private float footstepTimer = 0;
     private float GetCurrentOffset => isCrouching ? baseStepSpeed * crouchStepMultiplier : IsSprinting ? baseStepSpeed * sprintStepMultiplier : baseStepSpeed;
 
-    [Header("Interaction")]
+    [Header("Interaction Parameters")]
     [SerializeField] private Vector3 interactionRayPoint = default;
     [SerializeField] private float interactionDistance = default;
     [SerializeField] private LayerMask interactionLayer = default;
     private Interactable currentInteractable;
 
-    [Header("Inventory")]
+    [Header("Inventory Parameters")]
     [SerializeField] public string[] inventoryItems = new string[8];
     [SerializeField] public int[] inventoryItemsCount = new int[8];
     [SerializeField] public string[] inventoryUnstackableItems;
     private int inventorySpacesCurrentlyUsed;
     private string currentItem;
     private bool craftedBlueMass = false;
+    [SerializeField] private AudioClip craftBlueMassAmmoSound = default;
 
-    [Header("Health And Debuff")]
+    [Header("Health And Debuff Parameters")]
     [SerializeField] private int Score;
     [SerializeField] GameObject gameOver;
     //Global Variable
@@ -780,6 +781,7 @@ public class FirstPersonController : CharacterStats
 
     public void craftBlueMassAmmo()
     {
+        playerAudioSource.PlayOneShot(craftBlueMassAmmoSound);
         craftedBlueMass = true;
         for(int i = 0; i < inventoryItems.Length; i++)
         {
