@@ -136,31 +136,10 @@ public class OnScreenUIScript : MonoBehaviour
     private void DisplayInventoryItems()
     {
 
-        //This was the previous way. Keeping in case the new way gives issues.
-        /*int displaySpot = 0;
-        for (int i = 0; i < 8; i++)
-        {
-            if (firstPersonController.GetComponent<FirstPersonController>().inventoryItems[i].CompareTo("") != 0)
-            {
-
-
-                inventoryTempText[displaySpot].text = firstPersonController.GetComponent<FirstPersonController>().inventoryItems[i];
-                if (inventoryTempText[displaySpot].text.Contains("Ammo"))
-                {
-                    inventoryTempText[displaySpot].text += " (" + firstPersonController.GetComponent<FirstPersonController>().inventoryItemsCount[i] + ")";
-                }
-                displaySpot++;
-            }
-        }
-        for( ; displaySpot < 8; displaySpot++)
-        {
-            inventoryTempText[displaySpot].text = "";
-        }
-        */
-
         for (int i = 0; i < 8; i++)
         {
             inventoryTempText[i].text = firstPersonController.GetComponent<FirstPersonController>().inventoryItems[i];
+
             if (inventoryTempText[i].text.Contains("Ammo"))
             {
                 inventoryTempText[i].text += " (" + firstPersonController.GetComponent<FirstPersonController>().inventoryItemsCount[i] + ")";
@@ -171,6 +150,41 @@ public class OnScreenUIScript : MonoBehaviour
                 inventoryImages[i].color = new Color(inventoryImages[i].color.r, inventoryImages[i].color.g, inventoryImages[i].color.b, 1);
                 inventoryImages[i].sprite = imageSources[0];
 
+            }
+            else if (inventoryTempText[i].text.CompareTo("Pistol Ammo") == 0)
+            {
+                inventoryImages[i].sprite = null;
+                inventoryImages[i].color = new Color(inventoryImages[i].color.r, inventoryImages[i].color.g, inventoryImages[i].color.b, 0);
+            }
+            else if (inventoryTempText[i].text.CompareTo("MedKit") == 0)
+            {
+                inventoryImages[i].sprite = null;
+                inventoryImages[i].color = new Color(inventoryImages[i].color.r, inventoryImages[i].color.g, inventoryImages[i].color.b, 0);
+            }
+            else if (inventoryTempText[i].text.CompareTo("Blue Mass Pills") == 0)
+            {
+                inventoryImages[i].sprite = null;
+                inventoryImages[i].color = new Color(inventoryImages[i].color.r, inventoryImages[i].color.g, inventoryImages[i].color.b, 0);
+            }
+            else if (inventoryTempText[i].text.Contains("Key"))
+            {
+                inventoryImages[i].sprite = null;
+                inventoryImages[i].color = new Color(inventoryImages[i].color.r, inventoryImages[i].color.g, inventoryImages[i].color.b, 0);
+            }
+            else if (inventoryTempText[i].text.CompareTo("Fish") == 0)
+            {
+                inventoryImages[i].sprite = null;
+                inventoryImages[i].color = new Color(inventoryImages[i].color.r, inventoryImages[i].color.g, inventoryImages[i].color.b, 0);
+            }
+            else if (inventoryTempText[i].text.CompareTo("Pure Blue Mass") == 0)
+            {
+                inventoryImages[i].sprite = null;
+                inventoryImages[i].color = new Color(inventoryImages[i].color.r, inventoryImages[i].color.g, inventoryImages[i].color.b, 0);
+            }
+            else if (inventoryTempText[i].text.CompareTo("Blue Mass Ammo") == 0)
+            {
+                inventoryImages[i].sprite = null;
+                inventoryImages[i].color = new Color(inventoryImages[i].color.r, inventoryImages[i].color.g, inventoryImages[i].color.b, 0);
             }
             else
             {
