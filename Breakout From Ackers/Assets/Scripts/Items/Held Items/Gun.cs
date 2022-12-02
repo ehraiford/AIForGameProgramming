@@ -136,11 +136,14 @@ public class Gun : MonoBehaviour
         // Calculates inaccuracy based on how fast the player is moving
         float inaccuracy = 0.0f;
 
-        if (playerController.getCurrentMovement() == "Sprinting")
+        string currentPlayerMovement = playerController.getCurrentMovement();
+        Debug.Log(currentPlayerMovement);
+
+        if (currentPlayerMovement == "Sprinting" || currentPlayerMovement == "Jumping")
             inaccuracy = 0.5f;
-        else if (playerController.getCurrentMovement() == "Walking")
+        else if (currentPlayerMovement == "Walking")
             inaccuracy = 0.25f;
-        else if (playerController.getCurrentMovement() == "Crouch Walking")
+        else if (currentPlayerMovement == "Crouch Walking")
             inaccuracy = 0.1f;
 
         // Calculates inaccuracy for x and y axis

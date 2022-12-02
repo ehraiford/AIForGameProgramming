@@ -437,7 +437,8 @@ public class FirstPersonController : CharacterStats
 
     public string getCurrentMovement()
     {
-        return currentMovement;
+        if (moveDirection.y > 0.5 || moveDirection.y < 0.5) return "Jumping";
+        else return currentMovement;
     }
 
     #endregion
