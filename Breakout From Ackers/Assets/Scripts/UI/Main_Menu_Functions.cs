@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Main_Menu_Functions : MonoBehaviour
 {
+
+    [SerializeField] GameObject mainMenu, controlsMenu;
+
     public void PlayGame()
     {
         
@@ -16,5 +19,17 @@ public class Main_Menu_Functions : MonoBehaviour
 
         Debug.Log("Quit Button Pressed.");
         Application.Quit();
+    }
+
+    public void ViewControls()
+    {
+        mainMenu.SetActive(false);
+        controlsMenu.SetActive(true);
+    }
+
+    public void ExitControls()
+    {
+        controlsMenu.SetActive(false);
+        mainMenu.SetActive(true);
     }
 }
