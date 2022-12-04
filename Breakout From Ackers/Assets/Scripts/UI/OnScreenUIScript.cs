@@ -87,7 +87,7 @@ public class OnScreenUIScript : MonoBehaviour
         }
 
         //changes health indicator if it isn't accurate
-        if (health != firstPersonController.GetComponent<FirstPersonController>().GetCurrentHealth())
+        if (inventoryUp)
         {
             health = firstPersonController.GetComponent<FirstPersonController>().GetCurrentHealth();
             changeHealthIndicator();
