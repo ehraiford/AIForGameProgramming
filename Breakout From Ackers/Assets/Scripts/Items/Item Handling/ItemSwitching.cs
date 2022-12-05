@@ -161,9 +161,10 @@ public class ItemSwitching : MonoBehaviour
             // If the current inventory item isn't equippable, skip to the next equippable item and loop back to the start if necessary
             while (!isItemEquippable(selectedItem))
             {
-                selectedItem++;
-
-                if (selectedItem >= inventoryItems.Length - 1) selectedItem = 0;
+                if (selectedItem >= inventoryItems.Length - 1)
+                    selectedItem = 0;
+                else
+                    selectedItem++;
             }
         }
 
@@ -179,9 +180,10 @@ public class ItemSwitching : MonoBehaviour
             // If the current inventory item isn't equippable, skip to the next equippable item and loop back to the end if necessary
             while (!isItemEquippable(selectedItem))
             {
-                selectedItem--;
-
-                if (selectedItem <= 0) selectedItem = 7;
+                if (selectedItem <= 0)
+                    selectedItem = 7;
+                else
+                    selectedItem--;
             }
         }
     }

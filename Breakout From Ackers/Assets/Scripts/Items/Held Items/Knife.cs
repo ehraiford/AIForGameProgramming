@@ -62,7 +62,7 @@ public class Knife : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
         RaycastHit hit;
-        if (Physics.SphereCast(playerCamera.transform.position, 0.75f, playerCamera.transform.forward, out hit, 1f))
+        if (Physics.SphereCast(playerCamera.transform.position, 0.8f, playerCamera.transform.forward, out hit, 0.8f))
         {
             // Damages zombie based on where it is sliced
             if (hit.collider.CompareTag("Zombie/Head"))
