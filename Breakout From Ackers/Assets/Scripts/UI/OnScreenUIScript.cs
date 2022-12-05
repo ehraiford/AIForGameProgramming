@@ -113,6 +113,8 @@ public class OnScreenUIScript : MonoBehaviour
             }
             else
             {
+                headsUpText.color = new Color(headsUpText.color.r, headsUpText.color.g, headsUpText.color.b, 0.0f);
+
                 fadeHeadsUp = false;
             }
         }

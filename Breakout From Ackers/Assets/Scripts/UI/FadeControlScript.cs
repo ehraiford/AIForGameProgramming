@@ -33,6 +33,8 @@ public class FadeControlScript : MonoBehaviour
             }
             
         }
+        else text.color = new Color(text.color.r, text.color.g, text.color.b, 0.0f);
+
     }
 
     public void FadeInAndOut(TextMeshProUGUI fadeText, float newInTime, float newStayTime, float newOutTime ) 

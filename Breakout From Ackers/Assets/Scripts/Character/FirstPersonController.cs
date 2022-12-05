@@ -131,6 +131,8 @@ public class FirstPersonController : CharacterStats
     private float rotationX = 0;
 
     [SerializeField] GameObject onscreenUI;
+    private GameObject[] padlockCameras;
+    [SerializeField] GameObject mainCamera;
 
     #endregion
 
@@ -566,10 +568,24 @@ public class FirstPersonController : CharacterStats
     {
         isDead = true;
         scoreAdjustment(deathDDScore);
+
         currentHealth = 0;
+
+        undoDebuff();
+
         gameOver.SetActive(true);
         gameOver.GetComponent<GameOverScript>().timePassed = Time.time;
         gameOver.GetComponent<GameOverScript>().movePlayerOutOfThePlaySpace();
+
+        
+        
+        padlockCameras = GameObject.FindGameObjectsWithTag("Padlock Camera");
+        mainCamera.SetActive(true);
+        for(int i = 0; i < padlockCameras.Length; i++)
+        {
+            padlockCameras[i].SetActive(false);
+            Debug.Log(i);
+        }
     }
 
     protected override void ApplyDamage(float dmg)

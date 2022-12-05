@@ -6,11 +6,12 @@ using UnityEngine.SceneManagement;
 public class Main_Menu_Functions : MonoBehaviour
 {
 
-    [SerializeField] GameObject mainMenu, controlsMenu;
+    [SerializeField] GameObject mainMenu, controlsMenu, loadingScreen;
 
     public void PlayGame()
     {
-        
+        mainMenu.SetActive(false);
+        loadingScreen.SetActive(true);
         SceneManager.LoadScene(1);
     }
 

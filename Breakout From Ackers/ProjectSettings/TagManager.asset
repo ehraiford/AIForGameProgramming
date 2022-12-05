@@ -27,6 +27,7 @@ TagManager:
   - Boss/Body
   - Boss/Head
   - Ceiling
+  - Padlock Camera
   layers:
   - Default
   - TransparentFX
