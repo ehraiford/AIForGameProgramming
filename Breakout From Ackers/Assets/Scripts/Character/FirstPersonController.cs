@@ -164,7 +164,7 @@ public class FirstPersonController : CharacterStats
     void Update()
     {
         if(playerCamera.isActiveAndEnabled) currentItem = GetComponentInChildren<ItemSwitching>().getCurrentItemName();
-
+        
         // Script works only when the game is unpaused
         if (Time.timeScale > 0.9 && !isDead && playerCamera.isActiveAndEnabled)
         {
@@ -437,7 +437,7 @@ public class FirstPersonController : CharacterStats
 
     public string getCurrentMovement()
     {
-        if (moveDirection.y > 0.5 || moveDirection.y < 0.5) return "Jumping";
+        if (moveDirection.y > 0) return "Jumping";
         else return currentMovement;
     }
 

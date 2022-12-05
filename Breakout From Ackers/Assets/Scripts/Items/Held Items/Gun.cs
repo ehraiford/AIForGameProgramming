@@ -140,11 +140,11 @@ public class Gun : MonoBehaviour
         Debug.Log(currentPlayerMovement);
 
         if (currentPlayerMovement == "Sprinting" || currentPlayerMovement == "Jumping")
-            inaccuracy = 0.5f;
-        else if (currentPlayerMovement == "Walking")
-            inaccuracy = 0.25f;
-        else if (currentPlayerMovement == "Crouch Walking")
             inaccuracy = 0.1f;
+        else if (currentPlayerMovement == "Walking")
+            inaccuracy = 0.05f;
+        else if (currentPlayerMovement == "Crouch Walking")
+            inaccuracy = 0f;
 
         // Calculates inaccuracy for x and y axis
         float inaccuracyX = Random.Range(-inaccuracy, inaccuracy);
