@@ -78,7 +78,7 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
-        if (Time.timeScale > 0.9)
+        if (Time.timeScale > 0.9 && !playerController.isDead)
         {
             // Fetches ammo from inventory
             currentReservesAmmo = getReservesAmmo();

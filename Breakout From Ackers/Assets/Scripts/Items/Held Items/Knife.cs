@@ -5,9 +5,9 @@ using UnityEngine;
 public class Knife : MonoBehaviour
 {
     [Header("Object References")]
-    [SerializeField] private GameObject playerController;
-    [SerializeField] private GameObject playerCamera;
-    [SerializeField] private GameObject itemHandler;
+    private FirstPersonController playerController;
+    private Camera playerCamera;
+    private ItemSwitching itemHandler;
     private Animator playerAnimator;
 
     [Header("Settings")]
@@ -15,14 +15,18 @@ public class Knife : MonoBehaviour
     public bool isAttacking = false;
 
     [Header("Audio")]
-    [SerializeField] private AudioSource knifeAudioSource = default;
+    private AudioSource knifeAudioSource = default;
     [SerializeField] private AudioClip slashAir = default;
     [SerializeField] private AudioClip slashObject = default;
     [SerializeField] private AudioClip slashEnemy = default;
 
     void Start()
     {
+        playerController = GetComponentInParent<FirstPersonController>();
+        playerCamera = GetComponentInParent<Camera>();
         playerAnimator = playerController.GetComponentInChildren<Animator>();
+        itemHandler = GetComponentInParent<ItemSwitching>();
+        knifeAudioSource = GetComponent<AudioSource>();
     }
 
     void OnEnable()
@@ -33,7 +37,7 @@ public class Knife : MonoBehaviour
 
     void Update()
     {
-        if (Time.timeScale > 0.9)
+        if (Time.timeScale > 0.9 && !playerController.isDead)
         {
             // Can't use the knife while attacking
             if (isAttacking) return;

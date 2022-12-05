@@ -7,26 +7,31 @@ public class Pills : MonoBehaviour
     [Header("Settings")]
     private float popTime = 3f;
     [SerializeField] private int pillDDAdjustment = -5;
+
     [Header("Object References")]
-    [SerializeField] private FirstPersonController playerController;
-    [SerializeField] private GameObject itemHandler;
+    private FirstPersonController playerController;
+    private ItemSwitching itemHandler;
     private Animator playerAnimator;
+
     public bool isPopping = false;
 
     [Header("Audio")]
-    [SerializeField] private AudioSource pillsAudioSource = default;
+    private AudioSource pillsAudioSource = default;
     [SerializeField] private AudioClip capPop = default;
     [SerializeField] private AudioClip pillShake = default;
     [SerializeField] private AudioClip swallow = default;
 
     void Start()
     {
+        playerController = GetComponentInParent<FirstPersonController>();
         playerAnimator = playerController.GetComponentInChildren<Animator>();
+        itemHandler = GetComponentInParent<ItemSwitching>();
+        pillsAudioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        if (Time.timeScale > 0.9)
+        if (Time.timeScale > 0.9 && !playerController.isDead)
         {
             // Pop pill
             if (Input.GetButtonDown("Fire1") && !isPopping && !itemHandler.GetComponent<ItemSwitching>().isSwitching)
