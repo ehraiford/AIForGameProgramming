@@ -15,6 +15,8 @@ public class BossStat : CharacterStats
     public bool isDead;
     public Collider[] cols;
     NavMeshAgent agent;
+    public AudioSource audioSource;
+    public AudioClip[] audioClips;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,9 @@ public class BossStat : CharacterStats
         agent.speed = 4;
         attackSpeed = 1f;
         damage = 60f;
+        //Play sound to show the boss is angry
+        audioSource.PlayOneShot(audioClips[0]);
+
     }
     protected override void ApplyDamage(float dmg)
     {
