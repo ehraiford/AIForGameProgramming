@@ -8,24 +8,27 @@ public class MedKit : MonoBehaviour
     private float healTime = 4f;
 
     [Header("Object References")]
-    [SerializeField] private FirstPersonController playerController;
-    [SerializeField] private GameObject itemHandler;
+    private FirstPersonController playerController;
+    private ItemSwitching itemHandler;
     private Animator playerAnimator;
     public bool isHealing = false;
 
     [Header("Audio")]
-    [SerializeField] private AudioSource medKitAudioSource = default;
+    private AudioSource medKitAudioSource = default;
     [SerializeField] private AudioClip zipper = default;
     [SerializeField] private AudioClip bandage = default;
 
     void Start()
     {
+        playerController = GetComponentInParent<FirstPersonController>();
         playerAnimator = playerController.GetComponentInChildren<Animator>();
+        itemHandler = GetComponentInParent<ItemSwitching>();
+        medKitAudioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        if (Time.timeScale > 0.9)
+        if (Time.timeScale > 0.9 && !playerController.isDead)
         {
             // Heal
             if (Input.GetButtonDown("Fire1") && !isHealing && !itemHandler.GetComponent<ItemSwitching>().isSwitching)
