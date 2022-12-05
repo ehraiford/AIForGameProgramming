@@ -30,10 +30,14 @@ public class FadeControlScript : MonoBehaviour
             } else if(Time.time - timeStarted < inTime + stayTime + outTime)
             {
                 text.color = new Color(text.color.r, text.color.g, text.color.b, 255 * ((Time.realtimeSinceStartup - timeStarted) / (inTime + stayTime)));
+               
+            } else if(Time.time - timeStarted > inTime + stayTime + outTime)
+            {
+                fading = false;
+                text.color = new Color(text.color.r, text.color.g, text.color.b, 0.0f);
             }
-            
+
         }
-        else text.color = new Color(text.color.r, text.color.g, text.color.b, 0.0f);
 
     }
 
