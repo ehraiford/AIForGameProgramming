@@ -27,11 +27,28 @@ public class BossStat : CharacterStats
         dd = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>().diffcultyValue();
         onScreenUI = GameObject.Find("On Screen UI");
         agent = GetComponent<NavMeshAgent>();
+        agent.autoTraverseOffMeshLink = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (agent.isOnOffMeshLink)
+        {
+            OffMeshLinkData data = agent.currentOffMeshLinkData;
+
+            //calculate the final point of the link
+            Vector3 endPos = data.endPos + Vector3.up * agent.baseOffset;
+
+            //Move the agent to the end point
+            agent.transform.position = Vector3.MoveTowards(agent.transform.position, endPos, agent.speed * Time.deltaTime);
+
+            //when the agent reach the end point you should tell it, and the agent will "exit" the link and work normally after that
+            if (agent.transform.position == endPos)
+            {
+                agent.CompleteOffMeshLink();
+            }
+        }
 
     }
     public void createdBM()
