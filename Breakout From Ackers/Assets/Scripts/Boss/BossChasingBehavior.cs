@@ -33,7 +33,12 @@ public class BossChasingBehavior : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        //Set agent desination to player's
         agent.SetDestination(player.position);
+
+        Vector3 targetPos = new Vector3(player.position.x, animator.transform.position.y, player.position.z);
+        animator.transform.LookAt(targetPos);
+
         timeToIdle += Time.deltaTime;
         if(timeToIdle > 13)
         {
