@@ -36,9 +36,6 @@ public class BossChasingBehavior : StateMachineBehaviour
         //Set agent desination to player's
         agent.SetDestination(player.position);
 
-        Vector3 targetPos = new Vector3(player.position.x, animator.transform.position.y, player.position.z);
-        animator.transform.LookAt(targetPos);
-
         timeToIdle += Time.deltaTime;
         if(timeToIdle > 13)
         {
