@@ -207,10 +207,9 @@ public class FirstPersonController : CharacterStats
             {
                 undoDebuff();
             }
-            if(timeOfLastHit < 5)
+            if(timeOfLastHit < 3)
             {
                 timeOfLastHit += Time.deltaTime;
-                Debug.Log(timeOfLastHit);
             }
         }
        
@@ -596,7 +595,7 @@ public class FirstPersonController : CharacterStats
 
     protected override void ApplyDamage(float dmg)
     {
-        if(timeOfLastHit > 3)
+        if(timeOfLastHit > 2)
         {
             Debug.Log("Reset dmg timer");
             timeOfLastHit = 0f;
