@@ -108,6 +108,7 @@ public class FirstPersonController : CharacterStats
     private int timeAdjuster = 5;
     private int healDDScore = -10;
     private int deathDDScore = -10;
+    float timeOfLastHit = 0;
     [SerializeField] private float walkSpeedModifer = 1.5f;
     [SerializeField] private float runSpeedModifer = 1f;
     [SerializeField] private AudioClip[] gruntClips = default;
@@ -205,6 +206,11 @@ public class FirstPersonController : CharacterStats
             if (Time.time > debuffTimer + debuffDuration && isDebuffed)
             {
                 undoDebuff();
+            }
+            if(timeOfLastHit < 5)
+            {
+                timeOfLastHit += Time.deltaTime;
+                Debug.Log(timeOfLastHit);
             }
         }
        
@@ -590,18 +596,26 @@ public class FirstPersonController : CharacterStats
 
     protected override void ApplyDamage(float dmg)
     {
-        currentHealth -= dmg;
-        OnDamage?.Invoke(currentHealth);
+        if(timeOfLastHit > 3)
+        {
+            Debug.Log("Reset dmg timer");
+            timeOfLastHit = 0f;
+            currentHealth -= dmg;
+            OnDamage?.Invoke(currentHealth);
 
-        if (currentHealth <= 0)
-        {
-            PlayGruntSound(3);
-            KillCharacter();
+            if (currentHealth <= 0)
+            {
+                PlayGruntSound(3);
+                KillCharacter();
+            }
+            else
+            {
+                PlayGruntSound(1);
+            }
+
         }
-        else
-        {
-            PlayGruntSound(1);
-        }
+
+        
             
     }
     public void AddHealth(float healAmt)
