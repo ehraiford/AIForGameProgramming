@@ -16,7 +16,7 @@ public class Door : Interactable
     public bool isOpen;
     private string objName;
     GameObject obstruction;
-    float time;
+    float bossDoorOpenTimer, lockTimer = 0.0f;
 
     void Start()
     {
@@ -30,8 +30,8 @@ public class Door : Interactable
     }
     void Update()
     {
-        time += Time.deltaTime;
-        if (time > 1)
+        bossDoorOpenTimer += Time.deltaTime;
+        if (bossDoorOpenTimer > 1)
         {
             if (isLocked && isOpen)
             {
@@ -41,10 +41,23 @@ public class Door : Interactable
             }
         }
         obstruction.SetActive(!isOpen);
+
+
+        if (lockTimer != 0.0f && Time.time - lockTimer > 2.6f)
+        {
+            isOpen = true;
+            Debug.Log("DOOR OPEN");
+            door.Play("Door2_Open");
+            Debug.Log(objName.ToString());
+            doorAudio.PlayOneShot(doorUse);
+            isLocked = false;
+            lockTimer = 0.0f;
+
+        }
     }
-public override void OnFocus()
+    public override void OnFocus()
     {
-        
+
     }
 
     public override void OnInteract()
@@ -52,15 +65,15 @@ public override void OnFocus()
         if (isLocked)
         {
             //Has key
-            if(FPC.RemoveInventoryItem(KeyName, 1) == 1)
+            if (FPC.RemoveInventoryItem(KeyName, 1) == 1)
             {
                 onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Unlocked door using the " + KeyName + ".");
                 doorAudio.PlayOneShot(doorUnlock);
-                isLocked = false;
+                lockTimer = Time.time;
             }
             else
             {
-                if(KeyName.CompareTo("") == 0)
+                if (KeyName.CompareTo("") == 0)
                 {
                     onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("The door is barred shut. Not even a key can open it.");
 
@@ -73,7 +86,7 @@ public override void OnFocus()
                 doorAudio.PlayOneShot(doorLocked);
             }
             //no Key
-            
+
         }
         else
         {
@@ -97,13 +110,13 @@ public override void OnFocus()
                 doorAudio.PlayOneShot(doorUse);
             }
         }
-        
+
     }
 
 
     public override void OnLoseFocus()
     {
-        
+
     }
     //For enemy (mainly stalker boss) to open doors
     private void OnCollisionEnter(Collision collision)
@@ -132,7 +145,7 @@ public override void OnFocus()
             Debug.Log(objName.ToString());
             doorAudio.PlayOneShot(doorUse);
         }
-        time = 0; //reset timer so door can close if locked
+        bossDoorOpenTimer = 0; //reset timer so door can close if locked
     }
 
 }
