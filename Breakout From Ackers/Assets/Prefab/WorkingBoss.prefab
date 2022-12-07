@@ -118,8 +118,8 @@ MonoBehaviour:
   currentHealth: 0
   walkSpeed: 3
   sprintSpeed: 6
-  damage: 40
-  attackSpeed: 3
+  damage: 60
+  attackSpeed: 1.8
   craftedBlueMass: 0
   isDead: 0
   cols: []
