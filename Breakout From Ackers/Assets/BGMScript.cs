@@ -11,25 +11,27 @@ public class BGMScript : MonoBehaviour
     void Start()
     {
         BGM = GetComponent<AudioSource>();
-        BGM.PlayOneShot(BGMArray[0]);
+        BGM.clip = BGMArray[0];
+        BGM.Play();
         currentPlayingNumber = 0;
     }
 
     void Update()
     {
-        
+
     }
     public void setNewMusic(int i)
     {
         StartCoroutine(StartFade(BGM, 3, 0f));
-        BGM.PlayOneShot(BGMArray[i]);
+        BGM.clip = BGMArray[i];
+        BGM.Play();
         StartCoroutine(StartFade(BGM, 10, 0.10f));
         currentPlayingNumber = i;
 
     }
     //0 is normal background music
     //1 is the boss music
-    
+
 
     //Fade music in and out
     public static IEnumerator StartFade(AudioSource audioSource, float duration, float targetVolume)
