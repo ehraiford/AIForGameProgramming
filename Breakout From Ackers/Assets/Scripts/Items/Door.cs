@@ -71,7 +71,7 @@ public class Door : Interactable
                 doorAudio.PlayOneShot(doorUnlock);
                 lockTimer = Time.time;
             }
-            else
+            else if (lockTimer == 0.0f)
             {
                 if (KeyName.CompareTo("") == 0)
                 {
