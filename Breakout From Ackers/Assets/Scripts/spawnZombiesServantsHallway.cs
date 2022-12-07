@@ -15,15 +15,7 @@ public class spawnZombiesServantsHallway : MonoBehaviour
     {
         triggeredTimer = Time.time;
 
-        for (int i = 0; i < zombies.Length; i++)
-        {
-            zombies[i].SetActive(true);
-        }
-
-        for (int i = 0; i < candles.Length; i++)
-        {
-            candles[i].GetComponent<LightCandles>().forceLightingState(false);
-        }
+       
     }
     private void Update()
     {
@@ -31,8 +23,18 @@ public class spawnZombiesServantsHallway : MonoBehaviour
         {
             creepySoundPlayed = true;
             audioSource.PlayOneShot(creepySound);
-            
-        } else if(triggeredTimer != 0.0f && Time.time - triggeredTimer > 5.00)
+
+            for (int i = 0; i < zombies.Length; i++)
+            {
+                zombies[i].SetActive(true);
+            }
+
+            for (int i = 0; i < candles.Length; i++)
+            {
+                candles[i].GetComponent<LightCandles>().forceLightingState(false);
+            }
+
+        } else if(triggeredTimer != 0.0f && Time.time - triggeredTimer > 10.00)
         {
             Destroy(gameObject);
         }

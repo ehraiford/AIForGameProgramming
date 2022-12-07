@@ -258,7 +258,7 @@ public class OnScreenUIScript : MonoBehaviour
 
     #region Notes Functions
 
-    public void OpenNote(int noteNumber, int fontNumber)
+    public void OpenNote(string noteText, int fontNumber)
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -270,26 +270,9 @@ public class OnScreenUIScript : MonoBehaviour
 
 
 
-        StreamReader textReader = new StreamReader(path);
-
-        string currentText = textReader.ReadLine();
-        while (currentText.CompareTo("Text " + noteNumber.ToString()) != 0 && !textReader.EndOfStream)
-        {
-            currentText = textReader.ReadLine();
-        }
-
-        currentText = "";
-        string addOn;
-        while (textReader.Peek() != 42 && !textReader.EndOfStream)
-        {
-            addOn = textReader.ReadLine();
-
-            currentText = currentText + addOn + "\n";
-
-        }
-        notePanelText.text = currentText;
+       
+        notePanelText.text = noteText;
         notePanelText.font = fontsForNotes[fontNumber];
-        textReader.Close();
     }
 
     public void CloseNote()

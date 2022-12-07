@@ -8,7 +8,7 @@ public class InteractWithNote : Interactable
     [SerializeField] private AudioSource audioSource;
     [SerializeField] GameObject bossAudio;
 
-    [SerializeField] int noteNumber;
+    [SerializeField] string noteText;
     [SerializeField] int fontNumber;
    
     public override void OnFocus()
@@ -19,7 +19,7 @@ public class InteractWithNote : Interactable
     public override void OnInteract()
     {
         Debug.Log("Item Has been Interacted with");
-        OnScreenUI.GetComponent<OnScreenUIScript>().OpenNote(noteNumber, fontNumber);
+        OnScreenUI.GetComponent<OnScreenUIScript>().OpenNote(noteText, fontNumber);
         audioSource.Play();
         bossAudio.GetComponent<BossStat>().pauseFootStep();
     }

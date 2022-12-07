@@ -8,7 +8,7 @@ public class BossSummonNote : Interactable
     private GameObject OnScreenUI;
     [SerializeField] private AudioSource audioSource;
 
-    [SerializeField] int noteNumber;
+    [SerializeField] string noteText;
     [SerializeField] int fontNumber;
     [SerializeField] GameObject boss;
     [SerializeField] GameObject musicSource;
@@ -20,7 +20,7 @@ public class BossSummonNote : Interactable
 
     public override void OnInteract()
     {
-        OnScreenUI.GetComponent<OnScreenUIScript>().OpenNote(noteNumber, fontNumber);
+        OnScreenUI.GetComponent<OnScreenUIScript>().OpenNote(noteText, fontNumber);
         spawnAcker();
     }
 
