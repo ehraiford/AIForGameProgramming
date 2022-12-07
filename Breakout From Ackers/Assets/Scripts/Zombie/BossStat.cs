@@ -108,7 +108,7 @@ public class BossStat : CharacterStats
     protected override void KillCharacter()
     {
         anim.SetBool("isDead", true);
-        pauseFootStep();
+        Destroy(FootStepAudio);
         //Play a noise here
         isDead = true;
         //Turn off hitbox colliders
