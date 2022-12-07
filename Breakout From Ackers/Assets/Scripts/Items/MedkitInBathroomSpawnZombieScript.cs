@@ -6,6 +6,7 @@ public class MedkitInBathroomSpawnZombieScript : Interactable
 {
     [SerializeField] GameObject onScreenUI;
     [SerializeField] GameObject hallwayZombie;
+    [SerializeField] GameObject[] foyerZombies;
     [SerializeField] GameObject foyerDoor;
     [SerializeField] GameObject firstPersonController;
     [SerializeField] GameObject[] secondaryCandles;
@@ -65,6 +66,11 @@ public class MedkitInBathroomSpawnZombieScript : Interactable
             playerAudioSource.PlayOneShot(itemPickupSound);
 
             hallwayZombie.SetActive(true); //activate Alberto, the first zombie
+
+            for(int i = 0; i < foyerZombies.Length; i++)
+            {
+                foyerZombies[i].SetActive(true);
+            }
 
             foyerDoor.GetComponent<Door>().isLocked = false; //unlock door to foyer
             foyerDoor.GetComponent<Door>().door.Play("Door2_Open"); //open door to foyer
