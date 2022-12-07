@@ -15,7 +15,7 @@ public class Stunned : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         timer += Time.deltaTime;
-        if(timer > 5)
+        if(timer > 2)
         {
             Debug.Log(timer);
 
@@ -26,7 +26,7 @@ public class Stunned : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        animator.SetBool("isChasing", true);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
