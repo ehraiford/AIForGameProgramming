@@ -95,7 +95,6 @@ public class FirstPersonController : CharacterStats
     [SerializeField] public string[] inventoryItems = new string[8];
     [SerializeField] public int[] inventoryItemsCount = new int[8];
     [SerializeField] public string[] inventoryUnstackableItems;
-    private int inventorySpacesCurrentlyUsed;
     private string currentItem;
     private bool craftedBlueMass = false;
     [SerializeField] private AudioClip craftBlueMassAmmoSound = default;
@@ -156,9 +155,6 @@ public class FirstPersonController : CharacterStats
         //Difficulty Adjustment Initialized
         Score = 100;
         lastTimeAdjust = 0;
-
-        //Set Inventory Item Count
-        inventorySpacesCurrentlyUsed = InitializeInventorySpaceCurrentlyUsed();
 
         // Player is alive
         isDead = false;
@@ -705,8 +701,11 @@ public class FirstPersonController : CharacterStats
         {
             itemName = "Blue Mass Ammo";
         }
+
+        //finds the spot in inventory where the item already is
         int spot = FindItemSpot(itemName);
 
+        //if the item is stackable and is already in inventory, it's added to the stack
         if(spot != -1 && IsStackable(itemName))
         {
             Debug.Log("Stacked item into pre-existing inventory.");
@@ -714,13 +713,12 @@ public class FirstPersonController : CharacterStats
             onscreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Picked up " + itemName + ".");
             return true;
         }
-        else if( inventorySpacesCurrentlyUsed < 8)
+        else if( checkInventorySpaceCurrentlyUsed() < 8)
         {
             Debug.Log("Added item to a new spot in the inventory.");
             int openSpot = findOpenSpot();
             inventoryItems[openSpot] = itemName;
             inventoryItemsCount[openSpot] = itemCount;
-            inventorySpacesCurrentlyUsed++;
             onscreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Picked up " + itemName + ".");
             return true;
         }
@@ -759,8 +757,7 @@ public class FirstPersonController : CharacterStats
             int removeAmount = inventoryItemsCount[spot];
             inventoryItemsCount[spot] = 0;
             inventoryItems[spot] = "";
-            inventorySpacesCurrentlyUsed--;
-            //reorganizeInventory();
+            
             return removeAmount;
         }
         else
@@ -798,15 +795,15 @@ public class FirstPersonController : CharacterStats
         return true;
     }
 
-    private int InitializeInventorySpaceCurrentlyUsed()
+    private int checkInventorySpaceCurrentlyUsed()
     {
-        int i = 0;
-        for(; i < inventoryItems.Length; i++)
+        int count = 0;
+        for(int i = 0; i < inventoryItems.Length; i++)
         {
-            if (inventoryItems[i].Length == 0)
-                return i;
+            if (inventoryItems[i].Length != 0)
+                count++;
         }
-        return i;
+        return count;
     }
 
     public void craftBlueMassAmmo()
@@ -819,23 +816,10 @@ public class FirstPersonController : CharacterStats
                 inventoryItems[i] = "Blue Mass Ammo";
         }
     }
-    //removed function. We no longer reorganize the inventory. Leaving here in case we change it back.
-    void reorganizeInventory()
-    {
-        for(int i = 0; i < 7; i++)
-        {
-            if(inventoryItems[i].CompareTo("") == 0)
-            {
-                inventoryItems[i] = inventoryItems[i + 1];
-                inventoryItems[i + 1] = "";
-                inventoryItemsCount[i] = inventoryItemsCount[i + 1];
-                inventoryItemsCount[i + 1] = 0;
-            }
-        }
-    }
+    
     public int GetInventorySpaceCurrentlyUsed()
     {
-        return inventorySpacesCurrentlyUsed;
+        return checkInventorySpaceCurrentlyUsed();
     }
     #endregion
 }

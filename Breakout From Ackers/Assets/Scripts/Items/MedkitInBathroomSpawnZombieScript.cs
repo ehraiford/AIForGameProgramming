@@ -43,7 +43,7 @@ public class MedkitInBathroomSpawnZombieScript : Interactable
                     
                     break;
                 default:
-                   //gameObject.SetActive(false); //deactivate gameobject after all events are complete
+                    gameObject.SetActive(false); //deactivate gameobject after all events are complete
                     break;
             
                     
@@ -56,23 +56,25 @@ public class MedkitInBathroomSpawnZombieScript : Interactable
 
     public override void OnInteract()
     {
-        //the traditional adding item to inventory.
-        firstPersonController.GetComponent<FirstPersonController>().AddInventoryItem("MedKit", 1);
+        if (timer == 0)
+        {
+            //the traditional adding item to inventory.
+            firstPersonController.GetComponent<FirstPersonController>().AddInventoryItem("MedKit", 1);
 
-        // Play pickup sound
-        playerAudioSource.PlayOneShot(itemPickupSound);
+            // Play pickup sound
+            playerAudioSource.PlayOneShot(itemPickupSound);
 
-        hallwayZombie.SetActive(true); //activate Alberto, the first zombie
-      
-        foyerDoor.GetComponent<Door>().isLocked = false; //unlock door to foyer
-        foyerDoor.GetComponent<Door>().door.Play("Door2_Open"); //open door to foyer
-        foyerDoor.GetComponent<Door>().isOpen = true;
+            hallwayZombie.SetActive(true); //activate Alberto, the first zombie
+
+            foyerDoor.GetComponent<Door>().isLocked = false; //unlock door to foyer
+            foyerDoor.GetComponent<Door>().door.Play("Door2_Open"); //open door to foyer
+            foyerDoor.GetComponent<Door>().isOpen = true;
 
 
-        medKit.SetActive(false);
+            medKit.SetActive(false);
 
-        timer = Time.time; //tracks time item was picked up so we can do events a few seconds later.
-
+            timer = Time.time; //tracks time item was picked up so we can do events a few seconds later.
+        }
     }
 
     public override void OnLoseFocus()
