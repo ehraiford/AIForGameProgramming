@@ -62,7 +62,6 @@ public class BossStat : CharacterStats
         numHitsForStun = 5;
         agent.speed = 5;
         attackSpeed = 1f;
-        damage = 65f;
         //Play sound to show the boss is angry
         audioSource.PlayOneShot(audioClips[0]);
 
