@@ -25,7 +25,6 @@ public class Gun : MonoBehaviour
 
     [Header("Settings")]
     [Tooltip("Specify time to destory the casing object")] [SerializeField] private float destroyTimer = 2f;
-    [Tooltip("Bullet Speed")] [SerializeField] private float shotPower = 700f;
     [Tooltip("Casing Ejection Speed")] [SerializeField] private float ejectPower = 250f;
 
     [Header("Audio")]
@@ -37,7 +36,6 @@ public class Gun : MonoBehaviour
 
     [Header("Ammo")]
     [SerializeField] private int maxMagAmmo = 10;
-    [SerializeField] private int maxReservesAmmo = 30;
     [SerializeField] private float reloadTime = 1f;
     [SerializeField] private float fireRate = 0.3f;
     private int currentMagAmmo;
