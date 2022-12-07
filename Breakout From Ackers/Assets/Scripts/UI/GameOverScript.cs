@@ -12,7 +12,7 @@ public class GameOverScript : MonoBehaviour
     private float firstAlpha, secondAlpha;
     [SerializeField] private FirstPersonController playerController;
     [SerializeField] private GameObject respawnPoint, safetyDeathSpot, backgroundMusic;
-
+    [SerializeField] GameObject bossAudio;
 
     //freezes time, starts the audio, and starts tracking time passed.
     private void Awake()
@@ -94,7 +94,7 @@ public class GameOverScript : MonoBehaviour
     public void movePlayerOutOfThePlaySpace()
     {
         backgroundMusic.GetComponent<BGMScript>().PauseMusic();
-
+        bossAudio.GetComponent<BossStat>().pauseFootStep();
         playerController.enabled = false;
         playerController.transform.position = safetyDeathSpot.transform.position;
         Physics.SyncTransforms();

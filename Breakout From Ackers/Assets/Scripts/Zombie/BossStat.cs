@@ -16,7 +16,9 @@ public class BossStat : CharacterStats
     public Collider[] cols;
     NavMeshAgent agent;
     public AudioSource audioSource;
+    public AudioSource FootStepAudio;
     public AudioClip[] audioClips;
+    private int numHitsForStun;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,8 @@ public class BossStat : CharacterStats
         onScreenUI = GameObject.Find("On Screen UI");
         agent = GetComponent<NavMeshAgent>();
         agent.autoTraverseOffMeshLink = false;
+        numHitsForStun = 2;
+        FootStepAudio.Play();
     }
 
     // Update is called once per frame
@@ -55,9 +59,10 @@ public class BossStat : CharacterStats
     {
         craftedBlueMass = true;
         //Buff up the boss
-        agent.speed = 4;
+        numHitsForStun = 5;
+        agent.speed = 5;
         attackSpeed = 1f;
-        damage = 60f;
+        damage = 65f;
         //Play sound to show the boss is angry
         audioSource.PlayOneShot(audioClips[0]);
 
@@ -81,7 +86,7 @@ public class BossStat : CharacterStats
 
         }
         //Shoot the boss x amout of times to get stunned
-        if(timeGotHit > 2)
+        if(timeGotHit > numHitsForStun)
         {
             //Stun the boss
             anim.SetTrigger("getStunned");
@@ -104,6 +109,7 @@ public class BossStat : CharacterStats
     protected override void KillCharacter()
     {
         anim.SetBool("isDead", true);
+        pauseFootStep();
         //Play a noise here
         isDead = true;
         //Turn off hitbox colliders
@@ -117,5 +123,13 @@ public class BossStat : CharacterStats
         onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Retrieve the key from Acker's body and escape.");
     }
 
-    
+    public void pauseFootStep()
+    {
+        FootStepAudio.Pause();
+    }
+
+    public void resumeFootStep()
+    {
+        FootStepAudio.UnPause();
+    }
 }
