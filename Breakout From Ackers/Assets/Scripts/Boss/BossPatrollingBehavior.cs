@@ -4,8 +4,7 @@ using UnityEngine;
 public class BossPatrollingBehavior : StateMachineBehaviour
 {
     float timer;
-    List<Transform> wayPointsFirst = new List<Transform>();
-    List<Transform> wayPointsSecond = new List<Transform>();
+    List<Transform> wayPoints = new List<Transform>();
     NavMeshAgent agent;
     float TimeToIdle; // Duration of patrolling
     Transform player;
@@ -23,16 +22,20 @@ public class BossPatrollingBehavior : StateMachineBehaviour
         //Set the first destination
         wpoints1 = GameObject.Find("BossWpoint1");
         wpoints2 = GameObject.Find("BossWpoint2");
-        foreach(Transform item in wpoints1.transform)
+        if(wayPoints.Count == 0)
         {
-            wayPointsFirst.Add(item);
-            //Debug.Log(item.localPosition);
+            foreach (Transform item in wpoints1.transform)
+            {
+                Debug.Log(item.localPosition);
+                wayPoints.Add(item);
+            }
+            foreach (Transform item in wpoints2.transform)
+            {
+                Debug.Log(item.localPosition);
+                wayPoints.Add(item);
+            }
         }
-        foreach (Transform item in wpoints2.transform)
-        {
-            wayPointsSecond.Add(item);
-            //Debug.Log(item.localPosition);
-        }
+        
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
         //agent.SetDestination(wayPointsSecond[9].localPosition);
@@ -52,26 +55,35 @@ public class BossPatrollingBehavior : StateMachineBehaviour
             animator.SetTrigger("heardGunshot");
         }
 
+        //Pick between first and second floor
+        //based on the player's y position
+        //Second Floor
+
+        int idx = 0;
+        
+
         //Choose next location to go to
-        if (agent.remainingDistance <= agent.stoppingDistance)
+        if (!agent.pathPending)
         {
-            //Debug.Log(player.transform.position.y);
-            //Pick between first and second floor
-            //based on the player's y position
-            //Second Floor
-            int idx = 0;
-            if (player.transform.position.y >= 7f)
+            if (agent.remainingDistance <= agent.stoppingDistance)
             {
-                idx = Random.Range(0, wayPointsSecond.Count - 1);
-                agent.SetDestination(wayPointsSecond[idx].position);
-            }
-            if (player.transform.position.y <= 6f)//First Floor
-            {
-                idx = Random.Range(0, wayPointsFirst.Count - 1);
-                agent.SetDestination(wayPointsFirst[idx].position);
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    // Done
+                    if (player.transform.position.y >= 7f)
+                    {
+                        idx = Random.Range(8, wayPoints.Count - 1); // the rest are second floor
+
+                    }
+                    else
+                    {
+                        idx = Random.Range(0, 7); // the boss has 8 points in the first floor
+                    }
+                    Debug.Log(idx);
+                    agent.SetDestination(wayPoints[idx].position);
+                }
             }
         }
-
         timer += Time.deltaTime;
 
         if (timer > TimeToIdle)
