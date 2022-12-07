@@ -108,6 +108,8 @@ public class FirstPersonController : CharacterStats
     private int healDDScore = -10;
     private int deathDDScore = -10;
     float timeOfLastHit = 0;
+    private float heartBeatTimer = 0;
+    [SerializeField] private AudioClip heartBeat = default;
     [SerializeField] private float walkSpeedModifer = 1.5f;
     [SerializeField] private float runSpeedModifer = 1f;
     [SerializeField] private AudioClip[] gruntClips = default;
@@ -189,7 +191,8 @@ public class FirstPersonController : CharacterStats
                 }
 
                 HandleAnimations();
-                //HandleGruntAudio();
+
+                HandleHeartBeatWhenDebuffed();
 
                 ApplyFinalMovements();
             }
@@ -607,12 +610,9 @@ public class FirstPersonController : CharacterStats
             {
                 PlayGruntSound(1);
             }
-
-        }
-
-        
-            
+        } 
     }
+
     public void AddHealth(float healAmt)
     {
         currentHealth += healAmt;
@@ -652,14 +652,24 @@ public class FirstPersonController : CharacterStats
         isDebuffed = false;
     }
 
+    private void HandleHeartBeatWhenDebuffed()
+    {
+        heartBeatTimer -= Time.deltaTime;
+
+        if (heartBeatTimer <= 0 && isDebuffed)
+        {
+            playerAudioSource.PlayOneShot(heartBeat);
+
+            heartBeatTimer = GetCurrentOffset + 0.5f;
+        }
+    }
+
     private void PlayGruntSound(int gruntSelect)
     {
         if (gruntSelect == 0) return;
         else if (gruntSelect == 1) playerAudioSource.PlayOneShot(gruntClips[UnityEngine.Random.Range(0, gruntClips.Length - 1)]);
         else if (gruntSelect == 2) playerAudioSource.PlayOneShot(debuffGrunt);
         else if (gruntSelect == 3) playerAudioSource.PlayOneShot(deathGrunt);
-
-        Debug.Log(gruntSelect);
 
         gruntSelect = 0;
     }
