@@ -6,6 +6,7 @@ public class InteractWithNote : Interactable
 {
     private GameObject OnScreenUI;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] GameObject bossAudio;
 
     [SerializeField] int noteNumber;
     [SerializeField] int fontNumber;
@@ -20,11 +21,12 @@ public class InteractWithNote : Interactable
         Debug.Log("Item Has been Interacted with");
         OnScreenUI.GetComponent<OnScreenUIScript>().OpenNote(noteNumber, fontNumber);
         audioSource.Play();
+        bossAudio.GetComponent<BossStat>().pauseFootStep();
     }
 
     public override void OnLoseFocus()
     {
-       
+        bossAudio.GetComponent<BossStat>().resumeFootStep();
     }
 
     // Start is called before the first frame update
