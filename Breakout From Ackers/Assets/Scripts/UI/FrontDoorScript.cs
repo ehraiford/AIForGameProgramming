@@ -16,7 +16,7 @@ public class FrontDoorScript : Interactable
     private GameObject onScreenUI;
     public bool isOpen;
     private string objName;
-    private float timeStarted = -1;
+    private float timeStarted = -1, locktimer = -1;
 
     void Start()
     {
@@ -41,7 +41,18 @@ public class FrontDoorScript : Interactable
             Time.timeScale = 0.0f;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+            locktimer = Time.time;
 
+        }
+
+        if (locktimer > 0.0 && Time.time - locktimer > 2.6f && !isOpen)
+        {
+            isOpen = true;
+            Debug.Log("DOOR OPEN");
+            door.Play("Door2_Open");
+            Debug.Log(objName.ToString());
+            doorAudio.PlayOneShot(doorUse);
+            timeStarted = Time.time;
         }
     }
     public override void OnInteract()
@@ -54,6 +65,7 @@ public class FrontDoorScript : Interactable
                 onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Unlocked door using the " + KeyName + ".");
                 doorAudio.PlayOneShot(doorUnlock);
                 isLocked = false;
+                locktimer = Time.time;
             }
             else
             {
@@ -80,13 +92,8 @@ public class FrontDoorScript : Interactable
                 objName = "Door2";
             if (!isOpen)
             {
-                isOpen = true;
-                Debug.Log("DOOR OPEN");
-                door.Play("Door2_Open");
-                Debug.Log(objName.ToString());
-                doorAudio.PlayOneShot(doorUse);
-                timeStarted = Time.time;
-                
+
+
             }
             else
             {
