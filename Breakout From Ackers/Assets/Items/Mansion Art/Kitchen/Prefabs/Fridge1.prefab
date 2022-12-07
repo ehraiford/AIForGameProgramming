@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2064290022108836275}
   - component: {fileID: 1572807322809275234}
   - component: {fileID: 7106538190756145308}
-  - component: {fileID: 1351278874890404035}
   m_Layer: 10
   m_Name: Fridge1_Door1
   m_TagString: Metal
@@ -31,6 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.3472876, y: -0.2541413, z: 0.8655724}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7833857233808887132}
   m_RootOrder: 0
@@ -54,9 +54,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -82,6 +85,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &1572807322809275234
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -92,9 +96,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 8778779665020108347, guid: 0482d89bc1c45ad478366145ee8a0958, type: 3}
 --- !u!111 &7106538190756145308
 Animation:
@@ -105,8 +109,7 @@ Animation:
   m_GameObject: {fileID: 813918968963847589}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: 0482d89bc1c45ad478366145ee8a0958,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: 0482d89bc1c45ad478366145ee8a0958, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: 0482d89bc1c45ad478366145ee8a0958, type: 3}
   - {fileID: 3061587409197031227, guid: 0482d89bc1c45ad478366145ee8a0958, type: 3}
@@ -114,70 +117,6 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &1351278874890404035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 813918968963847589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebeea973c9b1c584e967067915b4c2e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dynamicType: 0
-  useType: 0
-  interactType: 1
-  keyType: 0
-  m_Animation: {fileID: 3553045674649386142}
-  IgnoreColliders: []
-  InteractEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  DisabledEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  customText: 
-  keyID: 0
-  useAnim: Fridge1_Door1_Open
-  backUseAnim: Fridge1_Door1_Close
-  useJammedPlanks: 0
-  Planks: []
-  knobAnim: 
-  useSR: 0
-  startingRotation: {x: 0, y: 0, z: 0}
-  isOpened: 0
-  toPlayerAngle: 0
-  moveWithX: 0
-  minMaxMove: {x: 0, y: 0}
-  reverseMove: 0
-  InteractPos: 0
-  stopAngle: 0
-  lockOnUp: 0
-  isUp: 0
-  valveTurnSounds: []
-  valveSoundAfter: 0
-  valveTurnSpeed: 0
-  valveTurnTime: 0
-  m_Volume: 1
-  Open: {fileID: 0}
-  Close: {fileID: 0}
-  LockedTry: {fileID: 0}
-  UnlockSound: {fileID: 0}
-  LeverUpSound: {fileID: 0}
-  DebugAngle: 0
-  rotateValue: 0
-  isHolding: 0
-  Hold: 0
-  hasKey: 0
-  isLocked: 0
-  isInvoked: 0
-  Angle: 0
 --- !u!1 &1266346347899370496
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +130,6 @@ GameObject:
   - component: {fileID: 6573403089410977317}
   - component: {fileID: 2979117765264251387}
   - component: {fileID: 6832743816848125813}
-  - component: {fileID: 6495629148559063221}
   m_Layer: 10
   m_Name: Fridge1_Drawer1
   m_TagString: Paper
@@ -209,6 +147,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1374689952346349777}
   m_RootOrder: 0
@@ -232,9 +171,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -259,6 +201,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &2979117765264251387
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -269,9 +212,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: -5902300989892230940, guid: 9a948ffe13148b548886ae2bffc77b19, type: 3}
 --- !u!111 &6832743816848125813
 Animation:
@@ -282,8 +225,7 @@ Animation:
   m_GameObject: {fileID: 1266346347899370496}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: 9a948ffe13148b548886ae2bffc77b19,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: 9a948ffe13148b548886ae2bffc77b19, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: 9a948ffe13148b548886ae2bffc77b19, type: 3}
   - {fileID: 1617700207417500462, guid: 9a948ffe13148b548886ae2bffc77b19, type: 3}
@@ -291,70 +233,6 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &6495629148559063221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1266346347899370496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebeea973c9b1c584e967067915b4c2e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dynamicType: 0
-  useType: 0
-  interactType: 1
-  keyType: 0
-  m_Animation: {fileID: 1332005004781080544}
-  IgnoreColliders: []
-  InteractEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  DisabledEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  customText: 
-  keyID: 0
-  useAnim: Fridge1_Drawer1_Open
-  backUseAnim: Fridge1_Drawer1_Close
-  useJammedPlanks: 0
-  Planks: []
-  knobAnim: 
-  useSR: 0
-  startingRotation: {x: 0, y: 0, z: 0}
-  isOpened: 0
-  toPlayerAngle: 0
-  moveWithX: 0
-  minMaxMove: {x: 0, y: 0}
-  reverseMove: 0
-  InteractPos: 0
-  stopAngle: 0
-  lockOnUp: 0
-  isUp: 0
-  valveTurnSounds: []
-  valveSoundAfter: 0
-  valveTurnSpeed: 0
-  valveTurnTime: 0
-  m_Volume: 1
-  Open: {fileID: 0}
-  Close: {fileID: 0}
-  LockedTry: {fileID: 0}
-  UnlockSound: {fileID: 0}
-  LeverUpSound: {fileID: 0}
-  DebugAngle: 0
-  rotateValue: 0
-  isHolding: 0
-  Hold: 0
-  hasKey: 0
-  isLocked: 0
-  isInvoked: 0
-  Angle: 0
 --- !u!1 &5787428165123641144
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,6 +260,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.00003051758, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3077453664458734731}
   m_Father: {fileID: 7675599383554142111}
@@ -396,8 +275,7 @@ Animation:
   m_GameObject: {fileID: 5787428165123641144}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: 06babca5e83b90a4ea593902bec9fa59,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: 06babca5e83b90a4ea593902bec9fa59, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: 06babca5e83b90a4ea593902bec9fa59, type: 3}
   - {fileID: -3549757182910206383, guid: 06babca5e83b90a4ea593902bec9fa59, type: 3}
@@ -432,6 +310,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.00003051758, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3923717268125743856}
   m_Father: {fileID: 7675599383554142111}
@@ -446,8 +325,7 @@ Animation:
   m_GameObject: {fileID: 6932160096868336080}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: 9a948ffe13148b548886ae2bffc77b19,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: 9a948ffe13148b548886ae2bffc77b19, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: 9a948ffe13148b548886ae2bffc77b19, type: 3}
   - {fileID: 1617700207417500462, guid: 9a948ffe13148b548886ae2bffc77b19, type: 3}
@@ -482,6 +360,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.00003051758, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3144492753457160345}
   m_Father: {fileID: 7675599383554142111}
@@ -496,8 +375,7 @@ Animation:
   m_GameObject: {fileID: 7042310824748762011}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: 0482d89bc1c45ad478366145ee8a0958,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: 0482d89bc1c45ad478366145ee8a0958, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: 0482d89bc1c45ad478366145ee8a0958, type: 3}
   - {fileID: 3061587409197031227, guid: 0482d89bc1c45ad478366145ee8a0958, type: 3}
@@ -518,7 +396,6 @@ GameObject:
   - component: {fileID: 1936027539452331623}
   - component: {fileID: 7499437000434525884}
   - component: {fileID: 3553801120895256121}
-  - component: {fileID: 1722884449689160128}
   m_Layer: 10
   m_Name: Fridge1_Drawer2
   m_TagString: Paper
@@ -536,6 +413,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0.000000038146972, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6902695099711897709}
   m_RootOrder: 0
@@ -559,9 +437,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -586,6 +467,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &7499437000434525884
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -596,9 +478,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: -2906207883194775995, guid: eaebaf6d683519a449330e268a9d7abb, type: 3}
 --- !u!111 &3553801120895256121
 Animation:
@@ -609,8 +491,7 @@ Animation:
   m_GameObject: {fileID: 7101657896880187183}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: eaebaf6d683519a449330e268a9d7abb,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: eaebaf6d683519a449330e268a9d7abb, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: eaebaf6d683519a449330e268a9d7abb, type: 3}
   - {fileID: -4655084249437784227, guid: eaebaf6d683519a449330e268a9d7abb, type: 3}
@@ -618,70 +499,6 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &1722884449689160128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7101657896880187183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebeea973c9b1c584e967067915b4c2e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dynamicType: 0
-  useType: 0
-  interactType: 1
-  keyType: 0
-  m_Animation: {fileID: 6612546736733040612}
-  IgnoreColliders: []
-  InteractEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  DisabledEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  customText: 
-  keyID: 0
-  useAnim: Fridge1_Drawer2_Open
-  backUseAnim: Fridge1_Drawer2_Close
-  useJammedPlanks: 0
-  Planks: []
-  knobAnim: 
-  useSR: 0
-  startingRotation: {x: 0, y: 0, z: 0}
-  isOpened: 0
-  toPlayerAngle: 0
-  moveWithX: 0
-  minMaxMove: {x: 0, y: 0}
-  reverseMove: 0
-  InteractPos: 0
-  stopAngle: 0
-  lockOnUp: 0
-  isUp: 0
-  valveTurnSounds: []
-  valveSoundAfter: 0
-  valveTurnSpeed: 0
-  valveTurnTime: 0
-  m_Volume: 1
-  Open: {fileID: 0}
-  Close: {fileID: 0}
-  LockedTry: {fileID: 0}
-  UnlockSound: {fileID: 0}
-  LeverUpSound: {fileID: 0}
-  DebugAngle: 0
-  rotateValue: 0
-  isHolding: 0
-  Hold: 0
-  hasKey: 0
-  isLocked: 0
-  isInvoked: 0
-  Angle: 0
 --- !u!1 &7499681765359651303
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,6 +528,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 46.510002, y: 0.006509781, z: 111.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6902695099711897709}
   - {fileID: 1374689952346349777}
@@ -738,9 +556,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -766,6 +587,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &4252106044299161635
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -776,9 +598,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 2522932088418513563, guid: d6b379da93917954db6cd9f08266d57c, type: 3}
 --- !u!1 &7802580781636494674
 GameObject:
@@ -793,7 +615,6 @@ GameObject:
   - component: {fileID: 9010459148691669717}
   - component: {fileID: 2230989908480381304}
   - component: {fileID: 4717728286535939889}
-  - component: {fileID: 2818423896429062035}
   m_Layer: 10
   m_Name: Fridge1_Door_F
   m_TagString: Paper
@@ -811,6 +632,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0.000000059604645, w: 1}
   m_LocalPosition: {x: -0.28940675, y: -0.13806908, z: 1.4535353}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4322493700235157060}
   m_RootOrder: 0
@@ -834,9 +656,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -861,6 +686,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &2230989908480381304
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -871,9 +697,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 3279817044420877395, guid: 06babca5e83b90a4ea593902bec9fa59, type: 3}
 --- !u!111 &4717728286535939889
 Animation:
@@ -884,8 +710,7 @@ Animation:
   m_GameObject: {fileID: 7802580781636494674}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: 06babca5e83b90a4ea593902bec9fa59,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: 06babca5e83b90a4ea593902bec9fa59, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: 06babca5e83b90a4ea593902bec9fa59, type: 3}
   - {fileID: -3549757182910206383, guid: 06babca5e83b90a4ea593902bec9fa59, type: 3}
@@ -893,70 +718,6 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &2818423896429062035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7802580781636494674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebeea973c9b1c584e967067915b4c2e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dynamicType: 0
-  useType: 0
-  interactType: 1
-  keyType: 0
-  m_Animation: {fileID: 3671149872226202354}
-  IgnoreColliders: []
-  InteractEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  DisabledEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  customText: 
-  keyID: 0
-  useAnim: Fridge1_Door_F_Open
-  backUseAnim: Fridge1_Door_F_Close
-  useJammedPlanks: 0
-  Planks: []
-  knobAnim: 
-  useSR: 0
-  startingRotation: {x: 0, y: 0, z: 0}
-  isOpened: 0
-  toPlayerAngle: 0
-  moveWithX: 0
-  minMaxMove: {x: 0, y: 0}
-  reverseMove: 0
-  InteractPos: 0
-  stopAngle: 0
-  lockOnUp: 0
-  isUp: 0
-  valveTurnSounds: []
-  valveSoundAfter: 0
-  valveTurnSpeed: 0
-  valveTurnTime: 0
-  m_Volume: 1
-  Open: {fileID: 0}
-  Close: {fileID: 0}
-  LockedTry: {fileID: 0}
-  UnlockSound: {fileID: 0}
-  LeverUpSound: {fileID: 0}
-  DebugAngle: 0
-  rotateValue: 0
-  isHolding: 0
-  Hold: 0
-  hasKey: 0
-  isLocked: 0
-  isInvoked: 0
-  Angle: 0
 --- !u!1 &8535948815637255344
 GameObject:
   m_ObjectHideFlags: 0
@@ -984,6 +745,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.00003051758, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6573490564193613147}
   m_Father: {fileID: 7675599383554142111}
@@ -998,8 +760,7 @@ Animation:
   m_GameObject: {fileID: 8535948815637255344}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: eaebaf6d683519a449330e268a9d7abb,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: eaebaf6d683519a449330e268a9d7abb, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: eaebaf6d683519a449330e268a9d7abb, type: 3}
   - {fileID: -4655084249437784227, guid: eaebaf6d683519a449330e268a9d7abb, type: 3}
