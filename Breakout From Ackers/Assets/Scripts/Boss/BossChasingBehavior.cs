@@ -37,10 +37,10 @@ public class BossChasingBehavior : StateMachineBehaviour
         agent.SetDestination(player.position);
 
         timeToIdle += Time.deltaTime;
-        if(timeToIdle > 13)
+        /*if(timeToIdle > 13)
         {
             animator.SetBool("isChasing", false);
-        }
+        }*/
         float distance = Vector3.Distance(animator.transform.position, player.position);
         //Debug.Log(distance);
         //Close enough to attack 
