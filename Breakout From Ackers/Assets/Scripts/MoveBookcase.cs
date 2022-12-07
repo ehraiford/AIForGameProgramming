@@ -9,6 +9,8 @@ public class MoveBookcase : MonoBehaviour
     private bool doOnce = true;
     private GameObject onScreenUI;
     [SerializeField] AudioClip rumble;
+    [SerializeField] GameObject servantsDoor, servantZombie;
+
 
     // Update is called once per frame
     void Update()
@@ -19,6 +21,12 @@ public class MoveBookcase : MonoBehaviour
             doOnce = false;
             bookcaseAudio.PlayOneShot(rumble);
             onScreenUI.GetComponent<OnScreenUIScript>().SetCurrentObjective(3);
+
+
+            servantsDoor.GetComponent<Door>().isLocked = false; //unlock door to foyer
+            servantsDoor.GetComponent<Door>().door.Play("Door2_Open"); //open door to foyer
+            servantsDoor.GetComponent<Door>().isOpen = true;
+            servantZombie.SetActive(true);
         }
         
     }
