@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ItemPickup : Interactable
 {
-    [SerializeField] int itemCount;
-    [SerializeField] string itemName;
+    [SerializeField] int itemCount = 1;
+    [SerializeField] string itemName = "Pistol Ammo";
     [SerializeField] bool itemCountAffectedByScore;
     [SerializeField] private bool destroyOnInteract = true;
     [SerializeField] bool setObjective = false;
@@ -37,6 +37,7 @@ public class ItemPickup : Interactable
         {
             float denominator = firstPersonController.GetComponent<FirstPersonController>().diffcultyValue();
             adjustedItemCount = (int)((float)adjustedItemCount / denominator);
+            if (adjustedItemCount < 1) adjustedItemCount = 1;
         }
 
         if (setObjective && !alreadyPickedUp) onScreenUI.GetComponent<OnScreenUIScript>().SetCurrentObjective(objectiveNumber);
