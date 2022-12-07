@@ -62,7 +62,7 @@ public class AttackBehavior : StateMachineBehaviour
                 int i = Random.Range(0, 100);
 
                 //20% +/- (80 / DD) chance of getting debuffed
-                if (i > 1 / DD)
+                if (i > 80 / DD)
                 {
                     playerStat.debuffPlayer();
                 }
