@@ -13,7 +13,6 @@ public class FrontDoorScript : Interactable
     [SerializeField] private FirstPersonController FPC;
     [SerializeField] private string KeyName;
     [SerializeField] GameObject winScreen, backgroundMusic;
-    [SerializeField] GameObject bossAudio;
     private GameObject onScreenUI;
     public bool isOpen;
     private string objName;
@@ -39,7 +38,6 @@ public class FrontDoorScript : Interactable
         {
             winScreen.SetActive(true);
             backgroundMusic.GetComponent<BGMScript>().PauseMusic();
-            bossAudio.GetComponent<BossStat>().pauseFootStep();
             Time.timeScale = 0.0f;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
