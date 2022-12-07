@@ -55,19 +55,20 @@ public class BossPatrollingBehavior : StateMachineBehaviour
         //Choose next location to go to
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
-            
+            //Debug.Log(player.transform.position.y);
             //Pick between first and second floor
             //based on the player's y position
             //Second Floor
-            if (player.transform.position.y > 7f)
+            int idx = 0;
+            if (player.transform.position.y >= 7f)
             {
-                //Debug.Log(player.transform.position.y);
-                agent.SetDestination(wayPointsSecond[Random.Range(0, wayPointsSecond.Count)].position);
+                idx = Random.Range(0, wayPointsSecond.Count - 1);
+                agent.SetDestination(wayPointsSecond[idx].position);
             }
-            else if (player.transform.position.y < 6f)//First Floor
+            if (player.transform.position.y <= 6f)//First Floor
             {
-                //Debug.Log(player.transform.position.y);
-                agent.SetDestination(wayPointsFirst[Random.Range(0, wayPointsFirst.Count)].position);
+                idx = Random.Range(0, wayPointsFirst.Count - 1);
+                agent.SetDestination(wayPointsFirst[idx].position);
             }
         }
 
