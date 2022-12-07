@@ -123,6 +123,7 @@ public class OnScreenUIScript : MonoBehaviour
     #region Inventory Functions 
     private void OpenInventory()
     {
+        bossAudio.GetComponent<BossStat>().pauseFootStep();
         inventoryMenuUI.SetActive(true);
         ammoDisplayUI.SetActive(false);
         crosshairs.SetActive(false);
@@ -195,6 +196,7 @@ public class OnScreenUIScript : MonoBehaviour
 
     private void CloseInventory()
     {
+        bossAudio.GetComponent<BossStat>().resumeFootStep();
         inventoryMenuUI.SetActive(false);
         ammoDisplayUI.SetActive(true);
         crosshairs.SetActive(true);
