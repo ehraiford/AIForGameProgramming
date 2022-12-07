@@ -780,7 +780,7 @@ public class FirstPersonController : CharacterStats
             }
         }
         if (spot == -1)
-            Debug.LogWarning(itemName + " was not found in inventory.");
+            Debug.Log(itemName + " was not found in inventory.");
         return spot;
     }
 
