@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7943823999848359779}
   - component: {fileID: 910825876216003304}
   - component: {fileID: 9086534286538733410}
-  - component: {fileID: 3309309226918871078}
   m_Layer: 10
   m_Name: Cabinet3_Door4
   m_TagString: Wood
@@ -30,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.6858523, y: 0.1965698, z: 1.1586496}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7536690395736288056}
   m_RootOrder: 0
@@ -53,9 +53,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -81,6 +84,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &9086534286538733410
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -91,75 +95,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 8010229741049516242, guid: b62233146d98342479a71b8ade653dde, type: 3}
---- !u!114 &3309309226918871078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29053816114554436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebeea973c9b1c584e967067915b4c2e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dynamicType: 0
-  useType: 0
-  interactType: 1
-  keyType: 0
-  m_Animation: {fileID: 2109728706312165027}
-  IgnoreColliders:
-  - {fileID: 946938327395760410}
-  InteractEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  DisabledEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  customText: 
-  keyID: 0
-  useAnim: Cabinet3_Door4_Open
-  backUseAnim: Cabinet3_Door4_Close
-  useJammedPlanks: 0
-  Planks: []
-  knobAnim: 
-  useSR: 0
-  startingRotation: {x: 0, y: 0, z: 0}
-  isOpened: 0
-  toPlayerAngle: 0
-  moveWithX: 0
-  minMaxMove: {x: 0, y: 0}
-  reverseMove: 0
-  InteractPos: 0
-  stopAngle: 0
-  lockOnUp: 0
-  isUp: 0
-  valveTurnSounds: []
-  valveSoundAfter: 0
-  valveTurnSpeed: 0
-  valveTurnTime: 0
-  m_Volume: 1
-  Open: {fileID: 8300000, guid: cc960d4a1a9df9241acdcdfbaba223f3, type: 3}
-  Close: {fileID: 8300000, guid: d585b3cc8ea5fe14399710ec9da6fca5, type: 3}
-  LockedTry: {fileID: 0}
-  UnlockSound: {fileID: 0}
-  LeverUpSound: {fileID: 0}
-  DebugAngle: 0
-  rotateValue: 0
-  isHolding: 0
-  Hold: 0
-  hasKey: 0
-  isLocked: 0
-  isInvoked: 0
-  Angle: 0
 --- !u!1 &2282365644628862107
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +111,6 @@ GameObject:
   - component: {fileID: 7456497069429945586}
   - component: {fileID: 2835868681719179493}
   - component: {fileID: 4163264496963070477}
-  - component: {fileID: 3309309227546845601}
   m_Layer: 10
   m_Name: Cabinet3_Door2
   m_TagString: Wood
@@ -190,6 +128,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.56812775, y: 0.1965698, z: 1.1586496}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7536690396311816839}
   m_RootOrder: 0
@@ -213,9 +152,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -241,6 +183,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &4163264496963070477
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -251,75 +194,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 3678320129607073905, guid: 25cbf4cc683aff146b772fd42f8133a0, type: 3}
---- !u!114 &3309309227546845601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2282365644628862107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebeea973c9b1c584e967067915b4c2e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dynamicType: 0
-  useType: 0
-  interactType: 1
-  keyType: 0
-  m_Animation: {fileID: 2109728705866135324}
-  IgnoreColliders:
-  - {fileID: 946938327395760410}
-  InteractEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  DisabledEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  customText: 
-  keyID: 0
-  useAnim: Cabinet3_Door2_Open
-  backUseAnim: Cabinet3_Door2_Close
-  useJammedPlanks: 0
-  Planks: []
-  knobAnim: 
-  useSR: 0
-  startingRotation: {x: 0, y: 0, z: 0}
-  isOpened: 0
-  toPlayerAngle: 0
-  moveWithX: 0
-  minMaxMove: {x: 0, y: 0}
-  reverseMove: 0
-  InteractPos: 0
-  stopAngle: 0
-  lockOnUp: 0
-  isUp: 0
-  valveTurnSounds: []
-  valveSoundAfter: 0
-  valveTurnSpeed: 0
-  valveTurnTime: 0
-  m_Volume: 1
-  Open: {fileID: 8300000, guid: cc960d4a1a9df9241acdcdfbaba223f3, type: 3}
-  Close: {fileID: 8300000, guid: d585b3cc8ea5fe14399710ec9da6fca5, type: 3}
-  LockedTry: {fileID: 0}
-  UnlockSound: {fileID: 0}
-  LeverUpSound: {fileID: 0}
-  DebugAngle: 0
-  rotateValue: 0
-  isHolding: 0
-  Hold: 0
-  hasKey: 0
-  isLocked: 0
-  isInvoked: 0
-  Angle: 0
 --- !u!1 &3189622976402416515
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,7 +210,6 @@ GameObject:
   - component: {fileID: 6485359504841138049}
   - component: {fileID: 8255983025249121230}
   - component: {fileID: 593802296006936141}
-  - component: {fileID: 3309309225889495033}
   m_Layer: 10
   m_Name: Cabinet3_drawer1
   m_TagString: Wood
@@ -350,6 +227,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.84841335, y: 0.24303825, z: 0.6642381}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7536690394672225519}
   m_RootOrder: 0
@@ -373,9 +251,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -401,6 +282,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &593802296006936141
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -411,75 +293,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 2381617052701607378, guid: ff917429a59392c4994a01c6012be9bc, type: 3}
---- !u!114 &3309309225889495033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3189622976402416515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebeea973c9b1c584e967067915b4c2e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dynamicType: 1
-  useType: 0
-  interactType: 1
-  keyType: 0
-  m_Animation: {fileID: 2109728707505725812}
-  IgnoreColliders:
-  - {fileID: 946938327395760410}
-  InteractEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  DisabledEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  customText: 
-  keyID: 0
-  useAnim: Cabinet3_drawer1_Open
-  backUseAnim: Cabinet3_drawer1_Close
-  useJammedPlanks: 0
-  Planks: []
-  knobAnim: 
-  useSR: 0
-  startingRotation: {x: 0, y: 0, z: 0}
-  isOpened: 0
-  toPlayerAngle: 0
-  moveWithX: 0
-  minMaxMove: {x: 0, y: 0}
-  reverseMove: 0
-  InteractPos: 0
-  stopAngle: 0
-  lockOnUp: 0
-  isUp: 0
-  valveTurnSounds: []
-  valveSoundAfter: 0
-  valveTurnSpeed: 0
-  valveTurnTime: 0
-  m_Volume: 1
-  Open: {fileID: 8300000, guid: b2057626cfa40834781a73ae6dbda539, type: 3}
-  Close: {fileID: 8300000, guid: 79712519e8fa9fc4498065258694a5d4, type: 3}
-  LockedTry: {fileID: 0}
-  UnlockSound: {fileID: 0}
-  LeverUpSound: {fileID: 0}
-  DebugAngle: 0
-  rotateValue: 0
-  isHolding: 0
-  Hold: 0
-  hasKey: 0
-  isLocked: 0
-  isInvoked: 0
-  Angle: 0
 --- !u!1 &3501147710408320443
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +309,6 @@ GameObject:
   - component: {fileID: 6501438361415351799}
   - component: {fileID: 544990395850616420}
   - component: {fileID: 3089046347181781359}
-  - component: {fileID: 3309309225757345666}
   m_Layer: 10
   m_Name: Cabinet3_drawer5
   m_TagString: Wood
@@ -510,6 +326,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.8479605, y: 0.24303822, z: 0.43314162}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7536690394540092647}
   m_RootOrder: 0
@@ -533,9 +350,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -561,6 +381,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &3089046347181781359
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -571,75 +392,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4921773299883577428, guid: fc6d672131c4c134b882017dbc2f5fef, type: 3}
---- !u!114 &3309309225757345666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3501147710408320443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebeea973c9b1c584e967067915b4c2e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dynamicType: 1
-  useType: 0
-  interactType: 1
-  keyType: 0
-  m_Animation: {fileID: 2109728707642052988}
-  IgnoreColliders:
-  - {fileID: 946938327395760410}
-  InteractEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  DisabledEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  customText: 
-  keyID: 0
-  useAnim: Cabinet3_drawer5_Open
-  backUseAnim: Cabinet3_drawer5_Close
-  useJammedPlanks: 0
-  Planks: []
-  knobAnim: 
-  useSR: 0
-  startingRotation: {x: 0, y: 0, z: 0}
-  isOpened: 0
-  toPlayerAngle: 0
-  moveWithX: 0
-  minMaxMove: {x: 0, y: 0}
-  reverseMove: 0
-  InteractPos: 0
-  stopAngle: 0
-  lockOnUp: 0
-  isUp: 0
-  valveTurnSounds: []
-  valveSoundAfter: 0
-  valveTurnSpeed: 0
-  valveTurnTime: 0
-  m_Volume: 1
-  Open: {fileID: 8300000, guid: b2057626cfa40834781a73ae6dbda539, type: 3}
-  Close: {fileID: 8300000, guid: 79712519e8fa9fc4498065258694a5d4, type: 3}
-  LockedTry: {fileID: 0}
-  UnlockSound: {fileID: 0}
-  LeverUpSound: {fileID: 0}
-  DebugAngle: 0
-  rotateValue: 0
-  isHolding: 0
-  Hold: 0
-  hasKey: 0
-  isLocked: 0
-  isInvoked: 0
-  Angle: 0
 --- !u!1 &4225738774837725676
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,7 +408,6 @@ GameObject:
   - component: {fileID: 4786729342895812008}
   - component: {fileID: 5441005484507211607}
   - component: {fileID: 807242200069256461}
-  - component: {fileID: 3309309226377238531}
   m_Layer: 10
   m_Name: Cabinet3_drawer3
   m_TagString: Wood
@@ -670,6 +425,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.84841335, y: 0.24303825, z: 0.20162174}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7536690395195568997}
   m_RootOrder: 0
@@ -693,9 +449,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -721,6 +480,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &807242200069256461
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -731,75 +491,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: -2141758466976647729, guid: 4c3021112e86815489727f8caac7aaf2, type: 3}
---- !u!114 &3309309226377238531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4225738774837725676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebeea973c9b1c584e967067915b4c2e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dynamicType: 1
-  useType: 0
-  interactType: 1
-  keyType: 0
-  m_Animation: {fileID: 2109728706852359934}
-  IgnoreColliders:
-  - {fileID: 946938327395760410}
-  InteractEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  DisabledEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  customText: 
-  keyID: 0
-  useAnim: Cabinet3_drawer3_Open
-  backUseAnim: Cabinet3_drawer3_Close
-  useJammedPlanks: 0
-  Planks: []
-  knobAnim: 
-  useSR: 0
-  startingRotation: {x: 0, y: 0, z: 0}
-  isOpened: 0
-  toPlayerAngle: 0
-  moveWithX: 0
-  minMaxMove: {x: 0, y: 0}
-  reverseMove: 0
-  InteractPos: 0
-  stopAngle: 0
-  lockOnUp: 0
-  isUp: 0
-  valveTurnSounds: []
-  valveSoundAfter: 0
-  valveTurnSpeed: 0
-  valveTurnTime: 0
-  m_Volume: 1
-  Open: {fileID: 8300000, guid: b2057626cfa40834781a73ae6dbda539, type: 3}
-  Close: {fileID: 8300000, guid: 79712519e8fa9fc4498065258694a5d4, type: 3}
-  LockedTry: {fileID: 0}
-  UnlockSound: {fileID: 0}
-  LeverUpSound: {fileID: 0}
-  DebugAngle: 0
-  rotateValue: 0
-  isHolding: 0
-  Hold: 0
-  hasKey: 0
-  isLocked: 0
-  isInvoked: 0
-  Angle: 0
 --- !u!1 &5594650259865951875
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,7 +507,6 @@ GameObject:
   - component: {fileID: 2575805637331758029}
   - component: {fileID: 3769851769453693291}
   - component: {fileID: 671762459958071014}
-  - component: {fileID: 3309309225550629869}
   m_Layer: 10
   m_Name: Cabinet3_Door5
   m_TagString: Wood
@@ -830,6 +524,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.6871444, y: 0.24254769, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7536690394349166835}
   m_RootOrder: 0
@@ -853,9 +548,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -880,6 +578,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &671762459958071014
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -890,75 +589,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 3533046851209107002, guid: 341724ffb7d87214184fdf3b8deba6de, type: 3}
---- !u!114 &3309309225550629869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5594650259865951875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebeea973c9b1c584e967067915b4c2e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dynamicType: 0
-  useType: 0
-  interactType: 1
-  keyType: 0
-  m_Animation: {fileID: 2109728707695091048}
-  IgnoreColliders:
-  - {fileID: 946938327395760410}
-  InteractEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  DisabledEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  customText: 
-  keyID: 0
-  useAnim: Cabinet3_Door5_Open
-  backUseAnim: Cabinet3_Door5_Close
-  useJammedPlanks: 0
-  Planks: []
-  knobAnim: 
-  useSR: 0
-  startingRotation: {x: 0, y: 0, z: 0}
-  isOpened: 0
-  toPlayerAngle: 0
-  moveWithX: 0
-  minMaxMove: {x: 0, y: 0}
-  reverseMove: 0
-  InteractPos: 0
-  stopAngle: 0
-  lockOnUp: 0
-  isUp: 0
-  valveTurnSounds: []
-  valveSoundAfter: 0
-  valveTurnSpeed: 0
-  valveTurnTime: 0
-  m_Volume: 1
-  Open: {fileID: 8300000, guid: cc960d4a1a9df9241acdcdfbaba223f3, type: 3}
-  Close: {fileID: 8300000, guid: d585b3cc8ea5fe14399710ec9da6fca5, type: 3}
-  LockedTry: {fileID: 0}
-  UnlockSound: {fileID: 0}
-  LeverUpSound: {fileID: 0}
-  DebugAngle: 0
-  rotateValue: 0
-  isHolding: 0
-  Hold: 0
-  hasKey: 0
-  isLocked: 0
-  isInvoked: 0
-  Angle: 0
 --- !u!1 &5873192183786791304
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,7 +605,6 @@ GameObject:
   - component: {fileID: 8803301959046768545}
   - component: {fileID: 8437721541452843846}
   - component: {fileID: 8294542613417982731}
-  - component: {fileID: 3309309226978598471}
   m_Layer: 10
   m_Name: Cabinet3_drawer4
   m_TagString: Wood
@@ -989,6 +622,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.8479605, y: 0.24303825, z: 0.6642381}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7536690395743450457}
   m_RootOrder: 0
@@ -1012,9 +646,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1040,6 +677,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &8294542613417982731
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1050,75 +688,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: -314528941893962617, guid: 41698a3e33e76b247bf5818fdc42d54f, type: 3}
---- !u!114 &3309309226978598471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5873192183786791304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebeea973c9b1c584e967067915b4c2e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dynamicType: 1
-  useType: 0
-  interactType: 1
-  keyType: 0
-  m_Animation: {fileID: 2109728706438695106}
-  IgnoreColliders:
-  - {fileID: 946938327395760410}
-  InteractEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  DisabledEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  customText: 
-  keyID: 0
-  useAnim: Cabinet3_drawer4_Open
-  backUseAnim: Cabinet3_drawer4_Close
-  useJammedPlanks: 0
-  Planks: []
-  knobAnim: 
-  useSR: 0
-  startingRotation: {x: 0, y: 0, z: 0}
-  isOpened: 0
-  toPlayerAngle: 0
-  moveWithX: 0
-  minMaxMove: {x: 0, y: 0}
-  reverseMove: 0
-  InteractPos: 0
-  stopAngle: 0
-  lockOnUp: 0
-  isUp: 0
-  valveTurnSounds: []
-  valveSoundAfter: 0
-  valveTurnSpeed: 0
-  valveTurnTime: 0
-  m_Volume: 1
-  Open: {fileID: 8300000, guid: b2057626cfa40834781a73ae6dbda539, type: 3}
-  Close: {fileID: 8300000, guid: 79712519e8fa9fc4498065258694a5d4, type: 3}
-  LockedTry: {fileID: 0}
-  UnlockSound: {fileID: 0}
-  LeverUpSound: {fileID: 0}
-  DebugAngle: 0
-  rotateValue: 0
-  isHolding: 0
-  Hold: 0
-  hasKey: 0
-  isLocked: 0
-  isInvoked: 0
-  Angle: 0
 --- !u!1 &6470825335106270561
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,7 +704,6 @@ GameObject:
   - component: {fileID: 6470563188252160059}
   - component: {fileID: 6144070874352836638}
   - component: {fileID: 7447635957310525877}
-  - component: {fileID: 3309309225857509773}
   m_Layer: 10
   m_Name: Cabinet3_Door6
   m_TagString: Wood
@@ -1149,6 +721,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.6858691, y: 0.24254769, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7536690394641285779}
   m_RootOrder: 0
@@ -1172,9 +745,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1199,6 +775,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &7447635957310525877
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1209,75 +786,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: -1189184553326960352, guid: 74643b2a0bd4ac34fa2ada76fd55b198, type: 3}
---- !u!114 &3309309225857509773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6470825335106270561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebeea973c9b1c584e967067915b4c2e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dynamicType: 0
-  useType: 0
-  interactType: 1
-  keyType: 0
-  m_Animation: {fileID: 2109728707406642952}
-  IgnoreColliders:
-  - {fileID: 946938327395760410}
-  InteractEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  DisabledEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  customText: 
-  keyID: 0
-  useAnim: Cabinet3_Door6_Open
-  backUseAnim: Cabinet3_Door6_Close
-  useJammedPlanks: 0
-  Planks: []
-  knobAnim: 
-  useSR: 0
-  startingRotation: {x: 0, y: 0, z: 0}
-  isOpened: 0
-  toPlayerAngle: 0
-  moveWithX: 0
-  minMaxMove: {x: 0, y: 0}
-  reverseMove: 0
-  InteractPos: 0
-  stopAngle: 0
-  lockOnUp: 0
-  isUp: 0
-  valveTurnSounds: []
-  valveSoundAfter: 0
-  valveTurnSpeed: 0
-  valveTurnTime: 0
-  m_Volume: 1
-  Open: {fileID: 8300000, guid: cc960d4a1a9df9241acdcdfbaba223f3, type: 3}
-  Close: {fileID: 8300000, guid: d585b3cc8ea5fe14399710ec9da6fca5, type: 3}
-  LockedTry: {fileID: 0}
-  UnlockSound: {fileID: 0}
-  LeverUpSound: {fileID: 0}
-  DebugAngle: 0
-  rotateValue: 0
-  isHolding: 0
-  Hold: 0
-  hasKey: 0
-  isLocked: 0
-  isInvoked: 0
-  Angle: 0
 --- !u!1 &6831092171117909066
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,6 +817,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.00003051758, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 363207322208652307}
   m_Father: {fileID: 7536690394460587294}
@@ -1319,8 +832,7 @@ Animation:
   m_GameObject: {fileID: 6831092171117909066}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: 8abe729c4efd59642905598603b4e93a,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: 8abe729c4efd59642905598603b4e93a, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: 8abe729c4efd59642905598603b4e93a, type: 3}
   - {fileID: 3495769804088851530, guid: 8abe729c4efd59642905598603b4e93a, type: 3}
@@ -1355,6 +867,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.00003051758, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 608712271140722919}
   m_Father: {fileID: 7536690394460587294}
@@ -1369,8 +882,7 @@ Animation:
   m_GameObject: {fileID: 6831092171158157460}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: 25cbf4cc683aff146b772fd42f8133a0,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: 25cbf4cc683aff146b772fd42f8133a0, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: 25cbf4cc683aff146b772fd42f8133a0, type: 3}
   - {fileID: -6800719068922627431, guid: 25cbf4cc683aff146b772fd42f8133a0, type: 3}
@@ -1405,6 +917,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.00003051758, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 975752474063818644}
   m_Father: {fileID: 7536690394460587294}
@@ -1419,8 +932,7 @@ Animation:
   m_GameObject: {fileID: 6831092171730585418}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: 41698a3e33e76b247bf5818fdc42d54f,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: 41698a3e33e76b247bf5818fdc42d54f, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: 41698a3e33e76b247bf5818fdc42d54f, type: 3}
   - {fileID: -3566578768916311498, guid: 41698a3e33e76b247bf5818fdc42d54f, type: 3}
@@ -1455,6 +967,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.00003051758, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2479043404524904044}
   m_Father: {fileID: 7536690394460587294}
@@ -1469,8 +982,7 @@ Animation:
   m_GameObject: {fileID: 6831092171737880875}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: b62233146d98342479a71b8ade653dde,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: b62233146d98342479a71b8ade653dde, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: b62233146d98342479a71b8ade653dde, type: 3}
   - {fileID: -8494602949340566392, guid: b62233146d98342479a71b8ade653dde, type: 3}
@@ -1505,6 +1017,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.00003051758, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3204312272400302250}
   m_Father: {fileID: 7536690394460587294}
@@ -1519,8 +1032,7 @@ Animation:
   m_GameObject: {fileID: 6831092171928875861}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: 969efc62012671c4d8106f468d2fb8f2,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: 969efc62012671c4d8106f468d2fb8f2, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: 969efc62012671c4d8106f468d2fb8f2, type: 3}
   - {fileID: 5595900987014804557, guid: 969efc62012671c4d8106f468d2fb8f2, type: 3}
@@ -1555,6 +1067,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.00003051758, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2731679735586055337}
   m_Father: {fileID: 7536690394460587294}
@@ -1569,8 +1082,7 @@ Animation:
   m_GameObject: {fileID: 6831092171975167426}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: 55c6995245eeede4c99d065a68a672db,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: 55c6995245eeede4c99d065a68a672db, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: 55c6995245eeede4c99d065a68a672db, type: 3}
   - {fileID: 3644962001656559554, guid: 55c6995245eeede4c99d065a68a672db, type: 3}
@@ -1605,6 +1117,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.00003051758, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6368182694107010016}
   m_Father: {fileID: 7536690394460587294}
@@ -1619,8 +1132,7 @@ Animation:
   m_GameObject: {fileID: 6831092172251084005}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: bd678c3670225e74d9c67d520ab1592d,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: bd678c3670225e74d9c67d520ab1592d, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: bd678c3670225e74d9c67d520ab1592d, type: 3}
   - {fileID: 6051950589072216035, guid: bd678c3670225e74d9c67d520ab1592d, type: 3}
@@ -1655,6 +1167,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.00003051758, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8690666633265072960}
   m_Father: {fileID: 7536690394460587294}
@@ -1669,8 +1182,7 @@ Animation:
   m_GameObject: {fileID: 6831092172271124854}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: 4c3021112e86815489727f8caac7aaf2,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: 4c3021112e86815489727f8caac7aaf2, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: 4c3021112e86815489727f8caac7aaf2, type: 3}
   - {fileID: -4369998385720957769, guid: 4c3021112e86815489727f8caac7aaf2, type: 3}
@@ -1707,6 +1219,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 20.619, y: 0, z: 139.95534}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7536690395541094726}
   - {fileID: 7536690394540092647}
@@ -1742,9 +1255,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1769,6 +1285,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &946938327395760410
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1779,9 +1296,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 7319552838958926937, guid: f9e62d1e77d017144b1e0ec863c7e60e, type: 3}
 --- !u!1 &6831092172583932640
 GameObject:
@@ -1810,6 +1327,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.00003051758, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8112562795863154752}
   m_Father: {fileID: 7536690394460587294}
@@ -1824,8 +1342,7 @@ Animation:
   m_GameObject: {fileID: 6831092172583932640}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: 341724ffb7d87214184fdf3b8deba6de,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: 341724ffb7d87214184fdf3b8deba6de, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: 341724ffb7d87214184fdf3b8deba6de, type: 3}
   - {fileID: 2782044003465784517, guid: 341724ffb7d87214184fdf3b8deba6de, type: 3}
@@ -1860,6 +1377,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.00003051758, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 58273034495218314}
   m_Father: {fileID: 7536690394460587294}
@@ -1874,8 +1392,7 @@ Animation:
   m_GameObject: {fileID: 6831092172790411004}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: ff917429a59392c4994a01c6012be9bc,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: ff917429a59392c4994a01c6012be9bc, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: ff917429a59392c4994a01c6012be9bc, type: 3}
   - {fileID: 2989896973753683194, guid: ff917429a59392c4994a01c6012be9bc, type: 3}
@@ -1910,6 +1427,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.00003051758, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 47221824924300023}
   m_Father: {fileID: 7536690394460587294}
@@ -1924,8 +1442,7 @@ Animation:
   m_GameObject: {fileID: 6831092172824490112}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: 74643b2a0bd4ac34fa2ada76fd55b198,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: 74643b2a0bd4ac34fa2ada76fd55b198, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: 74643b2a0bd4ac34fa2ada76fd55b198, type: 3}
   - {fileID: 7457744331247357483, guid: 74643b2a0bd4ac34fa2ada76fd55b198, type: 3}
@@ -1960,6 +1477,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.00003051758, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7426961144294473864}
   m_Father: {fileID: 7536690394460587294}
@@ -1974,8 +1492,7 @@ Animation:
   m_GameObject: {fileID: 6831092172926738164}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: fc6d672131c4c134b882017dbc2f5fef,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: fc6d672131c4c134b882017dbc2f5fef, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: fc6d672131c4c134b882017dbc2f5fef, type: 3}
   - {fileID: 7139811569186179045, guid: fc6d672131c4c134b882017dbc2f5fef, type: 3}
@@ -1995,7 +1512,6 @@ GameObject:
   - component: {fileID: 1686494565133482932}
   - component: {fileID: 3937536810802492406}
   - component: {fileID: 4431619411363797487}
-  - component: {fileID: 3309309226424561136}
   m_Layer: 10
   m_Name: Cabinet3_Door3
   m_TagString: Wood
@@ -2013,6 +1529,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.56937146, y: 0.1965698, z: 1.1586496}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7536690395224000246}
   m_RootOrder: 0
@@ -2036,9 +1553,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2064,6 +1584,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &4431619411363797487
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2074,75 +1595,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4992621553111829736, guid: bd678c3670225e74d9c67d520ab1592d, type: 3}
---- !u!114 &3309309226424561136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7213516497050075338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebeea973c9b1c584e967067915b4c2e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dynamicType: 0
-  useType: 0
-  interactType: 1
-  keyType: 0
-  m_Animation: {fileID: 2109728706958670701}
-  IgnoreColliders:
-  - {fileID: 946938327395760410}
-  InteractEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  DisabledEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  customText: 
-  keyID: 0
-  useAnim: Cabinet3_Door3_Open
-  backUseAnim: Cabinet3_Door3_Close
-  useJammedPlanks: 0
-  Planks: []
-  knobAnim: 
-  useSR: 0
-  startingRotation: {x: 0, y: 0, z: 0}
-  isOpened: 0
-  toPlayerAngle: 0
-  moveWithX: 0
-  minMaxMove: {x: 0, y: 0}
-  reverseMove: 0
-  InteractPos: 0
-  stopAngle: 0
-  lockOnUp: 0
-  isUp: 0
-  valveTurnSounds: []
-  valveSoundAfter: 0
-  valveTurnSpeed: 0
-  valveTurnTime: 0
-  m_Volume: 1
-  Open: {fileID: 8300000, guid: cc960d4a1a9df9241acdcdfbaba223f3, type: 3}
-  Close: {fileID: 8300000, guid: d585b3cc8ea5fe14399710ec9da6fca5, type: 3}
-  LockedTry: {fileID: 0}
-  UnlockSound: {fileID: 0}
-  LeverUpSound: {fileID: 0}
-  DebugAngle: 0
-  rotateValue: 0
-  isHolding: 0
-  Hold: 0
-  hasKey: 0
-  isLocked: 0
-  isInvoked: 0
-  Angle: 0
 --- !u!1 &7798413889634767197
 GameObject:
   m_ObjectHideFlags: 0
@@ -2155,7 +1611,6 @@ GameObject:
   - component: {fileID: 4472218641295352226}
   - component: {fileID: 3836149367824182696}
   - component: {fileID: 7593077934285377620}
-  - component: {fileID: 3309309226148910287}
   m_Layer: 10
   m_Name: Cabinet3_Door1
   m_TagString: Wood
@@ -2173,6 +1628,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.6863568, y: 0.1965698, z: 1.1586496}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7536690394950467537}
   m_RootOrder: 0
@@ -2196,9 +1652,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2224,6 +1683,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &7593077934285377620
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2234,75 +1694,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 3660729641847289769, guid: 55c6995245eeede4c99d065a68a672db, type: 3}
---- !u!114 &3309309226148910287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7798413889634767197}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebeea973c9b1c584e967067915b4c2e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dynamicType: 0
-  useType: 0
-  interactType: 1
-  keyType: 0
-  m_Animation: {fileID: 2109728707228009034}
-  IgnoreColliders:
-  - {fileID: 946938327395760410}
-  InteractEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  DisabledEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  customText: 
-  keyID: 0
-  useAnim: Cabinet3_Door1_Open
-  backUseAnim: Cabinet3_Door1_Close
-  useJammedPlanks: 0
-  Planks: []
-  knobAnim: 
-  useSR: 0
-  startingRotation: {x: 0, y: 0, z: 0}
-  isOpened: 0
-  toPlayerAngle: 0
-  moveWithX: 0
-  minMaxMove: {x: 0, y: 0}
-  reverseMove: 0
-  InteractPos: 0
-  stopAngle: 0
-  lockOnUp: 0
-  isUp: 0
-  valveTurnSounds: []
-  valveSoundAfter: 0
-  valveTurnSpeed: 0
-  valveTurnTime: 0
-  m_Volume: 1
-  Open: {fileID: 8300000, guid: cc960d4a1a9df9241acdcdfbaba223f3, type: 3}
-  Close: {fileID: 8300000, guid: d585b3cc8ea5fe14399710ec9da6fca5, type: 3}
-  LockedTry: {fileID: 0}
-  UnlockSound: {fileID: 0}
-  LeverUpSound: {fileID: 0}
-  DebugAngle: 0
-  rotateValue: 0
-  isHolding: 0
-  Hold: 0
-  hasKey: 0
-  isLocked: 0
-  isInvoked: 0
-  Angle: 0
 --- !u!1 &7833381250771478464
 GameObject:
   m_ObjectHideFlags: 0
@@ -2315,7 +1710,6 @@ GameObject:
   - component: {fileID: 8727975035346635957}
   - component: {fileID: 1721112156320362729}
   - component: {fileID: 9098576667762350072}
-  - component: {fileID: 3309309227035528519}
   m_Layer: 10
   m_Name: Cabinet3_drawer2
   m_TagString: Wood
@@ -2333,6 +1727,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.84841335, y: 0.24303822, z: 0.43314162}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7536690395820435033}
   m_RootOrder: 0
@@ -2356,9 +1751,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2384,6 +1782,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &9098576667762350072
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2394,75 +1793,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: -8789081913740234584, guid: 8abe729c4efd59642905598603b4e93a, type: 3}
---- !u!114 &3309309227035528519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7833381250771478464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebeea973c9b1c584e967067915b4c2e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dynamicType: 1
-  useType: 0
-  interactType: 1
-  keyType: 0
-  m_Animation: {fileID: 2109728706227493826}
-  IgnoreColliders:
-  - {fileID: 946938327395760410}
-  InteractEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  DisabledEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  customText: 
-  keyID: 0
-  useAnim: Cabinet3_drawer2_Open
-  backUseAnim: Cabinet3_drawer2_Close
-  useJammedPlanks: 0
-  Planks: []
-  knobAnim: 
-  useSR: 0
-  startingRotation: {x: 0, y: 0, z: 0}
-  isOpened: 0
-  toPlayerAngle: 0
-  moveWithX: 0
-  minMaxMove: {x: 0, y: 0}
-  reverseMove: 0
-  InteractPos: 0
-  stopAngle: 0
-  lockOnUp: 0
-  isUp: 0
-  valveTurnSounds: []
-  valveSoundAfter: 0
-  valveTurnSpeed: 0
-  valveTurnTime: 0
-  m_Volume: 1
-  Open: {fileID: 8300000, guid: b2057626cfa40834781a73ae6dbda539, type: 3}
-  Close: {fileID: 8300000, guid: 79712519e8fa9fc4498065258694a5d4, type: 3}
-  LockedTry: {fileID: 0}
-  UnlockSound: {fileID: 0}
-  LeverUpSound: {fileID: 0}
-  DebugAngle: 0
-  rotateValue: 0
-  isHolding: 0
-  Hold: 0
-  hasKey: 0
-  isLocked: 0
-  isInvoked: 0
-  Angle: 0
 --- !u!1 &9102100765908436492
 GameObject:
   m_ObjectHideFlags: 0
@@ -2475,7 +1809,6 @@ GameObject:
   - component: {fileID: 7865813524733291313}
   - component: {fileID: 5927653678235390180}
   - component: {fileID: 3629952738737851644}
-  - component: {fileID: 3309309226774096480}
   m_Layer: 10
   m_Name: Cabinet3_drawer6
   m_TagString: Wood
@@ -2493,6 +1826,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.8479605, y: 0.24303825, z: 0.20162174}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7536690395541094726}
   m_RootOrder: 0
@@ -2516,9 +1850,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2544,6 +1881,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &3629952738737851644
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2554,72 +1892,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: -3292358195369160667, guid: 969efc62012671c4d8106f468d2fb8f2, type: 3}
---- !u!114 &3309309226774096480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9102100765908436492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebeea973c9b1c584e967067915b4c2e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dynamicType: 1
-  useType: 0
-  interactType: 1
-  keyType: 0
-  m_Animation: {fileID: 2109728706502638813}
-  IgnoreColliders:
-  - {fileID: 946938327395760410}
-  InteractEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  DisabledEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  customText: 
-  keyID: 0
-  useAnim: Cabinet3_drawer6_Open
-  backUseAnim: Cabinet3_drawer6_Close
-  useJammedPlanks: 0
-  Planks: []
-  knobAnim: 
-  useSR: 0
-  startingRotation: {x: 0, y: 0, z: 0}
-  isOpened: 0
-  toPlayerAngle: 0
-  moveWithX: 0
-  minMaxMove: {x: 0, y: 0}
-  reverseMove: 0
-  InteractPos: 0
-  stopAngle: 0
-  lockOnUp: 0
-  isUp: 0
-  valveTurnSounds: []
-  valveSoundAfter: 0
-  valveTurnSpeed: 0
-  valveTurnTime: 0
-  m_Volume: 1
-  Open: {fileID: 8300000, guid: b2057626cfa40834781a73ae6dbda539, type: 3}
-  Close: {fileID: 8300000, guid: 79712519e8fa9fc4498065258694a5d4, type: 3}
-  LockedTry: {fileID: 0}
-  UnlockSound: {fileID: 0}
-  LeverUpSound: {fileID: 0}
-  DebugAngle: 0
-  rotateValue: 0
-  isHolding: 0
-  Hold: 0
-  hasKey: 0
-  isLocked: 0
-  isInvoked: 0
-  Angle: 0

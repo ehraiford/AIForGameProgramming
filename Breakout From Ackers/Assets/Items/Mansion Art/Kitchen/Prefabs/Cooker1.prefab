@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2322446568557604040}
   m_RootOrder: 1
@@ -52,9 +53,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -79,6 +83,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &7843087730771758867
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -89,9 +94,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: -1931835246411132758, guid: 6c1942cec8fda03489a226258e1b018c, type: 3}
 --- !u!1 &3724658518607124172
 GameObject:
@@ -106,7 +111,6 @@ GameObject:
   - component: {fileID: 7322976213968874808}
   - component: {fileID: 3334434989781694788}
   - component: {fileID: 204066330719131248}
-  - component: {fileID: 4408013903045406642}
   m_Layer: 10
   m_Name: Cooker1_Door2
   m_TagString: Metal
@@ -124,6 +128,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.23590331, y: -0.28689194, z: 0.32268593}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2841147801576268958}
   m_RootOrder: 0
@@ -147,9 +152,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -175,6 +183,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &3334434989781694788
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -185,9 +194,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: -2127256728656840172, guid: a19deb126184a7d4294578ec9250c2f1, type: 3}
 --- !u!111 &204066330719131248
 Animation:
@@ -198,8 +207,7 @@ Animation:
   m_GameObject: {fileID: 3724658518607124172}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: a19deb126184a7d4294578ec9250c2f1,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: a19deb126184a7d4294578ec9250c2f1, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: a19deb126184a7d4294578ec9250c2f1, type: 3}
   - {fileID: -5438846727980987736, guid: a19deb126184a7d4294578ec9250c2f1, type: 3}
@@ -207,70 +215,6 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &4408013903045406642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3724658518607124172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebeea973c9b1c584e967067915b4c2e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dynamicType: 0
-  useType: 0
-  interactType: 1
-  keyType: 0
-  m_Animation: {fileID: 7153178642385908117}
-  IgnoreColliders: []
-  InteractEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  DisabledEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  customText: 
-  keyID: 0
-  useAnim: Cooker1_Door2_Open
-  backUseAnim: Cooker1_Door2_Close
-  useJammedPlanks: 0
-  Planks: []
-  knobAnim: 
-  useSR: 0
-  startingRotation: {x: 0, y: 0, z: 0}
-  isOpened: 0
-  toPlayerAngle: 0
-  moveWithX: 0
-  minMaxMove: {x: 0, y: 0}
-  reverseMove: 0
-  InteractPos: 0
-  stopAngle: 0
-  lockOnUp: 0
-  isUp: 0
-  valveTurnSounds: []
-  valveSoundAfter: 0
-  valveTurnSpeed: 0
-  valveTurnTime: 0
-  m_Volume: 1
-  Open: {fileID: 0}
-  Close: {fileID: 0}
-  LockedTry: {fileID: 0}
-  UnlockSound: {fileID: 0}
-  LeverUpSound: {fileID: 0}
-  DebugAngle: 0
-  rotateValue: 0
-  isHolding: 0
-  Hold: 0
-  hasKey: 0
-  isLocked: 0
-  isInvoked: 0
-  Angle: 0
 --- !u!1 &4251509177140509039
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,6 +242,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.000022888187, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 984777125067974570}
   - {fileID: 2206412155683799284}
@@ -313,8 +258,7 @@ Animation:
   m_GameObject: {fileID: 4251509177140509039}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: a19deb126184a7d4294578ec9250c2f1,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: a19deb126184a7d4294578ec9250c2f1, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: a19deb126184a7d4294578ec9250c2f1, type: 3}
   - {fileID: -5438846727980987736, guid: a19deb126184a7d4294578ec9250c2f1, type: 3}
@@ -335,7 +279,6 @@ GameObject:
   - component: {fileID: 8242020839331887978}
   - component: {fileID: 5304777944222932062}
   - component: {fileID: 5760644757422386269}
-  - component: {fileID: 44716578768515036}
   m_Layer: 10
   m_Name: Cooker1_Door1
   m_TagString: Metal
@@ -353,6 +296,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.14504394, y: -0.2868898, z: 0.32268158}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2322446568557604040}
   m_RootOrder: 0
@@ -376,9 +320,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -404,6 +351,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &5304777944222932062
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -414,9 +362,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 3055890437402542984, guid: 6c1942cec8fda03489a226258e1b018c, type: 3}
 --- !u!111 &5760644757422386269
 Animation:
@@ -427,8 +375,7 @@ Animation:
   m_GameObject: {fileID: 6108522606114322318}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: 6c1942cec8fda03489a226258e1b018c,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: 6c1942cec8fda03489a226258e1b018c, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: 6c1942cec8fda03489a226258e1b018c, type: 3}
   - {fileID: -9175781861074305259, guid: 6c1942cec8fda03489a226258e1b018c, type: 3}
@@ -436,70 +383,6 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &44716578768515036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6108522606114322318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebeea973c9b1c584e967067915b4c2e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dynamicType: 0
-  useType: 0
-  interactType: 1
-  keyType: 0
-  m_Animation: {fileID: 8304048143313287266}
-  IgnoreColliders: []
-  InteractEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  DisabledEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  customText: 
-  keyID: 0
-  useAnim: Cooker1_Door1_Open
-  backUseAnim: Cooker1_Door1_Close
-  useJammedPlanks: 0
-  Planks: []
-  knobAnim: 
-  useSR: 0
-  startingRotation: {x: 0, y: 0, z: 0}
-  isOpened: 0
-  toPlayerAngle: 0
-  moveWithX: 0
-  minMaxMove: {x: 0, y: 0}
-  reverseMove: 0
-  InteractPos: 0
-  stopAngle: 0
-  lockOnUp: 0
-  isUp: 0
-  valveTurnSounds: []
-  valveSoundAfter: 0
-  valveTurnSpeed: 0
-  valveTurnTime: 0
-  m_Volume: 1
-  Open: {fileID: 0}
-  Close: {fileID: 0}
-  LockedTry: {fileID: 0}
-  UnlockSound: {fileID: 0}
-  LeverUpSound: {fileID: 0}
-  DebugAngle: 0
-  rotateValue: 0
-  isHolding: 0
-  Hold: 0
-  hasKey: 0
-  isLocked: 0
-  isInvoked: 0
-  Angle: 0
 --- !u!1 &6217689358167943693
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,6 +410,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.000022888187, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4322478242633319738}
   - {fileID: 6431194560624712218}
@@ -542,8 +426,7 @@ Animation:
   m_GameObject: {fileID: 6217689358167943693}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: 6c1942cec8fda03489a226258e1b018c,
-    type: 3}
+  m_Animation: {fileID: 1827226128182048838, guid: 6c1942cec8fda03489a226258e1b018c, type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: 6c1942cec8fda03489a226258e1b018c, type: 3}
   - {fileID: -9175781861074305259, guid: 6c1942cec8fda03489a226258e1b018c, type: 3}
@@ -580,6 +463,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 47.521, y: 0.006509781, z: 111.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2841147801576268958}
   - {fileID: 2322446568557604040}
@@ -605,9 +489,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -633,6 +520,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &4668612575005932624
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -643,9 +531,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: -4569892381162106010, guid: 78a4814ea23a68f47af6c04a0d29f362, type: 3}
 --- !u!1 &7861348195100956493
 GameObject:
@@ -676,6 +564,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2841147801576268958}
   m_RootOrder: 1
@@ -699,9 +588,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -726,6 +618,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &476663738635341123
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -736,7 +629,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: -5892272238630929640, guid: a19deb126184a7d4294578ec9250c2f1, type: 3}
