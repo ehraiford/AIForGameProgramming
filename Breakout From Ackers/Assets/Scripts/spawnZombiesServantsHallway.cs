@@ -19,6 +19,11 @@ public class spawnZombiesServantsHallway : MonoBehaviour
         {
             zombies[i].SetActive(true);
         }
+
+        for (int i = 0; i < candles.Length; i++)
+        {
+            candles[i].GetComponent<LightCandles>().forceLightingState(false);
+        }
     }
     private void Update()
     {
