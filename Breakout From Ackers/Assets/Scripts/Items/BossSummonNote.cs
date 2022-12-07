@@ -20,6 +20,7 @@ public class BossSummonNote : Interactable
 
     public override void OnInteract()
     {
+        OnScreenUI.GetComponent<OnScreenUIScript>().OpenNote(noteNumber, fontNumber);
         spawnAcker();
     }
 
@@ -43,7 +44,7 @@ public class BossSummonNote : Interactable
             //Activate Boss
             boss.SetActive(true);
             Debug.Log("Item Has been Interacted with");
-            OnScreenUI.GetComponent<OnScreenUIScript>().OpenNote(noteNumber, fontNumber);
+           
             OnScreenUI.GetComponent<OnScreenUIScript>().SetCurrentObjective(4);
             audioSource.Play();
             spawnedAcker = true;
