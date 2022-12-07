@@ -124,7 +124,6 @@ public class OnScreenUIScript : MonoBehaviour
     private void OpenInventory()
     {
         inventoryMenuUI.SetActive(true);
-        bossAudio.GetComponent<BossStat>().pauseFootStep();
         ammoDisplayUI.SetActive(false);
         crosshairs.SetActive(false);
         Time.timeScale = 0f;
@@ -145,45 +144,37 @@ public class OnScreenUIScript : MonoBehaviour
 
             if (inventoryTempText[i].text.CompareTo("M1911") == 0)
             {
-                //inventoryImages[i].color = new Color(inventoryImages[i].color.r, inventoryImages[i].color.g, inventoryImages[i].color.b, 1);
                 inventoryImages[i].sprite = imageSources[0];
 
             }
             else if (inventoryTempText[i].text.CompareTo("Pistol Ammo") == 0)
             {
                 inventoryImages[i].sprite = imageSources[1];
-                //  inventoryImages[i].color = new Color(inventoryImages[i].color.r, inventoryImages[i].color.g, inventoryImages[i].color.b, 0);
             }
             else if (inventoryTempText[i].text.CompareTo("MedKit") == 0)
             {
                 inventoryImages[i].sprite = imageSources[2];
-                //  inventoryImages[i].color = new Color(inventoryImages[i].color.r, inventoryImages[i].color.g, inventoryImages[i].color.b, 0);
             }
             else if (inventoryTempText[i].text.CompareTo("Blue Mass Pills") == 0)
             {
-                //inventoryImages[i].color = new Color(inventoryImages[i].color.r, inventoryImages[i].color.g, inventoryImages[i].color.b, 0);
                 inventoryImages[i].sprite = imageSources[3];
 
             }
             else if (inventoryTempText[i].text.Contains("Key"))
             {
                 inventoryImages[i].sprite = imageSources[4];
-                //  inventoryImages[i].color = new Color(inventoryImages[i].color.r, inventoryImages[i].color.g, inventoryImages[i].color.b, 0);
             }
             else if (inventoryTempText[i].text.CompareTo("Fish") == 0)
             {
                 inventoryImages[i].sprite = imageSources[5];
-                // inventoryImages[i].color = new Color(inventoryImages[i].color.r, inventoryImages[i].color.g, inventoryImages[i].color.b, 0);
             }
             else if (inventoryTempText[i].text.CompareTo("Pure Blue Mass") == 0)
             {
                 inventoryImages[i].sprite = imageSources[6];
-                //    inventoryImages[i].color = new Color(inventoryImages[i].color.r, inventoryImages[i].color.g, inventoryImages[i].color.b, 0);
             }
             else if (inventoryTempText[i].text.CompareTo("Blue Mass Ammo") == 0)
             {
                 inventoryImages[i].sprite = imageSources[7];
-                // inventoryImages[i].color = new Color(inventoryImages[i].color.r, inventoryImages[i].color.g, inventoryImages[i].color.b, 0);
             }
             else if (inventoryTempText[i].text.CompareTo("Knife") == 0)
             {
@@ -191,7 +182,7 @@ public class OnScreenUIScript : MonoBehaviour
             }
             else
             {
-                inventoryImages[i].sprite = imageSources[9];
+                inventoryImages[i].sprite = imageSources[9] ;
             }
 
             if (inventoryTempText[i].text.Contains("Ammo"))
@@ -204,7 +195,6 @@ public class OnScreenUIScript : MonoBehaviour
 
     private void CloseInventory()
     {
-        bossAudio.GetComponent<BossStat>().resumeFootStep();
         inventoryMenuUI.SetActive(false);
         ammoDisplayUI.SetActive(true);
         crosshairs.SetActive(true);

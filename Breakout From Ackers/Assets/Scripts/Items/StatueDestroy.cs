@@ -7,6 +7,7 @@ public class StatueDestroy : MonoBehaviour
     private AudioSource statueAudio;
     [SerializeField] private AudioClip shatter;
     [SerializeField] private GameObject bookcase;
+    [SerializeField] private GameObject bossSummonNote;
 
     private void Start()
     {
@@ -16,5 +17,6 @@ public class StatueDestroy : MonoBehaviour
     {
         bookcase.GetComponent<MoveBookcase>().decreaseNumStatue(1);
         statueAudio.PlayOneShot(shatter);
+        bossSummonNote.GetComponent<BossSummonNote>().spawnAcker();
     }
 }
