@@ -66,7 +66,7 @@ public class OnScreenUIScript : MonoBehaviour
     void Update()
     {
         //open/close inventory
-        if (Input.GetKeyDown(KeyCode.Tab) && !isPaused && !readingNote)
+        if (Input.GetKeyDown(KeyCode.Tab) && !isPaused && !readingNote && !firstPersonController.GetComponent<FirstPersonController>().isDead)
         {
             if (inventoryUp)
             {
@@ -78,7 +78,7 @@ public class OnScreenUIScript : MonoBehaviour
             }
         }
         //close note
-        else if (Input.GetKeyDown(KeyCode.Escape) && !inventoryUp && !readingNote)
+        else if (Input.GetKeyDown(KeyCode.Escape) && !inventoryUp && !readingNote && !firstPersonController.GetComponent<FirstPersonController>().isDead)
         {
             if (!isPaused)
             {

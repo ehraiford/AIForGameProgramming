@@ -83,6 +83,8 @@ public class GameOverScript : MonoBehaviour
                 playerController.enabled = true;
                 playerController.isDead = false;
                 backgroundMusic.GetComponent<BGMScript>().RestartMusic();
+                playerController.undoDebuff();
+
                 gameObject.SetActive(false);
                 break;
         }

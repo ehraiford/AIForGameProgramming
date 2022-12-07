@@ -65,7 +65,7 @@ public class Door : Interactable
         if (isLocked)
         {
             //Has key
-            if (FPC.RemoveInventoryItem(KeyName, 1) == 1)
+            if (lockTimer == 0.0f && FPC.RemoveInventoryItem(KeyName, 1) == 1 )
             {
                 onScreenUI.GetComponent<OnScreenUIScript>().SetHeadsUpText("Unlocked door using the " + KeyName + ".");
                 doorAudio.PlayOneShot(doorUnlock);
