@@ -311,7 +311,11 @@ public class OnScreenUIScript : MonoBehaviour
     public void Resume()
     {
         backgroundMusic.GetComponent<BGMScript>().Unpause();
-        bossAudio.GetComponent<BossStat>().resumeFootStep();
+        if(bossAudio != null)
+        {
+            bossAudio.GetComponent<BossStat>().resumeFootStep();
+        }
+        
         pauseMenuUI.SetActive(false);
         crosshairs.SetActive(true);
         Cursor.visible = false;
@@ -325,7 +329,10 @@ public class OnScreenUIScript : MonoBehaviour
     void Pause()
     {
         backgroundMusic.GetComponent<BGMScript>().PauseMusic();
-        bossAudio.GetComponent<BossStat>().pauseFootStep();
+        if(bossAudio != null)
+        {
+            bossAudio.GetComponent<BossStat>().pauseFootStep();
+        }
         pauseMenuUI.SetActive(true);
         crosshairs.SetActive(false);
         Time.timeScale = 0f;
