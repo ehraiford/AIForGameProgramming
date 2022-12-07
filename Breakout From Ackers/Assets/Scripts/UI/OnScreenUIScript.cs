@@ -124,6 +124,7 @@ public class OnScreenUIScript : MonoBehaviour
     private void OpenInventory()
     {
         inventoryMenuUI.SetActive(true);
+        bossAudio.GetComponent<BossStat>().pauseFootStep();
         ammoDisplayUI.SetActive(false);
         crosshairs.SetActive(false);
         Time.timeScale = 0f;
@@ -203,6 +204,7 @@ public class OnScreenUIScript : MonoBehaviour
 
     private void CloseInventory()
     {
+        bossAudio.GetComponent<BossStat>().resumeFootStep();
         inventoryMenuUI.SetActive(false);
         ammoDisplayUI.SetActive(true);
         crosshairs.SetActive(true);
